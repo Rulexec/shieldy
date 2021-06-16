@@ -9,6 +9,7 @@ import { getName, getUsername } from '@helpers/getUsername'
 import { isRuChat } from '@helpers/isRuChat'
 import { promoExceptions, promoAdditions } from '@helpers/promo'
 import { Captcha } from './generateCaptcha'
+import { config } from '../../config'
 
 export async function notifyCandidate(
   ctx: Context,

@@ -2,6 +2,7 @@ import { isGroup } from '@helpers/isGroup'
 import { deleteMessageSafe } from '@helpers/deleteMessageSafe'
 import { Context } from 'telegraf'
 import tall from 'tall'
+import { config } from '../config'
 
 const disallowedUrlParts = ['http://t.me/', 'https://t.me/']
 
@@ -40,7 +41,7 @@ export async function checkNoChannelLinks(ctx: Context, next: Function) {
     return next()
   }
   // If sent from admins, just ignore
-  const adminIds = [777000, parseInt(process.env.ADMIN)]
+  const adminIds = [parseInt(config.telegramAdminId)]
   if (adminIds.includes(ctx.from.id) || ctx.isAdministrator) {
     return next()
   }

@@ -1,6 +1,7 @@
 import { isGroup } from '@helpers/isGroup'
 import { deleteMessageSafeWithBot } from '@helpers/deleteMessageSafe'
 import { Context } from 'telegraf'
+import { config } from '../config'
 
 export async function checkLock(ctx: Context, next: () => any) {
   // If loccked, private messages or channel, then continue
@@ -8,7 +9,7 @@ export async function checkLock(ctx: Context, next: () => any) {
     return next()
   }
   // If super admin, then continue
-  if (ctx.from.id === parseInt(process.env.ADMIN)) {
+  if (ctx.from.id === config.telegramAdminId) {
     return next()
   }
   // If from the group anonymous bot, then continue

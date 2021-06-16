@@ -2,6 +2,7 @@ import { Context } from 'telegraf'
 import { isGloballyRestricted } from '@helpers/globallyRestricted'
 import { deleteMessageSafe } from '@helpers/deleteMessageSafe'
 import { MessageEntity } from 'typegram'
+import { config } from '../config'
 
 export async function checkRestrict(ctx: Context, next: () => any) {
   if (ctx.update.message?.date && ctx.update.message?.text === '/help') {
@@ -21,7 +22,7 @@ export async function checkRestrict(ctx: Context, next: () => any) {
     return next()
   }
   // Don't restrict super admin
-  if (ctx.from.id === parseInt(process.env.ADMIN)) {
+  if (ctx.from.id === parseInt(config.telegramAdminId)) {
     return next()
   }
   // Just delete the message if globally restricted

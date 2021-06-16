@@ -5,19 +5,14 @@ import { Context } from 'telegraf'
 import { report } from '@helpers/report'
 import { bot } from '@helpers/bot'
 import { isMaster, fork } from 'cluster'
-import { cpus } from 'os'
+import { config } from './config'
 
 // Generate cluster workers
 const workers = []
 if (isMaster) {
   console.info(`Master ${process.pid} is running`)
 
-  let workersCount = parseInt(process.env.WORKERS_COUNT, 10);
-  if (!isFinite(workersCount)) {
-    workersCount = cpus().length;
-  }
-
-  for (let i = 0; i < workersCount; i += 1) {
+  for (let i = 0; i < config.workersCount; i += 1) {
     const worker = fork()
     workers.push(worker)
   }

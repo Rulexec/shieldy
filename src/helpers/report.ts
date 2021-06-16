@@ -1,12 +1,13 @@
 import { checkIfErrorDismissable } from '@helpers/error'
 import { bot } from '@helpers/bot'
+import { config } from '../config'
 
 let errorsToReport = []
 
 async function bulkReport() {
   const tempErrorsToReport = errorsToReport
   errorsToReport = []
-  const adminChatId = process.env.ADMIN
+  const adminChatId = config.telegramAdminId
   if (!adminChatId) {
     return
   }

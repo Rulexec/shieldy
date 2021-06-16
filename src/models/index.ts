@@ -1,7 +1,8 @@
 import * as mongoose from 'mongoose'
 import { setGlobalOptions, Severity } from '@typegoose/typegoose'
+import { config } from '../config'
 
-mongoose.connect(process.env.MONGO, {
+mongoose.connect(config.mongoUri, {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
