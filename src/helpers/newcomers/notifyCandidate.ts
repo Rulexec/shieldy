@@ -1,6 +1,6 @@
 import { ExtraReplyMessage } from 'telegraf/typings/telegram-types'
 import { cloneDeep } from 'lodash'
-import { Equation, CaptchaType } from '@models/Chat'
+import { CaptchaType } from '@models/Chat'
 import { User } from 'telegram-typings'
 import { Context, Extra, Markup } from 'telegraf'
 import { strings } from '@helpers/strings'
@@ -108,7 +108,7 @@ export async function notifyCandidate(
   } else {
     extra = extra.HTML(true)
 
-    const hasPromo = !promoExceptions.includes(ctx.chat.id)
+    const hasPromo = config.withPromo && !promoExceptions.includes(ctx.chat.id)
     const promoAddition =
       hasPromo &&
       promoAdditions[isRuChat(chat) ? 'ru' : 'en']()
