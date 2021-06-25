@@ -53,7 +53,7 @@ export const localizations = {
     bg:
       'Sesuritu - е най-доброто решение в Telegram за борба с досадните спамери. Той призовава новодошлите да изпълнят зададено действие в рамките на определен период, в противен случай ги премахва. Това е толкова лесно. Уверете се, че @Sesuritu\\_bot е администратор във вашия чат и всичко е готово! Можете също така допълнително да настроите поведението със следните команди: \n\n/help - показва това съобщение \n/language - превключва езика \n/captcha - променя типа на използвания captcha \n/timeLimit - променя количеството на времето, дадено на новодошлите \n/lock - прави командите достъпни само от администратори \n/restrict - ограничава новодошлите да изпращат само текстови съобщения през първите 24 часа \n/deleteEntryMessages - изтриване на съобщения за влизане на потребител \n/greeting - поздравява потребителите които преминат теста \n/trust - отговорете с тази команда на съобщение, изпратено от потребител, което не искате да проверявате \n/ban - същото като доверие, но обратното \n/strict - използвайте, когато не го правите искат да получават съобщения на новодошлите, но captcha решения, докато преминат captcha \n/customCaptchaMessage - настройка на персонализирани captcha mes sage \n/deleteGreetingTime - настройка кога да изтриете поздрава на Sesuritu за секунди като `/deleteGreetingTime 100`, нулирайте, като го зададете на 0 \n/banUsers - дали да забраните или да ритате потребителите \n/deleteEntryOnKick - дали да изтриете съобщения за влизане за потребители, които не са успели captcha \n/cas - дали да използват Combot Anti-Spam или не \n/underAttack - превключване на режима за автоматично изхвърляне на всички новодошли \n/noAttack - деактивира Sesuritu \n/noChannelLinks - автоматично изтрива съобщения, които се свързват с други канали на телеграма \n/viewConfig - преглед на текущата конфигурация на Sesuritu \n/buttonText - промяна на текста на бутона за капча под формата на `/buttonText Не съм бот!` \n/allowInvitingBots - дали потребителите могат да поканят други ботове или не \n/greetingButtons - бутони за настройка на поздравително съобщение \n/skipOldUsers - не показвайте captcha на акаунти в Telegram с идентификатор по-малък от 1000000000 \n/skipVerifiedUsers - не показвайте captcha на потребители, които някога са преминали captcha в чат \n/setConfig - настройка на Sesuritu конфигурация в едно съобщение \n/banForFastRepliesToPosts - включете или изключете забраната на потребителите, които отговарят на нови публикации в канала в рамките на 5 секунди след създаването на публикации \n/restrictTime - настройка колко време Sesuritu / ограничава новодошлия в часове като `/restrictTime 24`, нулирайте, като го зададете на 0 \n/banNewTelegramUsers - незабавно забранете (или ритайте) новодошлите с Telegram ID над 1000000000 \n\n. Sesuritu е с отворен код и може да бъде намерен [тук] (https://github.com/Rulexec/shieldy)',
   },
-  language_Sesuritu: {
+  language_shieldy: {
     en: 'Please, select the language.',
     ru: 'Пожалуйста, выберите язык.',
     it: 'Prego, seleziona la lingua.',
@@ -497,7 +497,7 @@ export const localizations = {
     fi: 's',
     bg: 'сек',
   },
-  lock_true_Sesuritu: {
+  lock_true_shieldy: {
     en: 'Great! Now I will only react to commands sent by admins.',
     ru: 'Отлично! Теперь я буду принимать команды только от админов.',
     it: 'Perfetto, Ora eseguirò solamente i comandi inviati da amministratori.',
@@ -528,7 +528,7 @@ export const localizations = {
     hu: 'Nagyszerű! Mostantól csak az adminok parancsara reagálok!',
     bg: 'Чудесно! Вече ще приемам команди само от администраторите.',
   },
-  lock_false_Sesuritu: {
+  lock_false_shieldy: {
     en: 'Great! Now I will react to commands sent by anybody.',
     ru: 'Отлично! Теперь я буду принимать команды ото всех.',
     it: 'Perfetto, Ora eseguirò i comandi inviati da tutti.',
