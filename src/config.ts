@@ -10,5 +10,5 @@ export const config = {
   telegramToken: process.env.TOKEN,
   telegramAdminId: parseInt(process.env.ADMIN, 10),
   mongoUri: process.env.MONGO,
-  withPromo: process.env.PROMO_DISABLED === '1',
+  withPromo: process.env.PROMO_DISABLED !== '1',
 }
