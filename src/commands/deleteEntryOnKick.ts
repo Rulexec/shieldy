@@ -1,27 +1,33 @@
-import { clarifyIfPrivateMessages } from '@helpers/clarifyIfPrivateMessages'
-import { saveChatProperty } from '@helpers/saveChatProperty'
-import { Telegraf, Context, Extra } from 'telegraf'
-import { strings } from '@helpers/strings'
-import { checkLock } from '@middlewares/checkLock'
+import {clarifyIfPrivateMessages} from '@helpers/clarifyIfPrivateMessages';
+import {Extra} from 'telegraf';
+import {Bot} from '@root/types/index';
+import {checkLock} from '@middlewares/checkLock';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
-export function setupDeleteEntryOnKick(bot: Telegraf<Context>) {
+export function setupDeleteEntryOnKick(bot: Bot): void {
   bot.command(
     'deleteEntryOnKick',
     checkLock,
     clarifyIfPrivateMessages,
     async (ctx) => {
-      let chat = ctx.dbchat
-      chat.deleteEntryOnKick = !chat.deleteEntryOnKick
-      await saveChatProperty(chat, 'deleteEntryOnKick')
+      const chat = ctx.dbchat;
+      chat.deleteEntryOnKick = !chat.deleteEntryOnKick;
+      await ctx.appContext.database.setChatProperty({
+        chatId: chat.id,
+        property: 'deleteEntryOnKick',
+        value: chat.deleteEntryOnKick,
+      });
+
+      assertNonNullish(ctx.message);
+
       ctx.replyWithMarkdown(
-        strings(
-          ctx.dbchat,
+        ctx.translate(
           chat.deleteEntryOnKick
             ? 'deleteEntryOnKick_true'
-            : 'deleteEntryOnKick_false'
+            : 'deleteEntryOnKick_false',
         ),
-        Extra.inReplyTo(ctx.message.message_id)
-      )
-    }
-  )
+        Extra.inReplyTo(ctx.message.message_id),
+      );
+    },
+  );
 }

@@ -1,17 +1,24 @@
-import { clarifyIfPrivateMessages } from '@helpers/clarifyIfPrivateMessages'
-import { saveChatProperty } from '@helpers/saveChatProperty'
-import { Telegraf, Context, Extra } from 'telegraf'
-import { strings } from '@helpers/strings'
-import { checkLock } from '@middlewares/checkLock'
+import {clarifyIfPrivateMessages} from '@helpers/clarifyIfPrivateMessages';
+import {Extra} from 'telegraf';
+import {Bot} from '@root/types/index';
+import {checkLock} from '@middlewares/checkLock';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
-export function setupCAS(bot: Telegraf<Context>) {
+export function setupCAS(bot: Bot): void {
   bot.command('cas', checkLock, clarifyIfPrivateMessages, async (ctx) => {
-    let chat = ctx.dbchat
-    chat.cas = !chat.cas
-    await saveChatProperty(chat, 'cas')
+    const chat = ctx.dbchat;
+    chat.cas = !chat.cas;
+    await ctx.appContext.database.setChatProperty({
+      chatId: chat.id,
+      property: 'cas',
+      value: chat.cas,
+    });
+
+    assertNonNullish(ctx.message);
+
     ctx.replyWithMarkdown(
-      strings(ctx.dbchat, chat.cas ? 'cas_true' : 'cas_false'),
-      Extra.inReplyTo(ctx.message.message_id)
-    )
-  })
+      ctx.translate(chat.cas ? 'cas_true' : 'cas_false'),
+      Extra.inReplyTo(ctx.message.message_id),
+    );
+  });
 }

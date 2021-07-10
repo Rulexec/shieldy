@@ -1,27 +1,33 @@
-import { clarifyIfPrivateMessages } from '@helpers/clarifyIfPrivateMessages'
-import { saveChatProperty } from '@helpers/saveChatProperty'
-import { Telegraf, Context, Extra } from 'telegraf'
-import { strings } from '@helpers/strings'
-import { checkLock } from '@middlewares/checkLock'
+import {clarifyIfPrivateMessages} from '@helpers/clarifyIfPrivateMessages';
+import {Extra} from 'telegraf';
+import {Bot} from '@root/types/index';
+import {checkLock} from '@middlewares/checkLock';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
-export function setupDeleteEntryMessages(bot: Telegraf<Context>) {
+export function setupDeleteEntryMessages(bot: Bot): void {
   bot.command(
     'deleteEntryMessages',
     checkLock,
     clarifyIfPrivateMessages,
     async (ctx) => {
-      let chat = ctx.dbchat
-      chat.deleteEntryMessages = !chat.deleteEntryMessages
-      await saveChatProperty(chat, 'deleteEntryMessages')
+      const chat = ctx.dbchat;
+      chat.deleteEntryMessages = !chat.deleteEntryMessages;
+      await ctx.appContext.database.setChatProperty({
+        chatId: chat.id,
+        property: 'deleteEntryMessages',
+        value: chat.deleteEntryMessages,
+      });
+
+      assertNonNullish(ctx.message);
+
       ctx.replyWithMarkdown(
-        strings(
-          ctx.dbchat,
+        ctx.translate(
           chat.deleteEntryMessages
             ? 'deleteEntryMessages_true'
-            : 'deleteEntryMessages_false'
+            : 'deleteEntryMessages_false',
         ),
-        Extra.inReplyTo(ctx.message.message_id)
-      )
-    }
-  )
+        Extra.inReplyTo(ctx.message.message_id),
+      );
+    },
+  );
 }

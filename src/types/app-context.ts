@@ -1,0 +1,63 @@
+import {Chat} from '@root/models/Chat';
+import {IdlingStatus} from '@root/util/state/idling-status';
+import {Bot} from './bot';
+import {Database} from './database';
+import {LogLevel} from './logging';
+import {TelegramApi} from './telegram-api';
+import {BotMiddlewareFn} from '@root/bot/types';
+import {Logger} from '@root/util/logging/logger';
+
+export type Config = {
+  workersCount: number;
+  telegramToken: string;
+  telegramAdminId: number;
+  telegramAdminNickName?: string;
+  telegramApiRoot: string;
+  telegramPollingInterval: number;
+  mongoUri: string;
+  withPromo: boolean;
+  logLevel: LogLevel;
+};
+
+export type AppContext = {
+  init: () => Promise<void>;
+  stop: () => Promise<void>;
+  run: (fun: () => void | Promise<void>) => void;
+  logger: Logger;
+  config: Config;
+  database: Database;
+  telegrafBot: Bot;
+  telegramApi: TelegramApi;
+  addBotCommand: (
+    command: string | string[],
+    ...middlewares: BotMiddlewareFn[]
+  ) => void;
+  addBotCallbackQuery: (
+    query: string | string[] | RegExp,
+    ...middlewares: BotMiddlewareFn[]
+  ) => void;
+  prependBotMiddleware: (middleware: BotMiddlewareFn) => void;
+  addBotMiddleware: (middleware: BotMiddlewareFn) => void;
+  report: (error: Error, reason?: string) => void;
+  createDefaultChat: (id: number) => Chat;
+  getCurrentDate: () => Date;
+  idling: IdlingStatus;
+};
+
+// Used to validate correctness of `createContext()` at runtime
+// WARN: type checks that there is now unexisting keys, not that it missing some keys
+export const appContextKeys: (keyof AppContext)[] = [
+  'init',
+  'stop',
+  'run',
+  'logger',
+  'config',
+  'database',
+  'telegrafBot',
+  'telegramApi',
+  'addBotMiddleware',
+  'report',
+  'createDefaultChat',
+  'getCurrentDate',
+  'idling',
+];

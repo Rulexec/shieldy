@@ -1,96 +1,112 @@
-import { clarifyIfPrivateMessages } from '@helpers/clarifyIfPrivateMessages'
-import { saveChatProperty } from '@helpers/saveChatProperty'
-import { Telegraf, Context, Extra } from 'telegraf'
-import { ReplySettingType } from '@models/Chat'
-import { checkLock } from '@middlewares/checkLock'
-import { clarifyReply } from '@helpers/clarifyReply'
-import { report } from '@helpers/report'
-import { isReplyToShieldy } from '@helpers/isReplyToShieldy'
-import { strings } from '@helpers/strings'
+import {clarifyIfPrivateMessagesMiddleware} from '@helpers/clarifyIfPrivateMessages';
+import {Extra} from 'telegraf';
+import {Context} from '@root/types/index';
+import {ReplySettingType} from '@models/Chat';
+import {checkLockMiddleware} from '@middlewares/checkLock';
+import {clarifyReply} from '@helpers/clarifyReply';
+import {isReplyToShieldy} from '@helpers/isReplyToShieldy';
+import {AppContext} from '@root/types/app-context';
+import {BotMiddlewareNextStrategy} from '@root/bot/types';
 
-export function setupCustomCaptcha(bot: Telegraf<Context>) {
-  bot.command(
+export function setupCustomCaptcha(appContext: AppContext): void {
+  const {telegrafBot, addBotCommand, addBotMiddleware} = appContext;
+
+  addBotCommand(
     'viewCustomCaptcha',
-    checkLock,
-    clarifyIfPrivateMessages,
+    checkLockMiddleware,
+    clarifyIfPrivateMessagesMiddleware,
     async (ctx) => {
-      let text = ''
+      let text = '';
 
-      const tQuestion = strings(ctx.dbchat, 'custom_question_colon')
-      const tAnswer = strings(ctx.dbchat, 'custom_answer_colon')
+      const tQuestion = ctx.translate('custom_question_colon');
+      const tAnswer = ctx.translate('custom_answer_colon');
 
       ctx.dbchat.customCaptchaVariants.forEach((variant, i) => {
-        const { question, answer } = variant
+        const {question, answer} = variant;
 
         if (i !== 0) {
-          text += '\n\n'
+          text += '\n\n';
         }
-        text += `${i + 1}. ${tQuestion} ${question}\n${tAnswer} ${answer}`
-      })
+        text += `${i + 1}. ${tQuestion} ${question}\n${tAnswer} ${answer}`;
+      });
 
       if (!text) {
-        text = strings(ctx.dbchat, 'custom_no_variants')
+        text = ctx.translate('custom_no_variants');
       }
 
-      await ctx.replyWithMarkdown(text)
-    },
-  )
+      await ctx.replyWithMarkdown(text);
 
-  bot.command(
+      return BotMiddlewareNextStrategy.abort;
+    },
+  );
+
+  addBotCommand(
     'removeAllCustomCaptcha',
-    checkLock,
-    clarifyIfPrivateMessages,
+    checkLockMiddleware,
+    clarifyIfPrivateMessagesMiddleware,
     async (ctx) => {
-      ctx.dbchat.customCaptchaVariants = []
-      await saveChatProperty(ctx.dbchat, 'customCaptchaVariants')
+      ctx.dbchat.customCaptchaVariants = [];
+      await ctx.appContext.database.setChatProperty({
+        chatId: ctx.dbchat.id,
+        property: 'customCaptchaVariants',
+        value: ctx.dbchat.customCaptchaVariants,
+      });
 
-      await ctx.replyWithMarkdown(strings(ctx.dbchat, 'custom_removed'))
+      await ctx.replyWithMarkdown(ctx.translate('custom_removed'));
+
+      return BotMiddlewareNextStrategy.abort;
     },
-  )
+  );
 
-  bot.command(
+  addBotCommand(
     'addCustomCaptcha',
-    checkLock,
-    clarifyIfPrivateMessages,
+    checkLockMiddleware,
+    clarifyIfPrivateMessagesMiddleware,
     async (ctx) => {
       const message = await ctx.replyWithMarkdown(
-        strings(ctx.dbchat, 'custom_add_question'),
-      )
+        ctx.translate('custom_add_question'),
+      );
       ctx.dbchat.lastReplySetting = {
         type: ReplySettingType.ADD_CUSTOM_CAPTCHA,
         messageId: message.message_id,
-      }
-      await saveChatProperty(ctx.dbchat, 'lastReplySetting')
-      await clarifyReply(ctx)
+      };
+      await ctx.appContext.database.setChatProperty({
+        chatId: ctx.dbchat.id,
+        property: 'lastReplySetting',
+        value: ctx.dbchat.lastReplySetting,
+      });
+      await clarifyReply(ctx);
+
+      return BotMiddlewareNextStrategy.abort;
     },
-  )
+  );
 
   // Handle reactions to replies
   async function processReply(ctx: Context) {
-    const text = ctx.message.text?.trim()
+    const text = ctx.message?.text?.trim();
     if (!text) {
-      return
+      return;
     }
-    if (!isReplyToShieldy({ ctx, bot })) {
-      return
+    if (!isReplyToShieldy({ctx, bot: telegrafBot})) {
+      return;
     }
 
-    const messageReplyId = ctx.message.reply_to_message.message_id
-    const replySetting = ctx.dbchat.lastReplySetting
+    const messageReplyId = ctx.message?.reply_to_message?.message_id;
+    const replySetting = ctx.dbchat.lastReplySetting;
 
     // Check that it is reply to custom captcha settings message
     if (!replySetting) {
-      return
+      return;
     }
     if (replySetting.messageId !== messageReplyId) {
-      return
+      return;
     }
 
     switch (replySetting.type) {
       case ReplySettingType.ADD_CUSTOM_CAPTCHA:
-        return await processAddCustomCaptchaReply(ctx, text)
+        return await processAddCustomCaptchaReply(ctx, text);
       case ReplySettingType.ADD_CUSTOM_CAPTCHA_ANSWER:
-        return await processAddCustomCaptchaAnswerReply(ctx, text)
+        return await processAddCustomCaptchaAnswerReply(ctx, text);
     }
   }
   async function processAddCustomCaptchaReply(
@@ -98,40 +114,63 @@ export function setupCustomCaptcha(bot: Telegraf<Context>) {
     customCaptchaQuestion: string,
   ) {
     const botMessage = await ctx.replyWithMarkdown(
-      strings(ctx.dbchat, 'custom_add_answer'),
-    )
+      ctx.translate('custom_add_answer'),
+    );
 
     ctx.dbchat.lastReplySetting = {
       type: ReplySettingType.ADD_CUSTOM_CAPTCHA_ANSWER,
       messageId: botMessage.message_id,
       customCaptchaQuestion,
-    }
-    await saveChatProperty(ctx.dbchat, 'lastReplySetting')
+    };
+    await ctx.appContext.database.setChatProperty({
+      chatId: ctx.dbchat.id,
+      property: 'lastReplySetting',
+      value: ctx.dbchat.lastReplySetting,
+    });
   }
   async function processAddCustomCaptchaAnswerReply(
     ctx: Context,
     customCaptchaAnswer: string,
   ) {
-    const { customCaptchaQuestion } = ctx.dbchat.lastReplySetting
+    const {lastReplySetting} = ctx.dbchat;
+    if (!ctx.message || !lastReplySetting) {
+      return;
+    }
+
+    const {customCaptchaQuestion} = lastReplySetting;
+    if (!customCaptchaQuestion) {
+      return;
+    }
+
+    const answer = customCaptchaAnswer
+      .toLowerCase()
+      .split(',')
+      .map((x) => x.trim())
+      .join(',');
 
     ctx.dbchat.customCaptchaVariants.push({
       question: customCaptchaQuestion,
-      answer: customCaptchaAnswer.toLowerCase(),
-    })
-    await saveChatProperty(ctx.dbchat, 'customCaptchaVariants')
+      answer,
+    });
+    await ctx.appContext.database.setChatProperty({
+      chatId: ctx.dbchat.id,
+      property: 'customCaptchaVariants',
+      value: ctx.dbchat.customCaptchaVariants,
+    });
 
     await ctx.replyWithMarkdown(
-      strings(ctx.dbchat, 'custom_success'),
+      ctx.translate('custom_success'),
       Extra.inReplyTo(ctx.message.message_id),
-    )
+    );
   }
-  bot.use(async (ctx, next) => {
+
+  addBotMiddleware(async (ctx) => {
     try {
-      await processReply(ctx)
+      await processReply(ctx);
     } catch (err) {
-      report(err)
-    } finally {
-      next()
+      ctx.appContext.report(err);
     }
-  })
+
+    return BotMiddlewareNextStrategy.next;
+  });
 }

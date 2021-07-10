@@ -1,10 +1,23 @@
-import { strings } from '@helpers/strings'
-import { Context } from 'telegraf'
+import {
+  BotMiddlewareFn,
+  BotMiddlewareNextStrategy,
+  newBotMiddlewareAdapter,
+} from '@root/bot/types';
 
-export async function clarifyIfPrivateMessages(ctx: Context, next: Function) {
+export const clarifyIfPrivateMessagesMiddleware: BotMiddlewareFn = async (
+  ctx,
+) => {
   if (ctx.chat?.type !== 'private') {
-    return next()
+    return BotMiddlewareNextStrategy.next;
   }
-  await ctx.reply(strings(ctx.dbchat, 'commandsInPrivateWarning'))
-  return next()
-}
+
+  await ctx.appContext.idling.wrapTask(() =>
+    ctx.reply(ctx.translate('commandsInPrivateWarning')),
+  );
+
+  return BotMiddlewareNextStrategy.next;
+};
+
+export const clarifyIfPrivateMessages = newBotMiddlewareAdapter(
+  clarifyIfPrivateMessagesMiddleware,
+);

@@ -1,0 +1,9 @@
+- Move methods like `botRemoveEntryMessages` out of `src/database/mongo`
+- Wrap all promises without `.catch(report)`
+- Investigate mongodb reconnects
+- Fix type hacks from `src/types/hacks`
+- Get rid of custom `telegraf` dependency
+- Migrate all telegraf's `.command`, `.action`, `.use` to methods from `appContext`
+- Collect stats (at least requests per minute)
+- Use external queue for telegram updates (for seamless updates)
+- Write scripts for backup/restore

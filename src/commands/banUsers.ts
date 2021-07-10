@@ -1,17 +1,24 @@
-import { clarifyIfPrivateMessages } from '@helpers/clarifyIfPrivateMessages'
-import { saveChatProperty } from '@helpers/saveChatProperty'
-import { Telegraf, Context, Extra } from 'telegraf'
-import { strings } from '@helpers/strings'
-import { checkLock } from '@middlewares/checkLock'
+import {clarifyIfPrivateMessages} from '@helpers/clarifyIfPrivateMessages';
+import {Extra} from 'telegraf';
+import {Bot} from '@root/types/index';
+import {checkLock} from '@middlewares/checkLock';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
-export function setupBanUsers(bot: Telegraf<Context>) {
+export function setupBanUsers(bot: Bot): void {
   bot.command('banUsers', checkLock, clarifyIfPrivateMessages, async (ctx) => {
-    let chat = ctx.dbchat
-    chat.banUsers = !chat.banUsers
-    await saveChatProperty(chat, 'banUsers')
+    const chat = ctx.dbchat;
+    chat.banUsers = !chat.banUsers;
+    await ctx.appContext.database.setChatProperty({
+      chatId: chat.id,
+      property: 'banUsers',
+      value: chat.banUsers,
+    });
+
+    assertNonNullish(ctx.message);
+
     ctx.replyWithMarkdown(
-      strings(ctx.dbchat, chat.banUsers ? 'banUsers_true' : 'banUsers_false'),
-      Extra.inReplyTo(ctx.message.message_id)
-    )
-  })
+      ctx.translate(chat.banUsers ? 'banUsers_true' : 'banUsers_false'),
+      Extra.inReplyTo(ctx.message.message_id),
+    );
+  });
 }

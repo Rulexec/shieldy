@@ -1,77 +1,83 @@
-import 'module-alias/register'
-import * as dotenv from 'dotenv'
-dotenv.config({ path: `${__dirname}/../.env` })
-import '@models'
-import { report } from '@helpers/report'
-import { findChatsWithCandidates } from '@models/Chat'
-import { kickCandidates } from '@helpers/newcomers/kickCandidates'
-import { modifyRestrictedUsers } from '@helpers/restrictedUsers'
+import 'module-alias/register';
+import {botKickCandidates} from '@helpers/newcomers/kickCandidates';
+import {removeRestrictedUsers} from '@helpers/restrictedUsers';
+import {createContext} from './context';
+import {Candidate} from './models/Chat';
 
-let checking = false
+const appContext = createContext({instanceId: 'kicker'});
+const {report, logger} = appContext;
 
-// Check candidates
-setInterval(async () => {
-  console.log(
-    'Trying to check candidates, current checking status is',
-    checking
-  )
-  if (!checking) {
-    check()
-  }
-}, 15 * 1000)
+let checking = false;
+
+appContext.run(() => {
+  // Check candidates
+  setInterval(() => {
+    logger.trace('checkCandidates', {checking});
+    if (!checking) {
+      check();
+    }
+  }, 15 * 1000);
+
+  logger.info('started');
+});
 
 async function check() {
-  checking = true
+  checking = true;
   try {
-    console.log('Getting chats with candidates')
-    const chats = await findChatsWithCandidates()
-    console.log(`Found ${chats.length} chats with candidates`)
+    logger.trace('findCandidates');
+    const chats =
+      await appContext.database.findChatsWithCandidatesOrRestrictedUsers();
+    logger.trace('candidates', {chats: chats.length});
+
     for (const chat of chats) {
       // Check candidates
-      const candidatesToDelete = []
+      const candidatesToDelete: Candidate[] = [];
       for (const candidate of chat.candidates) {
         if (
           new Date().getTime() - candidate.timestamp <
           chat.timeGiven * 1000
         ) {
-          continue
+          continue;
         }
-        candidatesToDelete.push(candidate)
+        candidatesToDelete.push(candidate);
       }
       if (candidatesToDelete.length) {
-        console.log(
-          `Kicking ${candidatesToDelete.length} candidates at ${chat.id}`
-        )
+        logger.info('kicking', {
+          count: candidatesToDelete.length,
+          chatId: chat.id,
+        });
         try {
-          await kickCandidates(chat, candidatesToDelete)
+          await botKickCandidates(appContext, chat, candidatesToDelete);
         } catch (err) {
-          report(err, 'kickCandidatesAfterCheck')
+          report(err, 'kickCandidatesAfterCheck');
         }
       }
       // Check restricted users
-      const restrictedToDelete = []
+      const restrictedToDelete: Candidate[] = [];
       for (const candidate of chat.restrictedUsers) {
         if (
           new Date().getTime() - candidate.timestamp >
           (candidate.restrictTime || 24) * 60 * 60 * 1000
         ) {
-          restrictedToDelete.push(candidate)
+          restrictedToDelete.push(candidate);
         }
       }
       if (restrictedToDelete.length) {
         try {
-          await modifyRestrictedUsers(chat, false, restrictedToDelete)
+          await removeRestrictedUsers({
+            appContext,
+            chat,
+            candidatesAndUsers: restrictedToDelete,
+          });
         } catch (err) {
-          report(err, 'removeRestrictAfterCheck')
+          report(err, 'removeRestrictAfterCheck');
         }
       }
     }
   } catch (err) {
-    report(err, 'checking candidates')
+    report(err, 'checking candidates');
   } finally {
-    console.log('Finished checking chats with candidates')
-    checking = false
+    logger.trace('findCandidates:finish');
+    checking = false;
   }
 }
-
-console.log('Kicker is up and running')

@@ -1,5 +1,5 @@
-import { prop, getModelForClass } from '@typegoose/typegoose'
-import { Message, ChatMember } from 'telegram-typings'
+import {Message} from 'telegraf/typings/telegram-types';
+import {ChatMember} from 'telegram-typings';
 
 export enum Language {
   ENGLISH = 'en',
@@ -37,62 +37,40 @@ export enum CaptchaType {
 }
 
 export class Equation {
-  question: String
-  answer: String
+  question: string;
+  answer: string;
 }
 
 export class Candidate {
-  @prop({ required: true })
-  id: number
-  @prop({ required: true })
-  timestamp: number
-  @prop({ required: true, enum: CaptchaType })
-  captchaType: CaptchaType
-  @prop()
-  messageId?: number
-  @prop()
-  username?: string
-  @prop()
-  restrictTime?: number
-
-  @prop()
-  equationQuestion?: string
-  @prop()
-  equationAnswer?: string
-  @prop()
-  imageText?: string
-  @prop()
-  customQuestion?: string
-  @prop()
-  customAnswer?: string
-
-  @prop()
-  entryMessageId?: number
-  @prop()
-  leaveMessageId?: number
-  @prop()
-  entryChatId?: number
+  id: number;
+  timestamp: number;
+  captchaType: CaptchaType;
+  messageId?: number;
+  username?: string;
+  restrictTime?: number;
+  equationQuestion?: string;
+  equationAnswer?: string;
+  imageText?: string;
+  customQuestion?: string;
+  customAnswer?: string;
+  entryMessageId?: number;
+  leaveMessageId?: number;
+  entryChatId?: number;
 }
 
 export class MessageWrapper {
-  @prop({ required: true })
-  message: Message
+  message: Message;
 }
 
 export class MemberWrapper {
-  @prop({ required: true })
-  id: number
-  @prop({ required: true })
-  timestamp: number
-  @prop({ required: true })
-  member: ChatMember
+  id: number;
+  timestamp: number;
+  member: ChatMember;
 }
 
 export class CustomCaptchaVariant {
-  @prop({ required: true })
-  question: string
-  @prop({ required: true })
-  answer: string
+  question: string;
+  answer: string;
 }
 
 export enum ReplySettingType {
@@ -102,115 +80,44 @@ export enum ReplySettingType {
 
 // Stores message id which should be replied to set some setting
 export class ReplySetting {
-  @prop({ required: true, enum: ReplySettingType })
-  type: ReplySettingType
-  @prop({ required: true })
-  messageId: number
-  @prop()
-  customCaptchaQuestion?: string
+  type: ReplySettingType;
+  messageId: number;
+  customCaptchaQuestion?: string;
 }
+
+export type ChatId = number;
 
 export class Chat {
-  @prop({ required: true, index: true, unique: true })
-  id: number
-  @prop({ required: true, enum: Language, default: Language.ENGLISH })
-  language: Language
-  @prop({ required: true, enum: CaptchaType, default: CaptchaType.DIGITS })
-  captchaType: CaptchaType
-  @prop({ required: true, default: 60 })
-  timeGiven: number
-  @prop({ required: true, default: false })
-  adminLocked: boolean
-  @prop({ required: true, default: true })
-  restrict: boolean
-  @prop({ required: true, default: false })
-  noChannelLinks: boolean
-  @prop({ required: true, default: false })
-  deleteEntryMessages: boolean
-  @prop({ type: Candidate, default: [], index: true })
-  candidates: Candidate[]
-  @prop({ type: Candidate, default: [], index: true })
-  restrictedUsers: Candidate[]
-  @prop({ required: true, default: false })
-  greetsUsers: boolean
-  @prop()
-  greetingMessage?: MessageWrapper
-  @prop({ required: true, default: false })
-  customCaptchaMessage: boolean
-  @prop()
-  captchaMessage?: MessageWrapper
-  @prop({ type: CustomCaptchaVariant, default: [] })
-  customCaptchaVariants: CustomCaptchaVariant[]
-  @prop({ required: true, default: true })
-  strict: boolean
-  @prop()
-  deleteGreetingTime?: number
-  @prop({ required: true, default: false })
-  banUsers: boolean
-  @prop({ required: true, default: false })
-  deleteEntryOnKick: boolean
-  @prop({ required: true, default: true })
-  cas: boolean
-  @prop({ required: true, default: false })
-  underAttack: boolean
-  @prop({ required: true, default: false })
-  noAttack: boolean
-  @prop()
-  buttonText?: string
-  @prop({ required: true, default: false })
-  allowInvitingBots: boolean
-  @prop()
-  greetingButtons?: string
-  @prop({ required: true, default: false })
-  skipOldUsers: boolean
-  @prop({ required: true, default: false })
-  skipVerifiedUsers: boolean
-  @prop({ required: true, default: false })
-  banForFastRepliesToPosts: boolean
-  @prop({ type: MemberWrapper, required: true, default: [] })
-  members: MemberWrapper[]
-  @prop({ required: true, default: 24 })
-  restrictTime: number
-  @prop({ required: true, default: false })
-  banNewTelegramUsers: boolean
-  @prop()
-  lastReplySetting?: ReplySetting
-
-  // mongo
-  _id?: string
-}
-
-// Get Chat model
-export const ChatModel = getModelForClass(Chat, {
-  schemaOptions: { timestamps: true },
-})
-
-// Get or create chat
-export async function findChat(id: number) {
-  let chat = await ChatModel.findOne({ id })
-  if (!chat) {
-    try {
-      chat = await new ChatModel({ id }).save()
-    } catch (err) {
-      chat = await ChatModel.findOne({ id })
-    }
-  }
-  return chat
-}
-
-export function findChatsWithCandidates() {
-  return ChatModel.find(
-    {
-      $or: [{ candidates: { $gt: [] } }, { restrictedUsers: { $gt: [] } }],
-    },
-    {
-      candidates: 1,
-      restrictedUsers: 1,
-      _id: 1,
-      id: 1,
-      deleteEntryOnKick: 1,
-      banUsers: 1,
-      timeGiven: 1,
-    }
-  )
+  id: ChatId;
+  language: Language;
+  captchaType: CaptchaType;
+  timeGiven: number;
+  adminLocked: boolean;
+  restrict: boolean;
+  noChannelLinks: boolean;
+  deleteEntryMessages: boolean;
+  candidates: Candidate[];
+  restrictedUsers: Candidate[];
+  greetsUsers: boolean;
+  greetingMessage?: MessageWrapper;
+  customCaptchaMessage: boolean;
+  captchaMessage?: MessageWrapper;
+  customCaptchaVariants: CustomCaptchaVariant[];
+  strict: boolean;
+  deleteGreetingTime?: number;
+  banUsers: boolean;
+  deleteEntryOnKick: boolean;
+  cas: boolean;
+  underAttack: boolean;
+  noAttack: boolean;
+  buttonText?: string;
+  allowInvitingBots: boolean;
+  greetingButtons?: string;
+  skipOldUsers: boolean;
+  skipVerifiedUsers: boolean;
+  banForFastRepliesToPosts: boolean;
+  members: MemberWrapper[];
+  restrictTime: number;
+  banNewTelegramUsers: boolean;
+  lastReplySetting?: ReplySetting;
 }

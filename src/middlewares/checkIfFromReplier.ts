@@ -1,13 +1,20 @@
-import { Context } from 'telegraf'
-import { strings } from '@helpers/strings'
+import {
+  BotMiddlewareFn,
+  BotMiddlewareNextStrategy,
+  newBotMiddlewareAdapter,
+} from '@root/bot/types';
+import {Context} from '@root/types/context';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
-export async function checkIfFromReplier(ctx: Context, next: () => any) {
+export const checkIfFromReplierMiddleware: BotMiddlewareFn = async (
+  ctx: Context,
+) => {
   if (
     ctx.callbackQuery &&
     ctx.callbackQuery.message &&
     ctx.callbackQuery.message.reply_to_message
   ) {
-    const message = ctx.callbackQuery.message
+    const message = ctx.callbackQuery.message;
     // Anonymous admin
     if (
       message.reply_to_message &&
@@ -15,17 +22,25 @@ export async function checkIfFromReplier(ctx: Context, next: () => any) {
       message.reply_to_message.from.username &&
       message.reply_to_message.from.username === 'GroupAnonymousBot'
     ) {
-      next()
-      return
+      return BotMiddlewareNextStrategy.next;
     }
+
+    assertNonNullish(message.reply_to_message?.from);
+
     if (ctx.callbackQuery.from.id !== message.reply_to_message.from.id) {
       try {
-        await ctx.answerCbQuery(strings(ctx.dbchat, 'only_author_can_reply'))
+        await ctx.answerCbQuery(ctx.translate('only_author_can_reply'));
       } catch {
         // Do nothing
       }
-      return
+
+      return BotMiddlewareNextStrategy.abort;
     }
   }
-  next()
-}
+
+  return BotMiddlewareNextStrategy.next;
+};
+
+export const checkIfFromReplier = newBotMiddlewareAdapter(
+  checkIfFromReplierMiddleware,
+);

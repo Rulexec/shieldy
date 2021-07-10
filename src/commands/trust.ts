@@ -1,59 +1,85 @@
-import { clarifyIfPrivateMessages } from '@helpers/clarifyIfPrivateMessages'
-import { modifyCandidates } from '@helpers/candidates'
-import { modifyRestrictedUsers } from '@helpers/restrictedUsers'
-import { deleteMessageSafeWithBot } from '@helpers/deleteMessageSafe'
-import { Telegraf, Context, Extra } from 'telegraf'
-import { strings } from '@helpers/strings'
-import { checkLock } from '@middlewares/checkLock'
-import { report } from '@helpers/report'
-import { Candidate } from '@models/Chat'
+import {clarifyIfPrivateMessages} from '@helpers/clarifyIfPrivateMessages';
+import {
+  removeCandidates,
+  removeRestrictedUsers,
+} from '@helpers/restrictedUsers';
+import {Extra} from 'telegraf';
+import {Bot, Context} from '@root/types/index';
+import {checkLock} from '@middlewares/checkLock';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
-export function setupTrust(bot: Telegraf<Context>) {
-  bot.command('trust', checkLock, clarifyIfPrivateMessages, async (ctx) => {
-    // Check if it is a handle message
-    const handle = ctx.message.text.substr(7).replace('@', '')
-    let handleId: number | undefined
-    if (handle) {
-      for (const c of ctx.dbchat.candidates) {
-        if (c.username === handle) {
-          handleId = c.id
-          break
+export function setupTrust(bot: Bot): void {
+  bot.command(
+    'trust',
+    checkLock,
+    clarifyIfPrivateMessages,
+    async (ctx: Context): Promise<void> => {
+      assertNonNullish(ctx.message);
+
+      // Check if it is a handle message
+      const handle = ctx.message.text.substr(7).replace('@', '');
+      let handleId: number | undefined;
+      if (handle) {
+        for (const c of ctx.dbchat.candidates) {
+          if (c.username === handle) {
+            handleId = c.id;
+            break;
+          }
         }
       }
-    }
-    // Check if reply
-    if (!ctx.message || (!ctx.message.reply_to_message && !handleId)) {
-      return
-    }
-    // Get replied
-    const repliedId = handleId || ctx.message.reply_to_message.from.id
-    // Unrestrict in Telegram
-    try {
-      await (ctx.telegram as any).restrictChatMember(ctx.dbchat.id, repliedId, {
-        can_send_messages: true,
-        can_send_media_messages: true,
-        can_send_other_messages: true,
-        can_add_web_page_previews: true,
-      })
-    } catch (err) {
-      report(err)
-    }
-    // Unrestrict in shieldy
-    modifyRestrictedUsers(ctx.dbchat, false, [{ id: repliedId } as Candidate])
-    // Remove from candidates
-    const candidate = ctx.dbchat.candidates
-      .filter((c) => c.id === repliedId)
-      .pop()
-    if (candidate) {
-      // Delete message
-      await deleteMessageSafeWithBot(ctx.dbchat.id, candidate.messageId)
+      // Check if reply
+      if (!ctx.message || (!ctx.message.reply_to_message && !handleId)) {
+        return;
+      }
+
+      assertNonNullish(ctx.message.reply_to_message?.from);
+
+      // Get replied
+      const repliedId = handleId || ctx.message.reply_to_message.from.id;
+      // Unrestrict in Telegram
+      try {
+        await ctx.telegram.restrictChatMember(ctx.dbchat.id, repliedId, {
+          permissions: {
+            can_send_messages: true,
+            can_send_media_messages: true,
+            can_send_other_messages: true,
+            can_add_web_page_previews: true,
+          },
+        });
+      } catch (err) {
+        ctx.appContext.report(err);
+      }
+      // Unrestrict in shieldy
+      removeRestrictedUsers({
+        appContext: ctx.appContext,
+        chat: ctx.dbchat,
+        candidatesAndUsers: [{id: repliedId}],
+      });
       // Remove from candidates
-      modifyCandidates(ctx.dbchat, false, [{ id: repliedId } as Candidate])
-    }
-    // Reply with success
-    await ctx.replyWithMarkdown(
-      strings(ctx.dbchat, 'trust_success'),
-      Extra.inReplyTo(ctx.message.message_id)
-    )
-  })
+      const candidate = ctx.dbchat.candidates
+        .filter((c) => c.id === repliedId)
+        .pop();
+      if (candidate) {
+        if (candidate.messageId) {
+          // Delete message
+          await ctx.deleteMessageSafe({
+            chatId: ctx.dbchat.id,
+            messageId: candidate.messageId,
+          });
+        }
+
+        // Remove from candidates
+        removeCandidates({
+          appContext: ctx.appContext,
+          chat: ctx.dbchat,
+          candidatesAndUsers: [{id: repliedId}],
+        });
+      }
+      // Reply with success
+      await ctx.replyWithMarkdown(
+        ctx.translate('trust_success'),
+        Extra.inReplyTo(ctx.message.message_id),
+      );
+    },
+  );
 }

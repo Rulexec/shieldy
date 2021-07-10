@@ -1,47 +1,48 @@
-import 'module-alias/register'
-import * as dotenv from 'dotenv'
-dotenv.config({ path: `${__dirname}/../.env` })
-import '@models'
-import { report } from '@helpers/report'
-import { findMessagesToDelete } from '@models/MessageToDelete'
-import { deleteMessageSafeWithBot } from '@helpers/deleteMessageSafe'
+import 'module-alias/register';
+import {botDeleteMessageSafe} from '@helpers/deleteMessageSafe';
+import {createContext} from './context';
 
-let checking = false
+const appContext = createContext({instanceId: 'deleter'});
+const {report, logger} = appContext;
 
-// Check candidates
-setInterval(async () => {
-  if (!checking) {
-    check()
-  }
-}, 5 * 1000)
+let checking = false;
+
+appContext.run(() => {
+  // Check candidates
+  setInterval(() => {
+    if (!checking) {
+      check();
+    }
+  }, 5 * 1000);
+});
 
 async function check() {
-  checking = true
+  checking = true;
   try {
-    const messages = await findMessagesToDelete()
+    const date = new Date();
+    const messages =
+      await appContext.database.findMessagesToDeleteWithDeleteAtLessThan(date);
     await Promise.all(
-      messages.map(
-        (message) =>
-          new Promise<void>(async (res) => {
-            try {
-              await deleteMessageSafeWithBot(
-                message.chat_id,
-                message.message_id
-              )
-              await message.remove()
-            } catch {
-              // Do nothing
-            } finally {
-              res()
-            }
-          })
-      )
-    )
+      messages.map((message) =>
+        (async () => {
+          try {
+            await botDeleteMessageSafe(appContext, {
+              chatId: message.chat_id,
+              messageId: message.message_id,
+            });
+          } catch (error) {
+            // Do nothing
+            report(error, 'message delete');
+          }
+        })(),
+      ),
+    );
+    await appContext.database.deleteMessagesToDeleteWithDeleteAtLessThan(date);
   } catch (err) {
-    report(err, 'deleting messages')
+    report(err, 'deleting messages');
   } finally {
-    checking = false
+    checking = false;
   }
 }
 
-console.log('Deleter is up and running')
+logger.info('started');

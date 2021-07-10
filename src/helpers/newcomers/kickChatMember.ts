@@ -1,26 +1,35 @@
-import { bot } from '@helpers/bot'
-import { DocumentType } from '@typegoose/typegoose'
-import { User } from 'telegraf/typings/telegram-types'
-import { Chat } from '@models/Chat'
-import { addKickedUser } from '@helpers/newcomers/addKickedUser'
-import { report } from '@helpers/report'
-import { modifyCandidates } from '@helpers/candidates'
-import { modifyRestrictedUsers } from '@helpers/restrictedUsers'
+import {User} from 'telegraf/typings/telegram-types';
+import {Chat} from '@models/Chat';
+import {addKickedUser} from '@helpers/newcomers/addKickedUser';
+import {AppContext} from '@root/types/app-context';
+import {removeCandidates, removeRestrictedUsers} from '../restrictedUsers';
 
-export async function kickChatMember(chat: DocumentType<Chat>, user: User) {
+export async function botKickChatMember(
+  appContext: AppContext,
+  chat: Chat,
+  user: User,
+): Promise<void> {
   // Try kicking the member
   try {
-    await addKickedUser(chat, user.id)
-    await bot.telegram.kickChatMember(
+    await addKickedUser(appContext, chat, user.id);
+    await appContext.telegrafBot.telegram.kickChatMember(
       chat.id,
       user.id,
-      chat.banUsers ? 0 : parseInt(`${new Date().getTime() / 1000 + 45}`)
-    )
+      chat.banUsers ? 0 : Math.floor(new Date().getTime() / 1000 + 45),
+    );
   } catch (err) {
-    report(err)
+    appContext.report(err);
   }
   // Remove from candidates
-  await modifyCandidates(chat, false, [user])
+  await removeCandidates({
+    appContext,
+    chat,
+    candidatesAndUsers: [user],
+  });
   // Remove from restricted
-  await modifyRestrictedUsers(chat, false, [user])
+  await removeRestrictedUsers({
+    appContext,
+    chat,
+    candidatesAndUsers: [user],
+  });
 }

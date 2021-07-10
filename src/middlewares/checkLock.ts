@@ -1,25 +1,47 @@
-import { isGroup } from '@helpers/isGroup'
-import { deleteMessageSafeWithBot } from '@helpers/deleteMessageSafe'
-import { Context } from 'telegraf'
-import { config } from '../config'
+import {isGroup} from '@helpers/isGroup';
+import {
+  BotMiddlewareFn,
+  BotMiddlewareNextStrategy,
+  newBotMiddlewareAdapter,
+} from '@root/bot/types';
+import {botDeleteMessageSafe} from '@root/helpers/deleteMessageSafe';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
-export async function checkLock(ctx: Context, next: () => any) {
+export const checkLockMiddleware: BotMiddlewareFn = async (ctx) => {
+  const {chat, message} = ctx;
+
   // If loccked, private messages or channel, then continue
   if (!ctx.dbchat.adminLocked || !isGroup(ctx)) {
-    return next()
+    return BotMiddlewareNextStrategy.next;
   }
+
+  assertNonNullish(ctx.from);
+
   // If super admin, then continue
-  if (ctx.from.id === config.telegramAdminId) {
-    return next()
+  if (ctx.from.id === ctx.appContext.config.telegramAdminId) {
+    return BotMiddlewareNextStrategy.next;
   }
   // If from the group anonymous bot, then continue
   if (ctx.from?.username === 'GroupAnonymousBot') {
-    return next()
+    return BotMiddlewareNextStrategy.next;
   }
   // If from admin, then continue
   if (ctx.isAdministrator) {
-    return next()
+    return BotMiddlewareNextStrategy.next;
   }
+
+  assertNonNullish(chat);
+  assertNonNullish(message);
+
   // Otherwise, remove the message
-  await deleteMessageSafeWithBot(ctx.chat.id, ctx.message.message_id)
-}
+  await ctx.appContext.idling.wrapTask(() =>
+    botDeleteMessageSafe(ctx.appContext, {
+      chatId: chat.id,
+      messageId: message.message_id,
+    }),
+  );
+
+  return BotMiddlewareNextStrategy.abort;
+};
+
+export const checkLock = newBotMiddlewareAdapter(checkLockMiddleware);

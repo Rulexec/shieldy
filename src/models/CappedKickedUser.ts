@@ -1,12 +1,7 @@
-import { getModelForClass, prop } from '@typegoose/typegoose'
+import {ChatId} from './Chat';
+import {UserId} from './user';
 
 export class CappedKickedUser {
-  @prop({ required: true, index: true })
-  chatId: number
-  @prop({ required: true, index: true })
-  userId: number
+  chatId: ChatId;
+  userId: UserId;
 }
-
-export const CappedKickedUserModel = getModelForClass(CappedKickedUser, {
-  schemaOptions: { timestamps: true },
-})

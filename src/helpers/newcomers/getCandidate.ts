@@ -1,7 +1,8 @@
-import { Candidate, Equation } from '@models/Chat'
-import { User, Message } from 'telegram-typings'
-import { Context } from 'telegraf'
-import { Captcha } from './generateCaptcha'
+import {Candidate} from '@models/Chat';
+import {User, Message} from 'telegram-typings';
+import {Context} from '@root/types/context';
+import {Captcha} from './generateCaptcha';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
 export function getCandidate(
   ctx: Context,
@@ -9,8 +10,10 @@ export function getCandidate(
   captcha: Captcha,
   notificationMessage?: Message,
 ): Candidate {
-  const { equation, image, customCaptcha } = captcha
-  const { question: customQuestion, answer: customAnswer } = customCaptcha || {}
+  const {equation, image, customCaptcha} = captcha;
+  const {question: customQuestion, answer: customAnswer} = customCaptcha || {};
+
+  assertNonNullish(ctx.chat);
 
   return {
     id: user.id,
@@ -25,5 +28,5 @@ export function getCandidate(
     entryMessageId: ctx.message ? ctx.message.message_id : undefined,
     imageText: image ? image.text : undefined,
     username: user.username,
-  }
+  };
 }

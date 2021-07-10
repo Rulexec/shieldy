@@ -8,11 +8,13 @@
     "outDir": "dist",
     "baseUrl": "src",
     "paths": {
+      "@root/*": ["./*"],
       "@commands/*": ["commands/*"],
       "@helpers/*": ["helpers/*"],
       "@middlewares/*": ["middlewares/*"],
       "@models/*": ["models/*"]
     },
+    "strictNullChecks": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
   },

@@ -1,10 +1,14 @@
-import { Context } from 'telegraf'
+import {BotMiddlewareNextStrategy} from '@root/bot/types';
+import {Context} from 'telegraf';
 
-const blocklist = [-1001410821804]
+const blocklist = [-1001410821804];
 
-export async function checkBlockList(ctx: Context, next: Function) {
-  if (blocklist.includes(ctx.chat?.id)) {
-    return
+export function checkBlockList(ctx: Context): BotMiddlewareNextStrategy {
+  const chatId = ctx.chat?.id;
+
+  if (chatId && blocklist.includes(chatId)) {
+    return BotMiddlewareNextStrategy.abort;
   }
-  return next()
+
+  return BotMiddlewareNextStrategy.next;
 }

@@ -1,19 +1,23 @@
-import { clarifyIfPrivateMessages } from '@helpers/clarifyIfPrivateMessages'
-import { saveChatProperty } from '@helpers/saveChatProperty'
-import { Telegraf, Context, Extra } from 'telegraf'
-import { strings } from '@helpers/strings'
-import { checkLock } from '@middlewares/checkLock'
+import {clarifyIfPrivateMessages} from '@helpers/clarifyIfPrivateMessages';
+import {Extra} from 'telegraf';
+import {Bot} from '@root/types/index';
+import {checkLock} from '@middlewares/checkLock';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
-export function setupNoAttack(bot: Telegraf<Context>) {
+export function setupNoAttack(bot: Bot): void {
   bot.command('noAttack', checkLock, clarifyIfPrivateMessages, async (ctx) => {
-    ctx.dbchat.noAttack = !ctx.dbchat.noAttack
-    await saveChatProperty(ctx.dbchat, 'noAttack')
+    ctx.dbchat.noAttack = !ctx.dbchat.noAttack;
+    await ctx.appContext.database.setChatProperty({
+      chatId: ctx.dbchat.id,
+      property: 'noAttack',
+      value: ctx.dbchat.noAttack,
+    });
+
+    assertNonNullish(ctx.message);
+
     ctx.replyWithMarkdown(
-      strings(
-        ctx.dbchat,
-        ctx.dbchat.noAttack ? 'noAttack_true' : 'noAttack_false'
-      ),
-      Extra.inReplyTo(ctx.message.message_id)
-    )
-  })
+      ctx.translate(ctx.dbchat.noAttack ? 'noAttack_true' : 'noAttack_false'),
+      Extra.inReplyTo(ctx.message.message_id),
+    );
+  });
 }

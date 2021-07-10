@@ -1,26 +1,32 @@
-import { clarifyIfPrivateMessages } from '@helpers/clarifyIfPrivateMessages'
-import { saveChatProperty } from '@helpers/saveChatProperty'
-import { Telegraf, Context, Extra } from 'telegraf'
-import { strings } from '@helpers/strings'
-import { checkLock } from '@middlewares/checkLock'
+import {clarifyIfPrivateMessages} from '@helpers/clarifyIfPrivateMessages';
+import {Extra} from 'telegraf';
+import {Bot} from '@root/types/index';
+import {checkLock} from '@middlewares/checkLock';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
-export function setupButtonText(bot: Telegraf<Context>) {
+export function setupButtonText(bot: Bot): void {
   bot.command(
     'buttonText',
     checkLock,
     clarifyIfPrivateMessages,
     async (ctx) => {
-      const text = ctx.message.text.substr(12)
+      assertNonNullish(ctx.message);
+
+      const text = ctx.message.text.substr(12);
       if (!text) {
-        ctx.dbchat.buttonText = undefined
+        ctx.dbchat.buttonText = undefined;
       } else {
-        ctx.dbchat.buttonText = text
+        ctx.dbchat.buttonText = text;
       }
-      await saveChatProperty(ctx.dbchat, 'buttonText')
+      await ctx.appContext.database.setChatProperty({
+        chatId: ctx.dbchat.id,
+        property: 'buttonText',
+        value: ctx.dbchat.buttonText,
+      });
       await ctx.replyWithMarkdown(
-        strings(ctx.dbchat, 'trust_success'),
-        Extra.inReplyTo(ctx.message.message_id)
-      )
-    }
-  )
+        ctx.translate('trust_success'),
+        Extra.inReplyTo(ctx.message.message_id),
+      );
+    },
+  );
 }

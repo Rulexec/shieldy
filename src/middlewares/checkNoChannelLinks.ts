@@ -1,72 +1,81 @@
-import { isGroup } from '@helpers/isGroup'
-import { deleteMessageSafe } from '@helpers/deleteMessageSafe'
-import { Context } from 'telegraf'
-import tall from 'tall'
-import { config } from '../config'
+import {isGroup} from '@helpers/isGroup';
+import {deleteMessageSafe} from '@helpers/deleteMessageSafe';
+import tall from 'tall';
+import {Context} from '@root/types/context';
+import {getMessageText} from '@root/types/hacks/get-message-text';
+import {getChatUsername} from '@root/types/hacks/get-chat-username';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {BotMiddlewareNextStrategy} from '@root/bot/types';
 
-const disallowedUrlParts = ['http://t.me/', 'https://t.me/']
+const disallowedUrlParts = ['http://t.me/', 'https://t.me/'];
 
-export async function checkNoChannelLinks(ctx: Context, next: Function) {
-  if (ctx.update.message?.date && ctx.update.message?.text === '/help') {
-    console.log(
-      'Got to checkNoChannelLinks on help',
-      Date.now() / 1000 - ctx.update.message?.date
-    )
+export async function checkNoChannelLinks(
+  ctx: Context,
+): Promise<BotMiddlewareNextStrategy> {
+  if (ctx.update.message?.date && getMessageText(ctx) === '/help') {
+    ctx.appContext.logger.trace('Got to checkNoChannelLinks on help', {
+      ms:
+        ctx.appContext.getCurrentDate().getTime() / 1000 -
+        ctx.update.message?.date,
+    });
   }
   // Get the message
-  const message = ctx.editedMessage || ctx.message
+  const message = ctx.editedMessage || ctx.message;
   // If there is no message, just continue
   if (!message) {
-    return next()
+    return BotMiddlewareNextStrategy.next;
   }
   // If there is no need to check for links, just continue
   if (!ctx.dbchat.noChannelLinks) {
-    return next()
+    return BotMiddlewareNextStrategy.next;
   }
   // If sent from private chat or channel, just continue
   if (!isGroup(ctx)) {
-    return next()
+    return BotMiddlewareNextStrategy.next;
   }
   // If there are no url entities, just continue
   const allEntities = (message.entities || []).concat(
-    message.caption_entities || []
-  )
+    message.caption_entities || [],
+  );
   if (
     !allEntities.length ||
     !allEntities.reduce(
       (p, c) => c.type === 'url' || c.type === 'text_link' || p,
-      false
+      false,
     )
   ) {
-    return next()
+    return BotMiddlewareNextStrategy.next;
   }
+
+  assertNonNullish(ctx.from);
+
   // If sent from admins, just ignore
-  const adminIds = [parseInt(config.telegramAdminId)]
+  const adminIds = [ctx.appContext.config.telegramAdminId];
   if (adminIds.includes(ctx.from.id) || ctx.isAdministrator) {
-    return next()
+    return BotMiddlewareNextStrategy.next;
   }
   // Create a placeholder if the message needs deletion
-  let needsToBeDeleted = false
+  let needsToBeDeleted = false;
   // Check all entities
-  for await (let entity of allEntities) {
+  for await (const entity of allEntities) {
     // Skip unnecessary entities
     if (entity.type !== 'url' && entity.type !== 'text_link') {
-      continue
+      continue;
     }
     // Get url
-    let url: string
+    let url: string;
     if (entity.type == 'text_link' && entity.url) {
-      url = entity.url
+      url = entity.url;
     } else {
-      url = (message.text || message.caption).substring(
-        entity.offset,
-        entity.offset + entity.length
-      )
+      const text = message.text || message.caption;
+      assertNonNullish(text);
+
+      url = text.substring(entity.offset, entity.offset + entity.length);
     }
     // If the link is a telegram link, mark the message for deletion
-    if (checkIfUrlIncludesDisallowedParts(url, ctx.chat.username)) {
-      needsToBeDeleted = true
-      break
+    if (checkIfUrlIncludesDisallowedParts(url, getChatUsername(ctx))) {
+      needsToBeDeleted = true;
+      break;
     }
     // Try to unshorten the link
     try {
@@ -74,15 +83,15 @@ export async function checkNoChannelLinks(ctx: Context, next: Function) {
       url =
         url.includes('https://') || url.includes('http://')
           ? url
-          : 'http://' + url
+          : 'http://' + url;
       // Unshorten the url
-      const unshortenedUrl = await tall(url)
+      const unshortenedUrl = await tall(url);
       // If the link is a telegram link, mark the message for deletion
       if (
-        checkIfUrlIncludesDisallowedParts(unshortenedUrl, ctx.chat.username)
+        checkIfUrlIncludesDisallowedParts(unshortenedUrl, getChatUsername(ctx))
       ) {
-        needsToBeDeleted = true
-        break
+        needsToBeDeleted = true;
+        break;
       }
     } catch (err) {
       // Do nothing
@@ -90,18 +99,21 @@ export async function checkNoChannelLinks(ctx: Context, next: Function) {
   }
   // If one of the links in the message is a telegram link, delete the message
   if (needsToBeDeleted) {
-    deleteMessageSafe(ctx)
-    return
+    deleteMessageSafe(ctx);
+    return BotMiddlewareNextStrategy.abort;
   }
   // Or just continue
-  return next()
+  return BotMiddlewareNextStrategy.next;
 }
 
-function checkIfUrlIncludesDisallowedParts(url: string, chatUsername: string) {
+function checkIfUrlIncludesDisallowedParts(url: string, chatUsername?: string) {
   for (const part of disallowedUrlParts) {
-    if (url.includes(part) && !url.includes(`://t.me/${chatUsername}`)) {
-      return true
+    if (
+      url.includes(part) &&
+      (!chatUsername || !url.includes(`://t.me/${chatUsername}`))
+    ) {
+      return true;
     }
   }
-  return false
+  return false;
 }

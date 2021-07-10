@@ -1,20 +1,34 @@
-import { Chat } from '@models/Chat'
-import { localizations } from '@helpers/localizations'
+import {Language} from '@models/Chat';
+import {localizations} from '@helpers/localizations';
+import {AppContext} from '@root/types/app-context';
 
-export function strings(chat: Chat, key: string) {
-  const notFoundText = `🤔 Localization not found, please, contact @borodutch.
+export function strings(
+  appContext: AppContext,
+  language: Language,
+  key: string,
+): string {
+  const {
+    config: {telegramAdminNickName},
+    logger,
+  } = appContext;
 
-Локализация не найдена, пожалуйста, напишите @borodutch.`;
+  let notFoundText = '🤔 Localization not found';
+
+  if (telegramAdminNickName) {
+    notFoundText += `, please, contact @${telegramAdminNickName}.
+
+Локализация не найдена, пожалуйста, напишите @${telegramAdminNickName}.`;
+  }
 
   const phrase = localizations[key];
   if (!phrase) {
-    console.error(`==== No localization for key: ${key}`);
+    logger.error('noTranslation', {key});
     return notFoundText;
   }
 
   // Check for string type to allow empty phrases
-  if (typeof phrase[chat.language] === 'string') {
-    return phrase[chat.language];
+  if (typeof phrase[language] === 'string') {
+    return phrase[language];
   }
 
   if (typeof phrase.en === 'string') {
@@ -24,4 +38,4 @@ export function strings(chat: Chat, key: string) {
   return notFoundText;
 }
 
-export * from '@helpers/localizations'
+export * from '@helpers/localizations';

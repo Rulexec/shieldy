@@ -1,52 +1,72 @@
-import { checkIfGroup } from '@middlewares/checkIfGroup'
-import { isGroup } from '@helpers/isGroup'
-import { ChatMember } from 'telegram-typings'
-import { notifyCandidate } from '@helpers/newcomers/notifyCandidate'
-import { generateCaptcha } from '@helpers/newcomers/generateCaptcha'
-import Telegraf, { Context } from 'telegraf'
-import { checkSuperAdmin } from '@middlewares/checkSuperAdmin'
-import { greetUser } from '@helpers/newcomers/greetUser'
-import { handleLeftChatMember } from '@helpers/newcomers/handleLeftChatMember'
+import {checkIfGroup} from '@middlewares/checkIfGroup';
+import {isGroup} from '@helpers/isGroup';
+import {notifyCandidate} from '@helpers/newcomers/notifyCandidate';
+import {generateCaptcha} from '@helpers/newcomers/generateCaptcha';
+import {Context} from '@root/types/context';
+import {checkSuperAdminMiddleware} from '@middlewares/checkSuperAdmin';
+import {greetUserMiddleware} from '@helpers/newcomers/greetUser';
+import {handleLeftChatMember} from '@helpers/newcomers/handleLeftChatMember';
 import {
   handleNewChatMember,
   handleNewChatMemberMessage,
-} from '@helpers/newcomers/handleNewChatMembers'
-import { handleButtonPress } from '@helpers/newcomers/checkButton'
-import { checkPassingCaptchaWithText } from './checkPassingCaptchaWithText'
+} from '@helpers/newcomers/handleNewChatMembers';
+import {handleButtonPress} from '@helpers/newcomers/checkButton';
+import {checkPassingCaptchaWithText} from './checkPassingCaptchaWithText';
+import {getChatMember} from '@root/types/hacks/get-chat-member';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {AppContext} from '@root/types/app-context';
+import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 
-export function setupNewcomers(bot: Telegraf<Context>) {
+export function setupNewcomers(appContext: AppContext): void {
+  const {addBotCommand, addBotMiddleware, telegrafBot} = appContext;
+
   // Admin command to check greetings
-  bot.command('greetMe', checkSuperAdmin, greetUser)
+  addBotCommand('greetMe', checkSuperAdminMiddleware, greetUserMiddleware);
   // Admin command to check captcha
-  bot.command('captchaMe', checkSuperAdmin, async (ctx) => {
-    const captcha = await generateCaptcha(ctx.dbchat)
-    return notifyCandidate(ctx, ctx.from, captcha)
-  })
+  addBotCommand(
+    'captchaMe',
+    checkSuperAdminMiddleware,
+    async (ctx: Context) => {
+      assertNonNullish(ctx.from);
+
+      const captcha = await generateCaptcha(ctx.dbchat);
+      await notifyCandidate(ctx, ctx.from, captcha);
+
+      return BotMiddlewareNextStrategy.abort;
+    },
+  );
   // Keep track of new member messages to delete them
-  bot.on('new_chat_members', checkIfGroup, handleNewChatMemberMessage)
+  telegrafBot.on('new_chat_members', checkIfGroup, handleNewChatMemberMessage);
   // Keep track of leave messages and delete them if necessary
-  bot.on('left_chat_member', handleLeftChatMember)
+  telegrafBot.on('left_chat_member', handleLeftChatMember);
   // Check newcomers passing captcha with text
-  bot.use(checkPassingCaptchaWithText)
+
+  addBotMiddleware(checkPassingCaptchaWithText);
   // Check newcomers passing captcha with button
-  bot.action(/\d+~\d+/, handleButtonPress)
+  telegrafBot.action(/\d+~\d+/, handleButtonPress);
 }
 
-export function checkMemberChange(ctx: Context, next: Function) {
+export const checkMemberChange: BotMiddlewareFn = async (ctx, {next}) => {
   // Check if this is a group
   if (!isGroup(ctx)) {
-    return next()
+    Promise.resolve().then(() => next());
+    return BotMiddlewareNextStrategy.async;
   }
   // Check if it's a chat_member update
-  const anyUpdate = ctx.update as any
-  if (!anyUpdate.chat_member) {
-    return next()
+  const chatMembers = getChatMember(ctx.update);
+  if (!chatMembers) {
+    Promise.resolve().then(() => next());
+    return BotMiddlewareNextStrategy.async;
   }
+
   // Get users
-  const oldChatMember = anyUpdate.chat_member.old_chat_member as ChatMember
-  const newChatMember = anyUpdate.chat_member.new_chat_member as ChatMember
+  const oldChatMember = chatMembers.old_chat_member;
+  const newChatMember = chatMembers.new_chat_member;
   // Check if joined
   if (oldChatMember.status === 'left' && newChatMember.status === 'member') {
-    return handleNewChatMember(ctx)
+    await handleNewChatMember(ctx);
+    return BotMiddlewareNextStrategy.abort;
   }
-}
+
+  return BotMiddlewareNextStrategy.abort;
+};
