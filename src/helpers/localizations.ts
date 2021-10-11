@@ -324,9 +324,9 @@ export const localizations = {
   },
   custom_add_answer: {
     en:
-      'Please, reply to this message with the answer to this question.',
+      'Please, reply to this message with the answer to this question. Use comma to separate variants of answer.',
     ru:
-      'Пожалуйста, ответьте на это сообщение ответом на этот вопрос.',
+      'Пожалуйста, ответьте на это сообщение ответом на этот вопрос. Используйте запятую чтобы разделять варианты ответа.',
   },
   custom_no_variants: {
     en: 'There is no custom captcha questions, you can add them with /addCustomCaptcha',

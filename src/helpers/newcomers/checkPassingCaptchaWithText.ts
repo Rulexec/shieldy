@@ -55,8 +55,7 @@ export async function checkPassingCaptchaWithText(ctx, next) {
     needToDeleteMessage = true
   }
   if (candidate.captchaType === CaptchaType.CUSTOM && candidate.customAnswer) {
-    const userAnswer = ctx.message.text.trim().toLowerCase()
-    hasCorrectAnswer = userAnswer === candidate.customAnswer
+    hasCorrectAnswer = checkCustomCaptcha({userAnswer: ctx.message.text, answer: candidate.customAnswer});
     needToDeleteMessage = true
   }
 
@@ -88,3 +87,13 @@ export async function checkPassingCaptchaWithText(ctx, next) {
   }
   return next()
 }
+
+const checkCustomCaptcha = ({userAnswer, answer}: {userAnswer: any, answer: string}): boolean => {
+  if (typeof userAnswer !== 'string') {
+    return false;
+  }
+
+  const answers = answer.split(',').map(x => x.trim().toLowerCase()).filter(Boolean);
+
+  return answers.indexOf(userAnswer.trim().toLowerCase()) >= 0;
+};
