@@ -40,14 +40,14 @@ export async function sendCurrentConfig(ctx: Context, chat: Chat) {
 
 id: <code>${chat.id}</code>
 type: <code>${ctx.chat.type}</code>
-shieldyRole: <code>${
+botRole: <code>${
       ctx.chat.type === 'private'
         ? 'N/A'
         : (await ctx.getChatMember((await ctx.telegram.getMe()).id)).status
     }</code>
 language: <code>${chat.language}</code>
 captchaType: <code>${chat.captchaType}</code>
-timeGiven: <code>${chat.timeGiven}</code>
+timeGivenSec: <code>${chat.timeGiven}</code>
 adminLocked: <code>${chat.adminLocked}</code>
 restrict: <code>${chat.restrict}</code>
 noChannelLinks: <code>${chat.noChannelLinks}</code>
@@ -65,7 +65,7 @@ buttonText: <code>${chat.buttonText || 'Not set'}</code>
 allowInvitingBots: <code>${chat.allowInvitingBots}</code>
 skipOldUsers: <code>${chat.skipOldUsers}</code>
 skipVerifiedUsers: <code>${chat.skipVerifiedUsers}</code>
-restrictTime: <code>${chat.restrictTime || 24}</code>
+restrictTimeHours: <code>${chat.restrictTime || 24}</code>
 banNewTelegramUsers: <code>${chat.banNewTelegramUsers}</code>
 greetingButtons:
 <code>${chat.greetingButtons || 'Not set'}</code>`,

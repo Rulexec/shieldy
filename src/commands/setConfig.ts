@@ -51,7 +51,7 @@ export function setupSetConfig(bot: Telegraf<Context>) {
             ctx.dbchat.captchaType = value as CaptchaType
             break
           }
-          case 'timeGiven': {
+          case 'timeGivenSec': {
             const numValue = +value
             if (!isNaN(numValue) && numValue > 0 && numValue < 100000) {
               ctx.dbchat.timeGiven = numValue
@@ -66,6 +66,13 @@ export function setupSetConfig(bot: Telegraf<Context>) {
           case 'restrict': {
             const boolValue = value === 'true'
             ctx.dbchat.restrict = boolValue
+            break
+          }
+          case 'restrictTimeHours': {
+            const numValue = +value
+            if (!isNaN(numValue) && numValue > 0 && numValue < 100000) {
+              ctx.dbchat.restrictTime = numValue
+            }
             break
           }
           case 'noChannelLinks': {
