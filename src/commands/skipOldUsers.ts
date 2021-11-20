@@ -1,25 +1,31 @@
-import { clarifyIfPrivateMessages } from '@helpers/clarifyIfPrivateMessages'
-import { saveChatProperty } from '@helpers/saveChatProperty'
-import { Telegraf, Context, Extra } from 'telegraf'
-import { strings } from '@helpers/strings'
-import { checkLock } from '@middlewares/checkLock'
+import {clarifyIfPrivateMessages} from '@helpers/clarifyIfPrivateMessages';
+import {Extra} from 'telegraf';
+import {Bot} from '@root/types/index';
+import {checkLock} from '@middlewares/checkLock';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
-export function setupSkipOldUsers(bot: Telegraf<Context>) {
+export function setupSkipOldUsers(bot: Bot): void {
   bot.command(
     'skipOldUsers',
     checkLock,
     clarifyIfPrivateMessages,
     async (ctx) => {
-      let chat = ctx.dbchat
-      chat.skipOldUsers = !chat.skipOldUsers
-      await saveChatProperty(chat, 'skipOldUsers')
+      const chat = ctx.dbchat;
+      chat.skipOldUsers = !chat.skipOldUsers;
+      await ctx.appContext.database.setChatProperty({
+        chatId: chat.id,
+        property: 'skipOldUsers',
+        value: chat.skipOldUsers,
+      });
+
+      assertNonNullish(ctx.message);
+
       ctx.replyWithMarkdown(
-        strings(
-          ctx.dbchat,
-          chat.skipOldUsers ? 'skipOldUsers_true' : 'skipOldUsers_false'
+        ctx.translate(
+          chat.skipOldUsers ? 'skipOldUsers_true' : 'skipOldUsers_false',
         ),
-        Extra.inReplyTo(ctx.message.message_id)
-      )
-    }
-  )
+        Extra.inReplyTo(ctx.message.message_id),
+      );
+    },
+  );
 }

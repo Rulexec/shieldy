@@ -1,22 +1,24 @@
-import { Telegraf, Context } from 'telegraf'
-import { checkSuperAdmin } from '@middlewares/checkSuperAdmin'
+import {Bot} from '@root/types/index';
+import {checkSuperAdmin} from '@middlewares/checkSuperAdmin';
 
-export function setupAdmin(bot: Telegraf<Context>) {
+export function setupAdmin(bot: Bot): void {
   bot.command('delete', checkSuperAdmin, async (ctx) => {
     if (
       !ctx ||
+      !ctx.chat ||
       !ctx.message ||
       !ctx.message.reply_to_message ||
       !ctx.message.reply_to_message.message_id
     ) {
-      return
+      return;
     }
+
     await ctx.telegram.deleteMessage(
       ctx.chat.id,
-      ctx.message.reply_to_message.message_id
-    )
-    await ctx.deleteMessage()
-  })
+      ctx.message.reply_to_message.message_id,
+    );
+    await ctx.deleteMessage();
+  });
 
   bot.command('admin', checkSuperAdmin, async (ctx) => {
     if (
@@ -25,7 +27,7 @@ export function setupAdmin(bot: Telegraf<Context>) {
       !ctx.message.reply_to_message ||
       !ctx.message.reply_to_message.from
     ) {
-      return
+      return;
     }
     await ctx.promoteChatMember(ctx.message.reply_to_message.from.id, {
       can_change_info: true,
@@ -36,21 +38,21 @@ export function setupAdmin(bot: Telegraf<Context>) {
       can_restrict_members: true,
       can_pin_messages: true,
       can_promote_members: true,
-    })
-    await ctx.deleteMessage()
-  })
+    });
+    await ctx.deleteMessage();
+  });
 
   bot.command('source', checkSuperAdmin, async (ctx) => {
     if (!ctx || !ctx.message || !ctx.message.reply_to_message) {
-      return
+      return;
     }
     await ctx.replyWithHTML(
       `<code>${JSON.stringify(
         ctx.message.reply_to_message,
         undefined,
-        2
-      )}</code>`
-    )
-    await ctx.deleteMessage()
-  })
+        2,
+      )}</code>`,
+    );
+    await ctx.deleteMessage();
+  });
 }

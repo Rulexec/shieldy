@@ -1,38 +1,61 @@
-import { checkIfErrorDismissable } from '@helpers/error'
-import { bot } from '@helpers/bot'
-import { config } from '../config'
+import {checkIfErrorDismissable} from '@helpers/error';
+import {AppContext} from '@root/types/app-context';
 
-let errorsToReport = []
+let errorsToReport: string[] = [];
 
-async function bulkReport() {
-  const tempErrorsToReport = errorsToReport
-  errorsToReport = []
-  const adminChatId = config.telegramAdminId
+async function bulkReport(appContext: AppContext) {
+  const {
+    telegrafBot: bot,
+    config: {telegramAdminId: adminChatId},
+    logger,
+  } = appContext;
+
+  const tempErrorsToReport = errorsToReport;
+  errorsToReport = [];
+
   if (!adminChatId) {
-    return
+    return;
   }
+
   if (tempErrorsToReport.length > 20) {
     const reportText = tempErrorsToReport.reduce(
       (prev, cur) => `${prev}${cur}\n`,
-      ''
-    )
-    const chunks = reportText.match(/[\s\S]{1,4000}/g)
-    for (const chunk of chunks) {
-      try {
-        await bot.telegram.sendMessage(adminChatId, chunk)
-      } catch (err) {
-        console.error(err)
+      '',
+    );
+    const chunks = reportText.match(/[\s\S]{1,4000}/g);
+    if (chunks) {
+      for (const chunk of chunks) {
+        try {
+          await bot.telegram.sendMessage(adminChatId, chunk);
+        } catch (error) {
+          logger.error('bulkReport', undefined, {error});
+        }
       }
     }
   }
 }
 
-setInterval(bulkReport, 60 * 1000)
+export function initReporter(appContext: AppContext): {
+  onShutdown: () => Promise<void>;
+} {
+  const logger = appContext.logger.fork('report');
 
-export function report(error: Error, reason?: string) {
-  if (checkIfErrorDismissable(error)) {
-    return
-  }
-  console.error(reason, error)
-  errorsToReport.push(`${reason ? `${reason}\n` : ''}${error.message}`)
+  const intervalId = setInterval(bulkReport.bind(null, appContext), 60 * 1000);
+
+  appContext.report = (error, reason) => {
+    if (checkIfErrorDismissable(error)) {
+      return;
+    }
+    logger.error('report', {reason}, {error});
+    errorsToReport.push(`${reason ? `${reason}\n` : ''}${error.message}`);
+  };
+
+  return {
+    // TODO: make final report
+    onShutdown: () => {
+      clearInterval(intervalId);
+
+      return Promise.resolve();
+    },
+  };
 }

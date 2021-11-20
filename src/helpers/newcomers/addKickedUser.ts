@@ -1,9 +1,13 @@
-import { Chat } from '@models/Chat'
-import { CappedKickedUserModel } from '@models/CappedKickedUser'
+import {Chat} from '@models/Chat';
+import {AppContext} from '@root/types/app-context';
 
-export function addKickedUser(chat: Chat, userId: number) {
+export async function addKickedUser(
+  appContext: AppContext,
+  chat: Chat,
+  userId: number,
+): Promise<void> {
   if (!chat.deleteEntryOnKick) {
-    return
+    return;
   }
-  return new CappedKickedUserModel({ chatId: chat.id, userId }).save()
+  await appContext.database.addKickedUser({chatId: chat.id, userId});
 }

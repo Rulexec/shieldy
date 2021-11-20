@@ -1,29 +1,36 @@
-import { report } from '@helpers/report'
-import { isGroup } from '@helpers/isGroup'
-import { Context } from 'telegraf'
+import {isGroup} from '@helpers/isGroup';
+import {BotMiddlewareNextStrategy} from '@root/bot/types';
+import {Context} from '@root/types/context';
+import {getMessageText} from '@root/types/hacks/get-message-text';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
-export async function attachChatMember(ctx: Context, next) {
-  if (ctx.update.message?.date && ctx.update.message?.text === '/help') {
-    console.log(
-      'Got to attachChatMember on help',
-      Date.now() / 1000 - ctx.update.message?.date
-    )
+export async function attachChatMember(
+  ctx: Context,
+): Promise<BotMiddlewareNextStrategy> {
+  if (ctx.update.message?.date && getMessageText(ctx) === '/help') {
+    ctx.appContext.logger.trace('Got to attachChatMember on help', {
+      ms:
+        ctx.appContext.getCurrentDate().getTime() / 1000 -
+        ctx.update.message?.date,
+    });
   }
   // If not a group, no need to get the member
   if (!isGroup(ctx)) {
-    ctx.isAdministrator = true
-    return next()
+    ctx.isAdministrator = true;
+    return BotMiddlewareNextStrategy.next;
   }
   try {
-    const chatMemberFromTelegram = await ctx.getChatMember(ctx.from.id)
+    assertNonNullish(ctx.from);
+
+    const chatMemberFromTelegram = await ctx.getChatMember(ctx.from.id);
     ctx.isAdministrator = ['creator', 'administrator'].includes(
-      chatMemberFromTelegram.status
-    )
+      chatMemberFromTelegram.status,
+    );
   } catch (err) {
     // If anything above fails, just assume it's not an admin
-    ctx.isAdministrator = false
-    report(err)
-  } finally {
-    return next()
+    ctx.isAdministrator = false;
+    ctx.appContext.report(err);
   }
+
+  return BotMiddlewareNextStrategy.next;
 }

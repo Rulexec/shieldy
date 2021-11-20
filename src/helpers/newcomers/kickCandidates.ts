@@ -1,17 +1,24 @@
-import { removeEntryMessages } from '@models/EntryMessage'
-import { deleteMessageSafeWithBot } from '@helpers/deleteMessageSafe'
-import { bot } from '@helpers/bot'
-import { Chat, Candidate } from '@models/Chat'
-import { report } from '@helpers/report'
-import { addKickedUser } from '@helpers/newcomers/addKickedUser'
-import { modifyCandidates } from '@helpers/candidates'
-import { modifyRestrictedUsers } from '@helpers/restrictedUsers'
+import {botDeleteMessageSafe} from '@helpers/deleteMessageSafe';
+import {Chat, Candidate} from '@models/Chat';
+import {addKickedUser} from '@helpers/newcomers/addKickedUser';
+import {
+  removeCandidates,
+  removeRestrictedUsers,
+} from '@helpers/restrictedUsers';
+import {AppContext} from '@root/types/app-context';
+import {removeEntryMessagesFromUser} from '../remove-entry-messages';
 
 const chatMembersBeingKicked = {} as {
-  [index: number]: { [index: number]: boolean }
-}
+  [index: number]: {[index: number]: boolean};
+};
 
-export async function kickCandidates(chat: Chat, candidates: Candidate[]) {
+export async function botKickCandidates(
+  appContext: AppContext,
+  chat: Chat,
+  candidates: Candidate[],
+): Promise<void> {
+  const {logger} = appContext;
+
   // Loop through candidates
   for (const candidate of candidates) {
     // Check if they are already being kicked
@@ -19,52 +26,80 @@ export async function kickCandidates(chat: Chat, candidates: Candidate[]) {
       chatMembersBeingKicked[chat.id] &&
       chatMembersBeingKicked[chat.id][candidate.id]
     ) {
-      console.log(
-        `${candidate.id} in ${chat.id} is already being kicked, skipping`
-      )
-      continue
+      logger.trace('botKickCandidates:alreadyKicked', {id: candidate.id});
+      continue;
     }
     // Try kicking the candidate
     try {
-      await addKickedUser(chat, candidate.id)
+      await addKickedUser(appContext, chat, candidate.id);
       kickChatMemberProxy(
+        appContext,
         chat.id,
         candidate.id,
-        chat.banUsers ? 0 : parseInt(`${new Date().getTime() / 1000 + 45}`)
-      )
+        chat.banUsers ? 0 : Math.floor(new Date().getTime() / 1000 + 45),
+      );
     } catch (err) {
-      report(err)
+      appContext.report(err);
     }
     // Try deleting their entry messages
-    if (chat.deleteEntryOnKick) {
-      removeEntryMessages(candidate.entryChatId, candidate.id)
-      deleteMessageSafeWithBot(candidate.entryChatId, candidate.leaveMessageId)
+    if (
+      chat.deleteEntryOnKick &&
+      candidate.entryChatId &&
+      candidate.leaveMessageId
+    ) {
+      removeEntryMessagesFromUser({
+        appContext,
+        chatId: candidate.entryChatId,
+        fromId: candidate.id,
+      });
+      botDeleteMessageSafe(appContext, {
+        chatId: candidate.entryChatId,
+        messageId: candidate.leaveMessageId,
+      });
     }
-    // Try deleting the captcha message
-    deleteMessageSafeWithBot(chat.id, candidate.messageId)
+    if (candidate.messageId) {
+      // Try deleting the captcha message
+      botDeleteMessageSafe(appContext, {
+        chatId: chat.id,
+        messageId: candidate.messageId,
+      });
+    }
   }
   // Remove from candidates
-  await modifyCandidates(chat, false, candidates)
+  await removeCandidates({
+    appContext,
+    chat,
+    candidatesAndUsers: candidates,
+  });
   // Remove from restricted
-  await modifyRestrictedUsers(chat, false, candidates)
+  await removeRestrictedUsers({
+    appContext,
+    chat,
+    candidatesAndUsers: candidates,
+  });
 }
 
 async function kickChatMemberProxy(
+  appContext: AppContext,
   id: number,
   candidateId: number,
-  duration: number
+  duration: number,
 ) {
   try {
     if (!chatMembersBeingKicked[id]) {
-      chatMembersBeingKicked[id] = {}
+      chatMembersBeingKicked[id] = {};
     }
-    chatMembersBeingKicked[id][candidateId] = true
-    await bot.telegram.kickChatMember(id, candidateId, duration)
+    chatMembersBeingKicked[id][candidateId] = true;
+    await appContext.telegrafBot.telegram.kickChatMember(
+      id,
+      candidateId,
+      duration,
+    );
   } catch (err) {
-    report(err)
+    appContext.report(err);
   } finally {
     if (chatMembersBeingKicked[id] && chatMembersBeingKicked[id][candidateId]) {
-      delete chatMembersBeingKicked[id][candidateId]
+      delete chatMembersBeingKicked[id][candidateId];
     }
   }
 }

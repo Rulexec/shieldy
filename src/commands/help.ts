@@ -1,30 +1,52 @@
-import { Telegraf, Context } from 'telegraf'
-import { strings } from '@helpers/strings'
-import { checkLock } from '@middlewares/checkLock'
-import { clarifyIfPrivateMessages } from '@helpers/clarifyIfPrivateMessages'
+import {Context} from '@root/types/index';
+import {checkLockMiddleware} from '@middlewares/checkLock';
+import {clarifyIfPrivateMessagesMiddleware} from '@helpers/clarifyIfPrivateMessages';
+import {AppContext} from '@root/types/app-context';
+import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 
-export function setupHelp(bot: Telegraf<Context>) {
-  bot.command(['help', 'start'], checkLock, clarifyIfPrivateMessages, sendHelp)
+export function setupHelp(appContext: AppContext): void {
+  const {addBotCommand} = appContext;
+
+  addBotCommand(
+    ['help', 'start'],
+    checkLockMiddleware,
+    clarifyIfPrivateMessagesMiddleware,
+    sendHelpMiddleware,
+  );
 }
 
-export function sendHelp(ctx: Context) {
+const sendHelpMiddleware: BotMiddlewareFn = async (ctx) => {
+  await sendHelp(ctx);
+  return BotMiddlewareNextStrategy.abort;
+};
+
+function sendHelp(ctx: Context): Promise<void> {
   if (ctx.update.message?.date) {
-    console.log(
-      'Replying to help',
-      Date.now() / 1000 - ctx.update.message?.date
-    )
+    ctx.appContext.logger.trace('Replying to help', {
+      ms:
+        ctx.appContext.getCurrentDate().getTime() / 1000 -
+        ctx.update.message?.date,
+    });
   }
-  return ctx.replyWithMarkdown(strings(ctx.dbchat, 'helpShieldy'), {
-    disable_web_page_preview: true,
-  })
-}
-
-export function sendHelpSafe(ctx: Context) {
-  try {
-    return ctx.replyWithMarkdown(strings(ctx.dbchat, 'helpShieldy'), {
+  return ctx
+    .replyWithMarkdown(ctx.translate('helpShieldy'), {
       disable_web_page_preview: true,
     })
+    .then(() => {
+      //
+    });
+}
+
+export function sendHelpSafe(ctx: Context): Promise<void> {
+  try {
+    return ctx
+      .replyWithMarkdown(ctx.translate('helpShieldy'), {
+        disable_web_page_preview: true,
+      })
+      .then(() => {
+        //
+      });
   } catch {
-    // Do nothing
+    return Promise.resolve();
   }
 }

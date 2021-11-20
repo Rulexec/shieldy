@@ -1,7 +1,14 @@
-import { config } from '../config'
-import { Context, Telegraf } from 'telegraf'
-const TelegrafBot = require('telegraf')
+import TelegrafBot from 'telegraf';
+import {Bot} from '@root/types/bot';
+import {AppContext} from '@root/types/app-context';
 
-export const bot = new TelegrafBot(config.telegramToken, {
-  handlerTimeout: 1,
-}) as Telegraf<Context>
+export function createTelegrafBot({
+  config: {telegramToken, telegramApiRoot},
+}: AppContext): Bot {
+  return new TelegrafBot(telegramToken, {
+    handlerTimeout: 1,
+    telegram: {
+      apiRoot: telegramApiRoot,
+    },
+  });
+}

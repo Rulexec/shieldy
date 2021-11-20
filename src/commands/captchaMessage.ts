@@ -1,93 +1,121 @@
-import { clarifyReply } from '@helpers/clarifyReply'
-import { clarifyIfPrivateMessages } from '@helpers/clarifyIfPrivateMessages'
-import { saveChatProperty } from '@helpers/saveChatProperty'
-import { Telegraf, Context, Extra } from 'telegraf'
-import { strings, localizations } from '@helpers/strings'
-import { checkLock } from '@middlewares/checkLock'
-import { report } from '@helpers/report'
-import { ExtraReplyMessage } from 'telegraf/typings/telegram-types'
+import {clarifyReply} from '@helpers/clarifyReply';
+import {clarifyIfPrivateMessagesMiddleware} from '@helpers/clarifyIfPrivateMessages';
+import {Extra} from 'telegraf';
+import {localizations} from '@helpers/strings';
+import {checkLockMiddleware} from '@middlewares/checkLock';
+import {ExtraReplyMessage} from 'telegraf/typings/telegram-types';
+import {getReplyToMessageText} from '@root/types/hacks/get-message-text';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {wrapTelegrafContextWithIdling} from '@root/util/telegraf/idling-context-wrapper';
+import {AppContext} from '@root/types/app-context';
+import {BotMiddlewareNextStrategy} from '@root/bot/types';
 
-export function setupCaptchaMessage(bot: Telegraf<Context>) {
+export function setupCaptchaMessage(appContext: AppContext): void {
+  const {addBotCommand, addBotMiddleware, telegrafBot, idling} = appContext;
+
   // Setup command
-  bot.command(
+  addBotCommand(
     'customCaptchaMessage',
-    checkLock,
-    clarifyIfPrivateMessages,
-    async (ctx) => {
-      let chat = ctx.dbchat
-      chat.customCaptchaMessage = !chat.customCaptchaMessage
-      await saveChatProperty(chat, 'customCaptchaMessage')
+    checkLockMiddleware,
+    clarifyIfPrivateMessagesMiddleware,
+    wrapTelegrafContextWithIdling(async (ctx) => {
+      const chat = ctx.dbchat;
+      chat.customCaptchaMessage = !chat.customCaptchaMessage;
+      await ctx.appContext.database.setChatProperty({
+        chatId: chat.id,
+        property: 'customCaptchaMessage',
+        value: chat.customCaptchaMessage,
+      });
+
+      assertNonNullish(ctx.message);
+
       await ctx.replyWithMarkdown(
-        strings(
-          ctx.dbchat,
+        ctx.translate(
           chat.customCaptchaMessage
             ? chat.captchaMessage
               ? 'captchaMessage_true_message'
               : 'captchaMessage_true'
-            : 'captchaMessage_false'
+            : 'captchaMessage_false',
         ),
-        Extra.inReplyTo(ctx.message.message_id)
-      )
+        Extra.inReplyTo(ctx.message.message_id),
+      );
+
       if (chat.customCaptchaMessage && chat.captchaMessage) {
-        chat.captchaMessage.message.chat = undefined
+        // TODO: investigate
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        chat.captchaMessage.message.chat = undefined;
         await ctx.telegram.sendCopy(chat.id, chat.captchaMessage.message, {
           entities: chat.captchaMessage.message.entities,
-        })
+        });
       }
-      await clarifyReply(ctx)
-    }
-  )
+      await clarifyReply(ctx);
+
+      return BotMiddlewareNextStrategy.abort;
+    }),
+  );
   // Setup checker
-  bot.use(async (ctx, next) => {
+  addBotMiddleware(async (ctx, {next}) => {
     try {
       // Check if needs to check
       if (!ctx.dbchat.customCaptchaMessage) {
-        return
+        return BotMiddlewareNextStrategy.async;
       }
+
+      const {message} = ctx;
+
       // Check if reply
-      if (!ctx.message || !ctx.message.reply_to_message) {
-        return
+      if (!message || !message.reply_to_message) {
+        return BotMiddlewareNextStrategy.async;
       }
       // Check if text
-      if (!ctx.message.text) {
-        return
+      if (!message.text) {
+        return BotMiddlewareNextStrategy.async;
       }
       // Check if reply to shieldy
       if (
-        !ctx.message.reply_to_message.from ||
-        !ctx.message.reply_to_message.from.username ||
-        ctx.message.reply_to_message.from.username !==
-          (bot as any).botInfo.username
+        !telegrafBot.botInfo ||
+        !message.reply_to_message.from ||
+        message.reply_to_message.from.id !== telegrafBot.botInfo.id
       ) {
-        return
+        return BotMiddlewareNextStrategy.async;
       }
       // Check if reply to the correct message
       const captchaMessages = Object.keys(localizations.captchaMessage_true)
         .map((k) => localizations.captchaMessage_true[k])
         .concat(
           Object.keys(localizations.captchaMessage_true_message).map(
-            (k) => localizations.captchaMessage_true_message[k]
-          )
-        )
+            (k) => localizations.captchaMessage_true_message[k],
+          ),
+        );
       if (
-        !ctx.message.reply_to_message.text ||
-        captchaMessages.indexOf(ctx.message.reply_to_message.text) < 0
+        !getReplyToMessageText(ctx) ||
+        captchaMessages.indexOf(getReplyToMessageText(ctx)) < 0
       ) {
-        return
+        return BotMiddlewareNextStrategy.async;
       }
       // Save text
       ctx.dbchat.captchaMessage = {
-        message: ctx.message,
-      }
-      await saveChatProperty(ctx.dbchat, 'captchaMessage')
-      ctx.reply(
-        strings(ctx.dbchat, 'greetsUsers_message_accepted'),
-        Extra.inReplyTo(ctx.message.message_id) as ExtraReplyMessage
-      )
+        message,
+      };
+      await ctx.appContext.database.setChatProperty({
+        chatId: ctx.dbchat.id,
+        property: 'captchaMessage',
+        value: ctx.dbchat.captchaMessage,
+      });
+
+      idling.wrapTask(() =>
+        ctx.reply(
+          ctx.translate('greetsUsers_message_accepted'),
+          Extra.inReplyTo(message.message_id) as ExtraReplyMessage,
+        ),
+      );
     } catch (err) {
-      report(err)
+      ctx.appContext.report(err);
     } finally {
-      next()
+      next();
     }
-  })
+
+    return BotMiddlewareNextStrategy.async;
+  });
 }

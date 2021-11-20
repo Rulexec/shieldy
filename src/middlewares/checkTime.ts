@@ -1,27 +1,42 @@
-import { Context } from 'telegraf'
+import {BotMiddlewareNextStrategy} from '@root/bot/types';
+import {Context} from '@root/types/context';
+import {getMessageText} from '@root/types/hacks/get-message-text';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
-export async function checkTime(ctx: Context, next: () => any) {
-  if (ctx.update.message?.date && ctx.update.message?.text === '/help') {
-    console.log(
-      'Got to checkTime on help',
-      Date.now() / 1000 - ctx.update.message?.date
-    )
+export function checkTime(ctx: Context): BotMiddlewareNextStrategy {
+  const currentDate = ctx.appContext.getCurrentDate();
+
+  if (ctx.update.message?.date && getMessageText(ctx) === '/help') {
+    ctx.appContext.logger.trace('Got to checkTime on help', {
+      ms: currentDate.getTime() / 1000 - ctx.update.message?.date,
+    });
   }
+
+  const {message, callbackQuery} = ctx;
+
   switch (ctx.updateType) {
-    case 'message':
-      if (new Date().getTime() / 1000 - ctx.message.date < 5 * 60) {
-        return next()
+    case 'message': {
+      assertNonNullish(message);
+
+      if (currentDate.getTime() / 1000 - message.date < 5 * 60) {
+        return BotMiddlewareNextStrategy.next;
       }
-      break
-    case 'callback_query':
+      break;
+    }
+    case 'callback_query': {
+      assertNonNullish(callbackQuery);
+
       if (
-        ctx.callbackQuery.message &&
-        new Date().getTime() / 1000 - ctx.callbackQuery.message.date < 5 * 60
+        callbackQuery.message &&
+        currentDate.getTime() / 1000 - callbackQuery.message.date < 5 * 60
       ) {
-        return next()
+        return BotMiddlewareNextStrategy.next;
       }
-      break
+      break;
+    }
     default:
-      return next()
+      return BotMiddlewareNextStrategy.next;
   }
+
+  return BotMiddlewareNextStrategy.abort;
 }

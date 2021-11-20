@@ -1,91 +1,93 @@
-import { kickChatMember } from '@helpers/newcomers/kickChatMember'
-import { deleteMessageSafe } from '@helpers/deleteMessageSafe'
-import { CappedMessageModel } from '@models/CappedMessage'
-import { clarifyIfPrivateMessages } from '@helpers/clarifyIfPrivateMessages'
-import { saveChatProperty } from '@helpers/saveChatProperty'
-import { Telegraf, Context, Extra } from 'telegraf'
-import { strings } from '@helpers/strings'
-import { checkLock } from '@middlewares/checkLock'
+import {botKickChatMember} from '@helpers/newcomers/kickChatMember';
+import {deleteMessageSafe} from '@helpers/deleteMessageSafe';
+import {clarifyIfPrivateMessages} from '@helpers/clarifyIfPrivateMessages';
+import {Extra} from 'telegraf';
+import {Bot, Context} from '@root/types/index';
+import {checkLock} from '@middlewares/checkLock';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
-export function setupBanForFastRepliesToPosts(bot: Telegraf<Context>) {
+export function setupBanForFastRepliesToPosts(bot: Bot): void {
   // Reply to command
   bot.command(
     'banForFastRepliesToPosts',
     checkLock,
     clarifyIfPrivateMessages,
     async (ctx) => {
-      let chat = ctx.dbchat
-      chat.banForFastRepliesToPosts = !chat.banForFastRepliesToPosts
-      await saveChatProperty(chat, 'banForFastRepliesToPosts')
+      const chat = ctx.dbchat;
+      chat.banForFastRepliesToPosts = !chat.banForFastRepliesToPosts;
+      await ctx.appContext.database.setChatProperty({
+        chatId: chat.id,
+        property: 'banForFastRepliesToPosts',
+        value: chat.banForFastRepliesToPosts,
+      });
+
+      assertNonNullish(ctx.message);
+
       ctx.replyWithMarkdown(
-        strings(
-          ctx.dbchat,
+        ctx.translate(
           chat.banForFastRepliesToPosts
             ? 'banForFastRepliesToPosts_true'
-            : 'banForFastRepliesToPosts_false'
+            : 'banForFastRepliesToPosts_false',
         ),
-        Extra.inReplyTo(ctx.message.message_id)
-      )
-    }
-  )
+        Extra.inReplyTo(ctx.message.message_id),
+      );
+    },
+  );
   // Save channel messages
-  bot.use(async (ctx, next) => {
-    // Check if a channel post
-    if (ctx.message?.from?.id !== 777000) {
-      return next()
+  bot.use((ctx: Context, next: () => void): void => {
+    const message = ctx.message;
+
+    if (!message || !message.from || !ctx.dbchat.banForFastRepliesToPosts) {
+      return next();
     }
-    // Check if needs saving
-    if (!ctx.dbchat.banForFastRepliesToPosts) {
-      return next()
-    }
-    // Save
-    const message = ctx.message
-    try {
-      await new CappedMessageModel({
+
+    ctx.appContext.database
+      .addCappedMessage({
         message_id: message.message_id,
         from_id: message.from.id,
         chat_id: message.chat.id,
-      }).save()
-    } catch {
-      // Do nothing
-    } finally {
-      return next()
-    }
-  })
+        createdAt: new Date(),
+      })
+      .catch(ctx.appContext.report);
+
+    next();
+  });
   //
   bot.use(async (ctx, next) => {
     // Check if a reply to a channel post
-    if (!ctx.message || ctx.message?.reply_to_message?.from?.id !== 777000) {
-      return next()
+    if (!ctx.message) {
+      return next();
     }
     // Check if an admin
     if (ctx.isAdministrator) {
-      return next()
+      return next();
     }
     // Check if needs checking
     if (!ctx.dbchat.banForFastRepliesToPosts) {
-      return next()
+      return next();
     }
     // Check the message
-    const now = Date.now()
+    const now = Date.now();
     try {
       // Try to find this channel post
-      const post = await CappedMessageModel.findOne({
-        message_id: ctx.message.reply_to_message.message_id,
-        from_id: ctx.message.reply_to_message.from.id,
-        chat_id: ctx.message.reply_to_message.chat.id,
-      })
+      const post = await ctx.appContext.database.findCappedMessage({
+        message_id: ctx.message.reply_to_message?.message_id,
+        from_id: ctx.message.reply_to_message?.from?.id,
+        chat_id: ctx.message.reply_to_message?.chat.id,
+      });
       if (!post) {
-        return next()
+        return next();
       }
       if (now - post.createdAt.getTime() < 5 * 1000) {
-        await kickChatMember(ctx.dbchat, ctx.from)
+        assertNonNullish(ctx.from);
+
+        await botKickChatMember(ctx.appContext, ctx.dbchat, ctx.from);
         if (ctx.dbchat.deleteEntryOnKick) {
-          await deleteMessageSafe(ctx)
+          await deleteMessageSafe(ctx);
         }
       }
     } catch {
       // Do nothing
     }
-  })
+  });
 }

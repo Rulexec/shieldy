@@ -1,9 +1,9 @@
-import { isGroup } from '@helpers/isGroup'
-import { Context } from 'telegraf'
+import {isGroup} from '@helpers/isGroup';
+import {Context} from 'telegraf';
 
-export async function checkIfGroup(ctx: Context, next: Function) {
+export function checkIfGroup(ctx: Context, next: () => void): void {
   if (!isGroup(ctx)) {
-    return
+    return;
   }
-  return next()
+  return next();
 }

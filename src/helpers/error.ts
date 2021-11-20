@@ -1,4 +1,4 @@
-export function checkIfErrorDismissable(error: Error) {
+export function checkIfErrorDismissable(error: Error): boolean {
   const dismissableMessages = [
     'not enough rights',
     'message to delete not found',
@@ -20,11 +20,11 @@ export function checkIfErrorDismissable(error: Error) {
     'demote chat creator',
     'USER_BANNED_IN_CHANNEL',
     'Too Many Requests',
-  ]
+  ];
   for (const message of dismissableMessages) {
     if (error.message.indexOf(message) > -1) {
-      return true
+      return true;
     }
   }
-  return false
+  return false;
 }

@@ -1,25 +1,30 @@
-import { Telegraf, Context } from 'telegraf'
+import {Context} from 'telegraf';
+import {Bot} from '@root/types/bot';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
 type Options = {
-  ctx: Context
-  bot: Telegraf<Context>
-}
+  ctx: Context;
+  bot: Bot;
+};
 
 export function isReplyToShieldy(options: Options): boolean {
-  const { ctx, bot } = options
+  const {ctx, bot} = options;
 
   // Check if reply
   if (!ctx.message || !ctx.message.reply_to_message) {
-    return false
+    return false;
   }
+
+  assertNonNullish(bot.botInfo);
+
   // Check if reply to shieldy
   if (
     !ctx.message.reply_to_message.from ||
     !ctx.message.reply_to_message.from.username ||
-    ctx.message.reply_to_message.from.username !== (bot as any).botInfo.username
+    ctx.message.reply_to_message.from.username !== bot.botInfo.username
   ) {
-    return false
+    return false;
   }
 
-  return true
+  return true;
 }

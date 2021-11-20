@@ -1,4 +1,9 @@
-import { Context } from 'telegraf'
-export function isGroup(ctx: Context) {
-  return ['group', 'supergroup'].includes(ctx.chat?.type)
+import {Context} from 'telegraf';
+export function isGroup(ctx: Context): boolean {
+  const chatType = ctx.chat?.type;
+  if (!chatType) {
+    return false;
+  }
+
+  return ['group', 'supergroup'].includes(chatType);
 }

@@ -1,53 +1,70 @@
-import { report } from '@helpers/report'
-import { deleteMessageSafeWithBot } from '@helpers/deleteMessageSafe'
-import { greetUser } from '@helpers/newcomers/greetUser'
-import { modifyCandidates } from '@helpers/candidates'
-import { strings } from '@helpers/strings'
-import { Context } from 'telegraf'
+import {Context} from '@root/types/context';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {removeCandidates} from '../restrictedUsers';
+import {doGreetUser} from './greetUser';
 
-const buttonPresses = {} as { [index: string]: boolean }
+const buttonPresses = new Set<string>();
 
-export async function handleButtonPress(ctx: Context) {
+export async function handleButtonPress(ctx: Context): Promise<void> {
+  assertNonNullish(ctx.callbackQuery);
+
   // Ignore muptiple taps
-  if (buttonPresses[ctx.callbackQuery.data]) {
-    return
+  if (buttonPresses.has(ctx.callbackQuery.data)) {
+    return;
   }
-  buttonPresses[ctx.callbackQuery.data] = true
+
   // Handle the button tap
   try {
+    buttonPresses.add(ctx.callbackQuery.data);
+
     // Get user id and chat id
-    const params = ctx.callbackQuery.data.split('~')
-    const userId = parseInt(params[1])
+    const params = ctx.callbackQuery.data.split('~');
+    const userId = parseInt(params[1], 10);
+
+    assertNonNullish(ctx.from);
+
     // Check if button is pressed by the candidate
     if (userId !== ctx.from.id) {
       try {
-        await ctx.answerCbQuery(strings(ctx.dbchat, 'only_candidate_can_reply'))
+        await ctx.answerCbQuery(ctx.translate('only_candidate_can_reply'));
       } catch {
         // Do nothing
       }
-      return
+      return;
     }
     // Check if this user is within candidates
     if (!ctx.dbchat.candidates.map((c) => c.id).includes(userId)) {
-      return
+      return;
     }
     // Get the candidate
-    const candidate = ctx.dbchat.candidates.filter((c) => c.id === userId).pop()
-    // Remove candidate from the chat
-    await modifyCandidates(ctx.dbchat, false, [candidate])
-    // Delete the captcha message
-    deleteMessageSafeWithBot(ctx.chat!.id, candidate.messageId)
+    const candidate = ctx.dbchat.candidates
+      .filter((c) => c.id === userId)
+      .pop();
+
+    if (candidate) {
+      // Remove candidate from the chat
+      await removeCandidates({
+        appContext: ctx.appContext,
+        chat: ctx.dbchat,
+        candidatesAndUsers: [candidate],
+      });
+
+      if (candidate.messageId) {
+        assertNonNullish(ctx.chat);
+
+        // Delete the captcha message
+        ctx.deleteMessageSafe({
+          chatId: ctx.chat.id,
+          messageId: candidate.messageId,
+        });
+      }
+    }
+
     // Greet the user
-    greetUser(ctx)
-    console.log(
-      'greeted a user',
-      ctx.dbchat.captchaType,
-      ctx.dbchat.customCaptchaMessage,
-      ctx.dbchat.greetsUsers
-    )
+    doGreetUser(ctx);
   } catch (err) {
-    report(err)
+    ctx.appContext.report(err);
   } finally {
-    buttonPresses[ctx.callbackQuery.data] = undefined
+    buttonPresses.delete(ctx.callbackQuery.data);
   }
 }

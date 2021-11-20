@@ -1,22 +1,25 @@
-import { report } from '@helpers/report'
-import { bot } from '@helpers/bot'
-import { Context } from 'telegraf'
+import {AppContext} from '@root/types/app-context';
+import {Context} from '@root/types/context';
 
-export async function deleteMessageSafe(ctx: Context) {
+export async function deleteMessageSafe(ctx: Context): Promise<void> {
   try {
-    await ctx.deleteMessage()
+    await ctx.appContext.idling.wrapTask(() => ctx.deleteMessage());
   } catch (err) {
-    report(err)
+    ctx.appContext.report(err);
   }
 }
 
-export async function deleteMessageSafeWithBot(
-  chatId: number,
-  messageId: number
-) {
+export async function botDeleteMessageSafe(
+  appContext: AppContext,
+  options: {chatId: number; messageId: number},
+): Promise<void> {
+  const {chatId, messageId} = options;
+
   try {
-    await bot.telegram.deleteMessage(chatId, messageId)
+    await appContext.idling.wrapTask(() =>
+      appContext.telegrafBot.telegram.deleteMessage(chatId, messageId),
+    );
   } catch (err) {
-    report(err)
+    appContext.report(err);
   }
 }

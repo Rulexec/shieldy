@@ -1,11 +1,14 @@
-const globalyRestrictedMap = {} as { [index: number]: boolean }
+const globalyRestrictedMap = {} as {[index: number]: boolean};
 
-export function modifyGloballyRestricted(ids: number[], restrict: boolean) {
+export function modifyGloballyRestricted(
+  ids: number[],
+  restrict: boolean,
+): void {
   for (const id of ids) {
-    globalyRestrictedMap[id] = restrict
+    globalyRestrictedMap[id] = restrict;
   }
 }
 
-export function isGloballyRestricted(id: number) {
-  return !!globalyRestrictedMap[id]
+export function isGloballyRestricted(id: number): boolean {
+  return !!globalyRestrictedMap[id];
 }

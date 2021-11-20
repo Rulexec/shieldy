@@ -1,27 +1,29 @@
-import { CappedKickedUserModel } from '@models/CappedKickedUser'
-import { ChatModel } from '@models/Chat'
-import { deleteMessageSafe } from '@helpers/deleteMessageSafe'
-import { Context } from 'telegraf'
+import {deleteMessageSafe} from '@helpers/deleteMessageSafe';
+import {Context} from '@root/types/context';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
-export async function handleLeftChatMember(ctx: Context) {
+export async function handleLeftChatMember(ctx: Context): Promise<void> {
+  assertNonNullish(ctx.message);
+
   // Check if this user got kicked
-  const userWasKicked = !!(await CappedKickedUserModel.findOne({
+  const userWasKicked = await ctx.appContext.database.isUserKicked({
     chatId: ctx.dbchat.id,
     userId: ctx.message.left_chat_member.id,
-  }))
+  });
   // Delete left message if required
   if (
     ctx.dbchat.deleteEntryMessages ||
     ctx.dbchat.underAttack ||
     (ctx.dbchat.deleteEntryOnKick && userWasKicked)
   ) {
-    deleteMessageSafe(ctx)
-    return
+    deleteMessageSafe(ctx);
+    return;
   }
   if (ctx.dbchat.deleteEntryOnKick) {
-    ChatModel.updateOne(
-      { _id: ctx.dbchat._id, 'candidates.id': ctx.message.left_chat_member.id },
-      { $set: { 'candidates.$.leaveMessageId': ctx.message.message_id } }
-    )
+    ctx.appContext.database.modifyCandidateLeaveMessageId({
+      chatId: ctx.dbchat.id,
+      candidateId: ctx.message.left_chat_member.id,
+      leaveMessageId: ctx.message.message_id,
+    });
   }
 }

@@ -1,20 +1,26 @@
-import { clarifyIfPrivateMessages } from '@helpers/clarifyIfPrivateMessages'
-import { saveChatProperty } from '@helpers/saveChatProperty'
-import { Telegraf, Context, Extra } from 'telegraf'
-import { strings } from '@helpers/strings'
-import { checkLock } from '@middlewares/checkLock'
+import {clarifyIfPrivateMessages} from '@helpers/clarifyIfPrivateMessages';
+import {Extra} from 'telegraf';
+import {Bot} from '@root/types/index';
+import {checkLock} from '@middlewares/checkLock';
+import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
-export function setupLock(bot: Telegraf<Context>) {
+export function setupLock(bot: Bot): void {
   bot.command('lock', checkLock, clarifyIfPrivateMessages, async (ctx) => {
-    let chat = ctx.dbchat
-    chat.adminLocked = !chat.adminLocked
-    await saveChatProperty(chat, 'adminLocked')
+    const chat = ctx.dbchat;
+    chat.adminLocked = !chat.adminLocked;
+    await ctx.appContext.database.setChatProperty({
+      chatId: chat.id,
+      property: 'adminLocked',
+      value: chat.adminLocked,
+    });
+
+    assertNonNullish(ctx.message);
+
     ctx.replyWithMarkdown(
-      strings(
-        ctx.dbchat,
-        chat.adminLocked ? 'lock_true_shieldy' : 'lock_false_shieldy'
+      ctx.translate(
+        chat.adminLocked ? 'lock_true_shieldy' : 'lock_false_shieldy',
       ),
-      Extra.inReplyTo(ctx.message.message_id)
-    )
-  })
+      Extra.inReplyTo(ctx.message.message_id),
+    );
+  });
 }

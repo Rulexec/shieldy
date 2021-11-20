@@ -1,3 +1,3 @@
-export function isOver10000() {
-  return false
+export function isOver10000(): boolean {
+  return false;
 }
