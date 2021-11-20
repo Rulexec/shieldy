@@ -21,7 +21,10 @@ export async function notifyCandidate(
     ? cloneDeep(ctx.dbchat.captchaMessage)
     : undefined
   const { equation, image } = captcha
-  const warningMessage = strings(chat, `${chat.captchaType}_warning`)
+
+  const isDegradatedCustom =
+    captcha.captchaType === CaptchaType.CUSTOM && !captcha.customCaptcha
+
   let extra =
     chat.captchaType !== CaptchaType.BUTTON
       ? Extra.webPreview(false)
@@ -33,12 +36,60 @@ export async function notifyCandidate(
             ),
           ])
         )
+
+  const getUserMention = async () => {
+    if (chat.customCaptchaMessage && captchaMessage) {
+      const text = captchaMessage.message.text
+
+      if (
+        text.includes('$username') ||
+        text.includes('$title') ||
+        text.includes('$equation') ||
+        text.includes('$seconds') ||
+        text.includes('$fullname')
+      ) {
+        const messageToSend = constructMessageWithEntities(
+          captchaMessage.message,
+          candidate,
+          {
+            $username: getUsername(candidate),
+            $fullname: getName(candidate),
+            $title: (await ctx.getChat()).title,
+            $equation: equation ? (equation.question as string) : '',
+            $seconds: `${chat.timeGiven}`,
+          },
+        )
+
+        return (Markup as any).formatHTML(
+          messageToSend.text,
+          messageToSend.entities
+        )
+      } else {
+        const message = cloneDeep(captchaMessage.message)
+        const formattedText = (Markup as any).formatHTML(
+          message.text,
+          message.entities
+        )
+
+        return `<a href="tg://user?id=${candidate.id}">${getUsername(
+          candidate,
+        )}</a>, ${formattedText}`
+      }
+    }
+
+    return `<a href="tg://user?id=${candidate.id}">${getUsername(
+      candidate,
+    )}</a>`
+  }
+
   if (
     chat.customCaptchaMessage &&
     captchaMessage &&
-    (chat.captchaType !== CaptchaType.DIGITS ||
+    ((chat.captchaType !== CaptchaType.DIGITS &&
+      chat.captchaType !== CaptchaType.CUSTOM) ||
       captchaMessage.message.text.includes('$equation'))
   ) {
+    // FIXME: copypaste of `getUserMention()`
     const text = captchaMessage.message.text
     if (
       text.includes('$username') ||
@@ -113,7 +164,7 @@ export async function notifyCandidate(
       hasPromo &&
       promoAdditions[isRuChat(chat) ? 'ru' : 'en']()
 
-    let message = warningMessage
+    let message: string | null = null
 
     if (captcha.captchaType === CaptchaType.CUSTOM) {
       const { customCaptcha } = captcha;
@@ -125,9 +176,16 @@ export async function notifyCandidate(
       }
     }
 
-    const text = `<a href="tg://user?id=${candidate.id}">${getUsername(
-        candidate
-      )}</a>${message} (${chat.timeGiven} ${strings(
+    if (!message) {
+      message = strings(
+        chat,
+        `${
+          isDegradatedCustom ? CaptchaType.SIMPLE : captcha.captchaType
+        }_warning`,
+      )
+    }
+
+    const text = `${await getUserMention()}${message} (${chat.timeGiven} ${strings(
         chat,
         'seconds'
       )})${hasPromo ? '\n' + promoAddition : ''}`
