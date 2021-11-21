@@ -7,6 +7,7 @@ import {isGroup} from '@helpers/isGroup';
 import {Bot} from '@root/types/index';
 import {checkLock} from '@middlewares/checkLock';
 import {botDeleteMessageSafe} from '@root/helpers/deleteMessageSafe';
+import {Extra} from 'telegraf';
 
 export function setupBan(bot: Bot): void {
   bot.command('ban', checkLock, clarifyIfPrivateMessages, async (ctx) => {
@@ -61,6 +62,9 @@ export function setupBan(bot: Bot): void {
       });
     }
     // Reply with success
-    await ctx.replyWithMarkdown(ctx.translate('trust_success'));
+    await ctx.replyWithMarkdown(
+      ctx.translate('trust_success'),
+      Extra.notifications(!ctx.dbchat.silentMessages),
+    );
   });
 }

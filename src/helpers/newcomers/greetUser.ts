@@ -62,18 +62,20 @@ export async function doGreetUser(
     message.chat = undefined;
     messageSent = await ctx.telegram.sendCopy(ctx.dbchat.id, message, {
       ...(greetingButtons
-        ? Extra.webPreview(false).markup((m) =>
-            m.inlineKeyboard(
-              greetingButtons
-                .split('\n')
-                .map((s) => {
-                  const components = s.split(' - ');
-                  return m.urlButton(components[0], components[1]);
-                })
-                .map((v) => [v]),
-            ),
-          )
-        : Extra.webPreview(false)),
+        ? Extra.webPreview(false)
+            .markup((m) =>
+              m.inlineKeyboard(
+                greetingButtons
+                  .split('\n')
+                  .map((s) => {
+                    const components = s.split(' - ');
+                    return m.urlButton(components[0], components[1]);
+                  })
+                  .map((v) => [v]),
+              ),
+            )
+            .notifications(!ctx.dbchat.silentMessages)
+        : Extra.webPreview(false).notifications(!ctx.dbchat.silentMessages)),
       entities: message.entities,
     });
   } catch (err) {
@@ -84,18 +86,20 @@ export async function doGreetUser(
     message.chat = undefined;
     messageSent = await ctx.telegram.sendCopy(ctx.dbchat.id, message, {
       ...(greetingButtons
-        ? Extra.webPreview(false).markup((m) =>
-            m.inlineKeyboard(
-              greetingButtons
-                .split('\n')
-                .map((s) => {
-                  const components = s.split(' - ');
-                  return m.urlButton(components[0], components[1]);
-                })
-                .map((v) => [v]),
-            ),
-          )
-        : Extra.webPreview(false)),
+        ? Extra.webPreview(false)
+            .markup((m) =>
+              m.inlineKeyboard(
+                greetingButtons
+                  .split('\n')
+                  .map((s) => {
+                    const components = s.split(' - ');
+                    return m.urlButton(components[0], components[1]);
+                  })
+                  .map((v) => [v]),
+              ),
+            )
+            .notifications(!ctx.dbchat.silentMessages)
+        : Extra.webPreview(false).notifications(!ctx.dbchat.silentMessages)),
       entities: message.entities,
     });
   }

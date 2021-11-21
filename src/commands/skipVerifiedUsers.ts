@@ -26,7 +26,9 @@ export function setupSkipVerifiedUsers(bot: Bot): void {
             ? 'skipVerifiedUsers_true'
             : 'skipVerifiedUsers_false',
         ),
-        Extra.inReplyTo(ctx.message.message_id),
+        Extra.inReplyTo(ctx.message.message_id).notifications(
+          !chat.silentMessages,
+        ),
       );
     },
   );

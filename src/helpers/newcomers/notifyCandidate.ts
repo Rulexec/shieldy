@@ -20,6 +20,7 @@ export async function notifyCandidate(
   captcha: Captcha,
 ): Promise<Message | MessagePhoto> {
   const chat = ctx.dbchat;
+  const {silentMessages} = chat;
   const captchaMessage = ctx.dbchat.captchaMessage
     ? cloneDeep(ctx.dbchat.captchaMessage)
     : undefined;
@@ -39,6 +40,8 @@ export async function notifyCandidate(
             ),
           ]),
         );
+
+  extra = extra.notifications(!silentMessages);
 
   const getUserMention = async () => {
     if (chat.customCaptchaMessage && captchaMessage) {
@@ -107,7 +110,7 @@ export async function notifyCandidate(
         },
       );
       if (image) {
-        extra = extra.HTML(true);
+        extra = extra.HTML(true).notifications(!silentMessages);
         const formattedText = formatHTML(
           messageToSend.text,
           messageToSend.entities,
@@ -130,7 +133,7 @@ export async function notifyCandidate(
         });
       }
     } else {
-      extra = extra.HTML(true);
+      extra = extra.HTML(true).notifications(!silentMessages);
       const message = cloneDeep(captchaMessage.message);
       const formattedText = formatHTML(message.text, message.entities);
 
@@ -160,7 +163,7 @@ export async function notifyCandidate(
       }
     }
   } else {
-    extra = extra.HTML(true);
+    extra = extra.HTML(true).notifications(!silentMessages);
 
     let message: string | null = null;
 
@@ -192,6 +195,7 @@ export async function notifyCandidate(
         {
           caption: text,
           parse_mode: 'HTML',
+          disable_notification: Boolean(silentMessages),
         },
       );
     } else {

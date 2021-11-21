@@ -24,15 +24,17 @@ export function setupCaptcha(appContext: AppContext): void {
         ctx.appContext.telegramApi.replyWithMarkdown(
           ctx,
           ctx.translate('captcha'),
-          Extra.inReplyTo(message.message_id).markup((m) =>
-            m.inlineKeyboard([
-              m.callbackButton(ctx.translate('simple'), 'simple'),
-              m.callbackButton(ctx.translate('digits'), 'digits'),
-              m.callbackButton(ctx.translate('button'), 'button'),
-              m.callbackButton(ctx.translate('image'), 'image'),
-              m.callbackButton(ctx.translate('custom'), 'custom'),
-            ]),
-          ),
+          Extra.inReplyTo(message.message_id)
+            .markup((m) =>
+              m.inlineKeyboard([
+                m.callbackButton(ctx.translate('simple'), 'simple'),
+                m.callbackButton(ctx.translate('digits'), 'digits'),
+                m.callbackButton(ctx.translate('button'), 'button'),
+                m.callbackButton(ctx.translate('image'), 'image'),
+                m.callbackButton(ctx.translate('custom'), 'custom'),
+              ]),
+            )
+            .notifications(!ctx.dbchat.silentMessages),
         ),
       );
 

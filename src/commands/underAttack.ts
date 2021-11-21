@@ -23,7 +23,9 @@ export function setupUnderAttack(bot: Bot): void {
         ctx.translate(
           ctx.dbchat.underAttack ? 'underAttack_true' : 'underAttack_false',
         ),
-        Extra.inReplyTo(ctx.message.message_id),
+        Extra.inReplyTo(ctx.message.message_id).notifications(
+          !ctx.dbchat.silentMessages,
+        ),
       );
     },
   );

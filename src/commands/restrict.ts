@@ -18,7 +18,9 @@ export function setupRestrict(bot: Bot): void {
 
     ctx.replyWithMarkdown(
       ctx.translate(chat.restrict ? 'restrict_true' : 'restrict_false'),
-      Extra.inReplyTo(ctx.message.message_id),
+      Extra.inReplyTo(ctx.message.message_id).notifications(
+        !chat.silentMessages,
+      ),
     );
   });
 }

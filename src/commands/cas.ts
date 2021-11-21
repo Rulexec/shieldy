@@ -18,7 +18,9 @@ export function setupCAS(bot: Bot): void {
 
     ctx.replyWithMarkdown(
       ctx.translate(chat.cas ? 'cas_true' : 'cas_false'),
-      Extra.inReplyTo(ctx.message.message_id),
+      Extra.inReplyTo(ctx.message.message_id).notifications(
+        !ctx.dbchat.silentMessages,
+      ),
     );
   });
 }

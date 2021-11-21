@@ -28,5 +28,6 @@ export const createDefaultChat = (id: number): Chat => {
     members: [],
     restrictTime: 24,
     banNewTelegramUsers: false,
+    silentMessages: false,
   };
 };

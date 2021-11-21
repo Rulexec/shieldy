@@ -24,7 +24,9 @@ export function setupSkipOldUsers(bot: Bot): void {
         ctx.translate(
           chat.skipOldUsers ? 'skipOldUsers_true' : 'skipOldUsers_false',
         ),
-        Extra.inReplyTo(ctx.message.message_id),
+        Extra.inReplyTo(ctx.message.message_id).notifications(
+          !chat.silentMessages,
+        ),
       );
     },
   );

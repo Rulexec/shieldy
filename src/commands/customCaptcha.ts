@@ -34,7 +34,10 @@ export function setupCustomCaptcha(appContext: AppContext): void {
         text = ctx.translate('custom_no_variants');
       }
 
-      await ctx.replyWithMarkdown(text);
+      await ctx.replyWithMarkdown(
+        text,
+        Extra.notifications(!ctx.dbchat.silentMessages),
+      );
 
       return BotMiddlewareNextStrategy.abort;
     },
@@ -52,7 +55,10 @@ export function setupCustomCaptcha(appContext: AppContext): void {
         value: ctx.dbchat.customCaptchaVariants,
       });
 
-      await ctx.replyWithMarkdown(ctx.translate('custom_removed'));
+      await ctx.replyWithMarkdown(
+        ctx.translate('custom_removed'),
+        Extra.notifications(!ctx.dbchat.silentMessages),
+      );
 
       return BotMiddlewareNextStrategy.abort;
     },
@@ -65,6 +71,7 @@ export function setupCustomCaptcha(appContext: AppContext): void {
     async (ctx) => {
       const message = await ctx.replyWithMarkdown(
         ctx.translate('custom_add_question'),
+        Extra.notifications(!ctx.dbchat.silentMessages),
       );
       ctx.dbchat.lastReplySetting = {
         type: ReplySettingType.ADD_CUSTOM_CAPTCHA,
@@ -115,6 +122,7 @@ export function setupCustomCaptcha(appContext: AppContext): void {
   ) {
     const botMessage = await ctx.replyWithMarkdown(
       ctx.translate('custom_add_answer'),
+      Extra.notifications(!ctx.dbchat.silentMessages),
     );
 
     ctx.dbchat.lastReplySetting = {
@@ -160,7 +168,9 @@ export function setupCustomCaptcha(appContext: AppContext): void {
 
     await ctx.replyWithMarkdown(
       ctx.translate('custom_success'),
-      Extra.inReplyTo(ctx.message.message_id),
+      Extra.inReplyTo(ctx.message.message_id).notifications(
+        !ctx.dbchat.silentMessages,
+      ),
     );
   }
 

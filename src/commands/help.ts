@@ -3,6 +3,7 @@ import {checkLockMiddleware} from '@middlewares/checkLock';
 import {clarifyIfPrivateMessagesMiddleware} from '@helpers/clarifyIfPrivateMessages';
 import {AppContext} from '@root/types/app-context';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
+import {Extra} from 'telegraf';
 
 export function setupHelp(appContext: AppContext): void {
   const {addBotCommand} = appContext;
@@ -29,9 +30,10 @@ function sendHelp(ctx: Context): Promise<void> {
     });
   }
   return ctx
-    .replyWithMarkdown(ctx.translate('helpShieldy'), {
-      disable_web_page_preview: true,
-    })
+    .replyWithMarkdown(
+      ctx.translate('helpShieldy'),
+      Extra.webPreview(false).notifications(!ctx.dbchat.silentMessages),
+    )
     .then(() => {
       //
     });
@@ -40,9 +42,10 @@ function sendHelp(ctx: Context): Promise<void> {
 export function sendHelpSafe(ctx: Context): Promise<void> {
   try {
     return ctx
-      .replyWithMarkdown(ctx.translate('helpShieldy'), {
-        disable_web_page_preview: true,
-      })
+      .replyWithMarkdown(
+        ctx.translate('helpShieldy'),
+        Extra.webPreview(false).notifications(!ctx.dbchat.silentMessages),
+      )
       .then(() => {
         //
       });
