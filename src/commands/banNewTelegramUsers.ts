@@ -26,7 +26,9 @@ export function setupBanNewTelegramUsers(bot: Bot): void {
             ? 'banNewTelegramUsers_true'
             : 'banNewTelegramUsers_false',
         ),
-        Extra.inReplyTo(ctx.message.message_id),
+        Extra.inReplyTo(ctx.message.message_id).notifications(
+          !ctx.dbchat.silentMessages,
+        ),
       );
     },
   );

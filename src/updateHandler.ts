@@ -46,6 +46,8 @@ import {botDeleteMessageSafe} from './helpers/deleteMessageSafe';
 import {strings} from './helpers/strings';
 import {Language} from './models/Chat';
 import {BotMiddlewareNextStrategy} from './bot/types';
+import {setupPing} from './commands/ping';
+import {setupSilent} from './commands/silent';
 
 export function setupBot(appContext: AppContext): void {
   const {telegrafBot: bot, addBotMiddleware} = appContext;
@@ -112,6 +114,8 @@ export function setupBot(appContext: AppContext): void {
   setupBanForFastRepliesToPosts(bot);
   setupRestrictTime(bot);
   setupBanNewTelegramUsers(bot);
+  setupPing(appContext);
+  setupSilent(appContext);
   // Newcomers logic
   setupNewcomers(appContext);
 

@@ -156,6 +156,11 @@ export function setupSetConfig(bot: Bot): void {
             ctx.dbchat.skipVerifiedUsers = boolValue;
             break;
           }
+          case 'silent': {
+            const boolValue = value === 'true';
+            ctx.dbchat.silentMessages = boolValue;
+            break;
+          }
           default:
             break;
         }

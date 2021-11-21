@@ -26,7 +26,9 @@ export function setupDeleteEntryOnKick(bot: Bot): void {
             ? 'deleteEntryOnKick_true'
             : 'deleteEntryOnKick_false',
         ),
-        Extra.inReplyTo(ctx.message.message_id),
+        Extra.inReplyTo(ctx.message.message_id).notifications(
+          !ctx.dbchat.silentMessages,
+        ),
       );
     },
   );

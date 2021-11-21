@@ -26,7 +26,9 @@ export function setupDeleteEntryMessages(bot: Bot): void {
             ? 'deleteEntryMessages_true'
             : 'deleteEntryMessages_false',
         ),
-        Extra.inReplyTo(ctx.message.message_id),
+        Extra.inReplyTo(ctx.message.message_id).notifications(
+          !ctx.dbchat.silentMessages,
+        ),
       );
     },
   );

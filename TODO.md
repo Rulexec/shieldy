@@ -7,3 +7,8 @@
 - Collect stats (at least requests per minute)
 - Use external queue for telegram updates (for seamless updates)
 - Write scripts for backup/restore
+- Extract all commands to one object with their name/short description/long description/initializer for:
+  - viewConfig/setConfig can be implemented more convinient
+  - help will be always actual
+  - easy to implement command pallete https://github.com/Rulexec/shieldy/issues/3
+- Write tests for `/viewConfig` and `/setConfig` pair

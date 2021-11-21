@@ -79,9 +79,12 @@ skipOldUsers: <code>${chat.skipOldUsers}</code>
 skipVerifiedUsers: <code>${chat.skipVerifiedUsers}</code>
 restrictTimeHours: <code>${chat.restrictTime || 24}</code>
 banNewTelegramUsers: <code>${chat.banNewTelegramUsers}</code>
+silent: <code>${Boolean(chat.silentMessages)}</code>
 greetingButtons:
 <code>${chat.greetingButtons || 'Not set'}</code>`,
-    Extra.inReplyTo(ctx.message.message_id).HTML(true),
+    Extra.inReplyTo(ctx.message.message_id)
+      .HTML(true)
+      .notifications(!chat.silentMessages),
   );
   if (chat.greetingMessage) {
     // TODO: investigate
@@ -89,7 +92,9 @@ greetingButtons:
     // @ts-ignore
     chat.greetingMessage.message.chat = undefined;
     await ctx.telegram.sendCopy(ctx.dbchat.id, chat.greetingMessage.message, {
-      ...Extra.webPreview(false).inReplyTo(ctx.message.message_id),
+      ...Extra.webPreview(false)
+        .inReplyTo(ctx.message.message_id)
+        .notifications(!ctx.dbchat.silentMessages),
       entities: chat.greetingMessage.message.entities,
     });
   }
@@ -99,7 +104,9 @@ greetingButtons:
     // @ts-ignore
     chat.captchaMessage.message.chat = undefined;
     await ctx.telegram.sendCopy(ctx.dbchat.id, chat.captchaMessage.message, {
-      ...Extra.webPreview(false).inReplyTo(ctx.message.message_id),
+      ...Extra.webPreview(false)
+        .inReplyTo(ctx.message.message_id)
+        .notifications(!ctx.dbchat.silentMessages),
       entities: chat.captchaMessage.message.entities,
     });
   }

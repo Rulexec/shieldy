@@ -17,7 +17,8 @@ describe('custom captcha', () => {
     {name: 'should ask for custom question'},
     {name: 'should ask for custom question, multianswer', isMultianswer: true},
     {name: 'should ask for custom question, degradated', isDegradated: true},
-  ])('$name', async ({isMultianswer, isDegradated}) => {
+    {name: 'should ask for custom question, silent', isSilent: true},
+  ])('$name', async ({isMultianswer, isDegradated, isSilent = false}) => {
     const {
       appContext,
       handleUpdate,
@@ -31,11 +32,18 @@ describe('custom captcha', () => {
 
     await findChatById(appContext, groupChat.id);
 
-    await appContext.database.setChatProperty({
-      chatId: groupChat.id,
-      property: 'captchaType',
-      value: CaptchaType.CUSTOM,
-    });
+    await Promise.all([
+      appContext.database.setChatProperty({
+        chatId: groupChat.id,
+        property: 'captchaType',
+        value: CaptchaType.CUSTOM,
+      }),
+      appContext.database.setChatProperty({
+        chatId: groupChat.id,
+        property: 'silentMessages',
+        value: isSilent,
+      }),
+    ]);
 
     if (!isDegradated) {
       await appContext.database.setChatProperty({
@@ -109,6 +117,7 @@ describe('custom captcha', () => {
         expect(message.text).toBe(
           `<a href="tg://user?id=${user.id}">@${user.username}</a>, Say my name (60 sec)`,
         );
+        expect(Boolean(message.isSilent)).toBe(isSilent);
       }
 
       for (let i = 0; i < 2; i++) {
@@ -186,6 +195,7 @@ describe('custom captcha', () => {
             'any message to this group within the time amount specified, otherwise ' +
             'you will be kicked. Thank you! (60 sec)',
         );
+        expect(Boolean(message.isSilent)).toBe(isSilent);
       }
 
       const anyMessageId = getUniqueCounterValue();

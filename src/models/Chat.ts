@@ -120,4 +120,5 @@ export class Chat {
   restrictTime: number;
   banNewTelegramUsers: boolean;
   lastReplySetting?: ReplySetting;
+  silentMessages?: boolean;
 }

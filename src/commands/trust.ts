@@ -78,7 +78,9 @@ export function setupTrust(bot: Bot): void {
       // Reply with success
       await ctx.replyWithMarkdown(
         ctx.translate('trust_success'),
-        Extra.inReplyTo(ctx.message.message_id),
+        Extra.inReplyTo(ctx.message.message_id).notifications(
+          !ctx.dbchat.silentMessages,
+        ),
       );
     },
   );

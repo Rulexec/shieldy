@@ -7,6 +7,7 @@ export type Message = {
   replyToMessageId?: number;
   inlineKeyboard?: InlineKeyboardKey[];
   unixSeconds: number;
+  isSilent?: boolean;
 };
 
 export type MessageEdit = {

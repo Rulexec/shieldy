@@ -31,20 +31,23 @@ export function setupTimeLimit(bot: Bot): void {
         `${ctx.translate('time_limit_selected')} (${
           chat.timeGiven
         } ${ctx.translate('seconds')})`,
+        Extra.notifications(!ctx.dbchat.silentMessages),
       );
     }
 
     return ctx.replyWithMarkdown(
       ctx.translate('time_limit'),
-      Extra.inReplyTo(ctx.message.message_id).markup((m) =>
-        m.inlineKeyboard(
-          options.map((a) =>
-            a.map((o) =>
-              m.callbackButton(`${o} ${ctx.translate('seconds')}`, o),
+      Extra.inReplyTo(ctx.message.message_id)
+        .markup((m) =>
+          m.inlineKeyboard(
+            options.map((a) =>
+              a.map((o) =>
+                m.callbackButton(`${o} ${ctx.translate('seconds')}`, o),
+              ),
             ),
           ),
-        ),
-      ),
+        )
+        .notifications(!ctx.dbchat.silentMessages),
     );
   });
 

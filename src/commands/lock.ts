@@ -20,7 +20,9 @@ export function setupLock(bot: Bot): void {
       ctx.translate(
         chat.adminLocked ? 'lock_true_shieldy' : 'lock_false_shieldy',
       ),
-      Extra.inReplyTo(ctx.message.message_id),
+      Extra.inReplyTo(ctx.message.message_id).notifications(
+        !chat.silentMessages,
+      ),
     );
   });
 }

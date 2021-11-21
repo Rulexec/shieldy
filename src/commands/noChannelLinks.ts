@@ -24,7 +24,9 @@ export function setupNoChannelLinks(bot: Bot): void {
         ctx.translate(
           chat.noChannelLinks ? 'noChannelLinks_true' : 'noChannelLinks_false',
         ),
-        Extra.inReplyTo(ctx.message.message_id),
+        Extra.inReplyTo(ctx.message.message_id).notifications(
+          !chat.silentMessages,
+        ),
       );
     },
   );

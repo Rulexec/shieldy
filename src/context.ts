@@ -39,7 +39,10 @@ export function createContext({
     telegramApi: {
       replyWithMarkdown: (context, markdown, extra) => {
         return idling.wrapTask(() =>
-          context.replyWithMarkdown(markdown, extra),
+          context.replyWithMarkdown(markdown, {
+            ...extra,
+            disable_notification: Boolean(context.dbchat?.silentMessages),
+          }),
         );
       },
     },

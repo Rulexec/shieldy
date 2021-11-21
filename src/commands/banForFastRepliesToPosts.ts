@@ -29,7 +29,9 @@ export function setupBanForFastRepliesToPosts(bot: Bot): void {
             ? 'banForFastRepliesToPosts_true'
             : 'banForFastRepliesToPosts_false',
         ),
-        Extra.inReplyTo(ctx.message.message_id),
+        Extra.inReplyTo(ctx.message.message_id).notifications(
+          !ctx.dbchat.silentMessages,
+        ),
       );
     },
   );

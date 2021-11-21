@@ -18,13 +18,17 @@ export function setupGreetingButtons(bot: Bot): void {
 
       await ctx.replyWithMarkdown(
         `${ctx.translate('greetingButtons')}`,
-        Extra.inReplyTo(ctx.message.message_id).webPreview(false),
+        Extra.inReplyTo(ctx.message.message_id)
+          .webPreview(false)
+          .notifications(!ctx.dbchat.silentMessages),
       );
       await ctx.replyWithMarkdown(
         `<code>${
           ctx.dbchat.greetingButtons || ctx.translate('greetingButtonsEmpty')
         }</code>`,
-        Extra.webPreview(false).HTML(true),
+        Extra.webPreview(false)
+          .HTML(true)
+          .notifications(!ctx.dbchat.silentMessages),
       );
       await clarifyReply(ctx);
     },

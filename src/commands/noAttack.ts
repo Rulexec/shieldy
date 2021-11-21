@@ -17,7 +17,9 @@ export function setupNoAttack(bot: Bot): void {
 
     ctx.replyWithMarkdown(
       ctx.translate(ctx.dbchat.noAttack ? 'noAttack_true' : 'noAttack_false'),
-      Extra.inReplyTo(ctx.message.message_id),
+      Extra.inReplyTo(ctx.message.message_id).notifications(
+        !ctx.dbchat.silentMessages,
+      ),
     );
   });
 }

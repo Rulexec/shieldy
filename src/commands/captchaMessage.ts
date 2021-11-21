@@ -37,7 +37,9 @@ export function setupCaptchaMessage(appContext: AppContext): void {
               : 'captchaMessage_true'
             : 'captchaMessage_false',
         ),
-        Extra.inReplyTo(ctx.message.message_id),
+        Extra.inReplyTo(ctx.message.message_id).notifications(
+          !ctx.dbchat.silentMessages,
+        ),
       );
 
       if (chat.customCaptchaMessage && chat.captchaMessage) {
@@ -46,6 +48,7 @@ export function setupCaptchaMessage(appContext: AppContext): void {
         // @ts-ignore
         chat.captchaMessage.message.chat = undefined;
         await ctx.telegram.sendCopy(chat.id, chat.captchaMessage.message, {
+          ...Extra.notifications(!ctx.dbchat.silentMessages),
           entities: chat.captchaMessage.message.entities,
         });
       }

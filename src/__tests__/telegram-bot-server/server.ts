@@ -118,6 +118,7 @@ export class TelegramBotServer {
           replyToMessageId: data.reply_to_message_id,
           inlineKeyboard: inlineKeyboard.length ? inlineKeyboard : undefined,
           unixSeconds,
+          isSilent: Boolean(data.disable_notification),
         });
 
         const chat = this.getChatById(data.chat_id);

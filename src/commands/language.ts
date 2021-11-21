@@ -47,6 +47,7 @@ export function setupLanguage(bot: Bot): void {
         ],
       ]),
     );
+    extra = extra.notifications(!ctx.dbchat.silentMessages);
 
     ctx.replyWithMarkdown(ctx.translate('language_shieldy'), extra);
   });

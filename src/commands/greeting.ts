@@ -30,7 +30,9 @@ export function setupGreeting(bot: Bot): void {
             : 'greetsUsers_true'
           : 'greetsUsers_false',
       ),
-      Extra.inReplyTo(ctx.message.message_id),
+      Extra.inReplyTo(ctx.message.message_id).notifications(
+        !ctx.dbchat.silentMessages,
+      ),
     );
     if (chat.greetingMessage && chat.greetsUsers) {
       // TODO: investigate
@@ -38,6 +40,7 @@ export function setupGreeting(bot: Bot): void {
       // @ts-ignore
       chat.greetingMessage.message.chat = undefined;
       await ctx.telegram.sendCopy(chat.id, chat.greetingMessage.message, {
+        ...Extra.notifications(!ctx.dbchat.silentMessages),
         entities: chat.greetingMessage.message.entities,
       });
     }
