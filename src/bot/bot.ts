@@ -1,5 +1,5 @@
 import {AppContext} from '@root/types/app-context';
-import {createDistributionStatsLogger} from '@root/util/stats/stats-distribution-logger';
+import {createStatsDistributionLogger} from '@root/util/stats/stats-distribution-logger';
 import {executeMiddlewares} from './middleware';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from './types';
 
@@ -7,7 +7,7 @@ export const initBotMiddlewaresEngine = (appContext: AppContext): void => {
   const {isWorker, telegrafBot, idling, logger} = appContext;
 
   const updateProcessingStats = isWorker
-    ? createDistributionStatsLogger({
+    ? createStatsDistributionLogger({
         name: 'updateFull',
         logger,
       })

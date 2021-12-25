@@ -1,9 +1,9 @@
 import {Logger} from '../logging/types';
-import type {StatsDistributionLogger as StatsDistributionLoggerType} from './types';
+import type {StatsUniqueLogger as StatsUniqueLoggerType} from './types';
 
 type LogStatsFn = (stats: Record<string, number>) => void;
 
-export type StatsDistributionLoggerOptions = {
+export type StatsUniqueLoggerOptions = {
   logStats: LogStatsFn;
   logEveryMs?: number;
   maxLogEveryMs?: number;
@@ -14,9 +14,9 @@ export type StatsDistributionLoggerOptions = {
 const FIVE_MINUTES_MS = 5 * 60 * 1000;
 const HOUR_MS = 60 * 60 * 1000;
 
-export class StatsDistributionLogger implements StatsDistributionLoggerType {
+export class StatsUniqueLogger implements StatsUniqueLoggerType {
   private logStats: LogStatsFn;
-  private values: number[] = [];
+  private valuesSet = new Set<number | string>();
   private cleanups: (() => void)[] = [];
   private maxCount = Infinity;
   private prevLogHrtime: [number, number];
@@ -27,14 +27,14 @@ export class StatsDistributionLogger implements StatsDistributionLoggerType {
     maxLogEveryMs = HOUR_MS,
     minCount = 100,
     maxCount = 100000,
-  }: StatsDistributionLoggerOptions) {
+  }: StatsUniqueLoggerOptions) {
     this.logStats = logStats;
     this.maxCount = maxCount;
 
     this.prevLogHrtime = process.hrtime();
 
     const logIntervalId = setInterval(() => {
-      if (this.values.length >= minCount) {
+      if (this.valuesSet.size >= minCount) {
         this.doLog();
       }
     }, logEveryMs);
@@ -56,36 +56,23 @@ export class StatsDistributionLogger implements StatsDistributionLoggerType {
   };
 
   collect = (value: number): void => {
-    this.values.push(value);
+    this.valuesSet.add(value);
 
-    if (this.values.length >= this.maxCount) {
+    if (this.valuesSet.size >= this.maxCount) {
       this.doLog();
     }
   };
 
-  collectDuration = (): (() => void) => {
-    const start = process.hrtime();
-
-    return () => {
-      const diff = process.hrtime(start);
-      const ms = Math.floor(diff[0] / 1000 + diff[1] / 1000000);
-
-      this.collect(ms);
-    };
-  };
-
   private doLog = () => {
-    const values = this.values;
-    this.values = [];
+    const values = this.valuesSet;
 
-    if (!values.length) {
+    const count = values.size;
+
+    if (!count) {
       this.logStats({count: 0});
+      this.valuesSet.clear();
       return;
     }
-
-    const sortedArray = values.sort((a, b) => a - b);
-    const sum = sortedArray.reduce((a, b) => a + b);
-    const count = sortedArray.length;
 
     const now = process.hrtime();
     const elapsed = [
@@ -97,42 +84,20 @@ export class StatsDistributionLogger implements StatsDistributionLoggerType {
 
     this.logStats({
       count,
-      p0: sortedArray[0],
-      p25: calcPercentile(sortedArray, 0.25),
-      p50: calcPercentile(sortedArray, 0.5),
-      p75: calcPercentile(sortedArray, 0.75),
-      p90: calcPercentile(sortedArray, 0.9),
-      p95: calcPercentile(sortedArray, 0.95),
-      p100: sortedArray[count - 1],
-      avg: sum / count,
       ms: elapsedMs,
     });
   };
 }
 
-const calcPercentile = (sortedArray: number[], p: number): number => {
-  const l = sortedArray.length - 1;
-  const n = Math.max(0, Math.min(l, Math.floor(l * p)));
-  const n2 = Math.max(0, Math.min(l, Math.ceil(l * p)));
-
-  const a = sortedArray[n];
-  const b = sortedArray[n2];
-
-  return a + (b - a) / 2;
-};
-
-export const createStatsDistributionLogger = ({
+export const createStatsUniqueLogger = ({
   name,
   logger,
   ...rest
 }: {
   name: string;
   logger: Logger;
-} & Omit<
-  StatsDistributionLoggerOptions,
-  'logStats'
->): StatsDistributionLoggerType => {
-  return new StatsDistributionLogger({
+} & Omit<StatsUniqueLoggerOptions, 'logStats'>): StatsUniqueLoggerType => {
+  return new StatsUniqueLogger({
     ...rest,
     logStats: logger.stats.bind(logger, name),
   });

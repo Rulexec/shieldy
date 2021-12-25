@@ -3,6 +3,7 @@ import {fork} from 'cluster';
 import {AppContext} from './types/app-context';
 import {Logger} from './util/logging/logger';
 import {BotMiddlewareNextStrategy} from './bot/types';
+import {createStatsUniqueLogger} from './util/stats/stats-unique-logger';
 
 const workers: ReturnType<typeof fork>[] = [];
 
@@ -10,6 +11,9 @@ export function run(appContext: AppContext): void {
   appContext.logger = new Logger(`master${process.pid}`);
 
   const {prependBotMiddleware, logger} = appContext;
+
+  const uniqueChatsStats = createStatsUniqueLogger({name: 'chats', logger});
+  const uniqueUsersStats = createStatsUniqueLogger({name: 'users', logger});
 
   logger.info('start', {pid: process.pid});
 
@@ -49,6 +53,16 @@ export function run(appContext: AppContext): void {
     .catch(appContext.report);
 
   function handleCtx(ctx: Context) {
+    const chatId = ctx.chat?.id;
+    if (typeof chatId === 'number') {
+      uniqueChatsStats.collect(chatId);
+    }
+
+    const userId = ctx.message?.from?.id;
+    if (typeof userId === 'number') {
+      uniqueUsersStats.collect(userId);
+    }
+
     if (clusterNumber >= workers.length) {
       clusterNumber = 0;
     }
