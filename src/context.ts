@@ -11,6 +11,7 @@ import {initBotMiddlewaresEngine} from './bot/bot';
 import {Logger} from './util/logging/logger';
 
 export type ContextOptions = {
+  isWorker: boolean;
   instanceId: string;
   config: Config;
   createDatabase: ({appContext: AppContext}) => Database;
@@ -18,6 +19,7 @@ export type ContextOptions = {
 };
 
 export function createContext({
+  isWorker = true,
   instanceId,
   config: customConfig,
   createDatabase = ({appContext}) => new MongoDatabase({appContext}),
@@ -28,6 +30,7 @@ export function createContext({
   const logger = new Logger(instanceId || 'main', {logLevel: config.logLevel});
 
   const initialAppContext: Partial<AppContext> = {
+    isWorker,
     init: undefined,
     stop: undefined,
     run: undefined,

@@ -3,6 +3,7 @@ export enum LogLevel {
   INFO = 2,
   WARNING = 3,
   ERROR = 4,
+  STATS = 5,
 }
 
 export function logLevelNameToLevel(name = ''): LogLevel {

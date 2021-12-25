@@ -1,9 +1,17 @@
 import {AppContext} from '@root/types/app-context';
+import {createDistributionStatsLogger} from '@root/util/stats/stats-distribution-logger';
 import {executeMiddlewares} from './middleware';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from './types';
 
 export const initBotMiddlewaresEngine = (appContext: AppContext): void => {
-  const {telegrafBot, idling, logger} = appContext;
+  const {isWorker, telegrafBot, idling, logger} = appContext;
+
+  const updateProcessingStats = isWorker
+    ? createDistributionStatsLogger({
+        name: 'updateFull',
+        logger,
+      })
+    : null;
 
   const botCommands: Record<string, {middlewares: BotMiddlewareFn[]}> = {};
   const botCallbackQueryMap: Record<string, {middlewares: BotMiddlewareFn[]}> =
@@ -15,6 +23,7 @@ export const initBotMiddlewaresEngine = (appContext: AppContext): void => {
   const botMiddlewares: BotMiddlewareFn[] = [];
 
   telegrafBot.use((ctx, next) => {
+    const logTime = updateProcessingStats?.collectDuration();
     const finish = idling.startTask();
 
     (async () => {
@@ -133,6 +142,7 @@ export const initBotMiddlewaresEngine = (appContext: AppContext): void => {
       )
       .finally(() => {
         finish();
+        logTime?.();
       });
   });
 

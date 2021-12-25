@@ -20,6 +20,7 @@ export type Config = {
 };
 
 export type AppContext = {
+  isWorker: boolean;
   init: () => Promise<void>;
   stop: () => Promise<void>;
   run: (fun: () => void | Promise<void>) => void;

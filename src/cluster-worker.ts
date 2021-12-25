@@ -1,11 +1,9 @@
 import {AppContext} from './types/app-context';
 import {setupBot} from './updateHandler';
-import {Logger} from './util/logging/logger';
 
 export function run(appContext: AppContext): void {
-  appContext.logger = new Logger(`worker${process.pid}`);
-
   const {telegrafBot: bot, logger} = appContext;
+  logger.setKey(`worker${process.pid}`);
 
   setupBot(appContext);
 

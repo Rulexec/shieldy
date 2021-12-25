@@ -8,6 +8,7 @@ const appContext = createContext();
 
 appContext.run(() => {
   if (isMaster) {
+    appContext.isWorker = false;
     runMaster(appContext);
   } else {
     runWorker(appContext);

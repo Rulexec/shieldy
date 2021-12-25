@@ -1,4 +1,4 @@
-type LogFn = (
+export type LogFn = (
   key: string,
   props?: Record<string, string | number | boolean | undefined | null>,
   options?: {extra?: any; error?: Error},
@@ -9,4 +9,5 @@ export type Logger = {
   info: LogFn;
   warning: LogFn;
   error: LogFn;
+  stats: LogFn;
 };

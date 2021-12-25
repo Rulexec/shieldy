@@ -68,6 +68,10 @@ export class Logger implements LoggerInterface {
     loggerKey: undefined,
     level: LogLevel.ERROR,
   });
+  stats: LoggerInterface['stats'] = this.log.bind(this, {
+    loggerKey: undefined,
+    level: LogLevel.STATS,
+  });
 
   fork = (key: string): LoggerWithFork => {
     const constructFork = (key: string): LoggerWithFork => {
@@ -88,6 +92,10 @@ export class Logger implements LoggerInterface {
           loggerKey: `${this.key}:${key}`,
           level: LogLevel.ERROR,
         }),
+        stats: this.log.bind(this, {
+          loggerKey: `${this.key}:${key}`,
+          level: LogLevel.STATS,
+        }),
         fork: (nextKey) => {
           return constructFork(`${this.key}:${key}:${nextKey}`);
         },
@@ -95,6 +103,10 @@ export class Logger implements LoggerInterface {
     };
 
     return constructFork(key);
+  };
+
+  setKey = (key: string): void => {
+    this.key = key;
   };
 }
 
@@ -147,6 +159,8 @@ const levelToLetter = (level: LogLevel): string => {
       return 'W';
     case LogLevel.ERROR:
       return 'E';
+    case LogLevel.STATS:
+      return 'S';
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const never: never = level;
