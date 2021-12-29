@@ -1,0 +1,2 @@
+msgid "captcha_button"
+msgstr "Менің пендемге қарау"

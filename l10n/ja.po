@@ -1,0 +1,113 @@
+msgid "banUsers_false"
+msgstr "いいですね！キャプチャをパスしなかったユーザーは退出させられます。"
+
+msgid "banUsers_true"
+msgstr "いいですね！キャプチャをパスしなかったユーザーがバンされます。"
+
+msgid "button"
+msgstr "ボタン"
+
+msgid "button_warning"
+msgstr "指定された時間内に、下に表示されたボタンを押してください。そうしないと、退出させられます。ありがとうございます！"
+
+msgid "captcha"
+msgstr "新しく参加した人へのテストの種類を選択してください’\n\n• シンプル — botが何か発言してくださいと尋ねます\n• ボタン — botがボタンを押してくださいとお願いします\n• 数字 — botが簡単な算数の問題を解いてくださいと尋ねます\n• Image — bot will ask to recognize characters on an image"
+
+msgid "captchaMessage_false"
+msgstr "素晴らしいです！これで、新しく参加した人は、デフォルトのキャプチャメッセージを見れます。"
+
+msgid "captchaMessage_true"
+msgstr "素晴らしいです！これで、新しく参加した人は、キャプチャに説明されたカスタムメッセージを受けます。あなたが希望するキャプチャテキストを、こちらのメッセージに回答してください。($title, $username, $equation, $fullname and $secondsを使えます)。"
+
+msgid "captchaMessage_true_message"
+msgstr "素晴らしいです！これで、新しく参加した人は、キャプチャに説明されたカスタムメッセージを受けます。あなたが希望するキャプチャテキストを、こちらのメッセージに回答してください。($title, $username, $equation, $fullname and $secondsを使えます)。 今の挨拶メッセージは以下です。"
+
+msgid "captcha_button"
+msgstr "私はbotではありません。"
+
+msgid "captcha_selected"
+msgstr "はい、このタイプのテストを使います。"
+
+msgid "custom_success"
+msgstr "承認されました！"
+
+msgid "deleteEntryMessages_false"
+msgstr "素晴らしいです！これで、全ての参加時のメッセージは削除されません。"
+
+msgid "deleteEntryMessages_true"
+msgstr "素晴らしいです！これで、全ての参加時のメッセージは削除されます。"
+
+msgid "deleteEntryOnKick_false"
+msgstr "素晴らしいです！Sesurituは、キャプチャを失敗したユーザーの入室時のメッセージを削除しません。"
+
+msgid "deleteEntryOnKick_true"
+msgstr "素晴らしいです！Sesurituは、キャプチャを失敗したユーザーの入室時のメッセージを削除します。"
+
+msgid "digits"
+msgstr "数字"
+
+msgid "digits_warning"
+msgstr "指定された時間内に算数の正解を送信してください。そうしないと、退出させられます。ありがとうございます！"
+
+msgid "greetsUsers_false"
+msgstr "素晴らしいです！これで、このテストをパスして新しく参加された人は挨拶をされません。"
+
+msgid "greetsUsers_message_accepted"
+msgstr "承認されました！"
+
+msgid "greetsUsers_true"
+msgstr "素晴らしいです！これで、テストをパスして新しく参加した人は挨拶をされます。あなたが希望する挨拶のメッセージを、こちらのメッセージに回答してください。($title, $fullname and $usernameを使えます。)"
+
+msgid "greetsUsers_true_message"
+msgstr "素晴らしいです！これで、テストをパスして新しく参加した人は挨拶をされます。あなたが希望する挨拶のメッセージを、こちらのメッセージに回答してください。($title, $fullname and $usernameを使えます。) 今の挨拶メッセージは以下です。"
+
+msgid "helpShieldy"
+msgstr "Sesuritu — は迷惑なスパマーに対してのTelegraの1番のソリューションになります。新しく参加した人に、一定の時間内に、特定のアクションを実行するように要求します。とてもシンプルです。 利用するにあたり、@Sesuritu\\_botをチャットの管理者に追加してください。以下のコマンドでbotのアクションを設定することもできます:\n\n/help — このメッセージを表示する\n/language — 言語を変更する\n/captcha — キャプチャの種類を変更する\n/timeLimit — 新しく参加した人に与えられる時間を変更する\n/lock — 管理者だけがコマンドにアクセスできるようにする\n/restrict — 新しく参加した人が最初の24時間はテキストメッセージしか投稿できないように制限をかける\n/deleteEntryMessages — ユーザーが参加した情報を削除する\n/greeting — テストを通過した人に挨拶をする\n/trust —チェックしたくないユーザーからのメッセージに対してこのコマンドで返事をする\n/ban — same as trust, but the opposite\n/strict — 新しく参加した人がキャプチャをパスするまで、メッセージではなくキャプチャソリューションを受け取りたい時に使う\n/customCaptchaMessage — キャプチャのメッセージをカスタマイズする\n/deleteGreetingTime — `/deleteGreetingTime 100のように何秒間でSesurituのメッセージが消えるかを設定する。0に設定することでリセットされる\n/banUsers — バンまたはユーザーを退出させる\n/deleteEntryOnKick —キャプチャを失敗したユーザーの入室メッセージを削除するかどうか\n/cas — whether to use Combot Anti-Spam or not\n/underAttack — toggle the mode to automatically kick all newcomers\n/noAttack — disables Sesuritu\n/noChannelLinks — automatically delete messages that link to other telegram channels\n/viewConfig — view the current Sesuritu configuration\n/buttonText — change the captcha button text in the form of `/buttonText I'm not a bot!`\n/allowInvitingBots — whether users can invite other bots or not\n/greetingButtons — setup buttons for greeting message\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\n\nまだご不明な点がありますか？サポートチャネルをチェックしてください！. Sesurituコードはオープンソースとなり、こちらで見ることができます https://github.com/Rulexec/shieldy. ありがとう！\n\n. "
+
+msgid "language_selected"
+msgstr "はい、私は日本語が喋れます。"
+
+msgid "language_shieldy"
+msgstr "言語を選択してください。"
+
+msgid "lock_false_shieldy"
+msgstr "素晴らしいです！これで、誰からのコマンドも受け付けます。"
+
+msgid "lock_true_shieldy"
+msgstr "素晴らしいです！これで管理者によるコマンドしか受け付けません。"
+
+msgid "only_author_can_reply"
+msgstr "最初にメニューを開いた人だけが、選択することができます。"
+
+msgid "only_candidate_can_reply"
+msgstr "botではない候補の人だけがボタンを押すことができます。"
+
+msgid "restrict_false"
+msgstr "素晴らしいです！これで、全ての新しく参加した人は、このチャットでどんな種類のコンテンツを送ることができます。"
+
+msgid "restrict_true"
+msgstr "素晴らしいです！これで、全ての新しく参加した人は、このチャットで普通のテキストメッセージを送ることができます。"
+
+msgid "seconds"
+msgstr "秒"
+
+msgid "simple"
+msgstr "簡単"
+
+msgid "simple_warning"
+msgstr ", 指定された時間内に何かメッセージを送ってください。そうしないと、退出させられます。ありがとうございます！"
+
+msgid "strict_false"
+msgstr "素晴らしいです！、これで、新しく参加した人は、キャプチャをパスする前に、テキストを送信することができます。"
+
+msgid "strict_true"
+msgstr "素晴らしいです！これで、新しく参加した人は、キャプチャをパスするまで、キャプチャの回答しかできません。"
+
+msgid "time_limit"
+msgstr "新しく参加した人が退出させられるまでにテストを完了する時間を何秒間にするかを選択してください。"
+
+msgid "time_limit_selected"
+msgstr "はい、この時間制限を使います。"
+
+msgid "trust_success"
+msgstr "承認されました！"

@@ -1,0 +1,113 @@
+msgid "banUsers_false"
+msgstr "Nice! Utilizatorii vor primi kick dacă nu trec testul captcha."
+
+msgid "banUsers_true"
+msgstr "Nice! Utilizatorii vor fi banați dacă nu trec testul captcha."
+
+msgid "button"
+msgstr "Buton"
+
+msgid "button_warning"
+msgstr ", te rog, apasă butonul de mai jos în timpul spefificat, altfel o să fii dat afară din grup în mod automat. Mulțumesc!"
+
+msgid "captcha"
+msgstr "Selectează tipul de test pentru nou veniți:\n\n• Simplu — bot-ul va cere userului să trimită orice în chat\n• Buton — bot-ul va cere userului să apese un buton\n• Cifre — bot-ul va cere userului să rezolve o simplă operație aritmetică\n• Image — bot will ask to recognize characters on an image"
+
+msgid "captchaMessage_false"
+msgstr "Minunat! Acum nou veniții vor vedea mesajul captcha implicit"
+
+msgid "captchaMessage_true"
+msgstr "Super! Acum nou veniții vor primi un mesaj personalizat ce le explică captcha. Te rog răspunde la acest mesaj cu text-ul testului captcha pe care vrei sa îl folosești (poți utiliza $title, $username, $equation, $fullname și $seconds)."
+
+msgid "captchaMessage_true_message"
+msgstr "Super! Acum nou veniții vor primi un mesaj personalizat ce le explică captcha. Te rog răspunde la acest mesaj cu text-ul testului captcha pe care vrei sa îl folosești (poți utiliza $title, $username, $equation, $fullname și $seconds). Mesajul curent de salut este următorul."
+
+msgid "captcha_button"
+msgstr "Nu sunt un bot"
+
+msgid "captcha_selected"
+msgstr "Perfect, o să utilizez acest tip de test."
+
+msgid "custom_success"
+msgstr "Acceptat!"
+
+msgid "deleteEntryMessages_false"
+msgstr "Perfect! Acum mesajele de întampinare nu vor fi șterse."
+
+msgid "deleteEntryMessages_true"
+msgstr "Perfect! Acum mesajele de întampinare vor fi șterse."
+
+msgid "deleteEntryOnKick_false"
+msgstr "Minunat! Sesuritu nu va șterge fiecare mesaj al utilizatorilor ce nu au trecut testul captcha."
+
+msgid "deleteEntryOnKick_true"
+msgstr "Minunat! Sesuritu va șterge fiecare mesaj al utilizatorilor ce nu au trecut testul captcha."
+
+msgid "digits"
+msgstr "Cifre"
+
+msgid "digits_warning"
+msgstr ", te rog, trimite rezultatul operației aritmetice în timpul specificat, altfel o sa fii dat afară din grup în mod automat. Mulțumesc!"
+
+msgid "greetsUsers_false"
+msgstr "Super! Acum nou veniții ce au trecut testul vor fi salutați."
+
+msgid "greetsUsers_message_accepted"
+msgstr "Acceptat!"
+
+msgid "greetsUsers_true"
+msgstr "Super! Acum nou veniții ce au trecut testul vor fi salutați. Te rog să răspunzi la acest mesaj cu textul salutului pe care vrei sa îl utilizezi (poți folosi $title si $username)."
+
+msgid "greetsUsers_true_message"
+msgstr "Super! Acum nou veniții ce au trecut testul vor fi salutați. Te rog să răspunzi la acest mesaj cu textul salutului pe care vrei sa îl utilizezi (poți folosi $title si $username). Mesajul curent de salut este următorul."
+
+msgid "helpShieldy"
+msgstr "Sesuritu — este cea mai bună soluție de a lupta cu spamerii enervanți de pe Telegram. Le cere nou veniților să execute un set de acțiuni într-o perioadă setată de timp, altfel le dă kick. Atât de simplu este. Asigură-te ca @Sesuritu\\_bot este admin pe grupul tau și asta e tot! Pentru setări avansate, folosește comenzile de mai jos:\n\n/help — arată acest mesaj\n/language — schimbă limba\n/captcha — schimbă tipul de captcha folosit\n/timeLimit — schimbă limita de timp acordată nou veniților\n/lock — face comenzile accesibile doar adminilor\n/restrict — restricționează nou veniții să trimită doar mesaje text în primele 24 de ore\n/deleteEntryMessages — șterge mesajele despre userii ce intră în grup\n/greeting — salută utilizatorii ce au trecut testul\n/trust — raspunde cu această comanda unui mesaj trimis de un user pe care doresti să nu îl verifice bot-ul\n/ban — same as trust, but the opposite\n/strict — utilizează atunci când dorești sa nu primești nici un mesaj din partea userilor noi, ci doar soluții captcha până când aceștia trec de captcha\n/customCaptchaMessage — setează mesaj captcha custom\n/deleteGreetingTime — setează când se ștearge salutul lui Sesuritu în secunde, precum `/deleteGreetingTime 100`. resetează setând valoarea 0\n/banUsers — alege între a bana sau la le da kick userilor\n/deleteEntryOnKick — șterge mesajul de întâmpinare pentru userii ce nu au trecut de captcha\n/cas — whether to use Combot Anti-Spam or not\n/underAttack — toggle the mode to automatically kick all newcomers\n/noAttack — disables Sesuritu\n/noChannelLinks — automatically delete messages that link to other telegram channels\n/viewConfig — view the current Sesuritu configuration\n/buttonText — change the captcha button text in the form of `/buttonText I'm not a bot!`\n/allowInvitingBots — whether users can invite other bots or not\n/greetingButtons — setup buttons for greeting message\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\n. Sesuritu code is open source and can be found [here](https://github.com/Rulexec/shieldy). Thank you!\n\n. "
+
+msgid "language_selected"
+msgstr "Perfect, acum vorbesc Română."
+
+msgid "language_shieldy"
+msgstr "Te rog, salectează limba."
+
+msgid "lock_false_shieldy"
+msgstr "Super! Acum o să reacționez la comenzile trimise de căre oricine. "
+
+msgid "lock_true_shieldy"
+msgstr "Super! Acum o să reacționez doar la comenzile date de către admini."
+
+msgid "only_author_can_reply"
+msgstr "Doar persoana ce a inițiat meniul poate selecta"
+
+msgid "only_candidate_can_reply"
+msgstr "Doar candidații ce nu sunt boți pot apăsa acest buton."
+
+msgid "restrict_false"
+msgstr "Perfect! Acum toți nou veniții vor putea trimite orice fel conținut către acest chat."
+
+msgid "restrict_true"
+msgstr "Perfect! Acum toți nou veniții vor putea trimite orice fel de mesaje text către acest chat. "
+
+msgid "seconds"
+msgstr "sec"
+
+msgid "simple"
+msgstr "Simplu"
+
+msgid "simple_warning"
+msgstr ", te rog, trimite orice mesaj către acest grup în timpul specificat, altfel o să fii dat afară în mod automat. Mulțumesc!"
+
+msgid "strict_false"
+msgstr "Super! Acum nou veniții vor putea trimite text înainte de a trece de testul captcha."
+
+msgid "strict_true"
+msgstr "Perfect! Acum nou veniții vor putea trimite doar soluții captcha până când trec de testul captcha."
+
+msgid "time_limit"
+msgstr "Te rog selectează câte secunde au la dispoziție userii noi să completeze testul, înainte sa fi dați afară."
+
+msgid "time_limit_selected"
+msgstr "Super, o să folosesc această limită de timp"
+
+msgid "trust_success"
+msgstr "Acceptat!"

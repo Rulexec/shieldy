@@ -1,0 +1,65 @@
+msgid "button"
+msgstr "Nuppuga"
+
+msgid "button_warning"
+msgstr ", palun klõpsake alam nuppu määratud aja jooksul, muide me kickime teid. Aitäh!"
+
+msgid "captcha"
+msgstr "Palun valige uustulnukute kontrolli tüüp:\n\n• Lihtne — bot küsib vestlusele midagi saata\n• Nuppuga — bot küsib nuppu klõpsata.\n• Digits — bot will ask to solve a simple arithmetic operation\n• Image — bot will ask to recognize characters on an image"
+
+msgid "captcha_button"
+msgstr "Ma ei ole bot"
+
+msgid "captcha_selected"
+msgstr "Väga hea, nüüd ma kasutan seda testi tüüpi."
+
+msgid "digits"
+msgstr "Digitaalne"
+
+msgid "digits_warning"
+msgstr ", palun saatke matemaatilise võrrandi lahendus sellele vestlusele määratud aja jooksul, muidu me kickime teid. Aitäh!"
+
+msgid "greetsUsers_true"
+msgstr "Great! Now newcomers who passed the test will be greeted. Please, reply to this message with the greeting text you would like to use."
+
+msgid "greetsUsers_true_message"
+msgstr "Great! Now newcomers who passed the test will be greeted. Please, reply to this message with the greeting text you would like to use. The current greeting message follows."
+
+msgid "helpShieldy"
+msgstr "Sesuritu — Telegrami parim lahendus ängistatavate rämpspostitajate vastu. Ta palub kõigil uustulnukitel teha mingi tegevus, teatud aja jooksul, kui nad ei ole seda teinud, siis see blokeerib neid. Jah, see on nii lihtne. Veenduge, et @Sesuritu\\_bot — administraator teie gruppis, ja kõik on valmis! Konfigureerige Sesuritu kasutades järgmised käsud:\n\n/help — näitab seda sõnumi\n/language — muutub keelt\n/captcha — muutub captcha tüüpi\n/timeLimit — muutub uustilnukitele antud aega\n/lock — muudab käsud kättesaadavaks ainult administraatoritele\n/restrict — restricts newcomers to send only text messages in the first 24 hours\n/deleteEntryMessages — delete messages about user entry\n/greeting — greets users who pass the test\n/trust — reply with this command to a message sent by user that you don't want to check\n/ban — same as trust, but the opposite\n/strict — use when you don't want to receive any newcomers' messages but captcha solutions until they pass captcha\n/customCaptchaMessage — setup custom captcha message\n/deleteGreetingTime — setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0\n/banUsers — whether to ban or to kick users\n/deleteEntryOnKick — whether to delete entry messages for users who failed captcha\n/cas — whether to use Combot Anti-Spam or not\n/underAttack — toggle the mode to automatically kick all newcomers\n/noAttack — disables Sesuritu\n/noChannelLinks — automatically delete messages that link to other telegram channels\n/viewConfig — view the current Sesuritu configuration\n/buttonText — change the captcha button text in the form of `/buttonText I'm not a bot!`\n/allowInvitingBots — whether users can invite other bots or not\n/greetingButtons — setup buttons for greeting message\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\n. Sesuritu lähtekood on avatud [siin](https://github.com/Rulexec/shieldy)."
+
+msgid "image_warning"
+msgstr ", palun saatke matemaatilise võrrandi lahendus sellele vestlusele määratud aja jooksul, muidu me kickime teid. Aitäh!"
+
+msgid "language_selected"
+msgstr "Väga hea, nüüd ma räägin eesti keeles."
+
+msgid "language_shieldy"
+msgstr "Palun valige keel."
+
+msgid "lock_false_shieldy"
+msgstr "Väga hea, nüüd ma aktsepteerin kõik käsud."
+
+msgid "lock_true_shieldy"
+msgstr "Väga hea, nüüd ma aktsepteerin ainult administraatorite käske."
+
+msgid "only_author_can_reply"
+msgstr "Ainult see, kes avas menüüd, saab valida valikud."
+
+msgid "only_candidate_can_reply"
+msgstr "Selle nuppu saab klõpsata ainult kandidaat, kes soovib olla inimene."
+
+msgid "seconds"
+msgstr "sek"
+
+msgid "simple"
+msgstr "Lihtne"
+
+msgid "simple_warning"
+msgstr ", palun saatke mis tahes sõnum sellele vestlusele määratud aja jooksul, muidu me kickime teid. Aitäh!"
+
+msgid "time_limit"
+msgstr "Palun valige kui palju aega antud uustulnukatele, et testi sooritada enne kicki."
+
+msgid "time_limit_selected"
+msgstr "Väga hea, nüüd ma kasutan seda aja limiiti."

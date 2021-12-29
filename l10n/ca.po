@@ -1,0 +1,158 @@
+msgid "allowInvitingBots_false"
+msgstr "Fantàstic! A partir d'ara els usuaris ja no poden convidar robots a la conversa."
+
+msgid "allowInvitingBots_true"
+msgstr "Fantàstic! A partir d'ara els usuaris poden convidar robots a la conversa."
+
+msgid "banUsers_false"
+msgstr "D'acord, a partir d'ara els nouvinguts que no superin la prova seran explusats."
+
+msgid "banUsers_true"
+msgstr "D'acord, a partir d'ara els nouvinguts que no superin la prova quedaran bloquejats."
+
+msgid "button"
+msgstr "Botó"
+
+msgid "button_warning"
+msgstr ", per favor, pitja el botó d'aquest missatge abans de que s'acabi el temps establert. Si no ho fas, seràs expulsat/-ada de forma automàtica. Gràcies."
+
+msgid "captcha"
+msgstr "Per favor, tria la prova que han de passar els nouvinguts:\n\n• Simple — el bot et demanarà que eviis qualsevol cosa a la conversa\n• Botó — el bot et demanarà que pitgis un botó\n• Dígits — el bot voldrà que resolguis una equació molt senzilla\n• Imatge — el bot et demanarà que reconeguies els caracters d'una imatge"
+
+msgid "captchaMessage_false"
+msgstr "Molt bé, a partir d'ara els nouvinguts rebran el missatge per defecte, que els explicarà la prova que han de superar."
+
+msgid "captchaMessage_true"
+msgstr "D'acord, a partir d'ara els nouvinguts rebran un missatge que els explicarà la prova que han de superar. Per favor, respon a aquest missatge amb el texte personalitzat que vulguis fer servir per a l'explicació de la prova (pots fer servir $title, $username, $equation, $fullname i $seconds)."
+
+msgid "captchaMessage_true_message"
+msgstr "D'acord, a partir d'ara els nouvinguts rebran un missatge que els explicarà la prova que han de superar. Per favor, respon a aquest missatge amb el texte personalitzat que vulguis fer servir per a l'explicació de la prova (pots fer servir $title, $username, $equation, $fullname i $seconds). Actualment tens establert el següent missatge explicatiu:"
+
+msgid "captcha_button"
+msgstr "No soc un robot"
+
+msgid "captcha_selected"
+msgstr "Perfecte, faré servir aquesta prova."
+
+msgid "cas_false"
+msgstr "Molt bé, a partir d'ara en Sesuritu no ferà servir Combot Anti-Spam per a combatre els missatges brossa."
+
+msgid "cas_true"
+msgstr "Molt bé, a partir d'ara en Sesuritu ferà servir Combot Anti-Spam per a combatre els missatges brossa."
+
+msgid "custom_success"
+msgstr "Acceptat!"
+
+msgid "deleteEntryMessages_false"
+msgstr "Molt bé, a partir d'ara els missatges, que auncien l'entrada de nous usuaris al grup, no seran esborrats."
+
+msgid "deleteEntryMessages_true"
+msgstr "Molt bé, a partir d'ara els missatges, que auncien l'entrada de nous usuaris al grup, seran esborrats."
+
+msgid "deleteEntryOnKick_false"
+msgstr "Entesos, a partir d'ara en Sesuritu no esborrarà tots els missatges dels nouvinguts que no hagin superat la prova."
+
+msgid "deleteEntryOnKick_true"
+msgstr "Entesos, a partir d'ara en Sesuritu esborrarà tots els missatges dels nouvinguts que no hagin superat la prova."
+
+msgid "digits"
+msgstr "Dígits"
+
+msgid "digits_warning"
+msgstr ", per favor, envia dins aquest grup, la solució de l'operaió aritmètica proposada, abans de que s'acabi el temps establert. Si no ho fas, seràs expulsat/-ada de forma automàtica. Gràcies."
+
+msgid "greetingButtons"
+msgstr "Respon a aquest missatge (si, ha de ser una resposta, no em serveix de res que m'escriguis un missatge a part), amb un llistat de fins a 10 enllaços, de l'estil que veus més abaix, per a configurar els botons de benvinguda. Respon qualsevol altra cosa per a suprimir tots els botons de cop.\n\nDuckDuckGo - https://duckduckgo.com\nWikipedia - https://wikipedia.com\n\nAquests són els botons que tens configurats actualment:"
+
+msgid "greetingButtonsEmpty"
+msgstr "No hi ha botons"
+
+msgid "greetsUsers_false"
+msgstr "D'acord, a partir d'ara els nouvinguts que hagin passat la prova no rebran cap missatge de benvinguda."
+
+msgid "greetsUsers_message_accepted"
+msgstr "Acceptat!"
+
+msgid "greetsUsers_true"
+msgstr "D'acord, a partir d'ara els nouvinguts que hagin passat la prova rebran un missatge de benvinguda. Per favor, respon a aquest missatge amb el texte que vulguis fer servir per a una salutació personalitzada (pots fer servir $title, $fullname y $username)."
+
+msgid "greetsUsers_true_message"
+msgstr "D'acord, a partir d'ara els nouvinguts que hagin passat la prova rebran un missatge de benvinguda. Per favor, respon a aquest missatge amb el texte que vulguis fer servir per a una salutació personalitzada (pots fer servir $title, $fullname y $username). Actualment tens establert el següent missatge de benvinguda:"
+
+msgid "helpShieldy"
+msgstr "Sesuritu — és la millor solució per a combatre els usuaris que publiquen missatges brossa als grups de Telegram. Els nouvinguts hauran de resoldre una sèrie de proves abans d'un temps determinat, i si no donen una respota correcta, els expulsarà. Tant senzill com això. Assegurat't que @Sesuritu\\_bot té permisos d'administrador al grup i llestos! Així i tot, també pots personalitzar aquest comportament amb les següents comandes:\n\n/help — mostra aquest missatge\n/language — canvia d'idioma\n/captcha — canvia el tipus de CAPTCHA utilitzat\n/timeLimit — canvia el temps de resposta otorgat als nouvinguts\n/lock — fa que les comandes només siguin accessibles per als administradors\n/restrict — restringeix als nouvinguts a només poder enviar missatges de text durant les primeres 24 hores\n/deleteEntryMessages — esborra els missatges d'avís sobre l'entrada de nouvinguts\n/greeting — saluda als usuaris que superen el test\n/trust — fes servir aquesta comanda per a respondre al missatge d'un usuari que no vulguis comprovar\n/ban — fa el mateix que trust, però bloquejant l'usuari\n/strict — fes-lo servir quan no vulguis rebre cap missatge de nouvinguts excepte les solucions del captcha fins que el resolguin\n/customCaptchaMessage — personalitza el missatge del captcha\n/deleteGreetingTime — configura si s'ha d'eborrar el missatge de benvinguda al cap d'uns seguns (ex: `/deleteGreetingTime 100`), es restableix configurant-lo a 0\n/banUsers — permet bloquejar i/o expulsar usuaris\n/deleteEntryOnKick — suprimeix els missatges d'entrada dels usuaris que han fallat la prova\n/cas — per si utilitzes Combot Anti-Spam o no\n/underAttack — commuta el mode per expulsar automàticament tots els nouvinguts\n/noAttack — desactiva en Sesuritu\n/noChannelLinks — suprimeix automàticament els missatges que enllacen amb altres canals de telegrama\n/viewConfig — veure la configuració actual den Sesuritu\n/buttonText — canvia el text del botó del CAPTCHA així: `/buttonText I'm not a bot!`\n/allowInvitingBots — per si els usuaris poden convidar altres robots o no\n/greetingButtons — configura els botons per al missatge de benvinguda\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\nEncara tens dubtes? . En Sesuritu està fet en codi obert i el pots trobar [aquí](https://github.com/Rulexec/shieldy)."
+
+msgid "image"
+msgstr "Imatge"
+
+msgid "image_warning"
+msgstr ", per favor, envia dins aquest grup, els caràcters de la imatge, abans de que s'acabi el temps establert. Si no ho fas, seràs expulsat/-ada de forma automàtica. Gràcies."
+
+msgid "language_selected"
+msgstr "Fantàstic! ara parlo català."
+
+msgid "language_shieldy"
+msgstr "Per favor, tria l'idioma"
+
+msgid "lock_false_shieldy"
+msgstr "D'acord, a partir d'ara faré cas a les ordres de tothom."
+
+msgid "lock_true_shieldy"
+msgstr "D'acord, a partir d'ara només faré cas a les ordres dels administradors."
+
+msgid "noAttack_false"
+msgstr "Molt bé, a partir d'ara en Sesuritu està actiu i vigilant aquest xat."
+
+msgid "noAttack_true"
+msgstr "Molt bé, a partir d'ara en Sesuritu està desactivat i ja no vigilarà aquest xat. Per desactivar aquest mode fes servir la comanda /noAttack."
+
+msgid "noChannelLinks_false"
+msgstr "D'acord, a partir d'ara en Sesuritu ja no esborrarà cap missatge que contengui enllaços a altres canals de Telegram."
+
+msgid "noChannelLinks_true"
+msgstr "D'acord, a partir d'ara en Sesuritu esborrarà tots el missatges que contenguin enllaços a altres canals de Telegram."
+
+msgid "only_author_can_reply"
+msgstr "Només pot triar les opcions la persona que ha posat en marxa el menú."
+
+msgid "only_candidate_can_reply"
+msgstr "Només allò que no és un robot, és el candidat ideal per a pitjar el botó."
+
+msgid "restrict_false"
+msgstr "Entesos, a partir d'ara, tots els nouvinguts podran enviar qualsevol tipus de missatge en aquest grup."
+
+msgid "restrict_true"
+msgstr "Entesos, a partir d'ara, tots els nouvinguts, només podran enviar missatges de text en aquest grup."
+
+msgid "seconds"
+msgstr "seg"
+
+msgid "simple"
+msgstr "Simple"
+
+msgid "simple_warning"
+msgstr ", per favor, envia un missatge qualsevol, dins aquest grup, abans de que s'acabi el temps establert. Si no ho fas, seràs expulsat/-ada de forma automàtica. Gràcies."
+
+msgid "strict_false"
+msgstr "Entesos, a partir d'ara els nouvinguts, podràn enviar missatges fins i tot abans de resoldre correctament la prova establerta."
+
+msgid "strict_true"
+msgstr "Entesos, a partir d'ara els nouvinguts, només podràn enviar missatges per a respondre amb la solució de la prova establerta, fins que aquesta sigui resolta correctament."
+
+msgid "time_limit"
+msgstr "Per favor, tria quants segons he de donar als nouvinguts per a resoldre la prova abans que els expulsi."
+
+msgid "time_limit_selected"
+msgstr "Molt bé doncs, faré servir aquest límit de temps"
+
+msgid "trust_success"
+msgstr "Acceptat!"
+
+msgid "underAttack_false"
+msgstr "Molt bé, a partir d'ara en Sesuritu ja no continuarà expulsant a ningú que vulgui entrar en aquest xat"
+
+msgid "underAttack_true"
+msgstr "Molt bé, a partir d'ara en Sesuritu expulsarà a tothom que vulgui entrar en aquest xat. Procura desactivar aquest mode quan l'atac s'hagi esveït; per això fes servir la comanda /underAttack."
+
+msgid "viewConfig"
+msgstr "Aquesta és la configuració actual:"

@@ -1,0 +1,98 @@
+msgid "banUsers_false"
+msgstr "Skvěle! Nováčci, kteří neprojdou testem budou vyhozeni."
+
+msgid "banUsers_true"
+msgstr "Skvěle! Nováčci, kteří neprojdou testem budou zabanováni."
+
+msgid "button"
+msgstr "Tlačítko"
+
+msgid "button_warning"
+msgstr ", prosím, stiskněte tlačítko ve stanoveném čase, jinak budete vyhozeni. Děkuji!"
+
+msgid "captcha"
+msgstr "Vyberte prosím typ testu pro nováčky:\n\n• Jednoduchý — bot požádá o zaslání jakékoliv zprávy do chatu\n• Tlačítko — bot požádá o stisk tlačítka\n• Číselný — bot požádá o vyřešení jednoduchého příkladu\n• Image — bot will ask to recognize characters on an image"
+
+msgid "captcha_button"
+msgstr "Nejsem bot."
+
+msgid "captcha_selected"
+msgstr "Skvělé, budu používat tento typ testu."
+
+msgid "custom_success"
+msgstr "Přijato!"
+
+msgid "deleteEntryMessages_false"
+msgstr "Skvělé! Nyní nebudou mazány zprávy o příchodu nováčka."
+
+msgid "deleteEntryMessages_true"
+msgstr "Skvělé! Nyní budou mazány zprávy o příchodu nováčka."
+
+msgid "digits"
+msgstr "Číselný"
+
+msgid "digits_warning"
+msgstr ", prosím, pošli řešení matematické rovnice ve stanoveném čase, jinak budeš vyhozen. Děkuji!"
+
+msgid "greetsUsers_false"
+msgstr "Skvělé! Nyní nováčci, kteří projdou testem nebudou uvítáni."
+
+msgid "greetsUsers_message_accepted"
+msgstr "Přijato!"
+
+msgid "greetsUsers_true"
+msgstr "Skvělé! Nyní budou uvítáni nováčci, kteří prošli testem. Odpovězte prosím na tuto zprávu uvítacím textem, který chcete použít (můžete použít $title a $username)."
+
+msgid "greetsUsers_true_message"
+msgstr "Skvělé! Nyní budou uvítáni nováčci, kteří prošli testem. Odpovězte prosím na tuto zprávu uvítacím textem, který chcete použít (můžete použít $title a $username). Následuje pozdrav."
+
+msgid "helpShieldy"
+msgstr "Sesuritu — je to nejlepší řešení na Telegramu v boji proti otravným spammerům. Požádá nováčky, aby provedli nastavenou akci ve stanovené lhůtě, jinak je vyhodí. Je to tak snadné. Ujistěte se, že @Sesuritu\\_bot je administrátor skupiny a to je vše! Nastavení můžete provést dle následujících příkazů:\n\n/help — ukáže tuto zprávu\n/language — výběr jazyka\n/captcha — změní typ testu\n/timeLimit — změní čas pro splnění testu pro nováčky\n/lock — zpřístupní příkazy pouze správcům\n/restrict — omezí nováčky pouze na posílání textových zpráv prvních 24 hodin\n/deleteEntryMessages — smaže zprávu o vstupu nováčka do skupiny\n/greeting — pozdraví nováčky, kteří projdou testem\n/trust — odpovězte tímto příkazem na zprávu uživatele, kterého nechcete kontrolovat\n/ban — same as trust, but the opposite\n/strict — použijte, pokud nechcete dostávat žádné zprávy od nováčků, dokud neprojdou testem\n/customCaptchaMessage — setup custom captcha message\n/deleteGreetingTime — setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0\n/banUsers — whether to ban or to kick users\n/deleteEntryOnKick — whether to delete entry messages for users who failed captcha\n/cas — whether to use Combot Anti-Spam or not\n/underAttack — toggle the mode to automatically kick all newcomers\n/noAttack — disables Sesuritu\n/noChannelLinks — automatically delete messages that link to other telegram channels\n/viewConfig — view the current Sesuritu configuration\n/buttonText — change the captcha button text in the form of `/buttonText I'm not a bot!`\n/allowInvitingBots — whether users can invite other bots or not\n/greetingButtons — setup buttons for greeting message\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\nJeště máte nějaké otázky? Sesuritu kód je open source najdete ho [zde](https://github.com/Rulexec/shieldy). Děkuji!\n\n. "
+
+msgid "language_selected"
+msgstr "Skvělé, nyní mluvím česky."
+
+msgid "language_shieldy"
+msgstr "Prosím, vyber jazyk."
+
+msgid "lock_false_shieldy"
+msgstr "Skvělé! Nyní budu reagovat na příkazy poslané kýmkoli."
+
+msgid "lock_true_shieldy"
+msgstr "Skvělé! Nyní budu reagovat pouze na příkazy poslané správci."
+
+msgid "only_author_can_reply"
+msgstr "Možnost může vybrat jen osoba, která nabídku vyvolala."
+
+msgid "only_candidate_can_reply"
+msgstr "Toto tlačítko může stisknout jen nováček, který se zrovna připojil."
+
+msgid "restrict_false"
+msgstr "Skvělé! Nyní mohou do tohoto chatu všichni nováčci posílat cokoli."
+
+msgid "restrict_true"
+msgstr "Skvělé! Nyní mohou do tohoto chatu všichni nováčci posílat jen textové zprávy."
+
+msgid "seconds"
+msgstr "s"
+
+msgid "simple"
+msgstr "Jednoduchý"
+
+msgid "simple_warning"
+msgstr ", prosím, pošlete do této skupiny jakoukoliv zprávu ve stanoveném čase, jinak budete vyhozeni. Děkuji!"
+
+msgid "strict_false"
+msgstr "Skvělé! Nyní mohou nováčci posílat zprávy, než projdou testem."
+
+msgid "strict_true"
+msgstr "Skvělé! Nyní nováčci nemohou nic poslat, dokud neprojdou testem."
+
+msgid "time_limit"
+msgstr "Prosím, zvolte kolik sekund bude mít nováček na splnění testu, než bude vyhozen."
+
+msgid "time_limit_selected"
+msgstr "Skvělé, budu používat tento časový limit."
+
+msgid "trust_success"
+msgstr "Přijato!"

@@ -15,7 +15,9 @@ export type Config = {
   telegramApiRoot: string;
   telegramPollingInterval: number;
   mongoUri: string;
+  /** @deprecated */
   withPromo: boolean;
+  l10nFilesPath: string;
   logLevel: LogLevel;
 };
 

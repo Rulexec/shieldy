@@ -1,0 +1,158 @@
+msgid "allowInvitingBots_false"
+msgstr "Supert! Brukere kan nå ikke invitere botter."
+
+msgid "allowInvitingBots_true"
+msgstr "Supert! Brukere kan nå invitere botter."
+
+msgid "banUsers_false"
+msgstr "Supert! Brukere vil bli sparket om de ikke består testen."
+
+msgid "banUsers_true"
+msgstr "Supert! Brukere vil bli utestengt om de ikke består testen."
+
+msgid "button"
+msgstr "Knapp"
+
+msgid "button_warning"
+msgstr "vennligst trykk knappen nedenfor innen den spesifiserte tidsperioden, hvis ikke blir du sparket. Takk!"
+
+msgid "captcha"
+msgstr "Vennligst velg testtypen for nykommere:\n\n• Enkel — botten vil spørre brukeren om å sende melding med hva som helst i chatten\n• Knapp — botten vil spørre brukeren om å trykke på en knapp\n• Tall — botten vil spørre brukeren om å løse et enkelt matteproblem\n• Bilde — botten vil spørre brukeren om å gjenkjenne bokstaver, tall og symboler på et bilde"
+
+msgid "captchaMessage_false"
+msgstr "Supert! Nå vil nykommere se den vanlige captcha-meldingen"
+
+msgid "captchaMessage_true"
+msgstr "Supert! Nå vil nykommere få en egendefinert beskjed som forklarer testen. Svar på denne meldingen med captcha-teksten du vil bruke (du kan bruke $title, $username, $equation, $fullname og $seconds)."
+
+msgid "captchaMessage_true_message"
+msgstr "Supert! Nå vil nykommere få en egendefinert beskjed som forklarer testen. Svar på denne meldingen med captcha-teksten du vil bruke (du kan bruke $title, $username, $equation, $fullname og $seconds). Den nåværende meldingen følger."
+
+msgid "captcha_button"
+msgstr "Jeg er ikke en bot"
+
+msgid "captcha_selected"
+msgstr "Supert, da vil jeg bruke denne type testen."
+
+msgid "cas_false"
+msgstr "Supert! Sesuritu vil nå ikke bruke Combot Anti-Spam."
+
+msgid "cas_true"
+msgstr "Supert! Sesuritu vil nå bruke Combot Anti-Spam."
+
+msgid "custom_success"
+msgstr "Akseptert!"
+
+msgid "deleteEntryMessages_false"
+msgstr "Supert! Meldinger sendt ved ankomst vil ikke bli slettet."
+
+msgid "deleteEntryMessages_true"
+msgstr "Supert! Meldinger sendt ved ankomst bli slettet."
+
+msgid "deleteEntryOnKick_false"
+msgstr "Supert! Sesuritu vil ikke fjerne inngangsmeldingene til brukere som ikke består captcha-testen."
+
+msgid "deleteEntryOnKick_true"
+msgstr "Supert! Sesuritu vil fjerne inngangsmeldingene til brukere som ikke består captcha-testen."
+
+msgid "digits"
+msgstr "Tall"
+
+msgid "digits_warning"
+msgstr ", vennligst send svaret på matteproblemet innen den spesifiserte tidsperioden, hvis ikke blir du sparket. Takk!"
+
+msgid "greetingButtons"
+msgstr "Svar på denne meldingen (og jeg mener svar(!), ikke bare send en separat melding) med opp til 10 lenker i formatet under for å sette opp knapper under hilsenen. Svar med hva som helst annet for å fjerne alle knappene.\n\nDuckDuckGo - https://duckduckgo.com\nWikipedia - https://wikipedia.com\n\nNåværende knapper:"
+
+msgid "greetingButtonsEmpty"
+msgstr "Ingen knapper"
+
+msgid "greetsUsers_false"
+msgstr "Supert! Nykommere som har bestått testen vil ikke få en velkomst."
+
+msgid "greetsUsers_message_accepted"
+msgstr "Akseptert!"
+
+msgid "greetsUsers_true"
+msgstr "Supert! Nykommere som har bestått testen vil få en velkomst. Vennligst svar på denne meldingen med teksten du vil bruke som velkomst (du kan bruke $title og $username)."
+
+msgid "greetsUsers_true_message"
+msgstr "Supert! Nykommere som har bestått testen vil få en velkomst. Vennligst svar på denne meldingen med teksten du vil bruke som velkomst (du kan bruke $title og $username). Den nåværende meldingen følger."
+
+msgid "helpShieldy"
+msgstr "Sesuritu — er den beste løsningen på Telegram for å holde tilbake irriterende falske kontoer. Den spørr nykommere om å utføre et sett med handlinger innenfor er viss tidsperiode, hvis ikke blir brukeren kastet ut. Så enkelt er det. Gjør @Sesuritu\\_bot til admin i chatten din og alt er klart! Du kan videre endre oppførselen med de følgende kommandoene:\n\n/help — viser denne meldingen\n/language — bytter språk\n/captcha — endrer hvilken type captcha som blir brukt\n/timeLimit — endrer hvor mye tid som blir gitt til nykommere\n/lock — gjør kommandoer tilgjengelig bare for administratorer\n/restrict — begrenser nykommere til å bare kunne sende tekstmeldinger de første 24 timene\n/deleteEntryMessages — sletter meldinger om brukerens adkomst\n/greeting — sender en velkomst når en bruker består testen\n/trust — svar med denne kommandoen til en melding sendt av en bruker du ikke vil skal sjekkes\n/ban — samme som 'trust', men det motsatte\n/strict — bruk hvis du bare vil motta captcha nykommernes meldinger untatt captcha løsninger før de har bestått testen\n/customCaptchaMessage — sett opp egen captcha melding\n/deleteGreetingTime — angi i sekunder når Sesuritus hilsner skal slettes, f.eks `/deleteGreetingTime 100`, tilbakestill ved å sette til 0\n/banUsers — om brukerne skal utestenges eller sparkes\n/deleteEntryOnKick — om inngangsmeldingene til brukere som feilet testen skal slettes\n/cas — om Combot Anti-Spam skal brukes eller ikke\n/underAttack — slå av eller på modusen der alle nykommere blir automatisk sparket\n/noAttack — deaktiverer Sesuritu\n/noChannelLinks — sletter automatisk meldinger som lenker til andre Telegram-kanaler\n/viewConfig — vis nåværende Sesuritu-konfigurasjon\n/buttonText — endre teksten på captcha-knappen slik som dette; `/buttonText I'm not a bot!`\n/allowInvitingBots — om brukere kan invitere andre botter eller ikke\n/greetingButtons — sett opp knapper for hilse-meldinger\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\nHar du fortsatt spørsmål?. Sesuritus kode er åpen og finnes [her](https://github.com/Rulexec/shieldy)."
+
+msgid "image"
+msgstr "Bilde"
+
+msgid "image_warning"
+msgstr ", vennligst send tegnene som vises på bildet innen den spesifiserte tidsperioden, hvis ikke blir du sparket. Takk!"
+
+msgid "language_selected"
+msgstr "Supert, nå snakker jeg norsk."
+
+msgid "language_shieldy"
+msgstr "Vennligst velg et språk."
+
+msgid "lock_false_shieldy"
+msgstr "Supert! Nå vil jeg svare på kommandoer gitt av hvem som helst."
+
+msgid "lock_true_shieldy"
+msgstr "Supert! Nå vil jeg bare svare på kommandoer gitt av administratorer."
+
+msgid "noAttack_false"
+msgstr "Supert! Sesuritu er nå aktivert."
+
+msgid "noAttack_true"
+msgstr "Supert! Nå er Sesuritu deaktivert. Ikke glem å slå av denne modusen med /noAttack."
+
+msgid "noChannelLinks_false"
+msgstr "Supert! Sesuritu vil ikke slette meldinger som lenker til andre Telegram-kanaler."
+
+msgid "noChannelLinks_true"
+msgstr "Supert! Sesuritu vil nå slette meldinger som lenker til andre Telegram-kanaler."
+
+msgid "only_author_can_reply"
+msgstr "Bare personen som åpnet menyen kan svare på den."
+
+msgid "only_candidate_can_reply"
+msgstr "Bare kandidaten som blir testet kan trykke denne knappen."
+
+msgid "restrict_false"
+msgstr "Supert! Nå kan nykommere sende meldinger med all slags innhold i chatten"
+
+msgid "restrict_true"
+msgstr "Supert! Nå kan nykommere bare sende tekstmeldinger i chatten."
+
+msgid "seconds"
+msgstr "sek"
+
+msgid "simple"
+msgstr "Enkel"
+
+msgid "simple_warning"
+msgstr ", vennligst send hvilken som helst melding til denne gruppen innen den spesifiserte tidsperioden, hvis ikke blir du sparket. Takk!"
+
+msgid "strict_false"
+msgstr "Supert! Nå kan nykommere sende meldinger før de har bestått testen."
+
+msgid "strict_true"
+msgstr "Supert! Nå kan ikke nykommere sende noe før de har bestått testen."
+
+msgid "time_limit"
+msgstr "Vennligst velg hvor mange sekunder nykommere skal få på å fullføre testen før brukeren blir sparket."
+
+msgid "time_limit_selected"
+msgstr "Supert, da skal jeg bruke denne tidsbegrensningen."
+
+msgid "trust_success"
+msgstr "Akseptert!"
+
+msgid "underAttack_false"
+msgstr "Supert! Sesuritu vil ikke sparke alle som blir med i chatten."
+
+msgid "underAttack_true"
+msgstr "Supert! Sesuritu vil nå sparke alle som blir med i chatten. Ikke glem å slå av denne modusen når angrepet er over med /underAttack."
+
+msgid "viewConfig"
+msgstr "Gjeldende konfigurasjon:"

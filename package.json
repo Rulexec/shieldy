@@ -36,6 +36,7 @@
     "lodash": "^4.17.20",
     "module-alias": "^2.2.2",
     "mongodb": "^4.0.1",
+    "pofile": "^1.1.2",
     "sharp": "^0.26.3",
     "svg-captcha": "^1.4.0",
     "tall": "^3.1.0",
