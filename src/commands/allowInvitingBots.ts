@@ -5,6 +5,7 @@ import {Bot, Context} from '@root/types/index';
 import {checkLock} from '@middlewares/checkLock';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {BotMiddlewareNextStrategy} from '@root/bot/types';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupAllowInvitingBots(bot: Bot): void {
   bot.command(
@@ -26,8 +27,8 @@ export function setupAllowInvitingBots(bot: Bot): void {
       ctx.replyWithMarkdown(
         translate(
           chat.allowInvitingBots
-            ? 'allowInvitingBots_true'
-            : 'allowInvitingBots_false',
+            ? T_`allowInvitingBots_true`
+            : T_`allowInvitingBots_false`,
         ),
         Extra.inReplyTo(ctx.message.message_id).notifications(
           !ctx.dbchat.silentMessages,

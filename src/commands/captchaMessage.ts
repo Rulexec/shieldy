@@ -1,7 +1,6 @@
 import {clarifyReply} from '@helpers/clarifyReply';
 import {clarifyIfPrivateMessagesMiddleware} from '@helpers/clarifyIfPrivateMessages';
 import {Extra} from 'telegraf';
-import {localizations} from '@helpers/strings';
 import {checkLockMiddleware} from '@middlewares/checkLock';
 import {ExtraReplyMessage} from 'telegraf/typings/telegram-types';
 import {getReplyToMessageText} from '@root/types/hacks/get-message-text';
@@ -9,6 +8,7 @@ import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {wrapTelegrafContextWithIdling} from '@root/util/telegraf/idling-context-wrapper';
 import {AppContext} from '@root/types/app-context';
 import {BotMiddlewareNextStrategy} from '@root/bot/types';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupCaptchaMessage(appContext: AppContext): void {
   const {addBotCommand, addBotMiddleware, telegrafBot, idling} = appContext;
@@ -33,9 +33,9 @@ export function setupCaptchaMessage(appContext: AppContext): void {
         ctx.translate(
           chat.customCaptchaMessage
             ? chat.captchaMessage
-              ? 'captchaMessage_true_message'
-              : 'captchaMessage_true'
-            : 'captchaMessage_false',
+              ? T_`captchaMessage_true_message`
+              : T_`captchaMessage_true`
+            : T_`captchaMessage_false`,
         ),
         Extra.inReplyTo(ctx.message.message_id).notifications(
           !ctx.dbchat.silentMessages,
@@ -59,6 +59,12 @@ export function setupCaptchaMessage(appContext: AppContext): void {
   );
   // Setup checker
   addBotMiddleware(async (ctx, {next}) => {
+    const {
+      appContext: {
+        translations: {getLanguagesList, translate},
+      },
+    } = ctx;
+
     try {
       // Check if needs to check
       if (!ctx.dbchat.customCaptchaMessage) {
@@ -84,17 +90,16 @@ export function setupCaptchaMessage(appContext: AppContext): void {
         return BotMiddlewareNextStrategy.async;
       }
       // Check if reply to the correct message
-      const captchaMessages = Object.keys(localizations.captchaMessage_true)
-        .map((k) => localizations.captchaMessage_true[k])
+      // FIXME: migrate to `lastReplySetting`/whatever, do not check by text
+      const captchaMessages = getLanguagesList()
+        .map((lang) => translate(lang, T_`captchaMessage_true`))
         .concat(
-          Object.keys(localizations.captchaMessage_true_message).map(
-            (k) => localizations.captchaMessage_true_message[k],
+          getLanguagesList().map((lang) =>
+            translate(lang, T_`captchaMessage_true_message`),
           ),
         );
-      if (
-        !getReplyToMessageText(ctx) ||
-        captchaMessages.indexOf(getReplyToMessageText(ctx)) < 0
-      ) {
+      const messageReplyText = getReplyToMessageText(ctx);
+      if (!messageReplyText || captchaMessages.indexOf(messageReplyText) < 0) {
         return BotMiddlewareNextStrategy.async;
       }
       // Save text
@@ -109,7 +114,7 @@ export function setupCaptchaMessage(appContext: AppContext): void {
 
       idling.wrapTask(() =>
         ctx.reply(
-          ctx.translate('greetsUsers_message_accepted'),
+          ctx.translate(T_`greetsUsers_message_accepted`),
           Extra.inReplyTo(message.message_id) as ExtraReplyMessage,
         ),
       );

@@ -4,6 +4,7 @@ import {clarifyIfPrivateMessagesMiddleware} from '@helpers/clarifyIfPrivateMessa
 import {AppContext} from '@root/types/app-context';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 import {Extra} from 'telegraf';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupHelp(appContext: AppContext): void {
   const {addBotCommand} = appContext;
@@ -31,7 +32,7 @@ function sendHelp(ctx: Context): Promise<void> {
   }
   return ctx
     .replyWithMarkdown(
-      ctx.translate('helpShieldy'),
+      ctx.translate(T_`helpShieldy`),
       Extra.webPreview(false).notifications(!ctx.dbchat.silentMessages),
     )
     .then(() => {
@@ -43,7 +44,7 @@ export function sendHelpSafe(ctx: Context): Promise<void> {
   try {
     return ctx
       .replyWithMarkdown(
-        ctx.translate('helpShieldy'),
+        ctx.translate(T_`helpShieldy`),
         Extra.webPreview(false).notifications(!ctx.dbchat.silentMessages),
       )
       .then(() => {

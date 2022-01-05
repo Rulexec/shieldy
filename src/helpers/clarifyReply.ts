@@ -1,9 +1,10 @@
 import {Context} from '@root/types/context';
+import {T_} from '@root/i18n/l10n-key';
 
 export async function clarifyReply(ctx: Context): Promise<void> {
   const {database, report} = ctx.appContext;
-  const sent = await ctx.reply(ctx.translate('thisIsNotAReply'));
-  const sent2 = await ctx.reply(ctx.translate('thisIsAReply'), {
+  const sent = await ctx.reply(ctx.translate(T_`thisIsNotAReply`));
+  const sent2 = await ctx.reply(ctx.translate(T_`thisIsAReply`), {
     reply_to_message_id: sent.message_id,
   });
   const deleteTime = new Date();

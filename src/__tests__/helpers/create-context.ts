@@ -1,5 +1,6 @@
-import {createContext} from '@root/context';
+import {ContextOptions, createContext} from '@root/context';
 import {MemoryDatabase} from '@root/database/memory/database';
+import {Translations} from '@root/i18n/translations';
 import {AppContext} from '@root/types/app-context';
 import {LogLevel} from '@root/types/logging';
 import {TEST_TELEGRAM_TOKEN} from '../constants';
@@ -7,7 +8,8 @@ import {TEST_TELEGRAM_TOKEN} from '../constants';
 type CreateTestAppContextOptions = Partial<{
   telegramApiRoot: string;
   initialTimestamp: number;
-}>;
+}> &
+  ContextOptions;
 
 type TestAppContext = {
   appContext: AppContext;
@@ -17,6 +19,7 @@ type TestAppContext = {
 export const createTestAppContext = ({
   telegramApiRoot = '',
   initialTimestamp,
+  ...rest
 }: CreateTestAppContextOptions = {}): TestAppContext => {
   const result: TestAppContext = {
     appContext: null as any as AppContext,
@@ -37,7 +40,13 @@ export const createTestAppContext = ({
       l10nFilesPath: '',
     },
     createDatabase: ({appContext}) => new MemoryDatabase({appContext}),
+    createTranslations: ({appContext}) =>
+      new Translations({
+        getTranslationsLoader: () => () => Promise.resolve([]),
+        logger: appContext.logger.fork('l10n'),
+      }),
     getCurrentDate: () => new Date(result.timestamp),
+    ...rest,
   });
 
   return result;

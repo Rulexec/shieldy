@@ -3,6 +3,7 @@ import {Extra} from 'telegraf';
 import {Bot} from '@root/types/index';
 import {checkLock} from '@middlewares/checkLock';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupLock(bot: Bot): void {
   bot.command('lock', checkLock, clarifyIfPrivateMessages, async (ctx) => {
@@ -18,7 +19,7 @@ export function setupLock(bot: Bot): void {
 
     ctx.replyWithMarkdown(
       ctx.translate(
-        chat.adminLocked ? 'lock_true_shieldy' : 'lock_false_shieldy',
+        chat.adminLocked ? T_`lock_true_shieldy` : T_`lock_false_shieldy`,
       ),
       Extra.inReplyTo(ctx.message.message_id).notifications(
         !chat.silentMessages,

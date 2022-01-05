@@ -3,6 +3,7 @@ import {Extra} from 'telegraf';
 import {Bot} from '@root/types/index';
 import {checkLock} from '@middlewares/checkLock';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupNoChannelLinks(bot: Bot): void {
   bot.command(
@@ -22,7 +23,9 @@ export function setupNoChannelLinks(bot: Bot): void {
 
       ctx.replyWithMarkdown(
         ctx.translate(
-          chat.noChannelLinks ? 'noChannelLinks_true' : 'noChannelLinks_false',
+          chat.noChannelLinks
+            ? T_`noChannelLinks_true`
+            : T_`noChannelLinks_false`,
         ),
         Extra.inReplyTo(ctx.message.message_id).notifications(
           !chat.silentMessages,

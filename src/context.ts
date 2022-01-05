@@ -9,22 +9,37 @@ import {AppContext} from './types/app-context';
 import {IdlingStatus} from './util/state/idling-status';
 import {initBotMiddlewaresEngine} from './bot/bot';
 import {Logger} from './util/logging/logger';
+import {Translations} from './i18n/translations';
+import {createFsPoTranslationsLoader} from './i18n/translations-loader-fs-po';
 
-export type ContextOptions = {
+export type ContextOptions = Partial<{
   isWorker: boolean;
   instanceId: string;
   config: Config;
-  createDatabase: ({appContext: AppContext}) => Database;
+  createDatabase: (options: {appContext: AppContext}) => Database;
+  createTranslations: (options: {appContext: AppContext}) => Translations;
   getCurrentDate: () => Date;
-};
+}>;
+
+const defaultTranslationsLoader = ({appContext}: {appContext: AppContext}) =>
+  createFsPoTranslationsLoader({
+    l10nFilesPath: appContext.config.l10nFilesPath,
+  });
+
+const defaultCreateTranslations = ({appContext}: {appContext: AppContext}) =>
+  new Translations({
+    getTranslationsLoader: defaultTranslationsLoader,
+    logger: appContext.logger.fork('l10n'),
+  });
 
 export function createContext({
   isWorker = true,
   instanceId,
   config: customConfig,
   createDatabase = ({appContext}) => new MongoDatabase({appContext}),
+  createTranslations = defaultCreateTranslations,
   getCurrentDate = () => new Date(),
-}: Partial<ContextOptions> = {}): AppContext {
+}: ContextOptions = {}): AppContext {
   const idling = new IdlingStatus();
   const config = customConfig || getConfig();
   const logger = new Logger(instanceId || 'main', {logLevel: config.logLevel});
@@ -63,6 +78,8 @@ export function createContext({
   const appContext = initialAppContext as AppContext;
 
   appContext.database = createDatabase({appContext});
+  appContext.translations = createTranslations({appContext});
+
   const bot = createTelegrafBot(appContext);
   appContext.telegrafBot = bot;
 
@@ -72,6 +89,7 @@ export function createContext({
 
   appContext.init = async () => {
     await appContext.database.init();
+    await appContext.translations.init({appContext});
   };
 
   appContext.stop = async () => {

@@ -3,6 +3,7 @@ import {Extra} from 'telegraf';
 import {Bot} from '@root/types/index';
 import {checkLock} from '@middlewares/checkLock';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupBanUsers(bot: Bot): void {
   bot.command('banUsers', checkLock, clarifyIfPrivateMessages, async (ctx) => {
@@ -17,7 +18,7 @@ export function setupBanUsers(bot: Bot): void {
     assertNonNullish(ctx.message);
 
     ctx.replyWithMarkdown(
-      ctx.translate(chat.banUsers ? 'banUsers_true' : 'banUsers_false'),
+      ctx.translate(chat.banUsers ? T_`banUsers_true` : T_`banUsers_false`),
       Extra.inReplyTo(ctx.message.message_id).notifications(
         !ctx.dbchat.silentMessages,
       ),

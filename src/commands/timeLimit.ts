@@ -4,6 +4,7 @@ import {Bot} from '@root/types/index';
 import {checkIfFromReplier} from '@middlewares/checkIfFromReplier';
 import {checkLock} from '@middlewares/checkLock';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {T_} from '@root/i18n/l10n-key';
 
 const options = [
   ['10', '20', '30'],
@@ -28,21 +29,21 @@ export function setupTimeLimit(bot: Bot): void {
         value: chat.timeGiven,
       });
       return ctx.replyWithMarkdown(
-        `${ctx.translate('time_limit_selected')} (${
+        `${ctx.translate(T_`time_limit_selected`)} (${
           chat.timeGiven
-        } ${ctx.translate('seconds')})`,
+        } ${ctx.translate(T_`seconds`)})`,
         Extra.notifications(!ctx.dbchat.silentMessages),
       );
     }
 
     return ctx.replyWithMarkdown(
-      ctx.translate('time_limit'),
+      ctx.translate(T_`time_limit`),
       Extra.inReplyTo(ctx.message.message_id)
         .markup((m) =>
           m.inlineKeyboard(
             options.map((a) =>
               a.map((o) =>
-                m.callbackButton(`${o} ${ctx.translate('seconds')}`, o),
+                m.callbackButton(`${o} ${ctx.translate(T_`seconds`)}`, o),
               ),
             ),
           ),
@@ -70,9 +71,9 @@ export function setupTimeLimit(bot: Bot): void {
         message.chat.id,
         message.message_id,
         undefined,
-        `${ctx.translate('time_limit_selected')} (${
+        `${ctx.translate(T_`time_limit_selected`)} (${
           chat.timeGiven
-        } ${ctx.translate('seconds')})`,
+        } ${ctx.translate(T_`seconds`)})`,
       );
     },
   );

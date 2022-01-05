@@ -7,6 +7,7 @@ import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {wrapTelegrafContextWithIdling} from '@root/util/telegraf/idling-context-wrapper';
 import {AppContext} from '@root/types/app-context';
 import {BotMiddlewareNextStrategy} from '@root/bot/types';
+import {L10nKey, T_} from '@root/i18n/l10n-key';
 
 export function setupCaptcha(appContext: AppContext): void {
   const {addBotCommand, addBotCallbackQuery, database, idling} = appContext;
@@ -23,15 +24,15 @@ export function setupCaptcha(appContext: AppContext): void {
       idling.wrapTask(() =>
         ctx.appContext.telegramApi.replyWithMarkdown(
           ctx,
-          ctx.translate('captcha'),
+          ctx.translate(T_`captcha`),
           Extra.inReplyTo(message.message_id)
             .markup((m) =>
               m.inlineKeyboard([
-                m.callbackButton(ctx.translate('simple'), 'simple'),
-                m.callbackButton(ctx.translate('digits'), 'digits'),
-                m.callbackButton(ctx.translate('button'), 'button'),
-                m.callbackButton(ctx.translate('image'), 'image'),
-                m.callbackButton(ctx.translate('custom'), 'custom'),
+                m.callbackButton(ctx.translate(T_`simple`), 'simple'),
+                m.callbackButton(ctx.translate(T_`digits`), 'digits'),
+                m.callbackButton(ctx.translate(T_`button`), 'button'),
+                m.callbackButton(ctx.translate(T_`image`), 'image'),
+                m.callbackButton(ctx.translate(T_`custom`), 'custom'),
               ]),
             )
             .notifications(!ctx.dbchat.silentMessages),
@@ -62,8 +63,8 @@ export function setupCaptcha(appContext: AppContext): void {
           message.chat.id,
           message.message_id,
           undefined,
-          `${ctx.translate('captcha_selected')} (${ctx.translate(
-            chat.captchaType,
+          `${ctx.translate(T_`captcha_selected`)} (${ctx.translate(
+            captchaTypeToL10nKey(chat.captchaType),
           )})`,
         ),
       );
@@ -72,3 +73,23 @@ export function setupCaptcha(appContext: AppContext): void {
     }),
   );
 }
+
+const captchaTypeToL10nKey = (type: CaptchaType): L10nKey => {
+  switch (type) {
+    case CaptchaType.SIMPLE:
+      return T_`simple`;
+    case CaptchaType.DIGITS:
+      return T_`digits`;
+    case CaptchaType.BUTTON:
+      return T_`button`;
+    case CaptchaType.IMAGE:
+      return T_`image`;
+    case CaptchaType.CUSTOM:
+      return T_`custom`;
+    default: {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const shouldBeNever: never = type;
+      return T_`_captchaTypeToL10nKey_unknown_`;
+    }
+  }
+};

@@ -4,8 +4,8 @@ import {Logger} from '@root/util/logging/types';
 import {L10nKey} from './l10n-key';
 import {TranslationLoader} from './translations-loader-types';
 
-type TranslationsOptions = {
-  getTranslationLoader: (options: {
+export type TranslationsOptions = {
+  getTranslationsLoader: (options: {
     appContext: AppContext;
   }) => TranslationLoader;
   logger: Logger;
@@ -15,17 +15,17 @@ type LangKey = string;
 type LangRecord = Record<L10nKey, IntlMessageFormat>;
 
 export class Translations {
-  private getTranslationLoader: TranslationsOptions['getTranslationLoader'];
+  private getTranslationsLoader: TranslationsOptions['getTranslationsLoader'];
   private langs: Record<LangKey, LangRecord> = {};
   private logger: Logger;
 
-  constructor({getTranslationLoader, logger}: TranslationsOptions) {
-    this.getTranslationLoader = getTranslationLoader;
+  constructor({getTranslationsLoader, logger}: TranslationsOptions) {
+    this.getTranslationsLoader = getTranslationsLoader;
     this.logger = logger;
   }
 
   init = async ({appContext}: {appContext: AppContext}): Promise<void> => {
-    const loader = this.getTranslationLoader({appContext});
+    const loader = this.getTranslationsLoader({appContext});
     const langs = await loader();
 
     langs.forEach(({lang, translations}) => {
@@ -78,5 +78,9 @@ export class Translations {
     }
 
     return formatted;
+  };
+
+  getLanguagesList = (): string[] => {
+    return Object.keys(this.langs);
   };
 }

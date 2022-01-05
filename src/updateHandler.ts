@@ -55,8 +55,7 @@ export function setupBot(appContext: AppContext): void {
   addBotMiddleware((context: Context): BotMiddlewareNextStrategy => {
     context.appContext = appContext;
     context.translate = (key) => {
-      // TODO: add logging if this function called
-      // (because chat is not attached yet)
+      appContext.logger.warning('setupBot:translate:preAttachChat', {key});
       return strings(appContext, Language.ENGLISH, key);
     };
 

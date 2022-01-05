@@ -3,6 +3,7 @@ import {Extra} from 'telegraf';
 import {Bot} from '@root/types/index';
 import {checkLock} from '@middlewares/checkLock';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupDeleteEntryOnKick(bot: Bot): void {
   bot.command(
@@ -23,8 +24,8 @@ export function setupDeleteEntryOnKick(bot: Bot): void {
       ctx.replyWithMarkdown(
         ctx.translate(
           chat.deleteEntryOnKick
-            ? 'deleteEntryOnKick_true'
-            : 'deleteEntryOnKick_false',
+            ? T_`deleteEntryOnKick_true`
+            : T_`deleteEntryOnKick_false`,
         ),
         Extra.inReplyTo(ctx.message.message_id).notifications(
           !ctx.dbchat.silentMessages,

@@ -7,6 +7,7 @@ import {clarifyReply} from '@helpers/clarifyReply';
 import {isReplyToShieldy} from '@helpers/isReplyToShieldy';
 import {AppContext} from '@root/types/app-context';
 import {BotMiddlewareNextStrategy} from '@root/bot/types';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupCustomCaptcha(appContext: AppContext): void {
   const {telegrafBot, addBotCommand, addBotMiddleware} = appContext;
@@ -18,8 +19,8 @@ export function setupCustomCaptcha(appContext: AppContext): void {
     async (ctx) => {
       let text = '';
 
-      const tQuestion = ctx.translate('custom_question_colon');
-      const tAnswer = ctx.translate('custom_answer_colon');
+      const tQuestion = ctx.translate(T_`custom_question_colon`);
+      const tAnswer = ctx.translate(T_`custom_answer_colon`);
 
       ctx.dbchat.customCaptchaVariants.forEach((variant, i) => {
         const {question, answer} = variant;
@@ -31,7 +32,7 @@ export function setupCustomCaptcha(appContext: AppContext): void {
       });
 
       if (!text) {
-        text = ctx.translate('custom_no_variants');
+        text = ctx.translate(T_`custom_no_variants`);
       }
 
       await ctx.replyWithMarkdown(
@@ -56,7 +57,7 @@ export function setupCustomCaptcha(appContext: AppContext): void {
       });
 
       await ctx.replyWithMarkdown(
-        ctx.translate('custom_removed'),
+        ctx.translate(T_`custom_removed`),
         Extra.notifications(!ctx.dbchat.silentMessages),
       );
 
@@ -70,7 +71,7 @@ export function setupCustomCaptcha(appContext: AppContext): void {
     clarifyIfPrivateMessagesMiddleware,
     async (ctx) => {
       const message = await ctx.replyWithMarkdown(
-        ctx.translate('custom_add_question'),
+        ctx.translate(T_`custom_add_question`),
         Extra.notifications(!ctx.dbchat.silentMessages),
       );
       ctx.dbchat.lastReplySetting = {
@@ -121,7 +122,7 @@ export function setupCustomCaptcha(appContext: AppContext): void {
     customCaptchaQuestion: string,
   ) {
     const botMessage = await ctx.replyWithMarkdown(
-      ctx.translate('custom_add_answer'),
+      ctx.translate(T_`custom_add_answer`),
       Extra.notifications(!ctx.dbchat.silentMessages),
     );
 
@@ -167,7 +168,7 @@ export function setupCustomCaptcha(appContext: AppContext): void {
     });
 
     await ctx.replyWithMarkdown(
-      ctx.translate('custom_success'),
+      ctx.translate(T_`custom_success`),
       Extra.inReplyTo(ctx.message.message_id).notifications(
         !ctx.dbchat.silentMessages,
       ),

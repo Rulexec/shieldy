@@ -6,6 +6,7 @@ import {Bot} from '@root/types/index';
 import {checkLock} from '@middlewares/checkLock';
 import {sendCurrentConfig} from '@commands/viewConfig';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupSetConfig(bot: Bot): void {
   bot.command('setConfig', checkLock, clarifyIfPrivateMessages, async (ctx) => {
@@ -20,7 +21,7 @@ export function setupSetConfig(bot: Bot): void {
 
       if (!configText) {
         ctx.reply(
-          ctx.translate('setConfigHelp'),
+          ctx.translate(T_`setConfigHelp`),
           Extra.inReplyTo(ctx.message.message_id).HTML(
             true,
           ) as ExtraReplyMessage,

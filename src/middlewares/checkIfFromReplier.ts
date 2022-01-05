@@ -3,6 +3,7 @@ import {
   BotMiddlewareNextStrategy,
   newBotMiddlewareAdapter,
 } from '@root/bot/types';
+import {T_} from '@root/i18n/l10n-key';
 import {Context} from '@root/types/context';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 
@@ -29,7 +30,7 @@ export const checkIfFromReplierMiddleware: BotMiddlewareFn = async (
 
     if (ctx.callbackQuery.from.id !== message.reply_to_message.from.id) {
       try {
-        await ctx.answerCbQuery(ctx.translate('only_author_can_reply'));
+        await ctx.answerCbQuery(ctx.translate(T_`only_author_can_reply`));
       } catch {
         // Do nothing
       }

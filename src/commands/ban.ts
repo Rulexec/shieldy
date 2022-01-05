@@ -8,6 +8,7 @@ import {Bot} from '@root/types/index';
 import {checkLock} from '@middlewares/checkLock';
 import {botDeleteMessageSafe} from '@root/helpers/deleteMessageSafe';
 import {Extra} from 'telegraf';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupBan(bot: Bot): void {
   bot.command('ban', checkLock, clarifyIfPrivateMessages, async (ctx) => {
@@ -63,7 +64,7 @@ export function setupBan(bot: Bot): void {
     }
     // Reply with success
     await ctx.replyWithMarkdown(
-      ctx.translate('trust_success'),
+      ctx.translate(T_`trust_success`),
       Extra.notifications(!ctx.dbchat.silentMessages),
     );
   });

@@ -6,6 +6,7 @@ import {LogLevel} from './logging';
 import {TelegramApi} from './telegram-api';
 import {BotMiddlewareFn} from '@root/bot/types';
 import {Logger} from '@root/util/logging/logger';
+import {Translations} from '@root/i18n/translations';
 
 export type Config = {
   workersCount: number;
@@ -28,6 +29,7 @@ export type AppContext = {
   run: (fun: () => void | Promise<void>) => void;
   logger: Logger;
   config: Config;
+  translations: Translations;
   database: Database;
   telegrafBot: Bot;
   telegramApi: TelegramApi;

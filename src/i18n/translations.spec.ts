@@ -10,27 +10,30 @@ describe('Translations', () => {
   let translations: Translations;
 
   beforeEach(async () => {
-    ({appContext} = createTestAppContext());
+    ({appContext} = createTestAppContext({
+      createTranslations: ({appContext}) =>
+        new Translations({
+          getTranslationsLoader: () => () =>
+            Promise.resolve([
+              {
+                lang: 'en',
+                translations: identity({
+                  test: 'passed',
+                  fallback: 'fallback here!',
+                }),
+              },
+              {
+                lang: 'ru',
+                translations: identity({
+                  test: 'прошёл',
+                }),
+              },
+            ]),
+          logger: appContext.logger.fork('l10n'),
+        }),
+    }));
 
-    translations = new Translations({
-      getTranslationLoader: () => () =>
-        Promise.resolve([
-          {
-            lang: 'en',
-            translations: identity({
-              test: 'passed',
-              fallback: 'fallback here!',
-            }),
-          },
-          {
-            lang: 'ru',
-            translations: identity({
-              test: 'прошёл',
-            }),
-          },
-        ]),
-      logger: appContext.logger.fork('l10n'),
-    });
+    translations = appContext.translations;
 
     await translations.init({appContext});
   });
@@ -50,7 +53,7 @@ describe('Translations', () => {
 
   it('should return gibberish if English is not loaded', async () => {
     const translations = new Translations({
-      getTranslationLoader: () => () => Promise.resolve([]),
+      getTranslationsLoader: () => () => Promise.resolve([]),
       logger: appContext.logger.fork('l10n'),
     });
     await translations.init({appContext});
