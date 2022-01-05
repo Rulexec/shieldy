@@ -17,6 +17,7 @@ const options = {
     'no-constant-condition': ['error', {checkLoops: false}],
     'no-restricted-syntax': ['error', 'BinaryExpression[operator="in"]'],
     'semi': ['error', 'always'],
+    '@typescript-eslint/explicit-module-boundary-types': 0,
   },
 
   overrides: [

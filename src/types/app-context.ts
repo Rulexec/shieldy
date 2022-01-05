@@ -41,6 +41,7 @@ export type AppContext = {
   ) => void;
   prependBotMiddleware: (middleware: BotMiddlewareFn) => void;
   addBotMiddleware: (middleware: BotMiddlewareFn) => void;
+  /** @deprecated just use logger */
   report: (error: Error, reason?: string) => void;
   createDefaultChat: (id: number) => Chat;
   getCurrentDate: () => Date;
