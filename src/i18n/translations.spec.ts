@@ -3,6 +3,8 @@ import {createTestAppContext} from '@root/__tests__/helpers/create-context';
 import {T_} from './l10n-key';
 import {Translations} from './translations';
 
+/* eslint-disable local-rules/validate-l10n */
+
 const identity = <T extends unknown>(x: T): T => x;
 
 describe('Translations', () => {

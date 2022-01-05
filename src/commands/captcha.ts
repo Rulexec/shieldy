@@ -89,6 +89,7 @@ const captchaTypeToL10nKey = (type: CaptchaType): L10nKey => {
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const shouldBeNever: never = type;
+      // eslint-disable-next-line local-rules/validate-l10n
       return T_`_captchaTypeToL10nKey_unknown_`;
     }
   }
