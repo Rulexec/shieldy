@@ -1,4 +1,6 @@
 import {findChatById} from '@root/helpers/find-chat';
+import {T_} from '@root/i18n/l10n-key';
+import {getNoTranslationText} from '@root/i18n/no-translation';
 import {getUniqueCounterValue} from '@root/util/id/unique-counter';
 import {setupTest} from '../helpers/setup';
 import {createMessage} from '../test-data/updates';
@@ -68,7 +70,7 @@ describe('/silent', () => {
 
       expect(messages.length).toBe(1);
       expect(messages[0].text).toBe(
-        'Sesuritu will send messages without sound',
+        getNoTranslationText(T_`silentMessages_true`),
       );
       expect(messages[0].isSilent).toBeTruthy();
     }
@@ -92,7 +94,9 @@ describe('/silent', () => {
       const messages = popMessages();
 
       expect(messages.length).toBe(1);
-      expect(messages[0].text).toBe('Sesuritu will send messages with sound');
+      expect(messages[0].text).toBe(
+        getNoTranslationText(T_`silentMessages_false`),
+      );
       expect(messages[0].isSilent).toBeFalsy();
     }
 

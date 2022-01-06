@@ -44,6 +44,8 @@ export function createContext({
   const config = customConfig || getConfig();
   const logger = new Logger(instanceId || 'main', {logLevel: config.logLevel});
 
+  const shutdownHandlers: (() => Promise<void>)[] = [];
+
   const initialAppContext: Partial<AppContext> = {
     isWorker,
     init: undefined,
@@ -71,6 +73,9 @@ export function createContext({
     prependBotMiddleware: undefined,
     addBotMiddleware: undefined,
     addBotCallbackQuery: undefined,
+    onShutdown: (handler) => {
+      shutdownHandlers.push(handler);
+    },
   };
 
   // Unsafe, but we promise, that all fields will be filled
@@ -93,6 +98,15 @@ export function createContext({
   };
 
   appContext.stop = async () => {
+    await shutdownHandlers.reduceRight((acc, handler) => {
+      return acc.finally(() =>
+        handler().catch((error) => {
+          logger.error('shutdownHandler', undefined, {error});
+          return Promise.resolve();
+        }),
+      );
+    }, Promise.resolve());
+
     await bot.stop();
     await reportedShutdown();
   };

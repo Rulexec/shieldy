@@ -42,7 +42,8 @@ export const createTestAppContext = ({
     createDatabase: ({appContext}) => new MemoryDatabase({appContext}),
     createTranslations: ({appContext}) =>
       new Translations({
-        getTranslationsLoader: () => () => Promise.resolve([]),
+        getTranslationsLoader: () => () =>
+          Promise.resolve([{lang: 'en', translations: {}}]),
         logger: appContext.logger.fork('l10n'),
       }),
     getCurrentDate: () => new Date(result.timestamp),

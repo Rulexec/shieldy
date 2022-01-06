@@ -1,4 +1,6 @@
 import {findChatById} from '@root/helpers/find-chat';
+import {T_} from '@root/i18n/l10n-key';
+import {getNoTranslationText} from '@root/i18n/no-translation';
 import {CaptchaType} from '@root/models/Chat';
 import {getUniqueCounterValue} from '@root/util/id/unique-counter';
 import {setupTest} from '../helpers/setup';
@@ -115,7 +117,9 @@ describe('custom captcha', () => {
 
         expect(message.chatId).toBe(groupChat.id);
         expect(message.text).toBe(
-          `<a href="tg://user?id=${user.id}">@${user.username}</a>, Say my name (60 sec)`,
+          `<a href="tg://user?id=${user.id}">@${
+            user.username
+          }</a>, Say my name (60 ${getNoTranslationText(T_`seconds`)})`,
         );
         expect(Boolean(message.isSilent)).toBe(isSilent);
       }
@@ -191,9 +195,11 @@ describe('custom captcha', () => {
 
         expect(message.chatId).toBe(groupChat.id);
         expect(message.text).toBe(
-          `<a href="tg://user?id=${user.id}">@${user.username}</a>, please, send ` +
-            'any message to this group within the time amount specified, otherwise ' +
-            'you will be kicked. Thank you! (60 sec)',
+          `<a href="tg://user?id=${user.id}">@${
+            user.username
+          }</a>${getNoTranslationText(
+            T_`simple_warning`,
+          )} (60 ${getNoTranslationText(T_`seconds`)})`,
         );
         expect(Boolean(message.isSilent)).toBe(isSilent);
       }

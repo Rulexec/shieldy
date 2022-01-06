@@ -3,6 +3,7 @@ import {AppContext} from '@root/types/app-context';
 import {Logger} from '@root/util/logging/types';
 import {L10nKey} from './l10n-key';
 import {TranslationLoader} from './translations-loader-types';
+import {getNoTranslationText} from './no-translation';
 
 export type TranslationsOptions = {
   getTranslationsLoader: (options: {
@@ -66,7 +67,7 @@ export class Translations {
           lang: 'en',
           originalLang: lang,
         });
-        return `%${key}%T%`;
+        return getNoTranslationText(key);
       }
     }
 

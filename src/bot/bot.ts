@@ -13,6 +13,14 @@ export const initBotMiddlewaresEngine = (appContext: AppContext): void => {
       })
     : null;
 
+  appContext.onShutdown(() => {
+    if (updateProcessingStats) {
+      updateProcessingStats.destroy();
+    }
+
+    return Promise.resolve();
+  });
+
   const botCommands: Record<string, {middlewares: BotMiddlewareFn[]}> = {};
   const botCallbackQueryMap: Record<string, {middlewares: BotMiddlewareFn[]}> =
     {};

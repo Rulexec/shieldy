@@ -40,6 +40,10 @@ describe('Translations', () => {
     await translations.init({appContext});
   });
 
+  afterEach(async () => {
+    await appContext.stop();
+  });
+
   it('should translate', () => {
     expect(translations.translate('en', T_`test`)).toBe('passed');
     expect(translations.translate('ru', T_`test`)).toBe('прошёл');
