@@ -30,6 +30,7 @@ type InitObj = {
   onIdle: IdlingStatus['onIdle'];
   handleUpdate: (update: any) => Promise<void>;
   user: User;
+  adminUser: User;
   botUser: User;
   privateChat: Chat;
   groupChat: Chat;
@@ -51,13 +52,26 @@ export const setupTest = (): {
         throw new Error('only single telegram can exist');
       }
 
+      const adminUserId = getUniqueCounterValue();
+
       const user = getUser(getUniqueCounterValue());
+      const adminUser = getUser(adminUserId);
       const privateChat = getPrivateChat(user);
       const groupChat = getGroupChat(-1 * getUniqueCounterValue());
 
       telegram = new TelegramBotServer({
         token: TEST_TELEGRAM_TOKEN,
         botId: TEST_BOT_ID,
+        getUserById: (id) => {
+          switch (id) {
+            case user.id:
+              return {user, status: 'member'};
+            case adminUser.id:
+              return {user: adminUser, status: 'administrator'};
+          }
+
+          return null;
+        },
         getChatById: (id) => {
           if (id === groupChat.id) {
             return groupChat;
@@ -110,6 +124,7 @@ export const setupTest = (): {
         },
         handleUpdate: bot.handleUpdate.bind(bot),
         user,
+        adminUser,
         botUser: getUser(TEST_BOT_ID, {
           isBot: true,
           username: TEST_BOT_USERNAME,

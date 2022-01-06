@@ -1,3 +1,5 @@
+- FIXME: do not call `getChatMember` for every message
+  cache admin statuses in memory and watch for promotions
 - Move methods like `botRemoveEntryMessages` out of `src/database/mongo`
 - Wrap all promises without `.catch(report)`
 - Investigate mongodb reconnects

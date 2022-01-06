@@ -30,7 +30,6 @@ import {
   setupAllowInvitingBots,
   checkAllowInvitingBots,
 } from '@commands/allowInvitingBots';
-import {setupAdmin} from '@commands/admin';
 import {setupGreetingButtons} from '@commands/greetingButtons';
 import {setupSkipOldUsers} from '@commands/skipOldUsers';
 import {setupSkipVerifiedUsers} from '@commands/skipVerifiedUsers';
@@ -45,12 +44,14 @@ import {Context} from './types';
 import {botDeleteMessageSafe} from './helpers/deleteMessageSafe';
 import {strings} from './helpers/strings';
 import {Language} from './models/Chat';
-import {BotMiddlewareNextStrategy} from './bot/types';
+import {BotMiddlewareFn, BotMiddlewareNextStrategy} from './bot/types';
 import {setupPing} from './commands/ping';
 import {setupSilent} from './commands/silent';
+import {getCommands} from './commands/all-commands';
+import {checAdminMiddleware} from './middlewares/checkAdmin';
 
 export function setupBot(appContext: AppContext): void {
-  const {telegrafBot: bot, addBotMiddleware} = appContext;
+  const {telegrafBot: bot, addBotMiddleware, addBotCommand} = appContext;
 
   addBotMiddleware((context: Context): BotMiddlewareNextStrategy => {
     context.appContext = appContext;
@@ -105,7 +106,6 @@ export function setupBot(appContext: AppContext): void {
   setupViewConfig(bot);
   setupButtonText(bot);
   setupAllowInvitingBots(bot);
-  setupAdmin(bot);
   setupGreetingButtons(bot);
   setupSkipOldUsers(bot);
   setupSkipVerifiedUsers(bot);
@@ -117,6 +117,18 @@ export function setupBot(appContext: AppContext): void {
   setupSilent(appContext);
   // Newcomers logic
   setupNewcomers(appContext);
+
+  getCommands().forEach(({key, onlyForAdmin, handler}) => {
+    const middlewares: BotMiddlewareFn[] = [];
+
+    if (onlyForAdmin) {
+      middlewares.push(checAdminMiddleware);
+    }
+
+    middlewares.push(handler);
+
+    addBotCommand(key, ...middlewares);
+  });
 
   // Catch
   bot.catch(appContext.report);

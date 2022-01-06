@@ -2,13 +2,23 @@ import {getUniqueCounterValue} from '@root/util/id/unique-counter';
 import {readWholeStream} from '@root/util/stream/read-whole-stream';
 import {Server, createServer, IncomingMessage, ServerResponse} from 'http';
 import {TEST_BOT_USERNAME} from '../constants';
-import {Chat, getUser} from '../test-data/chats';
+import {Chat, getUser, User} from '../test-data/chats';
 import {InlineKeyboardKey, Message, MessageEdit} from '../test-data/types';
 import {createMessage} from '../test-data/updates';
 
 export type TelegramBotServerOptions = {
   token: string;
   botId: number;
+  getUserById: (id: number) => {
+    user: User;
+    status:
+      | 'creator'
+      | 'administrator'
+      | 'member'
+      | 'restricted'
+      | 'left'
+      | 'kicked';
+  } | null;
   getChatById: (id: number) => Chat;
   getCurrentTime: () => number;
 };
@@ -25,17 +35,20 @@ export class TelegramBotServer {
   private messages: Message[] = [];
   private messageEdits: MessageEdit[] = [];
   private messageDeletes: MessageDelete[] = [];
+  private getUserById: TelegramBotServerOptions['getUserById'];
   private getChatById: (id: number) => Chat;
   private getCurrentTime: () => number;
 
   constructor({
     token,
     botId,
+    getUserById,
     getChatById,
     getCurrentTime,
   }: TelegramBotServerOptions) {
     this.token = token;
     this.botId = botId;
+    this.getUserById = getUserById;
     this.getChatById = getChatById;
     this.getCurrentTime = getCurrentTime;
     this.server = createServer((req, res) => {
@@ -139,19 +152,25 @@ export class TelegramBotServer {
         const data = JSON.parse(buffer.toString());
         const {user_id: userId} = data;
 
+        // TODO: support unexistance of users
+        const userData = this.getUserById(userId) || {
+          user: {
+            id: userId,
+            is_bot: false,
+            first_name: `First${userId}`,
+            last_name: `Last${userId}`,
+            username: `nick${userId}`,
+            language_code: 'en',
+          },
+          status: 'member',
+        };
+
         res.end(
           JSON.stringify({
             ok: true,
             result: {
-              user: {
-                id: userId,
-                is_bot: false,
-                first_name: `First${userId}`,
-                last_name: `Last${userId}`,
-                username: `nick${userId}`,
-                language_code: 'en',
-              },
-              status: 'member',
+              user: userData.user,
+              status: userData.status,
               is_anonymous: false,
             },
           }),
