@@ -132,8 +132,8 @@ export const createNewChatMemberMessage = ({
   user,
   chat,
   unixSeconds,
-  messageId = 1,
-  updateId = 1,
+  messageId,
+  updateId,
 }: {
   user: User;
   chat: Chat;
@@ -153,9 +153,9 @@ export const createNewChatMemberMessage = ({
   };
 } => {
   return {
-    update_id: updateId,
+    update_id: updateId || getUniqueCounterValue(),
     message: {
-      message_id: messageId,
+      message_id: messageId || getUniqueCounterValue(),
       from: user,
       chat: chat,
       date: unixSeconds,

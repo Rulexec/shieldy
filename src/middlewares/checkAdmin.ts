@@ -1,6 +1,6 @@
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 
-export const checAdminMiddleware: BotMiddlewareFn = (ctx) => {
+export const checkAdminMiddleware: BotMiddlewareFn = (ctx) => {
   if (!ctx.isAdministrator) {
     return BotMiddlewareNextStrategy.abort;
   }

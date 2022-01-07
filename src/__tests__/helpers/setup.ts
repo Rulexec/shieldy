@@ -27,11 +27,13 @@ type InitObj = {
   popMessages: TelegramBotServer['popMessages'];
   popMessageEdits: TelegramBotServer['popMessageEdits'];
   popMessageDeletes: TelegramBotServer['popMessageDeletes'];
+  popMemberKicks: TelegramBotServer['popMemberKicks'];
   onIdle: IdlingStatus['onIdle'];
   handleUpdate: (update: any) => Promise<void>;
   user: User;
   adminUser: User;
   botUser: User;
+  otherBotUser: User;
   privateChat: Chat;
   groupChat: Chat;
   unixSeconds: number;
@@ -56,6 +58,14 @@ export const setupTest = (): {
 
       const user = getUser(getUniqueCounterValue());
       const adminUser = getUser(adminUserId);
+      const botUser = getUser(TEST_BOT_ID, {
+        isBot: true,
+        username: TEST_BOT_USERNAME,
+      });
+      const otherBotUser = getUser(getUniqueCounterValue(), {
+        isBot: true,
+        username: 'AnotherBot',
+      });
       const privateChat = getPrivateChat(user);
       const groupChat = getGroupChat(-1 * getUniqueCounterValue());
 
@@ -68,6 +78,10 @@ export const setupTest = (): {
               return {user, status: 'member'};
             case adminUser.id:
               return {user: adminUser, status: 'administrator'};
+            case botUser.id:
+              return {user: botUser, status: 'administrator'};
+            case otherBotUser.id:
+              return {user: otherBotUser, status: 'member'};
           }
 
           return null;
@@ -110,6 +124,7 @@ export const setupTest = (): {
         popMessages: telegram.popMessages,
         popMessageEdits: telegram.popMessageEdits,
         popMessageDeletes: telegram.popMessageDeletes,
+        popMemberKicks: telegram.popMemberKicks,
         onIdle: async () => {
           const status = await idling.onIdle();
           if (status !== IdlingStatusOnIdleResult.sync) {
@@ -125,10 +140,8 @@ export const setupTest = (): {
         handleUpdate: bot.handleUpdate.bind(bot),
         user,
         adminUser,
-        botUser: getUser(TEST_BOT_ID, {
-          isBot: true,
-          username: TEST_BOT_USERNAME,
-        }),
+        botUser,
+        otherBotUser,
         privateChat,
         groupChat,
         unixSeconds: Math.floor(date.getTime() / 1000),
@@ -144,6 +157,8 @@ export const setupTest = (): {
           error = new Error('non-null message edits count');
         } else if (telegram.popMessageDeletes().length) {
           error = new Error('non-null message deletes count');
+        } else if (telegram.popMemberKicks().length) {
+          error = new Error('non-null member kicks count');
         }
 
         await telegram.destroy();

@@ -69,10 +69,10 @@ export class StatsUniqueLogger implements StatsUniqueLoggerType {
     const values = this.valuesSet;
 
     const count = values.size;
+    values.clear();
 
     if (!count) {
       this.logStats({count: 0});
-      this.valuesSet.clear();
       return;
     }
 

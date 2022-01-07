@@ -28,6 +28,11 @@ export type MessageDelete = {
   messageId: number;
 };
 
+export type KickMember = {
+  chatId: number;
+  userId: number;
+};
+
 export class TelegramBotServer {
   private server: Server;
   private token: string;
@@ -35,6 +40,7 @@ export class TelegramBotServer {
   private messages: Message[] = [];
   private messageEdits: MessageEdit[] = [];
   private messageDeletes: MessageDelete[] = [];
+  private memberKicks: KickMember[] = [];
   private getUserById: TelegramBotServerOptions['getUserById'];
   private getChatById: (id: number) => Chat;
   private getCurrentTime: () => number;
@@ -233,6 +239,15 @@ export class TelegramBotServer {
         );
         return;
       }
+      case 'kickChatMember': {
+        const buffer = await readWholeStream(req);
+        const data = JSON.parse(buffer.toString());
+
+        this.memberKicks.push({chatId: data.chat_id, userId: data.user_id});
+
+        res.end(JSON.stringify({ok: true}));
+        break;
+      }
       default: {
         const buffer = await readWholeStream(req);
         const data = JSON.parse(buffer.toString());
@@ -268,6 +283,12 @@ export class TelegramBotServer {
     const deletes = this.messageDeletes;
     this.messageDeletes = [];
     return deletes;
+  };
+
+  popMemberKicks = (): KickMember[] => {
+    const kicks = this.memberKicks;
+    this.memberKicks = [];
+    return kicks;
   };
 
   destroy = async (): Promise<void> => {

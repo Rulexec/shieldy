@@ -1,42 +1,42 @@
 import {botKickChatMember} from '@helpers/newcomers/kickChatMember';
-import {clarifyIfPrivateMessages} from '@helpers/clarifyIfPrivateMessages';
 import {Extra} from 'telegraf';
-import {Bot, Context} from '@root/types/index';
-import {checkLock} from '@middlewares/checkLock';
+import {Context} from '@root/types/index';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
-import {BotMiddlewareNextStrategy} from '@root/bot/types';
+import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 import {T_} from '@root/i18n/l10n-key';
 
-export function setupAllowInvitingBots(bot: Bot): void {
-  bot.command(
-    'allowInvitingBots',
-    checkLock,
-    clarifyIfPrivateMessages,
-    async (ctx: Context) => {
-      const {dbchat: chat, translate} = ctx;
+export const allowInvitingBotsCommand: BotMiddlewareFn = async (ctx) => {
+  const {
+    appContext: {idling, database},
+    dbchat: chat,
+    translate,
+    message,
+  } = ctx;
 
-      chat.allowInvitingBots = !chat.allowInvitingBots;
-      await ctx.appContext.database.setChatProperty({
-        chatId: chat.id,
-        property: 'allowInvitingBots',
-        value: chat.allowInvitingBots,
-      });
+  chat.allowInvitingBots = !chat.allowInvitingBots;
+  await database.setChatProperty({
+    chatId: chat.id,
+    property: 'allowInvitingBots',
+    value: chat.allowInvitingBots,
+  });
 
-      assertNonNullish(ctx.message);
+  assertNonNullish(message);
 
-      ctx.replyWithMarkdown(
-        translate(
-          chat.allowInvitingBots
-            ? T_`allowInvitingBots_true`
-            : T_`allowInvitingBots_false`,
-        ),
-        Extra.inReplyTo(ctx.message.message_id).notifications(
-          !ctx.dbchat.silentMessages,
-        ),
-      );
-    },
+  idling.wrapTask(() =>
+    ctx.replyWithMarkdown(
+      translate(
+        chat.allowInvitingBots
+          ? T_`allowInvitingBots_true`
+          : T_`allowInvitingBots_false`,
+      ),
+      Extra.inReplyTo(message.message_id).notifications(
+        !ctx.dbchat.silentMessages,
+      ),
+    ),
   );
-}
+
+  return BotMiddlewareNextStrategy.abort;
+};
 
 export function checkAllowInvitingBots(
   ctx: Context,

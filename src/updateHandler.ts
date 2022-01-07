@@ -26,10 +26,7 @@ import {setupUnderAttack} from '@commands/underAttack';
 import {setupNoAttack} from '@commands/noAttack';
 import {setupViewConfig} from '@commands/viewConfig';
 import {setupButtonText} from '@commands/buttonText';
-import {
-  setupAllowInvitingBots,
-  checkAllowInvitingBots,
-} from '@commands/allowInvitingBots';
+import {checkAllowInvitingBots} from '@commands/allowInvitingBots';
 import {setupGreetingButtons} from '@commands/greetingButtons';
 import {setupSkipOldUsers} from '@commands/skipOldUsers';
 import {setupSkipVerifiedUsers} from '@commands/skipVerifiedUsers';
@@ -48,7 +45,9 @@ import {BotMiddlewareFn, BotMiddlewareNextStrategy} from './bot/types';
 import {setupPing} from './commands/ping';
 import {setupSilent} from './commands/silent';
 import {getCommands} from './commands/all-commands';
-import {checAdminMiddleware} from './middlewares/checkAdmin';
+import {checkAdminMiddleware} from './middlewares/checkAdmin';
+import {checkLockMiddleware} from './middlewares/checkLock';
+import {clarifyIfPrivateMessagesMiddleware} from './helpers/clarifyIfPrivateMessages';
 
 export function setupBot(appContext: AppContext): void {
   const {telegrafBot: bot, addBotMiddleware, addBotCommand} = appContext;
@@ -105,7 +104,6 @@ export function setupBot(appContext: AppContext): void {
   setupNoAttack(bot);
   setupViewConfig(bot);
   setupButtonText(bot);
-  setupAllowInvitingBots(bot);
   setupGreetingButtons(bot);
   setupSkipOldUsers(bot);
   setupSkipVerifiedUsers(bot);
@@ -118,17 +116,25 @@ export function setupBot(appContext: AppContext): void {
   // Newcomers logic
   setupNewcomers(appContext);
 
-  getCommands().forEach(({key, onlyForAdmin, handler}) => {
-    const middlewares: BotMiddlewareFn[] = [];
+  getCommands().forEach(
+    ({key, onlyForAdmin, allowForMembers, allowInPrivateMessages, handler}) => {
+      const middlewares: BotMiddlewareFn[] = [];
 
-    if (onlyForAdmin) {
-      middlewares.push(checAdminMiddleware);
-    }
+      if (onlyForAdmin) {
+        middlewares.push(checkAdminMiddleware);
+      } else if (!allowForMembers) {
+        middlewares.push(checkLockMiddleware);
+      }
 
-    middlewares.push(handler);
+      if (!allowInPrivateMessages) {
+        middlewares.push(clarifyIfPrivateMessagesMiddleware);
+      }
 
-    addBotCommand(key, ...middlewares);
-  });
+      middlewares.push(handler);
+
+      addBotCommand(key, ...middlewares);
+    },
+  );
 
   // Catch
   bot.catch(appContext.report);

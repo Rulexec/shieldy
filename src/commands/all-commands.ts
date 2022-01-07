@@ -1,11 +1,14 @@
 import {BotMiddlewareFn} from '@root/bot/types';
 import {L10nKey} from '@root/i18n/l10n-key';
 import {sourceCommandHandler} from './admin';
+import {allowInvitingBotsCommand} from './allowInvitingBots';
 
 type CommandDef = {
   key: string;
   helpDescription: L10nKey | undefined;
   onlyForAdmin?: boolean;
+  allowInPrivateMessages?: boolean;
+  allowForMembers?: boolean;
   handler: BotMiddlewareFn;
 };
 
@@ -15,7 +18,13 @@ export const getCommands = (): CommandDef[] => {
       key: 'source',
       helpDescription: undefined,
       onlyForAdmin: true,
+      allowInPrivateMessages: true,
       handler: sourceCommandHandler,
+    },
+    {
+      key: 'allowInvitingBots',
+      helpDescription: undefined,
+      handler: allowInvitingBotsCommand,
     },
   ];
 };
