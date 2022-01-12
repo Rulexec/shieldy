@@ -24,7 +24,6 @@ export const createDefaultChat = (id: number): Chat => {
     allowInvitingBots: false,
     skipOldUsers: false,
     skipVerifiedUsers: false,
-    banForFastRepliesToPosts: false,
     members: [],
     restrictTime: 24,
     banNewTelegramUsers: false,

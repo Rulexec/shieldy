@@ -32,7 +32,6 @@ import {setupSkipVerifiedUsers} from '@commands/skipVerifiedUsers';
 import {setupSetConfig} from '@commands/setConfig';
 import {attachChatMember} from '@middlewares/attachChatMember';
 import {checkBlockList} from '@middlewares/checkBlockList';
-import {setupBanForFastRepliesToPosts} from '@commands/banForFastRepliesToPosts';
 import {setupRestrictTime} from '@commands/restrictTime';
 import {setupBanNewTelegramUsers} from '@commands/banNewTelegramUsers';
 import {AppContext} from './types/app-context';
@@ -106,7 +105,6 @@ export function setupBot(appContext: AppContext): void {
   setupSkipOldUsers(bot);
   setupSkipVerifiedUsers(bot);
   setupSetConfig(bot);
-  setupBanForFastRepliesToPosts(bot);
   setupRestrictTime(bot);
   setupBanNewTelegramUsers(bot);
   setupPing(appContext);
