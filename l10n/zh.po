@@ -1,0 +1,113 @@
+msgid "banUsers_false"
+msgstr "很好！如果用户未通过验证码，将被踢出。"
+
+msgid "banUsers_true"
+msgstr "很好！如果用户未通过验证码，将被禁止。"
+
+msgid "button"
+msgstr "按钮"
+
+msgid "button_warning"
+msgstr "，请在指定的时间内按下面的按钮，否则你将被踢。谢谢！"
+
+msgid "captcha"
+msgstr "请为新人选择测试类型：\n\n•简单 — 机器人会要求向聊天发送任何内容\n•按钮 — 机器人将要求按下一个按钮\n•数字 — 机器人将要求解决一个简单的等式\n• Image — bot will ask to recognize characters on an image"
+
+msgid "captchaMessage_false"
+msgstr "很棒！现在新人将会看到默认的验证码消息"
+
+msgid "captchaMessage_true"
+msgstr "很棒！ 现在新人将获得回答验证码的自定义消息。请用你要使用的验证码文本回复此消息 (你可以使用 $title, $username, $equation, $fullname 和 $seconds)。"
+
+msgid "captchaMessage_true_message"
+msgstr "很棒！ 现在新人将获得回答验证码的自定义消息。请用你要使用的验证码文本回复此消息 (你可以使用 $title, $username, $equation, $fullname 和 $seconds)。 当前的问候消息如下。"
+
+msgid "captcha_button"
+msgstr "我不是一个机器人"
+
+msgid "captcha_selected"
+msgstr "很棒，我之后会使用这个类型的测试"
+
+msgid "custom_success"
+msgstr "已接受！"
+
+msgid "deleteEntryMessages_false"
+msgstr "很棒！现在，加入消息将不被删除。"
+
+msgid "deleteEntryMessages_true"
+msgstr "很棒！现在，加入消息将被删除。"
+
+msgid "deleteEntryOnKick_false"
+msgstr "很棒！Sesuritu将不会删除验证码失败用户的加入消息。"
+
+msgid "deleteEntryOnKick_true"
+msgstr "很棒！Sesuritu将删除验证码失败用户的加入消息。"
+
+msgid "digits"
+msgstr "数字"
+
+msgid "digits_warning"
+msgstr "，请在指定的时间内将数学计算答案发送到本群组，否则您将被踢。 谢谢！"
+
+msgid "greetsUsers_false"
+msgstr "很棒！现在通过测试的新人不会受到欢迎消息。"
+
+msgid "greetsUsers_message_accepted"
+msgstr "已接受！"
+
+msgid "greetsUsers_true"
+msgstr "很棒！现在通过测试的新人不会受到欢迎消息。 请回复此消息，并附上您要使用的问候语（您可以使用$title和$username）。"
+
+msgid "greetsUsers_true_message"
+msgstr "很棒！现在通过测试的新人会受到欢迎消息。 请回复此消息，并附上您要使用的问候语（您可以使用$title和$username）。接下来是当前的问候消息。"
+
+msgid "helpShieldy"
+msgstr "Sesuritu — 是电报中打击恼人的垃圾信息发送者的最佳解决方案，它要求新手在一段时间内执行一个集合动作，否则就会踢它们，就这么简单。确保 @Sesuritu\\_bot是您的管理员，并且这就可以了！您还可以使用以下命令进一步设置课程：\n\n/help — 显示此消息\n/language — 切换语言\n/captcha — 更改使用的验证码类型\n/timeLimit — 更改给新手的时间\n/lock — 使命令只能由管理员访问\n/restrict — 限制新手在前24小时内仅能发送纯文本消息\n/deleteEntryMessages — 删除有关用户加入的消息\n/greeting — 迎接通过测试的用户\n/trust — 使用此命令回复用户发送的您不想检查的消息\n/ban — same as trust, but the opposite\n/strict — 当你不希望收到任何新手的消息但使用验证码解决方案直到他们通过验证码时使用\n/customCaptchaMessage — 设置自定义验证码消息\n/deleteGreetingTime — 设置多少秒删除Sesuritu的欢迎消息，像`/deleteGreetingTime 100`, 设置为0重置\n/banUsers — 禁止还是踢出用户\n/deleteEntryOnKick — 删除还是保留回答验证码失败的用户加入消息\n/cas — whether to use Combot Anti-Spam or not\n/underAttack — toggle the mode to automatically kick all newcomers\n/noAttack — disables Sesuritu\n/noChannelLinks — automatically delete messages that link to other telegram channels\n/viewConfig — view the current Sesuritu configuration\n/buttonText — change the captcha button text in the form of `/buttonText I'm not a bot!`\n/allowInvitingBots — whether users can invite other bots or not\n/greetingButtons — setup buttons for greeting message\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\n。 Sesuritu代码是开源的，可以在[这里](https://github.com/Rulexec/shieldy)找到。谢谢！\n\n. "
+
+msgid "language_selected"
+msgstr "很棒，现在我讲中文了。"
+
+msgid "language_shieldy"
+msgstr "请选择一种语言。"
+
+msgid "lock_false_shieldy"
+msgstr "很棒！现在我对所有人发出的命令做出反应。"
+
+msgid "lock_true_shieldy"
+msgstr "很棒！现在我只对管理员发送的命令作出反应。"
+
+msgid "only_author_can_reply"
+msgstr "只有启动菜单的人才能选择。"
+
+msgid "only_candidate_can_reply"
+msgstr "只有不是机器人的候选人才能按此按钮。"
+
+msgid "restrict_false"
+msgstr "很棒！现在所有新手都可以发送任何类型消息到这个群组。"
+
+msgid "restrict_true"
+msgstr "很棒！现在所有新手都只能发送文本消息到这个群组。"
+
+msgid "seconds"
+msgstr "秒"
+
+msgid "simple"
+msgstr "简单"
+
+msgid "simple_warning"
+msgstr "，请在指定的时间内向该群组发送任何消息，否则您将被踢。谢谢！"
+
+msgid "strict_false"
+msgstr "很棒！现在，新手可以在通过验证码之前发送文本消息。"
+
+msgid "strict_true"
+msgstr "很棒！现在新手在通过验证码之前不会发送除验证码解决方案之外的任何内容。"
+
+msgid "time_limit"
+msgstr "请选择新人在被踢除前完成测试的秒数。"
+
+msgid "time_limit_selected"
+msgstr "很棒，我之后会使用这个时间限制。"
+
+msgid "trust_success"
+msgstr "已接受！"

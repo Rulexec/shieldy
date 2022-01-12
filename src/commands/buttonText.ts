@@ -3,6 +3,7 @@ import {Extra} from 'telegraf';
 import {Bot} from '@root/types/index';
 import {checkLock} from '@middlewares/checkLock';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupButtonText(bot: Bot): void {
   bot.command(
@@ -24,7 +25,7 @@ export function setupButtonText(bot: Bot): void {
         value: ctx.dbchat.buttonText,
       });
       await ctx.replyWithMarkdown(
-        ctx.translate('trust_success'),
+        ctx.translate(T_`trust_success`),
         Extra.inReplyTo(ctx.message.message_id).notifications(
           !ctx.dbchat.silentMessages,
         ),

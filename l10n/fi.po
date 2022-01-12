@@ -1,0 +1,65 @@
+msgid "allowInvitingBots_false"
+msgstr "Selvä! Käyttäjät eivät voi nyt kutsua botteja."
+
+msgid "allowInvitingBots_true"
+msgstr "Selvä! Käyttäjät voivat nyt kutsua botteja."
+
+msgid "button"
+msgstr "Painike"
+
+msgid "button_warning"
+msgstr ", ole hyvä ja klikkaa painiketta alla ennen annetun ajan loppumista, jotta et tule poistetuksi ryhmästä. Kiitos!"
+
+msgid "captcha_button"
+msgstr "Olen ihminen, en botti."
+
+msgid "captcha_selected"
+msgstr "Selvä! Käytän valitsemaasi testiä jatkossa."
+
+msgid "custom_success"
+msgstr "Hyväksytty!"
+
+msgid "digits"
+msgstr "Numerot"
+
+msgid "digits_warning"
+msgstr ", ole hyvä ja lähetä oheisen laskutoimituksen ratkaisu annetun ajan kuluessa, jotta et tule poistetuksi ryhmästä. Kiitos!"
+
+msgid "greetingButtonsEmpty"
+msgstr "Ei painikkeita"
+
+msgid "greetsUsers_false"
+msgstr "Selvä! Nyt testin läpäisseitä tulokkaita ei tervehditä."
+
+msgid "greetsUsers_message_accepted"
+msgstr "Hyväksytty!"
+
+msgid "image"
+msgstr "Kuva"
+
+msgid "image_warning"
+msgstr ", ole hyvä ja lähetä kuvan merkit annetun ajan kuluessa, jotta et tule poistetuksi ryhmästä. Kiitos!"
+
+msgid "language_selected"
+msgstr "Selvä! Valitsit kieleksi suomen."
+
+msgid "language_shieldy"
+msgstr "Ole hyvä ja valitse kieli."
+
+msgid "seconds"
+msgstr "s"
+
+msgid "simple"
+msgstr "Yksinkertainen"
+
+msgid "simple_warning"
+msgstr ", ole hyvä ja lähetä ryhmään viestiä annetun ajan kuluessa, jotta et tule poistetuksi ryhmästä. Kiitos!"
+
+msgid "time_limit"
+msgstr "Ole hyvä ja valitse montako sekuntia uudella tulokkaalla on aikaa vastata testiin (ennen kuin hänet poistetaan ryhmästä)."
+
+msgid "time_limit_selected"
+msgstr "Ok, antamasi sekuntimäärä on asetettu aikarajaksi."
+
+msgid "trust_success"
+msgstr "Hyväksytty!"

@@ -1,0 +1,107 @@
+msgid "banUsers_false"
+msgstr "تم, الأعضاء الذين لم يجتازوا الإختبار سيتم طردهم."
+
+msgid "banUsers_true"
+msgstr "تم, الأعضاء الذين لم يجتازوا الإختبار سيتم حظرهم."
+
+msgid "button"
+msgstr "زر"
+
+msgid "button_warning"
+msgstr ", من فضلك، اضغط على الزر أدناه ضمن المدة الزمنية المحدد، وإلا سيتم طردك. شكرا!"
+
+msgid "captcha"
+msgstr "الرجاء تحديد نوع الاختبار للأعضاء الجدد:\n\n• بسيطة — سوف يطلب البوت لإرسال أي شيء إلى الدردشة\n• زر سوف يطلب البوت الضغط على زرالشرطة\n• أرقام — سوف يطلب البوت حل معادلة بسيطة\n• Image — bot will ask to recognize characters on an image"
+
+msgid "captchaMessage_false"
+msgstr "رائع, يمكن للأعضاء الجدد الآن رؤية رسالة الإختبار الإفتراضية"
+
+msgid "captchaMessage_true"
+msgstr "رائع الآن الأعضاء الجدد سيتلقون رسالة تشرح لهم طريقة اجراء الإختبار, قم بالرد مع رسالة الاختبار التي تريدها. يمكنك إستخدام  $title, $username, $equation, $fullname and $seconds)."
+
+msgid "captchaMessage_true_message"
+msgstr "رائع الآن الأعضاء الجدد سيتلقون رسالة تشرح لهم طريقة اجراء الإختبار, قم بالرد مع رسالة الاختبار التي تريدها. يمكنك إستخدام $title, $username, $equation, $fullname and $seconds). The current greeting message follows."
+
+msgid "captcha_button"
+msgstr "أنا لست بوت"
+
+msgid "captcha_selected"
+msgstr "تم سوف استخدم هذا النوع من الاختبار ."
+
+msgid "custom_success"
+msgstr "قبلت!"
+
+msgid "deleteEntryMessages_false"
+msgstr "رائع ! الآن لن يتم حذف رسائل الدخول إلى المجموعة."
+
+msgid "deleteEntryMessages_true"
+msgstr "رائع ! الآن سيتم حذف رسائل الدخول إلى المجموعة."
+
+msgid "digits"
+msgstr "ارقام"
+
+msgid "digits_warning"
+msgstr ", من فضلك، حل المعادلة الرياضية وإرسالها للدردشة قبل إنتهاء الوقت المحدد، وإلا سيتم طردك. شكرا!"
+
+msgid "greetsUsers_false"
+msgstr "تم ! الآن لن يتم استقبال الأعضاء الجدد الذين اجتازوا الاختبار."
+
+msgid "greetsUsers_message_accepted"
+msgstr "قبلت!"
+
+msgid "greetsUsers_true"
+msgstr "رائع ! الآن سيتم استقبال الأعضاء الجدد الذين اجتازوا الاختبار. الرجاء الرد على هذه الرسالة مع نص الترحيب الذي ترغب في استخدامه (يمكنك استخدام $title $username)."
+
+msgid "greetsUsers_true_message"
+msgstr "رائع ! الآن سيتم استقبال الأعضاء الجدد الذين اجتازوا الاختبار. الرجاء الرد على هذه الرسالة مع نص الترحيب الذي ترغب في استخدامه (يمكنك استخدام $title $username). فيما يلي رسالة الترحيب الحالية."
+
+msgid "helpShieldy"
+msgstr "Sesuritu — هو أفضل حل في التيليجرام لمكافحة مرسلي الرسائل غير المرغوب فيها . يطلب من الأعضاء الجدد الخضوع لإختبارات معينة في غضون فترة محددة، وعندما لا يجتازون الإختبار فإنه يقوم بطردهم. الأمر بهذه السهولة تأكد من @Sesuritu\\_bot منح البوت صلاحية الآدمن! يمكنك أيضًا زيادة سلوكيات البوت بإستخدام الأوامر التالية:\n\n/help — يظهر هذه الرسالة\n/language — تغيير اللغة\n/captcha — تغيير نوع الإختبار المستخدم\n/timeLimit — تغيير مدة الإختبار للأعضاء الجدد\n/lock — يجعل الأوامر قابلة للوصول فقط من قبل المسؤولين فقط\n/restrict — يمنع الأعضاء الجدد من إرسال رسائل نصية فقط في أول 24 ساعة\n/deleteEntryMessages — حذف رسائل دخول الأعضاء\n/greeting — يقوم بتحية المستخدمين الذين يجتازون الاختبار\n/trust — اختر هذا الخيار لإضافة اعضاء لا ترغب في ان يخوضوا الإختبار\n/ban — same as trust, but the opposite\n/strict — اختر هذا اذا كنت تريد تفعيل البوت لإجراء اختبار للأعضاء الجدد\n/customCaptchaMessage — setup custom captcha message\n/deleteGreetingTime — setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0\n/banUsers — whether to ban or to kick users\n/deleteEntryOnKick — whether to delete entry messages for users who failed captcha\n/cas — whether to use Combot Anti-Spam or not\n/underAttack — toggle the mode to automatically kick all newcomers\n/noAttack — disables Sesuritu\n/noChannelLinks — automatically delete messages that link to other telegram channels\n/viewConfig — view the current Sesuritu configuration\n/buttonText — change the captcha button text in the form of `/buttonText I'm not a bot!`\n/allowInvitingBots — whether users can invite other bots or not\n/greetingButtons — setup buttons for greeting message\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\n السورس كود مفتوح المصدر ويمكن العثور عليه [هنا](https://github.com/Rulexec/shieldy). شكرأ!\n\n. "
+
+msgid "language_selected"
+msgstr "عظيم، أنا أتكلم العربية الآن."
+
+msgid "language_shieldy"
+msgstr "الرجاء إختيار اللغة."
+
+msgid "lock_false_shieldy"
+msgstr "رائع ! الآن سوف أرد على الأوامر المرسلة من قبل أي شخص."
+
+msgid "lock_true_shieldy"
+msgstr "رائع ! الآن سوف أتفاعل فقط مع الأوامر المرسلة من قبل المسؤولين."
+
+msgid "only_author_can_reply"
+msgstr "فقط الشخص الذي بدأ القائمة يمكنه تحديد الخيارات."
+
+msgid "only_candidate_can_reply"
+msgstr "فقط المرشح لعدم كونه بوت يمكن الضغط على هذا الزر."
+
+msgid "restrict_false"
+msgstr "رائع ! الآن جميع الأعضاء الجدد سوف يكونون قادرين على إرسال أي نوع من المحتوى إلى هذه الدردشة."
+
+msgid "restrict_true"
+msgstr "رائع ! الآن جميع الأعضاء الجدد سوف يكونون قادرين فقط على إرسال الرسائل النصية المعتادة إلى هذه الدردشة."
+
+msgid "seconds"
+msgstr "ثانية"
+
+msgid "simple"
+msgstr "بسيطه"
+
+msgid "simple_warning"
+msgstr ", من فضلك، إرسال أي رسالة إلى هذه المجموعة في غضون المدة الزمنية المحدد، وإلا سيتم طردك. شكرا!"
+
+msgid "strict_false"
+msgstr "رائع ! الآن الأعضاء الجدد سوف يكونون قادرين على إرسال النص بدون الحاجة لإختبار ."
+
+msgid "strict_true"
+msgstr "رائع ! الآن الأعضاء الجدد لن يرسلوا أي شيء سوى حلول الإختبار حتى يجتازونه ."
+
+msgid "time_limit"
+msgstr "من فضلك، حدد عدد الثواني التي يمكن للأعضاء الجدد إكمال الاختبار خلالها قبل طردهم."
+
+msgid "time_limit_selected"
+msgstr "عظيم، سأستخدم هذا الحد الزمني ."
+
+msgid "trust_success"
+msgstr "قبلت!"

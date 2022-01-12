@@ -13,6 +13,7 @@ import {getName, getUsername} from '@helpers/getUsername';
 import {Captcha} from './generateCaptcha';
 import {formatHTML} from '@root/types/hacks/format-html';
 import {getChatTitle} from '@root/types/hacks/get-chat-title';
+import {L10nKey, T_} from '@root/i18n/l10n-key';
 
 export async function notifyCandidate(
   ctx: Context,
@@ -35,7 +36,7 @@ export async function notifyCandidate(
       : Extra.webPreview(false).markup((m) =>
           m.inlineKeyboard([
             m.callbackButton(
-              chat.buttonText || ctx.translate('captcha_button'),
+              chat.buttonText || ctx.translate(T_`captcha_button`),
               `${chat.id}~${candidate.id}`,
             ),
           ]),
@@ -173,21 +174,21 @@ export async function notifyCandidate(
         message = ', ' + customCaptcha.question;
       } else {
         // Degradate to simple captcha if no custom variants
-        message = ctx.translate('simple_warning');
+        message = ctx.translate(T_`simple_warning`);
       }
     }
 
     if (!message) {
       message = ctx.translate(
-        `${
-          isDegradatedCustom ? CaptchaType.SIMPLE : captcha.captchaType
-        }_warning`,
+        captchaTypeToWarningMessage(
+          isDegradatedCustom ? CaptchaType.SIMPLE : captcha.captchaType,
+        ),
       );
     }
 
     const text = `${await getUserMention()}${message} (${
       chat.timeGiven
-    } ${ctx.translate('seconds')})`;
+    } ${ctx.translate(T_`seconds`)})`;
 
     if (image) {
       return ctx.replyWithPhoto(
@@ -210,3 +211,25 @@ export async function notifyCandidate(
     }
   }
 }
+
+const captchaTypeToWarningMessage = (type: CaptchaType): L10nKey => {
+  switch (type) {
+    case CaptchaType.SIMPLE:
+      return T_`simple_warning`;
+    case CaptchaType.DIGITS:
+      return T_`digits_warning`;
+    case CaptchaType.BUTTON:
+      return T_`button_warning`;
+    case CaptchaType.IMAGE:
+      return T_`image_warning`;
+    case CaptchaType.CUSTOM:
+      // eslint-disable-next-line local-rules/validate-l10n
+      return T_`_captchaTypeToWarningMessage_custom_warning_`;
+    default: {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const shouldBeNever: never = type;
+      // eslint-disable-next-line local-rules/validate-l10n
+      return T_`_captchaTypeToWarningMessage_unknown_`;
+    }
+  }
+};

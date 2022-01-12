@@ -2,10 +2,10 @@ import {clarifyReply} from '@helpers/clarifyReply';
 import {clarifyIfPrivateMessages} from '@helpers/clarifyIfPrivateMessages';
 import {Extra} from 'telegraf';
 import {Bot, Context} from '@root/types/index';
-import {localizations} from '@helpers/strings';
 import {checkLock} from '@middlewares/checkLock';
 import {getReplyToMessageText} from '@root/types/hacks/get-message-text';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupGreetingButtons(bot: Bot): void {
   // Setup command
@@ -17,14 +17,14 @@ export function setupGreetingButtons(bot: Bot): void {
       assertNonNullish(ctx.message);
 
       await ctx.replyWithMarkdown(
-        `${ctx.translate('greetingButtons')}`,
+        `${ctx.translate(T_`greetingButtons`)}`,
         Extra.inReplyTo(ctx.message.message_id)
           .webPreview(false)
           .notifications(!ctx.dbchat.silentMessages),
       );
       await ctx.replyWithMarkdown(
         `<code>${
-          ctx.dbchat.greetingButtons || ctx.translate('greetingButtonsEmpty')
+          ctx.dbchat.greetingButtons || ctx.translate(T_`greetingButtonsEmpty`)
         }</code>`,
         Extra.webPreview(false)
           .HTML(true)
@@ -35,6 +35,12 @@ export function setupGreetingButtons(bot: Bot): void {
   );
   // Setup checker
   bot.use(async (ctx: Context, next: () => void): Promise<void> => {
+    const {
+      appContext: {
+        translations: {getLanguagesList, translate},
+      },
+    } = ctx;
+
     try {
       // Check if reply
       if (!ctx.message || !ctx.message.reply_to_message) {
@@ -54,12 +60,14 @@ export function setupGreetingButtons(bot: Bot): void {
         return;
       }
       // Check if reply to the correct message
-      const greetingButtonsMessages = Object.keys(
-        localizations.greetingButtons,
-      ).map((k) => localizations.greetingButtons[k]);
+      // FIXME: migrate to `lastReplySetting`/whatever, do not check by text
+      const greetingButtonsMessages = getLanguagesList().map((lang) =>
+        translate(lang, T_`greetingButtons`),
+      );
+      const messageReplyText = getReplyToMessageText(ctx);
       if (
-        !getReplyToMessageText(ctx) ||
-        greetingButtonsMessages.indexOf(getReplyToMessageText(ctx)) < 0
+        !messageReplyText ||
+        greetingButtonsMessages.indexOf(messageReplyText) < 0
       ) {
         return;
       }
@@ -89,7 +97,7 @@ export function setupGreetingButtons(bot: Bot): void {
         value: ctx.dbchat.greetingButtons,
       });
       ctx.reply(
-        ctx.translate('greetsUsers_message_accepted'),
+        ctx.translate(T_`greetsUsers_message_accepted`),
         Extra.inReplyTo(ctx.message.message_id),
       );
     } catch (err) {

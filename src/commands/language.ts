@@ -5,6 +5,7 @@ import {Language} from '@models/Chat';
 import {checkIfFromReplier} from '@middlewares/checkIfFromReplier';
 import {checkLock} from '@middlewares/checkLock';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupLanguage(bot: Bot): void {
   bot.command('language', checkLock, clarifyIfPrivateMessages, (ctx) => {
@@ -49,7 +50,7 @@ export function setupLanguage(bot: Bot): void {
     );
     extra = extra.notifications(!ctx.dbchat.silentMessages);
 
-    ctx.replyWithMarkdown(ctx.translate('language_shieldy'), extra);
+    ctx.replyWithMarkdown(ctx.translate(T_`language_shieldy`), extra);
   });
 
   bot.action(
@@ -98,7 +99,7 @@ export function setupLanguage(bot: Bot): void {
         message.chat.id,
         message.message_id,
         undefined,
-        ctx.translate('language_selected'),
+        ctx.translate(T_`language_selected`),
       );
     },
   );

@@ -1,0 +1,158 @@
+msgid "allowInvitingBots_false"
+msgstr "好。由而家開始，羣組成員禁止將任何機械人加入羣組。"
+
+msgid "allowInvitingBots_true"
+msgstr "好。由而家開始，羣組成員可以將任何機械人加入羣組。"
+
+msgid "banUsers_false"
+msgstr "好。由而家開始，未通過驗證嘅新來者會被自動踢除。"
+
+msgid "banUsers_true"
+msgstr "好。由而家開始，未通過驗證嘅新來者會畀踢走。"
+
+msgid "button"
+msgstr "撳掣"
+
+msgid "button_warning"
+msgstr "，唔該喺規定時限內撳下面嘅掣，否則你會畀踢走。"
+
+msgid "captcha"
+msgstr "揀選如何驗證新來者：\n\n• 簡易： — 要求向羣組發嘢\n• 撳掣 — 要求撳一粒掣\n• 算術 — 要求做一條計數題\n• 認圖 — 要求認出一幅圖片入面嘅所有文字"
+
+msgid "captchaMessage_false"
+msgstr "好。由而家開始，新來者會收到預設嘅驗證提醒"
+
+msgid "captchaMessage_true"
+msgstr "好。由而家開始，新來者會收到你新寫嘅驗證提醒。回覆呢條訊息，話我知你想我點提醒新來者去做驗證測試（可以包含 $title, $username, $equation, $fullname, $seconds）。"
+
+msgid "captchaMessage_true_message"
+msgstr "好。由而家開始，新來者會收到你新寫嘅驗證提醒。回覆呢條訊息，話我知你想我點提醒新來者去做驗證測試（可以包含 $title, $username, $equation, $fullname, $seconds）。目前設定嘅驗證提醒如下："
+
+msgid "captcha_button"
+msgstr "我唔係機械人"
+
+msgid "captcha_selected"
+msgstr "好，我由而家開始用呢種新嘅驗證方法。"
+
+msgid "cas_false"
+msgstr "好。由而家開始，Sesuritu 會停用 Combot 提供嘅防滋擾功能。"
+
+msgid "cas_true"
+msgstr "好。由而家開始，Sesuritu 會使用 Combot 提供嘅防滋擾功能。"
+
+msgid "custom_success"
+msgstr "收到！"
+
+msgid "deleteEntryMessages_false"
+msgstr "由而家開始，所有新來者嘅入羣提醒將會保留。"
+
+msgid "deleteEntryMessages_true"
+msgstr "由而家開始，所有新來者嘅入羣提醒都會被刪除。"
+
+msgid "deleteEntryOnKick_false"
+msgstr "好。由而家開始，Sesuritu 唔會自動刪除驗證失敗用戶嘅入羣訊息。"
+
+msgid "deleteEntryOnKick_true"
+msgstr "好。由而家開始，Sesuritu 會自動刪除驗證失敗用戶嘅入羣訊息。"
+
+msgid "digits"
+msgstr "算術"
+
+msgid "digits_warning"
+msgstr "唔該喺規定時間內寫出計數題嘅答案，否則你會畀踢走。"
+
+msgid "greetingButtons"
+msgstr "reply 呢條訊息（用回覆！唔好發一條獨立嘅訊息），用下邊呢種格式，爲打招呼嘅訊息加入最多 10 個連結至外部嘅掣。回覆其它格式嘅內容將移除全部嘅掣。\n\nDuckDuckGo - https://duckduckgo.com\nWikipedia - https://wikipedia.com\n\n目前設定咗嘅掣："
+
+msgid "greetingButtonsEmpty"
+msgstr "冇掣"
+
+msgid "greetsUsers_false"
+msgstr "好。由而家開始，新來者唔會收到打招呼嘅訊息。"
+
+msgid "greetsUsers_message_accepted"
+msgstr "收到！"
+
+msgid "greetsUsers_true"
+msgstr "好。由而家開始，機械人會同通過驗證嘅新來者打招呼。回覆呢條訊息，話我知你想我點同人打招呼（可以包含 $title, $fullname, $username）。"
+
+msgid "greetsUsers_true_message"
+msgstr "好。由而家開始，機械人會同通過測試嘅新來者打招呼。回覆呢條訊息，話我知你想我點同人打招呼（可以包含 $title, $fullname, $username）。目前設定嘅打招呼訊息如下："
+
+msgid "helpShieldy"
+msgstr "Sesuritu — 係 Telegram 嘅最佳垃圾訊息應對方案。佢要求新來者限時完成一個任務，否則會畀踢出，就係咁簡單。確保將 @Sesuritu\\_bot 設成你個群組嘅管理員，噉就得喇！你都可以用呢啲命令嚟進一步設定佢嘅行為：\n\n/help — 顯示多次呢篇介紹\n/language — 轉用其它語言\n/captcha — 轉用其它驗證碼類型\n/timeLimit — 設定新來者嘅回答時限\n/lock — 限定管理員先可以使用命令\n/restrict — 限制新來者喺 24 小時內凈畀發文字\n/deleteEntryMessages — 自動刪除入羣訊息\n/greeting — 同通過驗證嘅新來者打招呼\n/trust — 如果你信任一個新來者，可以用呢條命令回覆佢\n/ban — 同 /trust 相反\n/strict — 限制新來者喺通過驗證之前唔可以發任何嘢\n/customCaptchaMessage — 修改驗證提醒\n/deleteGreetingTime — 設定幾多秒之後自動刪除\b打招呼訊息，譬如 `/deleteGreetingTime 100`, 設爲 `0` 可以停用呢項功能\n/banUsers — 封禁或者刪人\n/deleteEntryOnKick — 自動刪除驗證失敗用戶嘅入羣訊息\n/cas — 啓用或關閉 Combot 提供嘅防滋擾功能\n/underAttack — 轉用緊急模式，自動踢除所有新來者\n/noAttack — 停用 Sesuritu 所有功能\n/noChannelLinks — 自動刪除連結到其它 Telegram 頻道嘅訊息\n/viewConfig — 檢查目前設定下 Sesuritu 會做啲乜\n/buttonText — 修改「驗證掣」嘅提示文字，譬如 `/buttonText 我唔係機械人！`\n/allowInvitingBots — 允許或禁止成員將任何機械人加入群組\n/greetingButtons — 爲打招呼嘅訊息加入連結至外部嘅掣\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\n 睇下。Sesuritu 係開放原始碼嘅項目，公開嘅程式碼可以[喺呢度睇](https://github.com/Rulexec/shieldy)"
+
+msgid "image"
+msgstr "認圖"
+
+msgid "image_warning"
+msgstr "，唔該喺規定時限內認出圖片入邊嘅所有文字並發到羣組，否則你會畀踢走。"
+
+msgid "language_selected"
+msgstr "正，我而家開始講粵語。"
+
+msgid "language_shieldy"
+msgstr "揀埋一種語言。"
+
+msgid "lock_false_shieldy"
+msgstr "我而家開始會回應所有人嘅命令。"
+
+msgid "lock_true_shieldy"
+msgstr "我而家開始淨係會回應管理員嘅命令。"
+
+msgid "noAttack_false"
+msgstr " 正！Sesuritu 已經開咗。"
+
+msgid "noAttack_true"
+msgstr "Sesuritu 經已畀停用。要重新使用 Sesuritu，請用 /noAttack 停用當前模式。"
+
+msgid "noChannelLinks_false"
+msgstr "好。Sesuritu 而家唔會自動刪除所有連結到其它 Telegram 頻道嘅訊息。"
+
+msgid "noChannelLinks_true"
+msgstr "好。由而家開始，Sesuritu 會自動刪除所有連結到其它 Telegram 頻道嘅訊息。"
+
+msgid "only_author_can_reply"
+msgstr "最初啓動選單嗰個人先有得揀。"
+
+msgid "only_candidate_can_reply"
+msgstr "機械人賬戶唔畀撳掣。"
+
+msgid "restrict_false"
+msgstr "正！由而家開始，新來者可以喺羣度發任何類型嘅內容。"
+
+msgid "restrict_true"
+msgstr "由而家開始，新來者只可以喺羣入面發文字內容"
+
+msgid "seconds"
+msgstr "秒"
+
+msgid "simple"
+msgstr "簡易"
+
+msgid "simple_warning"
+msgstr ", 唔該喺規定時間內向羣組內發任意內容，否則你會畀踢走。"
+
+msgid "strict_false"
+msgstr "由而家開始，新來者喺 24 小時內只畀發文字內容。"
+
+msgid "strict_true"
+msgstr "由而家開始，新來者喺通過驗證之前唔可以發任何嘢。"
+
+msgid "time_limit"
+msgstr "規定新來者嘅驗證時限。"
+
+msgid "time_limit_selected"
+msgstr "好，我之後會按照呢個時限。"
+
+msgid "trust_success"
+msgstr "收到！"
+
+msgid "underAttack_false"
+msgstr "好。Sesuritu 而家唔會再踢除所有嘗試入 group 嘅人。"
+
+msgid "underAttack_true"
+msgstr "由而家開始，Sesuritu 會踢除所有嘗試入羣嘅人。等滋擾攻擊結束後，記得用 /underAttack 停用當前模式。"
+
+msgid "viewConfig"
+msgstr "目前嘅設定："

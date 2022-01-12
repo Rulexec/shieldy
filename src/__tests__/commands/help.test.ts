@@ -1,3 +1,5 @@
+import {T_} from '@root/i18n/l10n-key';
+import {getNoTranslationText} from '@root/i18n/no-translation';
 import {setupTest} from '../helpers/setup';
 import {createMessage} from '../test-data/updates';
 
@@ -48,15 +50,13 @@ describe('/help', () => {
           // eslint-disable-next-line jest/no-conditional-expect
           expect(firstMessage.chatId).toBe(chat.id);
           // eslint-disable-next-line jest/no-conditional-expect
-          expect(firstMessage.text).toMatch(
-            /You are changing the settings in private messages/,
+          expect(firstMessage.text).toBe(
+            getNoTranslationText(T_`commandsInPrivateWarning`),
           );
         }
 
         expect(lastMessage.chatId).toBe(chat.id);
-        expect(lastMessage.text).toMatch(
-          /Sesuritu — is the best solution in Telegram to fight annoying spammers/,
-        );
+        expect(lastMessage.text).toBe(getNoTranslationText(T_`helpShieldy`));
       },
     );
   });

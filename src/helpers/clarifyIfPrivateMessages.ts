@@ -3,6 +3,7 @@ import {
   BotMiddlewareNextStrategy,
   newBotMiddlewareAdapter,
 } from '@root/bot/types';
+import {T_} from '@root/i18n/l10n-key';
 
 export const clarifyIfPrivateMessagesMiddleware: BotMiddlewareFn = async (
   ctx,
@@ -12,7 +13,7 @@ export const clarifyIfPrivateMessagesMiddleware: BotMiddlewareFn = async (
   }
 
   await ctx.appContext.idling.wrapTask(() =>
-    ctx.reply(ctx.translate('commandsInPrivateWarning')),
+    ctx.reply(ctx.translate(T_`commandsInPrivateWarning`)),
   );
 
   return BotMiddlewareNextStrategy.next;

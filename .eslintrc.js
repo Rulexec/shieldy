@@ -5,7 +5,7 @@ const options = {
     es6: true,
   },
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'eslint-plugin-local-rules'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -17,6 +17,8 @@ const options = {
     'no-constant-condition': ['error', {checkLoops: false}],
     'no-restricted-syntax': ['error', 'BinaryExpression[operator="in"]'],
     'semi': ['error', 'always'],
+    '@typescript-eslint/explicit-module-boundary-types': 0,
+    'local-rules/validate-l10n': ['error'],
   },
 
   overrides: [

@@ -1,3 +1,5 @@
+import {T_} from '@root/i18n/l10n-key';
+import {getNoTranslationText} from '@root/i18n/no-translation';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {setupTest} from '../helpers/setup';
 import {Message} from '../test-data/types';
@@ -39,9 +41,9 @@ describe('/addCustomCaptcha', () => {
 
         expect(messages.length).toBe(3);
         expect(messages.map((x) => x.text)).toEqual([
-          'Please, reply to this message with the question which will be asked to newcomers.',
-          'Just to clarify: this is not a reply',
-          'This is a reply',
+          getNoTranslationText(T_`custom_add_question`),
+          getNoTranslationText(T_`thisIsNotAReply`),
+          getNoTranslationText(T_`thisIsAReply`),
         ]);
         expect(messages[2].replyToMessageId).toBe(messages[1].messageId);
 
@@ -66,7 +68,7 @@ describe('/addCustomCaptcha', () => {
 
         expect(messages.length).toBe(1);
         expect(messages.map((x) => x.text)).toEqual([
-          'Please, reply to this message with the answer to this question. Use comma to separate variants of answer.',
+          getNoTranslationText(T_`custom_add_answer`),
         ]);
 
         answerMessage = messages[0];
@@ -87,7 +89,9 @@ describe('/addCustomCaptcha', () => {
         const messages = popMessages();
 
         expect(messages.length).toBe(1);
-        expect(messages.map((x) => x.text)).toEqual(['Accepted!']);
+        expect(messages.map((x) => x.text)).toEqual([
+          getNoTranslationText(T_`custom_success`),
+        ]);
       }
     };
 
@@ -126,8 +130,16 @@ describe('/addCustomCaptcha', () => {
 
       expect(messages.length).toBe(1);
       expect(messages.map((x) => x.text)).toEqual([
-        '1. Question: Say my name\nAnswer: heisenberg,john,sesuritu\n\n' +
-          '2. Question: Say not my name\nAnswer: "not my name"',
+        `1. ${getNoTranslationText(
+          T_`custom_question_colon`,
+        )} Say my name\n${getNoTranslationText(
+          T_`custom_answer_colon`,
+        )} heisenberg,john,sesuritu\n\n` +
+          `2. ${getNoTranslationText(
+            T_`custom_question_colon`,
+          )} Say not my name\n${getNoTranslationText(
+            T_`custom_answer_colon`,
+          )} "not my name"`,
       ]);
     }
 
@@ -146,7 +158,9 @@ describe('/addCustomCaptcha', () => {
       const messages = popMessages();
 
       expect(messages.length).toBe(1);
-      expect(messages.map((x) => x.text)).toEqual(['Removed.']);
+      expect(messages.map((x) => x.text)).toEqual([
+        getNoTranslationText(T_`custom_removed`),
+      ]);
     }
 
     const chatWithoutQuestions = await appContext.database.getChatById(

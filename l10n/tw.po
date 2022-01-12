@@ -1,0 +1,92 @@
+msgid "button"
+msgstr "按鈕"
+
+msgid "button_warning"
+msgstr "，請在指定的時間內按下面的按鈕，否則您將被踢。謝謝！"
+
+msgid "captcha"
+msgstr "請為新進成員選擇驗證類型：\n\n• 簡單 — 機器人會要求在聊天室發送任何內容\n• 按鈕 — 機器人將要求按下一個按鈕\n• 數字 — 機器人將要求解答一個簡單的數學問題\n• Image — bot will ask to recognize characters on an image"
+
+msgid "captcha_button"
+msgstr "我不是機器人"
+
+msgid "captcha_selected"
+msgstr "很棒，我之後會使用這個類型的驗證"
+
+msgid "custom_success"
+msgstr "已接受！"
+
+msgid "deleteEntryMessages_false"
+msgstr "很棒！現在，新成員加入的系統消息將不會被刪除。"
+
+msgid "deleteEntryMessages_true"
+msgstr "很棒！現在，新成員加入的系統消息將被刪除。"
+
+msgid "digits"
+msgstr "數字"
+
+msgid "digits_warning"
+msgstr "，請在指定的時間內將數學計算答案發送到本群組，否則您將被踢。 謝謝！"
+
+msgid "greetsUsers_false"
+msgstr "很棒！現在通過驗證的新進成員不會收到歡迎消息。"
+
+msgid "greetsUsers_message_accepted"
+msgstr "已接受！"
+
+msgid "greetsUsers_true"
+msgstr "很棒！現在通過驗證的新進成員不會收到歡迎消息。 請回復此消息，並附上您要使用的歡迎詞（您可以使用$title和$username）。"
+
+msgid "greetsUsers_true_message"
+msgstr "很棒！現在通過驗證的新進成員會收到歡迎消息。 請回復此消息，並附上您要使用的歡迎詞（您可以使用$title和$username）。接下來是目前的歡迎詞。"
+
+msgid "helpShieldy"
+msgstr "Sesuritu — 是 Telegram 中打擊惱人的垃圾信息發送者的最佳解決方案，它要求新進成員在一段時間內執行一個任務，否則就會踢它們，就這麼簡單。確保 @Sesuritu\\_bot 是群組的管理員，就可以了！您還可以使用以下指令進一步設定：\n\n/help — 顯示此內容\n/language — 切換語言\n/captcha — 更改使用的驗證類型\n/timeLimit — 更改給新進成員驗證的時間\n/lock — 使指令只能由管理員使用\n/restrict — 限制新進成員在前 24 小時內僅能發送純文字消息\n/deleteEntryMessages — 刪除有關新進成員加入的系統消息\n/greeting — 給通過驗證的用戶發歡迎詞\n/trust — 使用此指令回復任何您信任不想驗證的成員\n/ban — same as trust, but the opposite\n/strict — 限制新進成員在通過驗證前不能發任何消息\n/customCaptchaMessage — setup custom captcha message\n/deleteGreetingTime — setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0\n/banUsers — whether to ban or to kick users\n/deleteEntryOnKick — whether to delete entry messages for users who failed captcha\n/cas — whether to use Combot Anti-Spam or not\n/underAttack — toggle the mode to automatically kick all newcomers\n/noAttack — disables Sesuritu\n/noChannelLinks — automatically delete messages that link to other telegram channels\n/viewConfig — view the current Sesuritu configuration\n/buttonText — change the captcha button text in the form of `/buttonText I'm not a bot!`\n/allowInvitingBots — whether users can invite other bots or not\n/greetingButtons — setup buttons for greeting message\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\n。 Sesuritu 代碼是開源的，可以在[這裡](https://github.com/Rulexec/shieldy)找到。謝謝！\n\n. "
+
+msgid "language_selected"
+msgstr "很棒，現在我講中文了。"
+
+msgid "language_shieldy"
+msgstr "請選擇一種語言。"
+
+msgid "lock_false_shieldy"
+msgstr "很棒！現在我會對所有人發出的指令做出回應。"
+
+msgid "lock_true_shieldy"
+msgstr "很棒！現在我只對管理員發送的指令作出回應。"
+
+msgid "only_author_can_reply"
+msgstr "只有啓動菜單的人才能選擇。"
+
+msgid "only_candidate_can_reply"
+msgstr "只有需要被驗證的人才能按此按鈕。"
+
+msgid "restrict_false"
+msgstr "很棒！現在所有新進成員可以發送任何類型消息到這個群組。"
+
+msgid "restrict_true"
+msgstr "很棒！現在所有新進成員僅能發送文字消息到這個群組。"
+
+msgid "seconds"
+msgstr "秒"
+
+msgid "simple"
+msgstr "簡單"
+
+msgid "simple_warning"
+msgstr "，請在指定的時間內在本群組發送任何消息，否則您將被踢。謝謝！"
+
+msgid "strict_false"
+msgstr "很棒！現在，新進成員可以在通過驗證之前發送文字消息。"
+
+msgid "strict_true"
+msgstr "很棒！現在新進成員在通過驗證之前不能發送除驗證解決方案之外的任何內容。"
+
+msgid "time_limit"
+msgstr "請選擇新進成員在被踢除前有多少秒數可以完成驗證。"
+
+msgid "time_limit_selected"
+msgstr "很棒，我之後會使用這個時間限制。"
+
+msgid "trust_success"
+msgstr "已接受！"

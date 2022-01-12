@@ -3,6 +3,7 @@ import {Extra} from 'telegraf';
 import {Bot} from '@root/types/index';
 import {checkLock} from '@middlewares/checkLock';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupSkipVerifiedUsers(bot: Bot): void {
   bot.command(
@@ -23,8 +24,8 @@ export function setupSkipVerifiedUsers(bot: Bot): void {
       ctx.replyWithMarkdown(
         ctx.translate(
           chat.skipVerifiedUsers
-            ? 'skipVerifiedUsers_true'
-            : 'skipVerifiedUsers_false',
+            ? T_`skipVerifiedUsers_true`
+            : T_`skipVerifiedUsers_false`,
         ),
         Extra.inReplyTo(ctx.message.message_id).notifications(
           !chat.silentMessages,

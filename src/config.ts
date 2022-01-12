@@ -25,6 +25,7 @@ export function getConfig(): Config {
     telegramPollingInterval: 30,
     mongoUri: ensureEnv('MONGO'),
     withPromo: process.env.PROMO_DISABLED !== '1',
+    l10nFilesPath: process.env.L10N_PATH || `${__dirname}/../l10n`,
     logLevel: logLevelNameToLevel(process.env.LOG_LEVEL),
   };
 

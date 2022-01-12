@@ -15,6 +15,12 @@ export function run(appContext: AppContext): void {
   const uniqueChatsStats = createStatsUniqueLogger({name: 'chats', logger});
   const uniqueUsersStats = createStatsUniqueLogger({name: 'users', logger});
 
+  appContext.onShutdown(() => {
+    uniqueChatsStats.destroy();
+    uniqueUsersStats.destroy();
+    return Promise.resolve();
+  });
+
   logger.info('start', {pid: process.pid});
 
   for (let i = 0; i < appContext.config.workersCount; i += 1) {

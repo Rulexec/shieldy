@@ -5,6 +5,7 @@ import {checkLock} from '@middlewares/checkLock';
 import {Bot} from '@root/types/bot';
 import {Context} from '@root/types/context';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupViewConfig(bot: Bot): void {
   bot.command(
@@ -30,7 +31,7 @@ export function setupViewConfig(bot: Bot): void {
             return sendCurrentConfig(ctx, chat);
           }
         } catch (err) {
-          return ctx.reply(ctx.translate('noChatFound'));
+          return ctx.reply(ctx.translate(T_`noChatFound`));
         }
       }
       await sendCurrentConfig(ctx, ctx.dbchat);
@@ -46,7 +47,7 @@ export async function sendCurrentConfig(
   assertNonNullish(ctx.message);
 
   await ctx.replyWithMarkdown(
-    `${ctx.translate('viewConfig')}
+    `${ctx.translate(T_`viewConfig`)}
 
 id: <code>${chat.id}</code>
 type: <code>${ctx.chat.type}</code>

@@ -1,0 +1,158 @@
+msgid "allowInvitingBots_false"
+msgstr "Boa! Os usuários não podem convidar bots agora."
+
+msgid "allowInvitingBots_true"
+msgstr "Boa! Os usuários podem convidar bots agora."
+
+msgid "banUsers_false"
+msgstr "Boa! Os usuários serão kickados se não passarem pelo captcha."
+
+msgid "banUsers_true"
+msgstr "Boa! Os usuários serão banidos se não passarem pelo captcha."
+
+msgid "button"
+msgstr "Botão"
+
+msgid "button_warning"
+msgstr ", Por favor, aperte o botão abaixo no tempo limite especificado, caso contrário irei kicka-lo, Obrigado!"
+
+msgid "captcha"
+msgstr "Por favor, selecione o tipo de teste para os novatos:\n\n• Simples — o bot vai pedir para mandar alguma coisa no chat\n• Botão — o bot vai pedir para apertar um botão\n• Digits — bot will ask to solve a simple arithmetic operation\n• Image — bot will ask to recognize characters on an image"
+
+msgid "captchaMessage_false"
+msgstr "Boa! Agora os novatos verão a mensagem padrão do captcha"
+
+msgid "captchaMessage_true"
+msgstr "Boa! Agora os novatos receberão uma mensagem personalizada explicando o captcha. Por favor, responda a esta mensagem com o texto do captcha que você gostaria de usar (você pode usar $title, $username, $equation, $fullname e $seconds)."
+
+msgid "captchaMessage_true_message"
+msgstr "Boa! Agora os novatos receberão uma mensagem personalizada explicando o captcha. Por favor, responda a esta mensagem com o texto do captcha que você gostaria de usar (você pode usar $title, $username, $equation, $fullname e $seconds)."
+
+msgid "captcha_button"
+msgstr "Não sou um robô"
+
+msgid "captcha_selected"
+msgstr "Boa, Eu irei usar esse tipo de teste agora."
+
+msgid "cas_false"
+msgstr "Boa! Sesuritu não usará o Combot Anti-Spam agora."
+
+msgid "cas_true"
+msgstr "Boa! Sesuritu agora usará o Combot Anti-Spam."
+
+msgid "custom_success"
+msgstr "Aceito!"
+
+msgid "deleteEntryMessages_false"
+msgstr "Boa, Agora a mensagem de entrada não será apagada."
+
+msgid "deleteEntryMessages_true"
+msgstr "Boa, Agora a mensagem de entrada será apagada."
+
+msgid "deleteEntryOnKick_false"
+msgstr "Boa! Sesuritu não removerá mensagens de entrada dos usuários que erraram o captcha."
+
+msgid "deleteEntryOnKick_true"
+msgstr "Boa! Sesuritu removerá mensagens de entrada dos usuários que erraram o captcha."
+
+msgid "digits"
+msgstr "Digitos"
+
+msgid "digits_warning"
+msgstr ", Por favor, mande a solução da equação matemática para esse grupo no tempo limite especificado, caso contrário irei kicka-lo. Obrigado!"
+
+msgid "greetingButtons"
+msgstr "Responda a esta mensagem (e eu quero dizer resposta(!), Não apenas envie uma mensagem separada) com até 10 links no formato abaixo para configurar os botões de saudação. Responda com qualquer outra coisa para remover todos os botões.\n\nDuckDuckGo - https://duckduckgo.com\nWikipedia - https://wikipedia.com\n\nBotões atuais:"
+
+msgid "greetingButtonsEmpty"
+msgstr "Sem botões"
+
+msgid "greetsUsers_false"
+msgstr "Boa! Agora os novatos que passarem no teste não serão congratulados"
+
+msgid "greetsUsers_message_accepted"
+msgstr "Aceito!"
+
+msgid "greetsUsers_true"
+msgstr "Boa! Agora os novatos que passarem no teste serão congratulados. Por favor, responda essa mensagem com a o texto de congratulações que você gostaria de usar."
+
+msgid "greetsUsers_true_message"
+msgstr "Boa! Agora os novatos que passarem no teste serão congratulados. Por favor, responda essa mensagem com o texto de congratulações que você gostaria de usar. O texto atual é:"
+
+msgid "helpShieldy"
+msgstr "Sesuritu — é a melhor solução em combater spammers no telegram. Ele pede para um novato realizar uma ação em determinado tempo, caso contrário o usuário é kickado. Fácil assim. Tenha certeza que @Sesuritu\\_bot é um ADM no seu grupo e estará tudo bem! Você ainda pode mudar o comportamento do bot com os seguintes comandos:\n\n/help — mostra essa mensagem\n/language — muda a língua\n/captcha — muda o tipo de captcha usado\n/timeLimit — muda o tempo dado para o novato realizar a ação\n/lock — faz dos comandos acessíveis apenas pelos ADMs\n/restrict — restringe o novato para mandar somente mensagens de texto nas primeiras 24 horas\n/deleteEntryMessages — deleta a mensagem de entrada do usuário\n/greeting — congratula o usuário que passou no teste\n/trust — reply with this command to a message sent by user that you don't want to check\n/ban — same as trust, but the opposite\n/strict — use when you don't want to receive any newcomers' messages but captcha solutions until they pass captcha\n/customCaptchaMessage — setup custom captcha message\n/deleteGreetingTime — setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0\n/banUsers — whether to ban or to kick users\n/deleteEntryOnKick — whether to delete entry messages for users who failed captcha\n/cas — whether to use Combot Anti-Spam or not\n/underAttack — toggle the mode to automatically kick all newcomers\n/noAttack — disables Sesuritu\n/noChannelLinks — automatically delete messages that link to other telegram channels\n/viewConfig — view the current Sesuritu configuration\n/buttonText — change the captcha button text in the form of `/buttonText I'm not a bot!`\n/allowInvitingBots — whether users can invite other bots or not\n/greetingButtons — setup buttons for greeting message\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\nAinda tem perguntas? De uma olhada no canal de suporte — @borodutch\\_support. O codigo do Sesuritu é OpenSource e pode ser encontrado [aqui](https://github.com/Rulexec/shieldy). Obrigado.\n\n. "
+
+msgid "image"
+msgstr "Imagem"
+
+msgid "image_warning"
+msgstr ", por favor, envie os caracteres exibidos dentro do tempo especificado para este grupo, caso contrário, você será kickado. Obrigado!"
+
+msgid "language_selected"
+msgstr "Boa, Agora eu falo português."
+
+msgid "language_shieldy"
+msgstr "Por favor, selecione uma língua."
+
+msgid "lock_false_shieldy"
+msgstr "Boa! Agora obedecerei a qualquer pessoa."
+
+msgid "lock_true_shieldy"
+msgstr "Boa! Agora só obedecerei os ADMs."
+
+msgid "noAttack_false"
+msgstr "Boa! Sesuritu está ativado agora."
+
+msgid "noAttack_true"
+msgstr "Boa! Sesuritu está desativado agora. Não se esqueça de desativar esse modo com /noAttack."
+
+msgid "noChannelLinks_false"
+msgstr "Boa! O Sesuritu não excluirá as mensagens vinculadas aos canais do telegram."
+
+msgid "noChannelLinks_true"
+msgstr "Boa! Agora, o Sesuritu excluirá as mensagens vinculadas aos canais do telegram."
+
+msgid "only_author_can_reply"
+msgstr "Apenas a pessoa que iniciou o menu pode selecionar as opções."
+
+msgid "only_candidate_can_reply"
+msgstr "Apenas o usuário citado pode apertar esse botão."
+
+msgid "restrict_false"
+msgstr "Boa, Agora todos os novatos poderam mandar qualquer tipo de conteúdo para esse chat."
+
+msgid "restrict_true"
+msgstr "Boa, Agora todos os novatos só poderam mandar mensagens de texto para esse chat."
+
+msgid "seconds"
+msgstr "sec"
+
+msgid "simple"
+msgstr "Simples"
+
+msgid "simple_warning"
+msgstr ", Por favor, mande qualquer mensagem para esse grupo com o tempo limite especificado, caso contrário irei kicka-lo. Obrigado!"
+
+msgid "strict_false"
+msgstr "Boa! Agora os novatos poderão enviar texto antes de passar pelo captcha."
+
+msgid "strict_true"
+msgstr "Boa! Agora os novatos não enviarão nada além de soluções do captcha até que passem pelo captcha."
+
+msgid "time_limit"
+msgstr "Por favor, selecione quantos segundos o novato tem para completar o teste."
+
+msgid "time_limit_selected"
+msgstr "Boa, Eu irei usar esse tempo limite agora."
+
+msgid "trust_success"
+msgstr "Aceito!"
+
+msgid "underAttack_false"
+msgstr "Boa! Sesuritu não vai kickar todos que entram neste bate-papo."
+
+msgid "underAttack_true"
+msgstr "Boa! Sesuritu vai kickar todos que entram neste bate-papo. Não se esqueça de desligar este modo quando o ataque acabar com /underAttack."
+
+msgid "viewConfig"
+msgstr "Configuração atual:"

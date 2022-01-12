@@ -1,4 +1,6 @@
 import {findChatById} from '@root/helpers/find-chat';
+import {T_} from '@root/i18n/l10n-key';
+import {getNoTranslationText} from '@root/i18n/no-translation';
 import {CaptchaType} from '@root/models/Chat';
 import {getUniqueCounterValue} from '@root/util/id/unique-counter';
 import {BotTestHelpers, setupTest} from '../helpers/setup';
@@ -26,14 +28,20 @@ describe('/customCaptchaMessage', () => {
       captchaType: CaptchaType.CUSTOM,
       customCaptchaMessage: 'Hello, $username',
       getExpectedMessage: ({newUser}: ExpectedMessageOptions) =>
-        `Hello, <a href="tg://user?id=${newUser.id}">@${newUser.username}</a>, Say my name (60 sec)`,
+        `Hello, <a href="tg://user?id=${newUser.id}">@${
+          newUser.username
+        }</a>, Say my name (60 ${getNoTranslationText(T_`seconds`)})`,
     },
     {
       name: 'should work without mentions',
       captchaType: CaptchaType.CUSTOM,
       customCaptchaMessage: 'Custom message',
       getExpectedMessage: ({newUser}: ExpectedMessageOptions) =>
-        `<a href="tg://user?id=${newUser.id}">@${newUser.username}</a>, Custom message, Say my name (60 sec)`,
+        `<a href="tg://user?id=${newUser.id}">@${
+          newUser.username
+        }</a>, Custom message, Say my name (60 ${getNoTranslationText(
+          T_`seconds`,
+        )})`,
     },
   ])(
     '$name',
@@ -137,16 +145,13 @@ const testCustomCaptchaMessage = async ({
     customCaptchaMessage = messages[0];
 
     expect(messages[0].text).toBe(
-      'Great! Now newcomers will get custom message explaining the captcha' +
-        '. Please, reply to this message with the captcha text you ' +
-        'would like to use (you can use $title, $username, $equation, ' +
-        '$fullname and $seconds).',
+      getNoTranslationText(T_`captchaMessage_true`),
     );
 
-    expect(messages[1].text).toBe('Just to clarify: this is not a reply');
+    expect(messages[1].text).toBe(getNoTranslationText(T_`thisIsNotAReply`));
     expect(messages[1].replyToMessageId).toBeUndefined();
 
-    expect(messages[2].text).toBe('This is a reply');
+    expect(messages[2].text).toBe(getNoTranslationText(T_`thisIsAReply`));
     expect(messages[2].replyToMessageId).toBe(messages[1].messageId);
   }
 
@@ -171,7 +176,7 @@ const testCustomCaptchaMessage = async ({
 
     const {text, replyToMessageId} = messages[0];
 
-    expect(text).toBe('Accepted!');
+    expect(text).toBe(getNoTranslationText(T_`greetsUsers_message_accepted`));
     expect(replyToMessageId).toBe(replyMessageId);
   }
 };

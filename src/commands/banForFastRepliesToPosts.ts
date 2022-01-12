@@ -5,6 +5,7 @@ import {Extra} from 'telegraf';
 import {Bot, Context} from '@root/types/index';
 import {checkLock} from '@middlewares/checkLock';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupBanForFastRepliesToPosts(bot: Bot): void {
   // Reply to command
@@ -26,8 +27,8 @@ export function setupBanForFastRepliesToPosts(bot: Bot): void {
       ctx.replyWithMarkdown(
         ctx.translate(
           chat.banForFastRepliesToPosts
-            ? 'banForFastRepliesToPosts_true'
-            : 'banForFastRepliesToPosts_false',
+            ? T_`banForFastRepliesToPosts_true`
+            : T_`banForFastRepliesToPosts_false`,
         ),
         Extra.inReplyTo(ctx.message.message_id).notifications(
           !ctx.dbchat.silentMessages,

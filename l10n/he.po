@@ -1,0 +1,158 @@
+msgid "allowInvitingBots_false"
+msgstr "מעולה! משתמשים לא יוכלו להזמין בוטים עכשיו."
+
+msgid "allowInvitingBots_true"
+msgstr "מעולה! משתמשים יכולים להזמין בוטים עכשיו."
+
+msgid "banUsers_false"
+msgstr "מעולה! משתמשים יורחקו אם הם לא יעברו את המבחן."
+
+msgid "banUsers_true"
+msgstr "מעולה! משתמשים ינודו אם הם לא יעברו את המבחן."
+
+msgid "button"
+msgstr "כפתור"
+
+msgid "button_warning"
+msgstr ", אנא ללחוץ על הכפתור במסגרת הזמן המוגדרת בקבוצה, אחרת תורחק. תודה רבה!"
+
+msgid "captcha"
+msgstr "אנא בחר את סוג המבחן עבור מצטרפים:\n\n• פשוט - בוט יבקש לשלוח כל דבר שהוא בשיחוח\n• כפתור - בוט יבקש ללחוץ על כפתור\n• ספרות - בוט יבקש לפתור פעולת חשבון פשוטה\n• תמונה - בוט יבקש לזהות תווים בתמונה"
+
+msgid "captchaMessage_false"
+msgstr "מעולה! מעכשיו מצטרפים יראו את הודעת ברירת המחדל של המבחן."
+
+msgid "captchaMessage_true"
+msgstr "מעולה! מצטרפים יקבלו הודעה מותאמת אישית המסבירה על המבחן. אנא, השב להודעה זו עם ההודעה לשימוש (אפשר להשתמש בתבניות $title, $username, $equation, $fullname and $seconds)."
+
+msgid "captchaMessage_true_message"
+msgstr "מעולה! מצטרפים יקבלו הודעה מותאמת אישית המסבירה על המבחן. אנא, השב להודעה זו עם ההודעה לשימוש (אפשר להשתמש בתבניות $title, $username, $equation, $fullname and $seconds). להלן הודעה הברכה הנוכחית."
+
+msgid "captcha_button"
+msgstr "אני לא בוט"
+
+msgid "captcha_selected"
+msgstr "נהדר! אני אשתמש בסוג הזה של מבחן."
+
+msgid "cas_false"
+msgstr "מעולה! Sesuritu מעכשיו לא ישתמש ב-Combot Anti-Spam."
+
+msgid "cas_true"
+msgstr "מעולה! Sesuritu מעכשיו ישתמש ב-Combot Anti-Spam."
+
+msgid "custom_success"
+msgstr "קיבלתי!"
+
+msgid "deleteEntryMessages_false"
+msgstr "מעולה! כעת הודעות כניסה לא ימחקו."
+
+msgid "deleteEntryMessages_true"
+msgstr "מעולה! כעת הודעות כניסה ימחקו."
+
+msgid "deleteEntryOnKick_false"
+msgstr "מעולה! Sesuritu לא ימחק הודעות כניסה של מתמשים שנכשלנו במבחן."
+
+msgid "deleteEntryOnKick_true"
+msgstr "מעולה! Sesuritu ימחק הודעות כניסה של משתמשים שנכשלו במבחן."
+
+msgid "digits"
+msgstr "ספרות"
+
+msgid "digits_warning"
+msgstr ", נא לפתור את פעולת החשבון הפשוטה במסגרת הזמן המוגדרת בקבוצה, אחרת תורחק. תודה רבה!"
+
+msgid "greetingButtons"
+msgstr "השב להודעה הזאת (ואני מתכוון לתגובה(!), לא סתם לשלוח הודעה נפרדת) עם עד 10 קישורים בפורמט למטה כדי להגדיר כפתורי ברכה. השב כל דבר אחר כדי להסיר את כל הכפתורים.\n\nDuckDuckGo - https://duckduckgo.com\nWikipedia - https://wikipedia.com\n\nכפתורים נוכחיים:"
+
+msgid "greetingButtonsEmpty"
+msgstr "אין כפתורים"
+
+msgid "greetsUsers_false"
+msgstr "מעולה! כעת מצטרפים שעברו את המבחן לא יבורכו."
+
+msgid "greetsUsers_message_accepted"
+msgstr "קיבלתי!"
+
+msgid "greetsUsers_true"
+msgstr "מעולה! כעת מצטרפים שעברו את המבחן יבורכו. אנא, השב להודעה זו עם הודעת הברכה שברצונך להשתמש."
+
+msgid "greetsUsers_true_message"
+msgstr "מעולה! כעת מצטרפים שעברו את המבחן יבורכו. אנא, השב להודעה זו עם הודעת הברכה שברצונך להשתמש. להלן הודעת הברכה."
+
+msgid "helpShieldy"
+msgstr "Sesuritu — הפתרון הטוב ביותר בטלגרם למלחמה בספאם המעצבן. הוא מבקש ממצטרפים לבצע פעולה מוגדרת בתוך פרק זמן מוגדר, אחרת מרחיק אותם. זה קל כל כך. וודא ש-@Sesuritu\\_bot הוא מנהל בשיחוח שלך וזה הכל! באפשרותך להגדיר עוד יותר את ההתנהגות באמצעות הפקודות הבאות:\n\n/help - מציג את ההודעה הזאת\n/language - מחליף שפה\n/captcha - משנה את סוג המבחן בשימוש\n/timeLimit - משנה את כמות הזמן הניתנת למצטרפים\n/lock - הופך את הפקודות לנגישות רק למנהלים\n/restrict - מגביל מצטרפים להודעות טקסט ליום אחד\n/deleteEntryrMessages - מוחק הודעות אודות כניסת משתמשים\n/greeting - מברך את המשתמשים שעוברים את המבחן\n/trust - השב עם פקודה זו להודעה שנשלחה על ידי משתמש שאינך רוצה לבדוק\n/ban - כמו trust, אבל הפוך\n/strict - השתמש כאשר אינך מעוניין לקבל הודעות חדשות ממצטרפים עד שיפתרו את המבחן\n/customCaptchaMessage - הגדר הודעת מבחן מותאמת אישית\n/deleteGreetingTime - הגדר מתי למחוק את הברכה של Sesuritu בשניות כמו `/deleteGreetingTime 100`, אפס על ידי הגדרה 0\n/banUsers - האם להרחיק או לנדות משתמשים\n/deleteEntryOnkick - האם למחוק הודעות כניסה למשתמשים שנכשלו במבחן\n/cas - האם להשתמש ב-Combot Anti-Spam או לא\n/underAttack - החלף את המצב כדי לבעוט אוטומטית כל מצרף\n/noAttack - מבטל את Sesuritu\n/noChannelLinks - מוחק אוטומטית הודעות המקשרות לערוצי טלגרם אחרים\n/viewConfig - צפו בהגדרות הנוכחיות של Sesuritu\n/buttonText -  שנה את הטקט בכפתור המבחן על ידי `/buttonText I'm not a bot!`\n/allowInvitingBots - האם משתמשים יכולים להזמין בוטים אחרים או לא\n/greetingButtons - הגדר לחצנים להודעת הברכה\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\n. הקוד של Sesuritu הוא פתוח ונמצא [כאן](https://github.com/Rulexec/shieldy)."
+
+msgid "image"
+msgstr "תמונה"
+
+msgid "image_warning"
+msgstr ", אנא לשלוח את התווים המוצגים במסגרת הזמן המוגדרת בקבוצה, אחרת תורחק. תודה רבה!"
+
+msgid "language_selected"
+msgstr "נהדר! אני דובר עברית כעת."
+
+msgid "language_shieldy"
+msgstr "אנא בחר שפה."
+
+msgid "lock_false_shieldy"
+msgstr "מעולה! מעכשיו אני אגיב לפקודות מכל אחד."
+
+msgid "lock_true_shieldy"
+msgstr "מעולה! מעכשיו אני אגיב רק לפקודות מהמנהלים."
+
+msgid "noAttack_false"
+msgstr "מעולה! Sesuritu דלוק כעת."
+
+msgid "noAttack_true"
+msgstr "מעולה! Sesuritu מכובה כעת. אל תשכחו לבטל את הפעולה בעזרת /noAttack."
+
+msgid "noChannelLinks_false"
+msgstr "מעולה! Sesuritu לא ימחק הודעות עם קישור לערוצים בטלגרם."
+
+msgid "noChannelLinks_true"
+msgstr "מעולה! מעכשיו Sesuritu ימחק הודעות עם קישור לערוץ טלגרם."
+
+msgid "only_author_can_reply"
+msgstr "רק מי שפתח את התפריט יכול לבחור את האפשרויות."
+
+msgid "only_candidate_can_reply"
+msgstr "רק מועמדים שאינם בוטים יכולים ללחוץ על הכפתור הזה."
+
+msgid "restrict_false"
+msgstr "מעולה! כעת כל המצטרפים יוכלו לשלוח הודעות עם כל תוכן שהוא בשיחוח הזה."
+
+msgid "restrict_true"
+msgstr "מעולה! כעת כל המצטרפים יוכלו לשלוח רק הודעות טקסט בשיחוח הזה."
+
+msgid "seconds"
+msgstr "שניה"
+
+msgid "simple"
+msgstr "פשוט"
+
+msgid "simple_warning"
+msgstr ", אנא שלח הודעה כלשהי לקבוצה בטווח הזמן הנתון, אחר תורחק. תודה!"
+
+msgid "strict_false"
+msgstr "מעולה! מצטרפים יוכלו לשלוח הודעות לפני שענו על המבחן."
+
+msgid "strict_true"
+msgstr "מעולה! מצטרפים לא ישלחו דבר עד שלא יפתרו את ההמבחן."
+
+msgid "time_limit"
+msgstr "אנא בחר את מספר השניות שיהיו למצטרפים חדשים כדי לשלים את המבחן לפני שיעופו."
+
+msgid "time_limit_selected"
+msgstr "יופי! אני אשתמש במגבלת הזמן הזו."
+
+msgid "trust_success"
+msgstr "קיבלתי!"
+
+msgid "underAttack_false"
+msgstr "מעולה! Sesuritu לא ירחיק את כל מי שנכנס לשיחוח."
+
+msgid "underAttack_true"
+msgstr "מעולה! Sesuritu מעכשיו ירחיק את כל מי שיכנס לשיחוח. לא לשכוח לבטל את המצב כשההתקפה נגמרת בעזרת /underAttack."
+
+msgid "viewConfig"
+msgstr "הגדרות נוכחיות:"

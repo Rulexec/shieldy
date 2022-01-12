@@ -46,6 +46,8 @@ export class StatsDistributionLogger implements StatsDistributionLoggerType {
     this.cleanups.push(() => {
       clearInterval(logIntervalId);
       clearInterval(forceLogIntervalId);
+
+      this.doLog();
     });
   }
 

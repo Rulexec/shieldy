@@ -1,3 +1,5 @@
+import {T_} from '@root/i18n/l10n-key';
+import {getNoTranslationText} from '@root/i18n/no-translation';
 import {setupTest} from '../helpers/setup';
 import {createCallbackQuery, createMessage} from '../test-data/updates';
 
@@ -42,8 +44,8 @@ describe('/captcha', () => {
       selectCaptchaTypeMessage = messages[0];
 
       expect(selectCaptchaTypeMessage.chatId).toBe(groupChat.id);
-      expect(selectCaptchaTypeMessage.text).toContain(
-        'Custom — bot will ask chat-specific questions specified by /addCustomCaptcha',
+      expect(selectCaptchaTypeMessage.text).toBe(
+        getNoTranslationText(T_`captcha`),
       );
 
       expect(selectCaptchaTypeMessage.replyToMessageId).toBe(
@@ -55,7 +57,7 @@ describe('/captcha', () => {
         (key) => key.callbackData === 'custom',
       );
       expect(customVariant).toBeTruthy();
-      expect(customVariant?.text).toBe('Custom');
+      expect(customVariant?.text).toBe(getNoTranslationText(T_`custom`));
     }
 
     await handleUpdate(
@@ -81,7 +83,9 @@ describe('/captcha', () => {
       expect(edits[0]).toEqual({
         chatId: groupChat.id,
         messageId: REPLY_MESSAGE_ID,
-        text: 'Great, I will use this type of test then. (Custom)',
+        text: `${getNoTranslationText(
+          T_`captcha_selected`,
+        )} (${getNoTranslationText(T_`custom`)})`,
       });
     }
   });

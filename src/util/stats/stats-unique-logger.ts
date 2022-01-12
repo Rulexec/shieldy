@@ -46,6 +46,8 @@ export class StatsUniqueLogger implements StatsUniqueLoggerType {
     this.cleanups.push(() => {
       clearInterval(logIntervalId);
       clearInterval(forceLogIntervalId);
+
+      this.doLog();
     });
   }
 

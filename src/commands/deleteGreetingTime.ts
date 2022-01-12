@@ -4,6 +4,7 @@ import {Bot} from '@root/types/index';
 import {checkLock} from '@middlewares/checkLock';
 import {ExtraReplyMessage} from 'telegraf/typings/telegram-types';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {T_} from '@root/i18n/l10n-key';
 
 export function setupDeleteGreetingTime(bot: Bot): void {
   bot.command(
@@ -26,7 +27,7 @@ export function setupDeleteGreetingTime(bot: Bot): void {
           value: ctx.dbchat.deleteGreetingTime,
         });
         ctx.reply(
-          ctx.translate('greetsUsers_message_accepted'),
+          ctx.translate(T_`greetsUsers_message_accepted`),
           Extra.inReplyTo(ctx.message.message_id) as ExtraReplyMessage,
         );
       } else {
@@ -37,7 +38,7 @@ export function setupDeleteGreetingTime(bot: Bot): void {
           value: ctx.dbchat.deleteGreetingTime,
         });
         ctx.reply(
-          `${ctx.translate('greetsUsers_message_accepted')} 0`,
+          `${ctx.translate(T_`greetsUsers_message_accepted`)} 0`,
           Extra.inReplyTo(ctx.message.message_id) as ExtraReplyMessage,
         );
       }

@@ -1,7 +1,4 @@
-import {createContext} from '@root/context';
-import {MemoryDatabase} from '@root/database/memory/database';
 import {AppContext} from '@root/types/app-context';
-import {LogLevel} from '@root/types/logging';
 import {assertTypesEqual} from '@root/types/type-assert';
 import {setupBot} from '@root/updateHandler';
 import {sleep} from '@root/util/async/sleep';
@@ -23,6 +20,7 @@ import {
   getUser,
   User,
 } from '../test-data/chats';
+import {createTestAppContext} from './create-context';
 
 type InitObj = {
   appContext: AppContext;
@@ -75,21 +73,10 @@ export const setupTest = (): {
 
       const date = new Date('2021-10-19T12:00:00.000Z');
 
-      appContext = createContext({
-        config: {
-          workersCount: 1,
-          telegramToken: TEST_TELEGRAM_TOKEN,
-          telegramAdminId: 42,
-          telegramAdminNickName: 'testadmin',
-          telegramApiRoot: `http://127.0.0.1:${telegram.getPort()}`,
-          telegramPollingInterval: 1,
-          mongoUri: 'mongonotused',
-          withPromo: false,
-          logLevel: LogLevel.WARNING,
-        },
-        createDatabase: ({appContext}) => new MemoryDatabase({appContext}),
-        getCurrentDate: () => new Date(date),
-      });
+      ({appContext} = createTestAppContext({
+        telegramApiRoot: `http://127.0.0.1:${telegram.getPort()}`,
+        initialTimestamp: date.getTime(),
+      }));
 
       await appContext.init();
 

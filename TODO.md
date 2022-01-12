@@ -12,3 +12,6 @@
   - help will be always actual
   - easy to implement command pallete https://github.com/Rulexec/shieldy/issues/3
 - Write tests for `/viewConfig` and `/setConfig` pair
+- Write integration tests for translations
+- Option to filter some keys from logs
+- Option to disable stats logging

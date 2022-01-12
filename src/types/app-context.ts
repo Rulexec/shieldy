@@ -6,6 +6,7 @@ import {LogLevel} from './logging';
 import {TelegramApi} from './telegram-api';
 import {BotMiddlewareFn} from '@root/bot/types';
 import {Logger} from '@root/util/logging/logger';
+import {Translations} from '@root/i18n/translations';
 
 export type Config = {
   workersCount: number;
@@ -15,7 +16,9 @@ export type Config = {
   telegramApiRoot: string;
   telegramPollingInterval: number;
   mongoUri: string;
+  /** @deprecated */
   withPromo: boolean;
+  l10nFilesPath: string;
   logLevel: LogLevel;
 };
 
@@ -26,6 +29,7 @@ export type AppContext = {
   run: (fun: () => void | Promise<void>) => void;
   logger: Logger;
   config: Config;
+  translations: Translations;
   database: Database;
   telegrafBot: Bot;
   telegramApi: TelegramApi;
@@ -39,6 +43,8 @@ export type AppContext = {
   ) => void;
   prependBotMiddleware: (middleware: BotMiddlewareFn) => void;
   addBotMiddleware: (middleware: BotMiddlewareFn) => void;
+  onShutdown: (handler: () => Promise<void>) => void;
+  /** @deprecated just use logger */
   report: (error: Error, reason?: string) => void;
   createDefaultChat: (id: number) => Chat;
   getCurrentDate: () => Date;

@@ -2,6 +2,7 @@ import {Context} from '@root/types/context';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {removeCandidates} from '../restrictedUsers';
 import {doGreetUser} from './greetUser';
+import {T_} from '@root/i18n/l10n-key';
 
 const buttonPresses = new Set<string>();
 
@@ -26,7 +27,7 @@ export async function handleButtonPress(ctx: Context): Promise<void> {
     // Check if button is pressed by the candidate
     if (userId !== ctx.from.id) {
       try {
-        await ctx.answerCbQuery(ctx.translate('only_candidate_can_reply'));
+        await ctx.answerCbQuery(ctx.translate(T_`only_candidate_can_reply`));
       } catch {
         // Do nothing
       }
