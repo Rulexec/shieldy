@@ -2,12 +2,15 @@ import {BotMiddlewareFn} from '@root/bot/types';
 import {L10nKey} from '@root/i18n/l10n-key';
 import {sourceCommandHandler} from './admin';
 import {allowInvitingBotsCommand} from './allowInvitingBots';
+import {banCommand} from './ban';
 
 type CommandDef = {
   key: string;
   helpDescription: L10nKey | undefined;
+  /** mark extra dangerous methods */
   onlyForAdmin?: boolean;
   allowInPrivateMessages?: boolean;
+  /** those commands will be not disabled for users after /lock */
   allowForMembers?: boolean;
   handler: BotMiddlewareFn;
 };
@@ -17,7 +20,6 @@ export const getCommands = (): CommandDef[] => {
     {
       key: 'source',
       helpDescription: undefined,
-      onlyForAdmin: true,
       allowInPrivateMessages: true,
       handler: sourceCommandHandler,
     },
@@ -25,6 +27,12 @@ export const getCommands = (): CommandDef[] => {
       key: 'allowInvitingBots',
       helpDescription: undefined,
       handler: allowInvitingBotsCommand,
+    },
+    {
+      key: 'ban',
+      helpDescription: undefined,
+      onlyForAdmin: true,
+      handler: banCommand,
     },
   ];
 };

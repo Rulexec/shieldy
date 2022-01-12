@@ -6,20 +6,25 @@ import {Chat, getUser, User} from '../test-data/chats';
 import {InlineKeyboardKey, Message, MessageEdit} from '../test-data/types';
 import {createMessage} from '../test-data/updates';
 
+type UserStatusType =
+  | 'creator'
+  | 'administrator'
+  | 'member'
+  | 'restricted'
+  | 'left'
+  | 'kicked';
+
 export type TelegramBotServerOptions = {
   token: string;
   botId: number;
   getUserById: (id: number) => {
     user: User;
-    status:
-      | 'creator'
-      | 'administrator'
-      | 'member'
-      | 'restricted'
-      | 'left'
-      | 'kicked';
+    status: UserStatusType;
   } | null;
   getChatById: (id: number) => Chat;
+  getChatAdministrators: (
+    id: number,
+  ) => {user: User; status: UserStatusType; can_restrict_members: boolean}[];
   getCurrentTime: () => number;
 };
 
@@ -43,6 +48,7 @@ export class TelegramBotServer {
   private memberKicks: KickMember[] = [];
   private getUserById: TelegramBotServerOptions['getUserById'];
   private getChatById: (id: number) => Chat;
+  private getChatAdministrators: TelegramBotServerOptions['getChatAdministrators'];
   private getCurrentTime: () => number;
 
   constructor({
@@ -50,12 +56,14 @@ export class TelegramBotServer {
     botId,
     getUserById,
     getChatById,
+    getChatAdministrators,
     getCurrentTime,
   }: TelegramBotServerOptions) {
     this.token = token;
     this.botId = botId;
     this.getUserById = getUserById;
     this.getChatById = getChatById;
+    this.getChatAdministrators = getChatAdministrators;
     this.getCurrentTime = getCurrentTime;
     this.server = createServer((req, res) => {
       this.handleRequest(req, res).catch((error) => {
@@ -179,6 +187,19 @@ export class TelegramBotServer {
               status: userData.status,
               is_anonymous: false,
             },
+          }),
+        );
+        return;
+      }
+      case 'getChatAdministrators': {
+        const buffer = await readWholeStream(req);
+        const data = JSON.parse(buffer.toString());
+        const {chat_id: chatId} = data;
+
+        res.end(
+          JSON.stringify({
+            ok: true,
+            result: this.getChatAdministrators(chatId),
           }),
         );
         return;

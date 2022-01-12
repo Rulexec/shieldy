@@ -95,6 +95,19 @@ export const setupTest = (): {
 
           throw new Error(`Chat not found: ${id}`);
         },
+        getChatAdministrators: (id) => {
+          if (id === groupChat.id) {
+            return [
+              {
+                user: adminUser,
+                status: 'administrator',
+                can_restrict_members: true,
+              },
+            ];
+          }
+
+          return [];
+        },
         getCurrentTime: () => appContext!.getCurrentDate().getTime(),
       });
       await telegram.init();

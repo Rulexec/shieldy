@@ -21,7 +21,6 @@ import {setupDeleteGreetingTime} from '@commands/deleteGreetingTime';
 import {setupBanUsers} from '@commands/banUsers';
 import {setupDeleteEntryOnKick} from '@commands/deleteEntryOnKick';
 import {setupCAS} from '@commands/cas';
-import {setupBan} from '@commands/ban';
 import {setupUnderAttack} from '@commands/underAttack';
 import {setupNoAttack} from '@commands/noAttack';
 import {setupViewConfig} from '@commands/viewConfig';
@@ -99,7 +98,6 @@ export function setupBot(appContext: AppContext): void {
   setupBanUsers(bot);
   setupDeleteEntryOnKick(bot);
   setupCAS(bot);
-  setupBan(bot);
   setupUnderAttack(bot);
   setupNoAttack(bot);
   setupViewConfig(bot);
