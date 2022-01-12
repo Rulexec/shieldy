@@ -29,6 +29,12 @@ And you should be good to go! Feel free to fork and submit pull requests. Thanks
 
 Also, please, consider looking at `src/config.ts`.
 
+# Disclaimers
+
+- Database from original `shieldy` may be not compatible, you'll need to run https://github.com/Rulexec/shieldy/blob/master/src/database/mongo/migrations/ver-1.ts to ensure that collections contain no duplicates for new indexes
+- Docker is no more supported, I don't know state of it (maybe it's still fine)
+- `master` branch is not always in sync with [@sesuritu_bot](https://t.me/sesuritu_bot)
+
 # License
 
 MIT — use for any purpose. Would be great if you could leave a note about the original developers. Thanks!
