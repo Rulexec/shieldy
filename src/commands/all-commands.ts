@@ -4,6 +4,7 @@ import {sourceCommandHandler} from './admin';
 import {allowInvitingBotsCommand} from './allowInvitingBots';
 import {banCommand} from './ban';
 import {banNewTelegramUsersCommand} from './banNewTelegramUsers';
+import {banUsersCommand} from './banUsers';
 
 type CommandDef = {
   key: string;
@@ -39,6 +40,11 @@ export const getCommands = (): CommandDef[] => {
       key: 'banNewTelegramUsers',
       helpDescription: undefined,
       handler: banNewTelegramUsersCommand,
+    },
+    {
+      key: 'banUsers',
+      helpDescription: undefined,
+      handler: banUsersCommand,
     },
   ];
 };
