@@ -33,7 +33,6 @@ import {setupSetConfig} from '@commands/setConfig';
 import {attachChatMember} from '@middlewares/attachChatMember';
 import {checkBlockList} from '@middlewares/checkBlockList';
 import {setupRestrictTime} from '@commands/restrictTime';
-import {setupBanNewTelegramUsers} from '@commands/banNewTelegramUsers';
 import {AppContext} from './types/app-context';
 import {Context} from './types';
 import {botDeleteMessageSafe} from './helpers/deleteMessageSafe';
@@ -106,7 +105,6 @@ export function setupBot(appContext: AppContext): void {
   setupSkipVerifiedUsers(bot);
   setupSetConfig(bot);
   setupRestrictTime(bot);
-  setupBanNewTelegramUsers(bot);
   setupPing(appContext);
   setupSilent(appContext);
   // Newcomers logic

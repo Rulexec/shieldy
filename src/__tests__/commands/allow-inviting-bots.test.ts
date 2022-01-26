@@ -1,81 +1,21 @@
 import {findChatById} from '@root/helpers/find-chat';
 import {T_} from '@root/i18n/l10n-key';
-import {getNoTranslationText} from '@root/i18n/no-translation';
+import {testTrivialBooleanCommandChangingDatabase} from '../helpers/command';
 import {setupTest} from '../helpers/setup';
-import {createMessage, createNewChatMemberMessage} from '../test-data/updates';
+import {createNewChatMemberMessage} from '../test-data/updates';
 
 describe('/allowInvitingBots', () => {
   const botTest = setupTest();
-
   afterEach(botTest.afterEach);
 
   it('should save flag to database', async () => {
-    const {
-      appContext,
-      handleUpdate,
-      onIdle,
-      popMessages,
-      unixSeconds,
-      user,
-      groupChat,
-    } = await botTest.init();
-
-    const {database} = appContext;
-
-    await findChatById(appContext, groupChat.id);
-    await database.setChatProperty({
-      chatId: groupChat.id,
+    await testTrivialBooleanCommandChangingDatabase({
+      botTest,
+      command: '/allowInvitingBots',
       property: 'allowInvitingBots',
-      value: false,
+      replyFalseKey: T_`allowInvitingBots_false`,
+      replyTrueKey: T_`allowInvitingBots_true`,
     });
-
-    await handleUpdate(
-      createMessage({
-        user,
-        chat: groupChat,
-        unixSeconds,
-        text: '/allowInvitingBots',
-        isBotCommand: true,
-      }),
-    );
-    await onIdle();
-
-    expect((await database.getChatById(groupChat.id))?.allowInvitingBots).toBe(
-      true,
-    );
-
-    {
-      const messages = popMessages();
-      expect(messages.length).toBe(1);
-      expect(messages[0].chatId).toBe(groupChat.id);
-      expect(messages[0].text).toBe(
-        getNoTranslationText(T_`allowInvitingBots_true`),
-      );
-    }
-
-    await handleUpdate(
-      createMessage({
-        user,
-        chat: groupChat,
-        unixSeconds,
-        text: '/allowInvitingBots',
-        isBotCommand: true,
-      }),
-    );
-    await onIdle();
-
-    expect((await database.getChatById(groupChat.id))?.allowInvitingBots).toBe(
-      false,
-    );
-
-    {
-      const messages = popMessages();
-      expect(messages.length).toBe(1);
-      expect(messages[0].chatId).toBe(groupChat.id);
-      expect(messages[0].text).toBe(
-        getNoTranslationText(T_`allowInvitingBots_false`),
-      );
-    }
   });
 
   it('should kick bots', async () => {

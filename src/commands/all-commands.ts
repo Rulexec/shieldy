@@ -3,6 +3,7 @@ import {L10nKey} from '@root/i18n/l10n-key';
 import {sourceCommandHandler} from './admin';
 import {allowInvitingBotsCommand} from './allowInvitingBots';
 import {banCommand} from './ban';
+import {banNewTelegramUsersCommand} from './banNewTelegramUsers';
 
 type CommandDef = {
   key: string;
@@ -33,6 +34,11 @@ export const getCommands = (): CommandDef[] => {
       helpDescription: undefined,
       onlyForAdmin: true,
       handler: banCommand,
+    },
+    {
+      key: 'banNewTelegramUsers',
+      helpDescription: undefined,
+      handler: banNewTelegramUsersCommand,
     },
   ];
 };
