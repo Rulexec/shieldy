@@ -5,6 +5,7 @@ import {allowInvitingBotsCommand} from './allowInvitingBots';
 import {banCommand} from './ban';
 import {banNewTelegramUsersCommand} from './banNewTelegramUsers';
 import {banUsersCommand} from './banUsers';
+import {buttonTextCommand} from './buttonText';
 
 type CommandDef = {
   key: string;
@@ -45,6 +46,11 @@ export const getCommands = (): CommandDef[] => {
       key: 'banUsers',
       helpDescription: undefined,
       handler: banUsersCommand,
+    },
+    {
+      key: 'buttonText',
+      helpDescription: undefined,
+      handler: buttonTextCommand,
     },
   ];
 };

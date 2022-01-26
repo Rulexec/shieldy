@@ -23,7 +23,6 @@ import {setupCAS} from '@commands/cas';
 import {setupUnderAttack} from '@commands/underAttack';
 import {setupNoAttack} from '@commands/noAttack';
 import {setupViewConfig} from '@commands/viewConfig';
-import {setupButtonText} from '@commands/buttonText';
 import {checkAllowInvitingBots} from '@commands/allowInvitingBots';
 import {setupGreetingButtons} from '@commands/greetingButtons';
 import {setupSkipOldUsers} from '@commands/skipOldUsers';
@@ -97,7 +96,6 @@ export function setupBot(appContext: AppContext): void {
   setupUnderAttack(bot);
   setupNoAttack(bot);
   setupViewConfig(bot);
-  setupButtonText(bot);
   setupGreetingButtons(bot);
   setupSkipOldUsers(bot);
   setupSkipVerifiedUsers(bot);

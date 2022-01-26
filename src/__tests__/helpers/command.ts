@@ -1,8 +1,7 @@
 import {findChatById} from '@root/helpers/find-chat';
 import {L10nKey} from '@root/i18n/l10n-key';
 import {getNoTranslationText} from '@root/i18n/no-translation';
-import {Chat} from '@root/models/Chat';
-import {Database} from '@root/types/database';
+import {BooleanChatPropertyKey, Database} from '@root/types/database';
 import {createMessage} from '../test-data/updates';
 import {setupTest} from './setup';
 
@@ -10,7 +9,6 @@ type BotTest = ReturnType<typeof setupTest>;
 type TestInitData = ReturnType<BotTest['init']> extends Promise<infer Q>
   ? Q
   : never;
-type ChatKey = keyof Chat;
 
 export const testCommandChangingDatabase = async ({
   botTest,
@@ -20,7 +18,12 @@ export const testCommandChangingDatabase = async ({
   getReplyText,
 }: {
   botTest: BotTest;
-  command: string;
+  command:
+    | string
+    | ((options: {
+        testInitData: TestInitData;
+        numberOfCalls: number;
+      }) => string);
   initialProperties: (options: {
     testInitData: TestInitData;
   }) => Parameters<Database['setChatProperty']>[0][];
@@ -58,7 +61,10 @@ export const testCommandChangingDatabase = async ({
       user,
       chat: groupChat,
       unixSeconds,
-      text: command,
+      text:
+        typeof command === 'function'
+          ? command({testInitData, numberOfCalls: 1})
+          : command,
       isBotCommand: true,
     }),
   );
@@ -80,7 +86,10 @@ export const testCommandChangingDatabase = async ({
       user,
       chat: groupChat,
       unixSeconds,
-      text: command,
+      text:
+        typeof command === 'function'
+          ? command({testInitData, numberOfCalls: 2})
+          : command,
       isBotCommand: true,
     }),
   );
@@ -107,7 +116,7 @@ export const testTrivialBooleanCommandChangingDatabase = ({
 }: {
   botTest: BotTest;
   command: string;
-  property: ChatKey;
+  property: BooleanChatPropertyKey;
   replyFalseKey: L10nKey;
   replyTrueKey: L10nKey;
 }) =>
