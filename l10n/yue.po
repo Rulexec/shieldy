@@ -79,9 +79,6 @@ msgstr "好。由而家開始，機械人會同通過驗證嘅新來者打招呼
 msgid "greetsUsers_true_message"
 msgstr "好。由而家開始，機械人會同通過測試嘅新來者打招呼。回覆呢條訊息，話我知你想我點同人打招呼（可以包含 $title, $fullname, $username）。目前設定嘅打招呼訊息如下："
 
-msgid "helpShieldy"
-msgstr "Sesuritu — 係 Telegram 嘅最佳垃圾訊息應對方案。佢要求新來者限時完成一個任務，否則會畀踢出，就係咁簡單。確保將 @Sesuritu\\_bot 設成你個群組嘅管理員，噉就得喇！你都可以用呢啲命令嚟進一步設定佢嘅行為：\n\n/help — 顯示多次呢篇介紹\n/language — 轉用其它語言\n/captcha — 轉用其它驗證碼類型\n/timeLimit — 設定新來者嘅回答時限\n/lock — 限定管理員先可以使用命令\n/restrict — 限制新來者喺 24 小時內凈畀發文字\n/deleteEntryMessages — 自動刪除入羣訊息\n/greeting — 同通過驗證嘅新來者打招呼\n/trust — 如果你信任一個新來者，可以用呢條命令回覆佢\n/ban — 同 /trust 相反\n/strict — 限制新來者喺通過驗證之前唔可以發任何嘢\n/customCaptchaMessage — 修改驗證提醒\n/deleteGreetingTime — 設定幾多秒之後自動刪除\b打招呼訊息，譬如 `/deleteGreetingTime 100`, 設爲 `0` 可以停用呢項功能\n/banUsers — 封禁或者刪人\n/deleteEntryOnKick — 自動刪除驗證失敗用戶嘅入羣訊息\n/cas — 啓用或關閉 Combot 提供嘅防滋擾功能\n/underAttack — 轉用緊急模式，自動踢除所有新來者\n/noAttack — 停用 Sesuritu 所有功能\n/noChannelLinks — 自動刪除連結到其它 Telegram 頻道嘅訊息\n/viewConfig — 檢查目前設定下 Sesuritu 會做啲乜\n/buttonText — 修改「驗證掣」嘅提示文字，譬如 `/buttonText 我唔係機械人！`\n/allowInvitingBots — 允許或禁止成員將任何機械人加入群組\n/greetingButtons — 爲打招呼嘅訊息加入連結至外部嘅掣\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\n 睇下。Sesuritu 係開放原始碼嘅項目，公開嘅程式碼可以[喺呢度睇](https://github.com/Rulexec/shieldy)"
-
 msgid "image"
 msgstr "認圖"
 
@@ -156,3 +153,96 @@ msgstr "由而家開始，Sesuritu 會踢除所有嘗試入羣嘅人。等滋擾
 
 msgid "viewConfig"
 msgstr "目前嘅設定："
+
+msgid "help_start"
+msgstr "Sesuritu — 係 Telegram 嘅最佳垃圾訊息應對方案。佢要求新來者限時完成一個任務，否則會畀踢出，就係咁簡單。確保將 @Sesuritu\\_bot 設成你個群組嘅管理員，噉就得喇！你都可以用呢啲命令嚟進一步設定佢嘅行為："
+
+msgid "help_end"
+msgstr "睇下。Sesuritu 係開放原始碼嘅項目，公開嘅程式碼可以[喺呢度睇](https://github.com/Rulexec/shieldy)"
+
+msgid "help_help"
+msgstr "顯示多次呢篇介紹"
+
+msgid "language_help"
+msgstr "轉用其它語言"
+
+msgid "captcha_help"
+msgstr "轉用其它驗證碼類型"
+
+msgid "timeLimit_help"
+msgstr "設定新來者嘅回答時限"
+
+msgid "lock_help"
+msgstr "限定管理員先可以使用命令"
+
+msgid "restrict_help"
+msgstr "限制新來者喺 24 小時內凈畀發文字"
+
+msgid "deleteEntryMessages_help"
+msgstr "自動刪除入羣訊息"
+
+msgid "greeting_help"
+msgstr "同通過驗證嘅新來者打招呼"
+
+msgid "trust_help"
+msgstr "如果你信任一個新來者，可以用呢條命令回覆佢"
+
+msgid "ban_help"
+msgstr "同 /trust 相反"
+
+msgid "strict_help"
+msgstr "限制新來者喺通過驗證之前唔可以發任何嘢"
+
+msgid "customCaptchaMessage_help"
+msgstr "修改驗證提醒"
+
+msgid "deleteGreetingTime_help"
+msgstr "設定幾多秒之後自動刪除\b打招呼訊息，譬如 `/deleteGreetingTime 100`, 設爲 `0` 可以停用呢項功能"
+
+msgid "banUsers_help"
+msgstr "封禁或者刪人"
+
+msgid "deleteEntryOnKick_help"
+msgstr "自動刪除驗證失敗用戶嘅入羣訊息"
+
+msgid "cas_help"
+msgstr "啓用或關閉 Combot 提供嘅防滋擾功能"
+
+msgid "underAttack_help"
+msgstr "轉用緊急模式，自動踢除所有新來者"
+
+msgid "noAttack_help"
+msgstr "停用 Sesuritu 所有功能"
+
+msgid "noChannelLinks_help"
+msgstr "自動刪除連結到其它 Telegram 頻道嘅訊息"
+
+msgid "viewConfig_help"
+msgstr "檢查目前設定下 Sesuritu 會做啲乜"
+
+msgid "buttonText_help"
+msgstr "修改「驗證掣」嘅提示文字，譬如 `/buttonText 我唔係機械人！`"
+
+msgid "allowInvitingBots_help"
+msgstr "允許或禁止成員將任何機械人加入群組"
+
+msgid "greetingButtons_help"
+msgstr "爲打招呼嘅訊息加入連結至外部嘅掣"
+
+msgid "skipOldUsers_help"
+msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
+
+msgid "skipVerifiedUsers_help"
+msgstr "don't show captcha to users who have ever passed captcha in any chat"
+
+msgid "setConfig_help"
+msgstr "setup Sesuritu configuration in one message"
+
+msgid "banForFastRepliesToPosts_help"
+msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+
+msgid "restrictTime_help"
+msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+
+msgid "banNewTelegramUsers_help"
+msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"

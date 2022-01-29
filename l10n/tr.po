@@ -67,9 +67,6 @@ msgstr "Harika! Artık testi geçen yeni üyeler karşılanacak. Lütfen, bu ile
 msgid "greetsUsers_true_message"
 msgstr "Harika! Artık testi geçen yeni üyeler karşılanacak. Lütfen bu mesajı, kullanmak istediğiniz tebrik metni ile yanıtlayın ($title ve $username kullanabilirsiniz). Geçerli tebrik mesajı izlenir."
 
-msgid "helpShieldy"
-msgstr "Sesuritu — Cam sıkıcı SPAM göndericilere karşı savaşmak için Telegram'daki en iyi çözümdür. Yeni gelenlerden belirli bir süre içerisinde belirli bir eylemi gerçekleştirmesini ister, aksi takdirde onları kovar. Bu çok kolaydır. Bunun için, @Sesuritu\\_bot botunun sohbetinizde yönetici olduğundan emin olun. İşte hepsi bu kadar! Ayrıca aşağıdaki bu komutlarla davranışları daha da ayrıntılı bir şekilde ayarlayabilirsiniz:\n\n/help — Bu iletiyi görüntüler\n/language — Dili değiştirir\n/captcha — Kullanılan CAPTCHA biçimini değiştirir\n/timeLimit — Yeni gelenlere verilen zaman süresini değiştirir\n/lock — Komutları yalnızca yöneticiler tarafından erişilebilir hale getirir\n/restrict — Yeni gelenleri ilk 24 saat yalnızca metin mesajı göndermeleri için kısıtlar\n/deleteEntryMessages — Kullanıcı girişi ile ilgili mesajları siler\n/greeting — Testi geçen kullanıcıları selamlar\n/trust — Bu komutla kullanıcı tarafından gönderilen kontrol etmek istemediğiniz bir mesajı yanıtlayın\n/ban — same as trust, but the opposite\n/strict — Yeni gelenlerin mesajlarını almak istemediğiniz zaman kullanın. Ancak CAPTCHA, testi geçene kadar çözüm sunar.\n/customCaptchaMessage — Özel CAPTCHA mesajınızı ayarlayın\n/deleteGreetingTime — Sesuritu'nin selamlamasını `/deleteGreetingTime 100` gibi kaç saniye içinde sileceğini ayarlayın, 0 yaparak sıfırlayabilirsin.\n/banUsers — Kullanıcıların yasaklanacağını mı yoksa kovulacağını mı ayarlayın\n/deleteEntryOnKick — CAPTCHA'dan başarısız olan kullanıcıların girdiği mesajların silinip silinmeyeceğini ayarlayın\n/cas — Combot Anti-Spam'ın kullanılıp kullanılmayacağını ayarlayın\n/underAttack — toggle the mode to automatically kick all newcomers\n/noAttack — disables Sesuritu\n/noChannelLinks — automatically delete messages that link to other telegram channels\n/viewConfig — view the current Sesuritu configuration\n/buttonText — change the captcha button text in the form of `/buttonText I'm not a bot!`\n/allowInvitingBots — whether users can invite other bots or not\n/greetingButtons — setup buttons for greeting message\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\nHala sorularınız mı var? Destek kanalını kontrol edin: @borodutch\\_support. Sesuritu'in kodu açık kaynaklıdır ve [buradan](https://github.com/Rulexec/shieldy) erişilebilir. Teşekkür ederiz!\n\n. "
-
 msgid "image"
 msgstr "Resim"
 
@@ -123,3 +120,96 @@ msgstr "Harika, o zaman bu süreyi kullanacağım."
 
 msgid "trust_success"
 msgstr "Kabul edildi!"
+
+msgid "help_start"
+msgstr "Sesuritu — Cam sıkıcı SPAM göndericilere karşı savaşmak için Telegram'daki en iyi çözümdür. Yeni gelenlerden belirli bir süre içerisinde belirli bir eylemi gerçekleştirmesini ister, aksi takdirde onları kovar. Bu çok kolaydır. Bunun için, @Sesuritu\\_bot botunun sohbetinizde yönetici olduğundan emin olun. İşte hepsi bu kadar! Ayrıca aşağıdaki bu komutlarla davranışları daha da ayrıntılı bir şekilde ayarlayabilirsiniz:"
+
+msgid "help_end"
+msgstr "Hala sorularınız mı var? Destek kanalını kontrol edin: @borodutch\\_support. Sesuritu'in kodu açık kaynaklıdır ve [buradan](https://github.com/Rulexec/shieldy) erişilebilir. Teşekkür ederiz!\n."
+
+msgid "help_help"
+msgstr "Bu iletiyi görüntüler"
+
+msgid "language_help"
+msgstr "Dili değiştirir"
+
+msgid "captcha_help"
+msgstr "Kullanılan CAPTCHA biçimini değiştirir"
+
+msgid "timeLimit_help"
+msgstr "Yeni gelenlere verilen zaman süresini değiştirir"
+
+msgid "lock_help"
+msgstr "Komutları yalnızca yöneticiler tarafından erişilebilir hale getirir"
+
+msgid "restrict_help"
+msgstr "Yeni gelenleri ilk 24 saat yalnızca metin mesajı göndermeleri için kısıtlar"
+
+msgid "deleteEntryMessages_help"
+msgstr "Kullanıcı girişi ile ilgili mesajları siler"
+
+msgid "greeting_help"
+msgstr "Testi geçen kullanıcıları selamlar"
+
+msgid "trust_help"
+msgstr "Bu komutla kullanıcı tarafından gönderilen kontrol etmek istemediğiniz bir mesajı yanıtlayın"
+
+msgid "ban_help"
+msgstr "same as trust, but the opposite"
+
+msgid "strict_help"
+msgstr "Yeni gelenlerin mesajlarını almak istemediğiniz zaman kullanın. Ancak CAPTCHA, testi geçene kadar çözüm sunar."
+
+msgid "customCaptchaMessage_help"
+msgstr "Özel CAPTCHA mesajınızı ayarlayın"
+
+msgid "deleteGreetingTime_help"
+msgstr "Sesuritu'nin selamlamasını `/deleteGreetingTime 100` gibi kaç saniye içinde sileceğini ayarlayın, 0 yaparak sıfırlayabilirsin."
+
+msgid "banUsers_help"
+msgstr "Kullanıcıların yasaklanacağını mı yoksa kovulacağını mı ayarlayın"
+
+msgid "deleteEntryOnKick_help"
+msgstr "CAPTCHA'dan başarısız olan kullanıcıların girdiği mesajların silinip silinmeyeceğini ayarlayın"
+
+msgid "cas_help"
+msgstr "Combot Anti-Spam'ın kullanılıp kullanılmayacağını ayarlayın"
+
+msgid "underAttack_help"
+msgstr "toggle the mode to automatically kick all newcomers"
+
+msgid "noAttack_help"
+msgstr "disables Sesuritu"
+
+msgid "noChannelLinks_help"
+msgstr "automatically delete messages that link to other telegram channels"
+
+msgid "viewConfig_help"
+msgstr "view the current Sesuritu configuration"
+
+msgid "buttonText_help"
+msgstr "change the captcha button text in the form of `/buttonText I'm not a bot!`"
+
+msgid "allowInvitingBots_help"
+msgstr "whether users can invite other bots or not"
+
+msgid "greetingButtons_help"
+msgstr "setup buttons for greeting message"
+
+msgid "skipOldUsers_help"
+msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
+
+msgid "skipVerifiedUsers_help"
+msgstr "don't show captcha to users who have ever passed captcha in any chat"
+
+msgid "setConfig_help"
+msgstr "setup Sesuritu configuration in one message"
+
+msgid "banForFastRepliesToPosts_help"
+msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+
+msgid "restrictTime_help"
+msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+
+msgid "banNewTelegramUsers_help"
+msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"

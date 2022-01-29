@@ -79,9 +79,6 @@ msgstr "Nagyszerű! Az újoncokat, akik átmentek a teszten, az üdvözölni fog
 msgid "greetsUsers_true_message"
 msgstr "Nagyszerű! Az újoncokat, akik átmentek a teszten, az üdvözölni fogjuk. Kérlek válaszolj erre az üzenetre az általad választott üzenettel (használhatod az alábbiakat $title, $fullname and $username)."
 
-msgid "helpShieldy"
-msgstr "Sesuritu — a legjobb megoldás a bosszantó spammerek ellen a Telegramban. Arra kéri az újoncokat, hogy hajtsanak végre egy utasítást a megadott időn belül, egyébként kirúgja őket. Ilyen egyszerű.Gondoskodj róla, hogy a @Sesuritu\\_bot is adminisztrátori jogokkal rendelkezik a csatornádon és kész! A viselkedését tovább finomíthatod az alábbi parancsokkal:\n\n/help — ennek az üzenetnek a mutatása\n/language — nyelvek közötti váltás\n/captcha — a captcha típusának váltása\n/timeLimit — a feladatra adott idő megváltozatása\n/lock — a parancsok csak az adminoknak elérhető\n/restrict — az újoncok nem küldhetnek a hagyományos szöveges üzeneten kívül mást az első 24 órában\n/deleteEntryMessages — a belépési üzenetek törlése\n/greeting — a teszten átmenők üdvözlése\n/trust — felhasználó által küldött üzenetre ezzel válaszolva nem kell átmennie a teszten\n/ban — ugyanaz, mint a trust, csak éppen bannoljuk\n/strict — ha nem akarsz addig az újonctól üzenetet látni, amíg meg nem oldja a captcha-t\n/customCaptchaMessage — captcha üzenet beállítása\n/deleteGreetingTime — mennyi idő múlva törölje a Sesuritu's az üdvözlő üzenetet (műsodpercben) pl: `/deleteGreetingTime 100`, 0 állítva reset\n/banUsers — bannolja vagy csak kirúgja a felhasználókat\n/deleteEntryOnKick — törölje-e a belépési üzenetet, ha az újonc elbukik a teszten\n/cas — hasznűljuk-e a Combot Anti-Spam megoldást\n/underAttack — ki be kapcsolhatjuk az újoncok automatikus kirugását\n/noAttack — a Sesuritu kikapcsolása\n/noChannelLinks — automatikusan törölje a más telegram csatornára mutató hivatkozásokat\n/viewConfig — a jelenlegi Sesuritu konfiguráció megtekintése\n/buttonText — a captcha gomb feliratának megváltoztatása. az alapértelmezett: `/buttonText Nem vagyok robot!`\n/allowInvitingBots — a felhasználó meghívhat-e botot vagy sem\n/greetingButtons — saz üdvözlő üzenet gombjainak beállítása\n/skipOldUsers — nem mutatja a captcha-t azoknak a Telegram felhasználóknak, akiknek az ID-ja alacsonyabb, mint 1000000000\n/skipVerifiedUsers — nem mutatja a captcha-t azoknak a felhasználóknak, akik bármelyik chat-ben a Telegramon belül átmentek a Sesuritu tesztjén\n/setConfig — A Sesuritu konfigurálása egy üzenettel\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\n. A Sesuritu kódja nyílt forráskódú és megtalálható [itt](https://github.com/Rulexec/shieldy)."
-
 msgid "image"
 msgstr "Kép"
 
@@ -171,3 +168,96 @@ msgstr "Nagyszerű! A Sesuritu mostantól minden új csatlakozót kivág a csato
 
 msgid "viewConfig"
 msgstr "Jelenlegi konfiguráció:"
+
+msgid "help_start"
+msgstr "Sesuritu — a legjobb megoldás a bosszantó spammerek ellen a Telegramban. Arra kéri az újoncokat, hogy hajtsanak végre egy utasítást a megadott időn belül, egyébként kirúgja őket. Ilyen egyszerű.Gondoskodj róla, hogy a @Sesuritu\\_bot is adminisztrátori jogokkal rendelkezik a csatornádon és kész! A viselkedését tovább finomíthatod az alábbi parancsokkal:"
+
+msgid "help_end"
+msgstr ". A Sesuritu kódja nyílt forráskódú és megtalálható [itt](https://github.com/Rulexec/shieldy)."
+
+msgid "help_help"
+msgstr "ennek az üzenetnek a mutatása"
+
+msgid "language_help"
+msgstr "nyelvek közötti váltás"
+
+msgid "captcha_help"
+msgstr "a captcha típusának váltása"
+
+msgid "timeLimit_help"
+msgstr "a feladatra adott idő megváltozatása"
+
+msgid "lock_help"
+msgstr "a parancsok csak az adminoknak elérhető"
+
+msgid "restrict_help"
+msgstr "az újoncok nem küldhetnek a hagyományos szöveges üzeneten kívül mást az első 24 órában"
+
+msgid "deleteEntryMessages_help"
+msgstr "a belépési üzenetek törlése"
+
+msgid "greeting_help"
+msgstr "a teszten átmenők üdvözlése"
+
+msgid "trust_help"
+msgstr "felhasználó által küldött üzenetre ezzel válaszolva nem kell átmennie a teszten"
+
+msgid "ban_help"
+msgstr "ugyanaz, mint a trust, csak éppen bannoljuk"
+
+msgid "strict_help"
+msgstr "ha nem akarsz addig az újonctól üzenetet látni, amíg meg nem oldja a captcha-t"
+
+msgid "customCaptchaMessage_help"
+msgstr "captcha üzenet beállítása"
+
+msgid "deleteGreetingTime_help"
+msgstr "mennyi idő múlva törölje a Sesuritu's az üdvözlő üzenetet (műsodpercben) pl: `/deleteGreetingTime 100`, 0 állítva reset"
+
+msgid "banUsers_help"
+msgstr "bannolja vagy csak kirúgja a felhasználókat"
+
+msgid "deleteEntryOnKick_help"
+msgstr "törölje-e a belépési üzenetet, ha az újonc elbukik a teszten"
+
+msgid "cas_help"
+msgstr "hasznűljuk-e a Combot Anti-Spam megoldást"
+
+msgid "underAttack_help"
+msgstr "ki be kapcsolhatjuk az újoncok automatikus kirugását"
+
+msgid "noAttack_help"
+msgstr "a Sesuritu kikapcsolása"
+
+msgid "noChannelLinks_help"
+msgstr "automatikusan törölje a más telegram csatornára mutató hivatkozásokat"
+
+msgid "viewConfig_help"
+msgstr "a jelenlegi Sesuritu konfiguráció megtekintése"
+
+msgid "buttonText_help"
+msgstr "a captcha gomb feliratának megváltoztatása. az alapértelmezett: `/buttonText Nem vagyok robot!`"
+
+msgid "allowInvitingBots_help"
+msgstr "a felhasználó meghívhat-e botot vagy sem"
+
+msgid "greetingButtons_help"
+msgstr "saz üdvözlő üzenet gombjainak beállítása"
+
+msgid "skipOldUsers_help"
+msgstr "nem mutatja a captcha-t azoknak a Telegram felhasználóknak, akiknek az ID-ja alacsonyabb, mint 1000000000"
+
+msgid "skipVerifiedUsers_help"
+msgstr "nem mutatja a captcha-t azoknak a felhasználóknak, akik bármelyik chat-ben a Telegramon belül átmentek a Sesuritu tesztjén"
+
+msgid "setConfig_help"
+msgstr "A Sesuritu konfigurálása egy üzenettel"
+
+msgid "banForFastRepliesToPosts_help"
+msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+
+msgid "restrictTime_help"
+msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+
+msgid "banNewTelegramUsers_help"
+msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"

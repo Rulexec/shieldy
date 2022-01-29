@@ -40,9 +40,6 @@ msgstr "很棒！現在通過驗證的新進成員不會收到歡迎消息。 �
 msgid "greetsUsers_true_message"
 msgstr "很棒！現在通過驗證的新進成員會收到歡迎消息。 請回復此消息，並附上您要使用的歡迎詞（您可以使用$title和$username）。接下來是目前的歡迎詞。"
 
-msgid "helpShieldy"
-msgstr "Sesuritu — 是 Telegram 中打擊惱人的垃圾信息發送者的最佳解決方案，它要求新進成員在一段時間內執行一個任務，否則就會踢它們，就這麼簡單。確保 @Sesuritu\\_bot 是群組的管理員，就可以了！您還可以使用以下指令進一步設定：\n\n/help — 顯示此內容\n/language — 切換語言\n/captcha — 更改使用的驗證類型\n/timeLimit — 更改給新進成員驗證的時間\n/lock — 使指令只能由管理員使用\n/restrict — 限制新進成員在前 24 小時內僅能發送純文字消息\n/deleteEntryMessages — 刪除有關新進成員加入的系統消息\n/greeting — 給通過驗證的用戶發歡迎詞\n/trust — 使用此指令回復任何您信任不想驗證的成員\n/ban — same as trust, but the opposite\n/strict — 限制新進成員在通過驗證前不能發任何消息\n/customCaptchaMessage — setup custom captcha message\n/deleteGreetingTime — setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0\n/banUsers — whether to ban or to kick users\n/deleteEntryOnKick — whether to delete entry messages for users who failed captcha\n/cas — whether to use Combot Anti-Spam or not\n/underAttack — toggle the mode to automatically kick all newcomers\n/noAttack — disables Sesuritu\n/noChannelLinks — automatically delete messages that link to other telegram channels\n/viewConfig — view the current Sesuritu configuration\n/buttonText — change the captcha button text in the form of `/buttonText I'm not a bot!`\n/allowInvitingBots — whether users can invite other bots or not\n/greetingButtons — setup buttons for greeting message\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\n。 Sesuritu 代碼是開源的，可以在[這裡](https://github.com/Rulexec/shieldy)找到。謝謝！\n\n. "
-
 msgid "language_selected"
 msgstr "很棒，現在我講中文了。"
 
@@ -90,3 +87,96 @@ msgstr "很棒，我之後會使用這個時間限制。"
 
 msgid "trust_success"
 msgstr "已接受！"
+
+msgid "help_start"
+msgstr "Sesuritu — 是 Telegram 中打擊惱人的垃圾信息發送者的最佳解決方案，它要求新進成員在一段時間內執行一個任務，否則就會踢它們，就這麼簡單。確保 @Sesuritu\\_bot 是群組的管理員，就可以了！您還可以使用以下指令進一步設定："
+
+msgid "help_end"
+msgstr "。 Sesuritu 代碼是開源的，可以在[這裡](https://github.com/Rulexec/shieldy)找到。謝謝！\n."
+
+msgid "help_help"
+msgstr "顯示此內容"
+
+msgid "language_help"
+msgstr "切換語言"
+
+msgid "captcha_help"
+msgstr "更改使用的驗證類型"
+
+msgid "timeLimit_help"
+msgstr "更改給新進成員驗證的時間"
+
+msgid "lock_help"
+msgstr "使指令只能由管理員使用"
+
+msgid "restrict_help"
+msgstr "限制新進成員在前 24 小時內僅能發送純文字消息"
+
+msgid "deleteEntryMessages_help"
+msgstr "刪除有關新進成員加入的系統消息"
+
+msgid "greeting_help"
+msgstr "給通過驗證的用戶發歡迎詞"
+
+msgid "trust_help"
+msgstr "使用此指令回復任何您信任不想驗證的成員"
+
+msgid "ban_help"
+msgstr "same as trust, but the opposite"
+
+msgid "strict_help"
+msgstr "限制新進成員在通過驗證前不能發任何消息"
+
+msgid "customCaptchaMessage_help"
+msgstr "setup custom captcha message"
+
+msgid "deleteGreetingTime_help"
+msgstr "setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0"
+
+msgid "banUsers_help"
+msgstr "whether to ban or to kick users"
+
+msgid "deleteEntryOnKick_help"
+msgstr "whether to delete entry messages for users who failed captcha"
+
+msgid "cas_help"
+msgstr "whether to use Combot Anti-Spam or not"
+
+msgid "underAttack_help"
+msgstr "toggle the mode to automatically kick all newcomers"
+
+msgid "noAttack_help"
+msgstr "disables Sesuritu"
+
+msgid "noChannelLinks_help"
+msgstr "automatically delete messages that link to other telegram channels"
+
+msgid "viewConfig_help"
+msgstr "view the current Sesuritu configuration"
+
+msgid "buttonText_help"
+msgstr "change the captcha button text in the form of `/buttonText I'm not a bot!`"
+
+msgid "allowInvitingBots_help"
+msgstr "whether users can invite other bots or not"
+
+msgid "greetingButtons_help"
+msgstr "setup buttons for greeting message"
+
+msgid "skipOldUsers_help"
+msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
+
+msgid "skipVerifiedUsers_help"
+msgstr "don't show captcha to users who have ever passed captcha in any chat"
+
+msgid "setConfig_help"
+msgstr "setup Sesuritu configuration in one message"
+
+msgid "banForFastRepliesToPosts_help"
+msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+
+msgid "restrictTime_help"
+msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+
+msgid "banNewTelegramUsers_help"
+msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"
