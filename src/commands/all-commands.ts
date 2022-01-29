@@ -11,6 +11,7 @@ import {
   customCaptchaMessageCommand,
   setupCustomCaptchaMessage,
 } from './customCaptchaMessage';
+import {casCommand} from './cas';
 import {CommandDefSetupFn} from './types';
 
 type CommandDef = {
@@ -71,6 +72,11 @@ export const getCommands = (): CommandDef[] => {
       helpDescription: undefined,
       handler: customCaptchaMessageCommand,
       setup: setupCustomCaptchaMessage,
+    },
+    {
+      key: 'cas',
+      helpDescription: undefined,
+      handler: casCommand,
     },
   ];
 };
