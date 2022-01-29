@@ -15,7 +15,6 @@ import {setupDeleteEntryMessages} from '@commands/deleteEntryMessages';
 import {setupGreeting} from '@commands/greeting';
 import {setupTrust} from '@commands/trust';
 import {setupStrict} from '@commands/strict';
-import {setupCaptchaMessage} from '@commands/captchaMessage';
 import {setupDeleteGreetingTime} from '@commands/deleteGreetingTime';
 import {setupDeleteEntryOnKick} from '@commands/deleteEntryOnKick';
 import {setupCAS} from '@commands/cas';
@@ -87,7 +86,6 @@ export function setupBot(appContext: AppContext): void {
   setupGreeting(bot);
   setupTrust(bot);
   setupStrict(bot);
-  setupCaptchaMessage(appContext);
   setupDeleteGreetingTime(bot);
   setupDeleteEntryOnKick(bot);
   setupCAS(bot);

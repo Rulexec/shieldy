@@ -7,6 +7,10 @@ import {banNewTelegramUsersCommand} from './banNewTelegramUsers';
 import {banUsersCommand} from './banUsers';
 import {buttonTextCommand} from './buttonText';
 import {captchaCommand, setupCaptchaCommand} from './captcha';
+import {
+  customCaptchaMessageCommand,
+  setupCustomCaptchaMessage,
+} from './customCaptchaMessage';
 import {CommandDefSetupFn} from './types';
 
 type CommandDef = {
@@ -61,6 +65,12 @@ export const getCommands = (): CommandDef[] => {
       helpDescription: undefined,
       handler: captchaCommand,
       setup: setupCaptchaCommand,
+    },
+    {
+      key: 'customCaptchaMessage',
+      helpDescription: undefined,
+      handler: customCaptchaMessageCommand,
+      setup: setupCustomCaptchaMessage,
     },
   ];
 };
