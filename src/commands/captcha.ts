@@ -1,47 +1,43 @@
-import {clarifyIfPrivateMessagesMiddleware} from '@helpers/clarifyIfPrivateMessages';
 import {Extra} from 'telegraf';
 import {checkIfFromReplierMiddleware} from '@middlewares/checkIfFromReplier';
 import {CaptchaType} from '@models/Chat';
-import {checkLockMiddleware} from '@middlewares/checkLock';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {wrapTelegrafContextWithIdling} from '@root/util/telegraf/idling-context-wrapper';
-import {AppContext} from '@root/types/app-context';
-import {BotMiddlewareNextStrategy} from '@root/bot/types';
+import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 import {L10nKey, T_} from '@root/i18n/l10n-key';
+import {CommandDefSetupFn} from './types';
 
-export function setupCaptcha(appContext: AppContext): void {
-  const {addBotCommand, addBotCallbackQuery, database, idling} = appContext;
+export const captchaCommand: BotMiddlewareFn = (ctx) => {
+  const {
+    message,
+    appContext: {idling},
+  } = ctx;
 
-  addBotCommand(
-    'captcha',
-    checkLockMiddleware,
-    clarifyIfPrivateMessagesMiddleware,
-    (ctx) => {
-      const {message} = ctx;
+  assertNonNullish(message);
 
-      assertNonNullish(message);
-
-      idling.wrapTask(() =>
-        ctx.appContext.telegramApi.replyWithMarkdown(
-          ctx,
-          ctx.translate(T_`captcha`),
-          Extra.inReplyTo(message.message_id)
-            .markup((m) =>
-              m.inlineKeyboard([
-                m.callbackButton(ctx.translate(T_`simple`), 'simple'),
-                m.callbackButton(ctx.translate(T_`digits`), 'digits'),
-                m.callbackButton(ctx.translate(T_`button`), 'button'),
-                m.callbackButton(ctx.translate(T_`image`), 'image'),
-                m.callbackButton(ctx.translate(T_`custom`), 'custom'),
-              ]),
-            )
-            .notifications(!ctx.dbchat.silentMessages),
-        ),
-      );
-
-      return BotMiddlewareNextStrategy.abort;
-    },
+  idling.wrapTask(() =>
+    ctx.appContext.telegramApi.replyWithMarkdown(
+      ctx,
+      ctx.translate(T_`captcha`),
+      Extra.inReplyTo(message.message_id)
+        .markup((m) =>
+          m.inlineKeyboard([
+            m.callbackButton(ctx.translate(T_`simple`), 'simple'),
+            m.callbackButton(ctx.translate(T_`digits`), 'digits'),
+            m.callbackButton(ctx.translate(T_`button`), 'button'),
+            m.callbackButton(ctx.translate(T_`image`), 'image'),
+            m.callbackButton(ctx.translate(T_`custom`), 'custom'),
+          ]),
+        )
+        .notifications(!ctx.dbchat.silentMessages),
+    ),
   );
+
+  return Promise.resolve(BotMiddlewareNextStrategy.abort);
+};
+
+export const setupCaptchaCommand: CommandDefSetupFn = ({appContext}) => {
+  const {addBotCallbackQuery, database, idling} = appContext;
 
   addBotCallbackQuery(
     ['simple', 'digits', 'button', 'image', 'custom'],
@@ -72,7 +68,7 @@ export function setupCaptcha(appContext: AppContext): void {
       return BotMiddlewareNextStrategy.abort;
     }),
   );
-}
+};
 
 const captchaTypeToL10nKey = (type: CaptchaType): L10nKey => {
   switch (type) {

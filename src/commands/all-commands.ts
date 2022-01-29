@@ -6,6 +6,8 @@ import {banCommand} from './ban';
 import {banNewTelegramUsersCommand} from './banNewTelegramUsers';
 import {banUsersCommand} from './banUsers';
 import {buttonTextCommand} from './buttonText';
+import {captchaCommand, setupCaptchaCommand} from './captcha';
+import {CommandDefSetupFn} from './types';
 
 type CommandDef = {
   key: string;
@@ -16,6 +18,8 @@ type CommandDef = {
   /** those commands will be not disabled for users after /lock */
   allowForMembers?: boolean;
   handler: BotMiddlewareFn;
+  // TODO: eliminate this param too, add more types of handlers to be more declarative
+  setup?: CommandDefSetupFn;
 };
 
 export const getCommands = (): CommandDef[] => {
@@ -51,6 +55,12 @@ export const getCommands = (): CommandDef[] => {
       key: 'buttonText',
       helpDescription: undefined,
       handler: buttonTextCommand,
+    },
+    {
+      key: 'captcha',
+      helpDescription: undefined,
+      handler: captchaCommand,
+      setup: setupCaptchaCommand,
     },
   ];
 };
