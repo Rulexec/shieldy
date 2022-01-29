@@ -13,6 +13,7 @@ import {
 } from './customCaptchaMessage';
 import {casCommand} from './cas';
 import {CommandDefSetupFn} from './types';
+import {deleteEntryMessageCommand} from './deleteEntryMessages';
 
 type CommandDef = {
   key: string;
@@ -77,6 +78,11 @@ export const getCommands = (): CommandDef[] => {
       key: 'cas',
       helpDescription: undefined,
       handler: casCommand,
+    },
+    {
+      key: 'deleteEntryMessages',
+      helpDescription: undefined,
+      handler: deleteEntryMessageCommand,
     },
   ];
 };

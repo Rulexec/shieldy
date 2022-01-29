@@ -11,7 +11,6 @@ import {setupRestrict} from '@commands/restrict';
 import {checkRestrict} from '@middlewares/checkRestrict';
 import {setupNoChannelLinks} from '@commands/noChannelLinks';
 import {checkNoChannelLinks} from '@middlewares/checkNoChannelLinks';
-import {setupDeleteEntryMessages} from '@commands/deleteEntryMessages';
 import {setupGreeting} from '@commands/greeting';
 import {setupTrust} from '@commands/trust';
 import {setupStrict} from '@commands/strict';
@@ -81,7 +80,6 @@ export function setupBot(appContext: AppContext): void {
   setupLock(bot);
   setupRestrict(bot);
   setupNoChannelLinks(bot);
-  setupDeleteEntryMessages(bot);
   setupGreeting(bot);
   setupTrust(bot);
   setupStrict(bot);
