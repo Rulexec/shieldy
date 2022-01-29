@@ -82,10 +82,12 @@ export const initBotMiddlewaresEngine = (appContext: AppContext): void => {
           return BotMiddlewareNextStrategy.next;
         }
 
-        return await executeMiddlewares({
+        await executeMiddlewares({
           ctx,
           middlewares: commandDef.middlewares,
         });
+
+        return BotMiddlewareNextStrategy.abort;
       })();
 
       switch (commandsResult) {

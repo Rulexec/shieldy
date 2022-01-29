@@ -11,6 +11,8 @@ import {initBotMiddlewaresEngine} from './bot/bot';
 import {Logger} from './util/logging/logger';
 import {Translations} from './i18n/translations';
 import {createFsPoTranslationsLoader} from './i18n/translations-loader-fs-po';
+import {getCommands} from './commands/all-commands';
+import {ExplicitPartial} from './types/utility';
 
 export type ContextOptions = Partial<{
   isWorker: boolean;
@@ -46,7 +48,7 @@ export function createContext({
 
   const shutdownHandlers: (() => Promise<void>)[] = [];
 
-  const initialAppContext: Partial<AppContext> = {
+  const initialAppContext: ExplicitPartial<AppContext> = {
     isWorker,
     init: undefined,
     stop: undefined,
@@ -66,6 +68,8 @@ export function createContext({
         );
       },
     },
+    commandDefinitions: getCommands(),
+    translations: undefined,
     report: undefined,
     getCurrentDate,
     idling,

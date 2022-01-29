@@ -40,9 +40,6 @@ msgstr "Baiklah, sekarang anggota baru yg lolos ujian tidak akan menerima pesan 
 msgid "greetsUsers_true_message"
 msgstr "Baiklah, sekarang anggota baru yg lolos ujian akan menerima pesan sambutan. Silakan balas pesan ini dengan pesan sambutan yg ingin anda gunakan (tersedia $title dan $username). Pesan sambutan yg digunakan saat ini adalah..."
 
-msgid "helpShieldy"
-msgstr "Sesuritu adalah solusi terbaik untuk melawan spammer di Telegram. Yaitu dengan menguji anggota baru dengan melakukan sesuatu dalam batas waktu tertentu, jika gagal maka anggota baru akan ditolak bergabung. Pastikan @Sesuritu\\_bot menjadi admin di grup anda. Tersedia pengaturan tambahan dengan perintah berikut:\n\n/help — menampilkan pesan bantuan ini\n/language — mengganti pilihan bahasa\n/captcha — mengubah jenis ujian yg dipakai\n/timeLimit — mengubah batasan waktu ujian\n/lock — batasi perintah hanya bisa dijalankan oleh admin saja\n/restrict — batasi anggota baru hanya boleh mengirim pesan teks dalam 24 jam pertama\n/deleteEntryMessages — hapus pesan sambutan pada anggota baru\n/greeting — pesan sambutan pada anggota baru yg lolos ujian\n/trust — balas dengan pesan ini ke anggota untuk meloloskannya tanpa ujian\n/ban — same as trust, but the opposite\n/strict — larang anggota baru mengirim pesan apa pun jika belum lolos ujian\n/customCaptchaMessage — setup custom captcha message\n/deleteGreetingTime — setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0\n/banUsers — whether to ban or to kick users\n/deleteEntryOnKick — whether to delete entry messages for users who failed captcha\n/cas — whether to use Combot Anti-Spam or not\n/underAttack — toggle the mode to automatically kick all newcomers\n/noAttack — disables Sesuritu\n/noChannelLinks — automatically delete messages that link to other telegram channels\n/viewConfig — view the current Sesuritu configuration\n/buttonText — change the captcha button text in the form of `/buttonText I'm not a bot!`\n/allowInvitingBots — whether users can invite other bots or not\n/greetingButtons — setup buttons for greeting message\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\n Sesuritu berkode terbuka dan tersedia di [sini](https://github.com/Rulexec/shieldy). Terima kasih!\n\n. "
-
 msgid "language_selected"
 msgstr "Baiklah. Saya berbahasa Indonesia sekarang."
 
@@ -90,3 +87,96 @@ msgstr "Baiklah, batas waktu tersebut yg akan dipakai."
 
 msgid "trust_success"
 msgstr "Diterima!"
+
+msgid "help_start"
+msgstr "Sesuritu adalah solusi terbaik untuk melawan spammer di Telegram. Yaitu dengan menguji anggota baru dengan melakukan sesuatu dalam batas waktu tertentu, jika gagal maka anggota baru akan ditolak bergabung. Pastikan @Sesuritu\\_bot menjadi admin di grup anda. Tersedia pengaturan tambahan dengan perintah berikut:"
+
+msgid "help_end"
+msgstr "Sesuritu berkode terbuka dan tersedia di [sini](https://github.com/Rulexec/shieldy). Terima kasih!\n."
+
+msgid "help_help"
+msgstr "menampilkan pesan bantuan ini"
+
+msgid "language_help"
+msgstr "mengganti pilihan bahasa"
+
+msgid "captcha_help"
+msgstr "mengubah jenis ujian yg dipakai"
+
+msgid "timeLimit_help"
+msgstr "mengubah batasan waktu ujian"
+
+msgid "lock_help"
+msgstr "batasi perintah hanya bisa dijalankan oleh admin saja"
+
+msgid "restrict_help"
+msgstr "batasi anggota baru hanya boleh mengirim pesan teks dalam 24 jam pertama"
+
+msgid "deleteEntryMessages_help"
+msgstr "hapus pesan sambutan pada anggota baru"
+
+msgid "greeting_help"
+msgstr "pesan sambutan pada anggota baru yg lolos ujian"
+
+msgid "trust_help"
+msgstr "balas dengan pesan ini ke anggota untuk meloloskannya tanpa ujian"
+
+msgid "ban_help"
+msgstr "same as trust, but the opposite"
+
+msgid "strict_help"
+msgstr "larang anggota baru mengirim pesan apa pun jika belum lolos ujian"
+
+msgid "customCaptchaMessage_help"
+msgstr "setup custom captcha message"
+
+msgid "deleteGreetingTime_help"
+msgstr "setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0"
+
+msgid "banUsers_help"
+msgstr "whether to ban or to kick users"
+
+msgid "deleteEntryOnKick_help"
+msgstr "whether to delete entry messages for users who failed captcha"
+
+msgid "cas_help"
+msgstr "whether to use Combot Anti-Spam or not"
+
+msgid "underAttack_help"
+msgstr "toggle the mode to automatically kick all newcomers"
+
+msgid "noAttack_help"
+msgstr "disables Sesuritu"
+
+msgid "noChannelLinks_help"
+msgstr "automatically delete messages that link to other telegram channels"
+
+msgid "viewConfig_help"
+msgstr "view the current Sesuritu configuration"
+
+msgid "buttonText_help"
+msgstr "change the captcha button text in the form of `/buttonText I'm not a bot!`"
+
+msgid "allowInvitingBots_help"
+msgstr "whether users can invite other bots or not"
+
+msgid "greetingButtons_help"
+msgstr "setup buttons for greeting message"
+
+msgid "skipOldUsers_help"
+msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
+
+msgid "skipVerifiedUsers_help"
+msgstr "don't show captcha to users who have ever passed captcha in any chat"
+
+msgid "setConfig_help"
+msgstr "setup Sesuritu configuration in one message"
+
+msgid "banForFastRepliesToPosts_help"
+msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+
+msgid "restrictTime_help"
+msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+
+msgid "banNewTelegramUsers_help"
+msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"

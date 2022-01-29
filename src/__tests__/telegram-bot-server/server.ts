@@ -2,20 +2,40 @@ import {getUniqueCounterValue} from '@root/util/id/unique-counter';
 import {readWholeStream} from '@root/util/stream/read-whole-stream';
 import {Server, createServer, IncomingMessage, ServerResponse} from 'http';
 import {TEST_BOT_USERNAME} from '../constants';
-import {Chat, getUser} from '../test-data/chats';
+import {Chat, getUser, User} from '../test-data/chats';
 import {InlineKeyboardKey, Message, MessageEdit} from '../test-data/types';
 import {createMessage} from '../test-data/updates';
+
+type UserStatusType =
+  | 'creator'
+  | 'administrator'
+  | 'member'
+  | 'restricted'
+  | 'left'
+  | 'kicked';
 
 export type TelegramBotServerOptions = {
   token: string;
   botId: number;
+  getUserById: (id: number) => {
+    user: User;
+    status: UserStatusType;
+  } | null;
   getChatById: (id: number) => Chat;
+  getChatAdministrators: (
+    id: number,
+  ) => {user: User; status: UserStatusType; can_restrict_members: boolean}[];
   getCurrentTime: () => number;
 };
 
 export type MessageDelete = {
   chatId: number;
   messageId: number;
+};
+
+export type KickMember = {
+  chatId: number;
+  userId: number;
 };
 
 export class TelegramBotServer {
@@ -25,18 +45,25 @@ export class TelegramBotServer {
   private messages: Message[] = [];
   private messageEdits: MessageEdit[] = [];
   private messageDeletes: MessageDelete[] = [];
+  private memberKicks: KickMember[] = [];
+  private getUserById: TelegramBotServerOptions['getUserById'];
   private getChatById: (id: number) => Chat;
+  private getChatAdministrators: TelegramBotServerOptions['getChatAdministrators'];
   private getCurrentTime: () => number;
 
   constructor({
     token,
     botId,
+    getUserById,
     getChatById,
+    getChatAdministrators,
     getCurrentTime,
   }: TelegramBotServerOptions) {
     this.token = token;
     this.botId = botId;
+    this.getUserById = getUserById;
     this.getChatById = getChatById;
+    this.getChatAdministrators = getChatAdministrators;
     this.getCurrentTime = getCurrentTime;
     this.server = createServer((req, res) => {
       this.handleRequest(req, res).catch((error) => {
@@ -139,21 +166,40 @@ export class TelegramBotServer {
         const data = JSON.parse(buffer.toString());
         const {user_id: userId} = data;
 
+        // TODO: support unexistance of users
+        const userData = this.getUserById(userId) || {
+          user: {
+            id: userId,
+            is_bot: false,
+            first_name: `First${userId}`,
+            last_name: `Last${userId}`,
+            username: `nick${userId}`,
+            language_code: 'en',
+          },
+          status: 'member',
+        };
+
         res.end(
           JSON.stringify({
             ok: true,
             result: {
-              user: {
-                id: userId,
-                is_bot: false,
-                first_name: `First${userId}`,
-                last_name: `Last${userId}`,
-                username: `nick${userId}`,
-                language_code: 'en',
-              },
-              status: 'member',
+              user: userData.user,
+              status: userData.status,
               is_anonymous: false,
             },
+          }),
+        );
+        return;
+      }
+      case 'getChatAdministrators': {
+        const buffer = await readWholeStream(req);
+        const data = JSON.parse(buffer.toString());
+        const {chat_id: chatId} = data;
+
+        res.end(
+          JSON.stringify({
+            ok: true,
+            result: this.getChatAdministrators(chatId),
           }),
         );
         return;
@@ -214,6 +260,15 @@ export class TelegramBotServer {
         );
         return;
       }
+      case 'kickChatMember': {
+        const buffer = await readWholeStream(req);
+        const data = JSON.parse(buffer.toString());
+
+        this.memberKicks.push({chatId: data.chat_id, userId: data.user_id});
+
+        res.end(JSON.stringify({ok: true}));
+        break;
+      }
       default: {
         const buffer = await readWholeStream(req);
         const data = JSON.parse(buffer.toString());
@@ -249,6 +304,12 @@ export class TelegramBotServer {
     const deletes = this.messageDeletes;
     this.messageDeletes = [];
     return deletes;
+  };
+
+  popMemberKicks = (): KickMember[] => {
+    const kicks = this.memberKicks;
+    this.memberKicks = [];
+    return kicks;
   };
 
   destroy = async (): Promise<void> => {

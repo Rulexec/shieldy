@@ -79,9 +79,6 @@ msgstr "D'acord, a partir d'ara els nouvinguts que hagin passat la prova rebran 
 msgid "greetsUsers_true_message"
 msgstr "D'acord, a partir d'ara els nouvinguts que hagin passat la prova rebran un missatge de benvinguda. Per favor, respon a aquest missatge amb el texte que vulguis fer servir per a una salutació personalitzada (pots fer servir $title, $fullname y $username). Actualment tens establert el següent missatge de benvinguda:"
 
-msgid "helpShieldy"
-msgstr "Sesuritu — és la millor solució per a combatre els usuaris que publiquen missatges brossa als grups de Telegram. Els nouvinguts hauran de resoldre una sèrie de proves abans d'un temps determinat, i si no donen una respota correcta, els expulsarà. Tant senzill com això. Assegurat't que @Sesuritu\\_bot té permisos d'administrador al grup i llestos! Així i tot, també pots personalitzar aquest comportament amb les següents comandes:\n\n/help — mostra aquest missatge\n/language — canvia d'idioma\n/captcha — canvia el tipus de CAPTCHA utilitzat\n/timeLimit — canvia el temps de resposta otorgat als nouvinguts\n/lock — fa que les comandes només siguin accessibles per als administradors\n/restrict — restringeix als nouvinguts a només poder enviar missatges de text durant les primeres 24 hores\n/deleteEntryMessages — esborra els missatges d'avís sobre l'entrada de nouvinguts\n/greeting — saluda als usuaris que superen el test\n/trust — fes servir aquesta comanda per a respondre al missatge d'un usuari que no vulguis comprovar\n/ban — fa el mateix que trust, però bloquejant l'usuari\n/strict — fes-lo servir quan no vulguis rebre cap missatge de nouvinguts excepte les solucions del captcha fins que el resolguin\n/customCaptchaMessage — personalitza el missatge del captcha\n/deleteGreetingTime — configura si s'ha d'eborrar el missatge de benvinguda al cap d'uns seguns (ex: `/deleteGreetingTime 100`), es restableix configurant-lo a 0\n/banUsers — permet bloquejar i/o expulsar usuaris\n/deleteEntryOnKick — suprimeix els missatges d'entrada dels usuaris que han fallat la prova\n/cas — per si utilitzes Combot Anti-Spam o no\n/underAttack — commuta el mode per expulsar automàticament tots els nouvinguts\n/noAttack — desactiva en Sesuritu\n/noChannelLinks — suprimeix automàticament els missatges que enllacen amb altres canals de telegrama\n/viewConfig — veure la configuració actual den Sesuritu\n/buttonText — canvia el text del botó del CAPTCHA així: `/buttonText I'm not a bot!`\n/allowInvitingBots — per si els usuaris poden convidar altres robots o no\n/greetingButtons — configura els botons per al missatge de benvinguda\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\nEncara tens dubtes? . En Sesuritu està fet en codi obert i el pots trobar [aquí](https://github.com/Rulexec/shieldy)."
-
 msgid "image"
 msgstr "Imatge"
 
@@ -156,3 +153,96 @@ msgstr "Molt bé, a partir d'ara en Sesuritu expulsarà a tothom que vulgui entr
 
 msgid "viewConfig"
 msgstr "Aquesta és la configuració actual:"
+
+msgid "help_start"
+msgstr "Sesuritu — és la millor solució per a combatre els usuaris que publiquen missatges brossa als grups de Telegram. Els nouvinguts hauran de resoldre una sèrie de proves abans d'un temps determinat, i si no donen una respota correcta, els expulsarà. Tant senzill com això. Assegurat't que @Sesuritu\\_bot té permisos d'administrador al grup i llestos! Així i tot, també pots personalitzar aquest comportament amb les següents comandes:"
+
+msgid "help_end"
+msgstr "Encara tens dubtes? . En Sesuritu està fet en codi obert i el pots trobar [aquí](https://github.com/Rulexec/shieldy)."
+
+msgid "help_help"
+msgstr "mostra aquest missatge"
+
+msgid "language_help"
+msgstr "canvia d'idioma"
+
+msgid "captcha_help"
+msgstr "canvia el tipus de CAPTCHA utilitzat"
+
+msgid "timeLimit_help"
+msgstr "canvia el temps de resposta otorgat als nouvinguts"
+
+msgid "lock_help"
+msgstr "fa que les comandes només siguin accessibles per als administradors"
+
+msgid "restrict_help"
+msgstr "restringeix als nouvinguts a només poder enviar missatges de text durant les primeres 24 hores"
+
+msgid "deleteEntryMessages_help"
+msgstr "esborra els missatges d'avís sobre l'entrada de nouvinguts"
+
+msgid "greeting_help"
+msgstr "saluda als usuaris que superen el test"
+
+msgid "trust_help"
+msgstr "fes servir aquesta comanda per a respondre al missatge d'un usuari que no vulguis comprovar"
+
+msgid "ban_help"
+msgstr "fa el mateix que trust, però bloquejant l'usuari"
+
+msgid "strict_help"
+msgstr "fes-lo servir quan no vulguis rebre cap missatge de nouvinguts excepte les solucions del captcha fins que el resolguin"
+
+msgid "customCaptchaMessage_help"
+msgstr "personalitza el missatge del captcha"
+
+msgid "deleteGreetingTime_help"
+msgstr "configura si s'ha d'eborrar el missatge de benvinguda al cap d'uns seguns (ex: `/deleteGreetingTime 100`), es restableix configurant-lo a 0"
+
+msgid "banUsers_help"
+msgstr "permet bloquejar i/o expulsar usuaris"
+
+msgid "deleteEntryOnKick_help"
+msgstr "suprimeix els missatges d'entrada dels usuaris que han fallat la prova"
+
+msgid "cas_help"
+msgstr "per si utilitzes Combot Anti-Spam o no"
+
+msgid "underAttack_help"
+msgstr "commuta el mode per expulsar automàticament tots els nouvinguts"
+
+msgid "noAttack_help"
+msgstr "desactiva en Sesuritu"
+
+msgid "noChannelLinks_help"
+msgstr "suprimeix automàticament els missatges que enllacen amb altres canals de telegrama"
+
+msgid "viewConfig_help"
+msgstr "veure la configuració actual den Sesuritu"
+
+msgid "buttonText_help"
+msgstr "canvia el text del botó del CAPTCHA així: `/buttonText I'm not a bot!`"
+
+msgid "allowInvitingBots_help"
+msgstr "per si els usuaris poden convidar altres robots o no"
+
+msgid "greetingButtons_help"
+msgstr "configura els botons per al missatge de benvinguda"
+
+msgid "skipOldUsers_help"
+msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
+
+msgid "skipVerifiedUsers_help"
+msgstr "don't show captcha to users who have ever passed captcha in any chat"
+
+msgid "setConfig_help"
+msgstr "setup Sesuritu configuration in one message"
+
+msgid "banForFastRepliesToPosts_help"
+msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+
+msgid "restrictTime_help"
+msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+
+msgid "banNewTelegramUsers_help"
+msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"

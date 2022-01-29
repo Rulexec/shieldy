@@ -67,9 +67,6 @@ msgstr "Super! Odteraz budú všetci nováčikovia, ktorí prešli testom, uvít
 msgid "greetsUsers_true_message"
 msgstr "Super! Odteraz budú všetci nováčikovia, ktorí prešli testom, uvítaní. Odpovedzte na túto správu uvítacím textom, ktorý chcete použiť (môžete použiť $title a $username). Nasleduje aktuálna uvítacia správa."
 
-msgid "helpShieldy"
-msgstr "Sesuritu — najlepšie riešenie v boji proti otravným spamerom na Telegrame. Žiada od nováčikov, aby vykonali určitý krok v stanovenom čase, inak ich vyhodí. Je to také jednoduché. Nastavte @Sesuritu\\_bot ako správcu vo vašom čete a to je všetko! Pre podrobnejšie nastavenie správania môžete využiť tieto príkazy:\n\n/help — zobrazí túto správu\n/language — výber jazyka\n/captcha — typ testu captcha\n/timeLimit — čas na splnenie testu nováčikom\n/lock — sprístupní príkazy iba správcom\n/restrict — obmedzí nováčikov počas prvých 24 hodín na posielanie výlučne textových správ\n/deleteEntryMessages — odstráni správu o vstupe nováčika do skupiny\n/greeting — pozdrav pre používateľov, ktorí prejdú testom\n/trust — odpovedzte týmto príkazom na správu používateľa, ktorého nechcete kontrolovať\n/ban — same as trust, but the opposite\n/strict — použite, ak nechcete prijímať žiadne správy pre nováčikov okrem riešení testu captcha, pokým ním neprejdú\n/customCaptchaMessage — nastavenie vlastnej správy testu captcha\n/deleteGreetingTime — nastavenie, kedy sa má odstrániť pozdrav Sesurituho v sekundách, napr. `/deleteGreetingTime 100`; resetuje sa tak, že ho nastavíte na 0\n/banUsers — voľba banu alebo vyhodenia nováčika zo skupiny\n/deleteEntryOnKick — voľba odstránenia vstupných správ pre používateľov, ktorí neprejdú testom captcha\n/cas — voľba použitia služby Combot Anti-Spam\n/underAttack — toggle the mode to automatically kick all newcomers\n/noAttack — disables Sesuritu\n/noChannelLinks — automatically delete messages that link to other telegram channels\n/viewConfig — view the current Sesuritu configuration\n/buttonText — change the captcha button text in the form of `/buttonText I'm not a bot!`\n/allowInvitingBots — whether users can invite other bots or not\n/greetingButtons — setup buttons for greeting message\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\nM Zdrojový kód Sesurituho je otvorený a nájdete ho [tu](https://github.com/Rulexec/shieldy). Ďakujem!\n\n. "
-
 msgid "language_selected"
 msgstr "Skvelé, teraz hovorím po slovensky."
 
@@ -117,3 +114,96 @@ msgstr "Skvelé, budem teda používať tento časový limit."
 
 msgid "trust_success"
 msgstr "Prijaté!"
+
+msgid "help_start"
+msgstr "Sesuritu — najlepšie riešenie v boji proti otravným spamerom na Telegrame. Žiada od nováčikov, aby vykonali určitý krok v stanovenom čase, inak ich vyhodí. Je to také jednoduché. Nastavte @Sesuritu\\_bot ako správcu vo vašom čete a to je všetko! Pre podrobnejšie nastavenie správania môžete využiť tieto príkazy:"
+
+msgid "help_end"
+msgstr "M Zdrojový kód Sesurituho je otvorený a nájdete ho [tu](https://github.com/Rulexec/shieldy). Ďakujem!\n."
+
+msgid "help_help"
+msgstr "zobrazí túto správu"
+
+msgid "language_help"
+msgstr "výber jazyka"
+
+msgid "captcha_help"
+msgstr "typ testu captcha"
+
+msgid "timeLimit_help"
+msgstr "čas na splnenie testu nováčikom"
+
+msgid "lock_help"
+msgstr "sprístupní príkazy iba správcom"
+
+msgid "restrict_help"
+msgstr "obmedzí nováčikov počas prvých 24 hodín na posielanie výlučne textových správ"
+
+msgid "deleteEntryMessages_help"
+msgstr "odstráni správu o vstupe nováčika do skupiny"
+
+msgid "greeting_help"
+msgstr "pozdrav pre používateľov, ktorí prejdú testom"
+
+msgid "trust_help"
+msgstr "odpovedzte týmto príkazom na správu používateľa, ktorého nechcete kontrolovať"
+
+msgid "ban_help"
+msgstr "same as trust, but the opposite"
+
+msgid "strict_help"
+msgstr "použite, ak nechcete prijímať žiadne správy pre nováčikov okrem riešení testu captcha, pokým ním neprejdú"
+
+msgid "customCaptchaMessage_help"
+msgstr "nastavenie vlastnej správy testu captcha"
+
+msgid "deleteGreetingTime_help"
+msgstr "nastavenie, kedy sa má odstrániť pozdrav Sesurituho v sekundách, napr. `/deleteGreetingTime 100`; resetuje sa tak, že ho nastavíte na 0"
+
+msgid "banUsers_help"
+msgstr "voľba banu alebo vyhodenia nováčika zo skupiny"
+
+msgid "deleteEntryOnKick_help"
+msgstr "voľba odstránenia vstupných správ pre používateľov, ktorí neprejdú testom captcha"
+
+msgid "cas_help"
+msgstr "voľba použitia služby Combot Anti-Spam"
+
+msgid "underAttack_help"
+msgstr "toggle the mode to automatically kick all newcomers"
+
+msgid "noAttack_help"
+msgstr "disables Sesuritu"
+
+msgid "noChannelLinks_help"
+msgstr "automatically delete messages that link to other telegram channels"
+
+msgid "viewConfig_help"
+msgstr "view the current Sesuritu configuration"
+
+msgid "buttonText_help"
+msgstr "change the captcha button text in the form of `/buttonText I'm not a bot!`"
+
+msgid "allowInvitingBots_help"
+msgstr "whether users can invite other bots or not"
+
+msgid "greetingButtons_help"
+msgstr "setup buttons for greeting message"
+
+msgid "skipOldUsers_help"
+msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
+
+msgid "skipVerifiedUsers_help"
+msgstr "don't show captcha to users who have ever passed captcha in any chat"
+
+msgid "setConfig_help"
+msgstr "setup Sesuritu configuration in one message"
+
+msgid "banForFastRepliesToPosts_help"
+msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+
+msgid "restrictTime_help"
+msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+
+msgid "banNewTelegramUsers_help"
+msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"

@@ -115,7 +115,6 @@ export class Chat {
   greetingButtons?: string;
   skipOldUsers: boolean;
   skipVerifiedUsers: boolean;
-  banForFastRepliesToPosts: boolean;
   members: MemberWrapper[];
   restrictTime: number;
   banNewTelegramUsers: boolean;

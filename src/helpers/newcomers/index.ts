@@ -1,10 +1,5 @@
 import {checkIfGroup} from '@middlewares/checkIfGroup';
 import {isGroup} from '@helpers/isGroup';
-import {notifyCandidate} from '@helpers/newcomers/notifyCandidate';
-import {generateCaptcha} from '@helpers/newcomers/generateCaptcha';
-import {Context} from '@root/types/context';
-import {checkSuperAdminMiddleware} from '@middlewares/checkSuperAdmin';
-import {greetUserMiddleware} from '@helpers/newcomers/greetUser';
 import {handleLeftChatMember} from '@helpers/newcomers/handleLeftChatMember';
 import {
   handleNewChatMember,
@@ -13,28 +8,12 @@ import {
 import {handleButtonPress} from '@helpers/newcomers/checkButton';
 import {checkPassingCaptchaWithText} from './checkPassingCaptchaWithText';
 import {getChatMember} from '@root/types/hacks/get-chat-member';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {AppContext} from '@root/types/app-context';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 
 export function setupNewcomers(appContext: AppContext): void {
-  const {addBotCommand, addBotMiddleware, telegrafBot} = appContext;
+  const {addBotMiddleware, telegrafBot} = appContext;
 
-  // Admin command to check greetings
-  addBotCommand('greetMe', checkSuperAdminMiddleware, greetUserMiddleware);
-  // Admin command to check captcha
-  addBotCommand(
-    'captchaMe',
-    checkSuperAdminMiddleware,
-    async (ctx: Context) => {
-      assertNonNullish(ctx.from);
-
-      const captcha = await generateCaptcha(ctx.dbchat);
-      await notifyCandidate(ctx, ctx.from, captcha);
-
-      return BotMiddlewareNextStrategy.abort;
-    },
-  );
   // Keep track of new member messages to delete them
   telegrafBot.on('new_chat_members', checkIfGroup, handleNewChatMemberMessage);
   // Keep track of leave messages and delete them if necessary

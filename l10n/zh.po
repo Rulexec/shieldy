@@ -61,9 +61,6 @@ msgstr "很棒！现在通过测试的新人不会受到欢迎消息。 请回�
 msgid "greetsUsers_true_message"
 msgstr "很棒！现在通过测试的新人会受到欢迎消息。 请回复此消息，并附上您要使用的问候语（您可以使用$title和$username）。接下来是当前的问候消息。"
 
-msgid "helpShieldy"
-msgstr "Sesuritu — 是电报中打击恼人的垃圾信息发送者的最佳解决方案，它要求新手在一段时间内执行一个集合动作，否则就会踢它们，就这么简单。确保 @Sesuritu\\_bot是您的管理员，并且这就可以了！您还可以使用以下命令进一步设置课程：\n\n/help — 显示此消息\n/language — 切换语言\n/captcha — 更改使用的验证码类型\n/timeLimit — 更改给新手的时间\n/lock — 使命令只能由管理员访问\n/restrict — 限制新手在前24小时内仅能发送纯文本消息\n/deleteEntryMessages — 删除有关用户加入的消息\n/greeting — 迎接通过测试的用户\n/trust — 使用此命令回复用户发送的您不想检查的消息\n/ban — same as trust, but the opposite\n/strict — 当你不希望收到任何新手的消息但使用验证码解决方案直到他们通过验证码时使用\n/customCaptchaMessage — 设置自定义验证码消息\n/deleteGreetingTime — 设置多少秒删除Sesuritu的欢迎消息，像`/deleteGreetingTime 100`, 设置为0重置\n/banUsers — 禁止还是踢出用户\n/deleteEntryOnKick — 删除还是保留回答验证码失败的用户加入消息\n/cas — whether to use Combot Anti-Spam or not\n/underAttack — toggle the mode to automatically kick all newcomers\n/noAttack — disables Sesuritu\n/noChannelLinks — automatically delete messages that link to other telegram channels\n/viewConfig — view the current Sesuritu configuration\n/buttonText — change the captcha button text in the form of `/buttonText I'm not a bot!`\n/allowInvitingBots — whether users can invite other bots or not\n/greetingButtons — setup buttons for greeting message\n/skipOldUsers — don't show captcha to Telegram accounts with ID less than 1000000000\n/skipVerifiedUsers — don't show captcha to users who have ever passed captcha in any chat\n/setConfig — setup Sesuritu configuration in one message\n/banForFastRepliesToPosts — turn on or off banning users who reply to new channel posts within 5 seconds after posts are created\n/restrictTime — setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0\n/banNewTelegramUsers — instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000\n\n。 Sesuritu代码是开源的，可以在[这里](https://github.com/Rulexec/shieldy)找到。谢谢！\n\n. "
-
 msgid "language_selected"
 msgstr "很棒，现在我讲中文了。"
 
@@ -111,3 +108,96 @@ msgstr "很棒，我之后会使用这个时间限制。"
 
 msgid "trust_success"
 msgstr "已接受！"
+
+msgid "help_start"
+msgstr "Sesuritu — 是电报中打击恼人的垃圾信息发送者的最佳解决方案，它要求新手在一段时间内执行一个集合动作，否则就会踢它们，就这么简单。确保 @Sesuritu\\_bot是您的管理员，并且这就可以了！您还可以使用以下命令进一步设置课程："
+
+msgid "help_end"
+msgstr "。 Sesuritu代码是开源的，可以在[这里](https://github.com/Rulexec/shieldy)找到。谢谢！\n."
+
+msgid "help_help"
+msgstr "显示此消息"
+
+msgid "language_help"
+msgstr "切换语言"
+
+msgid "captcha_help"
+msgstr "更改使用的验证码类型"
+
+msgid "timeLimit_help"
+msgstr "更改给新手的时间"
+
+msgid "lock_help"
+msgstr "使命令只能由管理员访问"
+
+msgid "restrict_help"
+msgstr "限制新手在前24小时内仅能发送纯文本消息"
+
+msgid "deleteEntryMessages_help"
+msgstr "删除有关用户加入的消息"
+
+msgid "greeting_help"
+msgstr "迎接通过测试的用户"
+
+msgid "trust_help"
+msgstr "使用此命令回复用户发送的您不想检查的消息"
+
+msgid "ban_help"
+msgstr "same as trust, but the opposite"
+
+msgid "strict_help"
+msgstr "当你不希望收到任何新手的消息但使用验证码解决方案直到他们通过验证码时使用"
+
+msgid "customCaptchaMessage_help"
+msgstr "设置自定义验证码消息"
+
+msgid "deleteGreetingTime_help"
+msgstr "设置多少秒删除Sesuritu的欢迎消息，像`/deleteGreetingTime 100`, 设置为0重置"
+
+msgid "banUsers_help"
+msgstr "禁止还是踢出用户"
+
+msgid "deleteEntryOnKick_help"
+msgstr "删除还是保留回答验证码失败的用户加入消息"
+
+msgid "cas_help"
+msgstr "whether to use Combot Anti-Spam or not"
+
+msgid "underAttack_help"
+msgstr "toggle the mode to automatically kick all newcomers"
+
+msgid "noAttack_help"
+msgstr "disables Sesuritu"
+
+msgid "noChannelLinks_help"
+msgstr "automatically delete messages that link to other telegram channels"
+
+msgid "viewConfig_help"
+msgstr "view the current Sesuritu configuration"
+
+msgid "buttonText_help"
+msgstr "change the captcha button text in the form of `/buttonText I'm not a bot!`"
+
+msgid "allowInvitingBots_help"
+msgstr "whether users can invite other bots or not"
+
+msgid "greetingButtons_help"
+msgstr "setup buttons for greeting message"
+
+msgid "skipOldUsers_help"
+msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
+
+msgid "skipVerifiedUsers_help"
+msgstr "don't show captcha to users who have ever passed captcha in any chat"
+
+msgid "setConfig_help"
+msgstr "setup Sesuritu configuration in one message"
+
+msgid "banForFastRepliesToPosts_help"
+msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+
+msgid "restrictTime_help"
+msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+
+msgid "banNewTelegramUsers_help"
+msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"

@@ -13,6 +13,15 @@ export type RemoveChatRestrictedFn = (options: {
   candidateIds: number[];
 }) => Promise<void>;
 
+type ChatProperties = {
+  [Key in keyof Chat]: {chatId: number; property: Key; value: Chat[Key]};
+};
+type Values<O> = O extends Record<string, infer K> ? K : never;
+export type SetChatPropertyOptions = Values<ChatProperties>;
+
+type FilteredKeys<T, U> = {[P in keyof T]: T[P] extends U ? P : never}[keyof T];
+export type BooleanChatPropertyKey = NonNullable<FilteredKeys<Chat, boolean>>;
+
 export interface Database {
   init: () => Promise<void>;
 
@@ -20,11 +29,7 @@ export interface Database {
   getChatById: (chatId: ChatId) => Promise<Chat | null>;
   updateChat: (chat: Chat) => Promise<void>;
   findChatsWithCandidatesOrRestrictedUsers: () => Promise<Chat[]>;
-  setChatProperty: <T extends keyof Chat>(options: {
-    chatId: number;
-    property: T;
-    value: Chat[T];
-  }) => Promise<void>;
+  setChatProperty: (options: SetChatPropertyOptions) => Promise<void>;
   addChatRestrictedUsers: AddChatRestrictedFn;
   removeChatRestrictedUsers: RemoveChatRestrictedFn;
   addChatCandidates: AddChatRestrictedFn;

@@ -56,7 +56,10 @@ describe('/help', () => {
         }
 
         expect(lastMessage.chatId).toBe(chat.id);
-        expect(lastMessage.text).toBe(getNoTranslationText(T_`helpShieldy`));
+        expect(lastMessage.text).toContain(
+          getNoTranslationText(T_`help_start`),
+        );
+        expect(lastMessage.text).toContain(getNoTranslationText(T_`help_end`));
       },
     );
   });
