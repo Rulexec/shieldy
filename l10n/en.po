@@ -224,7 +224,7 @@ msgid "help_start"
 msgstr "Sesuritu — is the best solution in Telegram to fight annoying spammers. It asks newcomers to execute a set action within a set period, otherwise it kicks them. It's this easy. Make sure @Sesuritu\\_bot is an admin at your chat and it's all done! You can also further setup the behaviour with the following commands:"
 
 msgid "help_end"
-msgstr "Sesuritu code is open source and can be found [here](https://github.com/Rulexec/shieldy)."
+msgstr "Sesuritu code is open source and can be found [here](https://github.com/Rulexec/shieldy).\nYou can ask questions/submit feature requests in the @sesuritu\\_chat."
 
 msgid "help_help"
 msgstr "shows this message"

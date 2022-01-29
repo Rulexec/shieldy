@@ -2,6 +2,8 @@
 
 This is the code for the anti-spam Telegram bot I've built. Enjoy and feel free to reuse!
 
+You can ask questions/submit feature requests in the [@sesuritu_chat](https://t.me/sesuritu_chat) chat (or issues of this repo).
+
 Actually, this is a fork of https://github.com/1inch/shieldy
 
 # Installation
