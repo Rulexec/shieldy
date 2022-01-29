@@ -7,6 +7,7 @@ import {TelegramApi} from './telegram-api';
 import {BotMiddlewareFn} from '@root/bot/types';
 import {Logger} from '@root/util/logging/logger';
 import {Translations} from '@root/i18n/translations';
+import {CommandDef} from '@root/commands/all-commands';
 
 export type Config = {
   workersCount: number;
@@ -33,6 +34,7 @@ export type AppContext = {
   database: Database;
   telegrafBot: Bot;
   telegramApi: TelegramApi;
+  commandDefinitions: CommandDef[];
   addBotCommand: (
     command: string | string[],
     ...middlewares: BotMiddlewareFn[]

@@ -16,26 +16,42 @@ function sendHelp(ctx: Context): Promise<void> {
         ctx.update.message?.date,
     });
   }
+  return replyWithHelp(ctx);
+}
+
+const replyWithHelp = (ctx: Context): Promise<void> => {
+  const {
+    appContext: {commandDefinitions},
+  } = ctx;
+
+  const commandsStr = commandDefinitions
+    .map(({key, helpDescription}) => {
+      if (!helpDescription) {
+        return null;
+      }
+
+      return `/${key} — ${ctx.translate(helpDescription)}`;
+    })
+    .filter(Boolean)
+    .join('\n');
+
+  const result = `${ctx.translate(
+    T_`help_start`,
+  )}\n\n${commandsStr}\n\n${ctx.translate(T_`help_end`)}`;
+
   return ctx
     .replyWithMarkdown(
-      ctx.translate(T_`helpShieldy`),
+      result,
       Extra.webPreview(false).notifications(!ctx.dbchat.silentMessages),
     )
     .then(() => {
       //
     });
-}
+};
 
 export function sendHelpSafe(ctx: Context): Promise<void> {
   try {
-    return ctx
-      .replyWithMarkdown(
-        ctx.translate(T_`helpShieldy`),
-        Extra.webPreview(false).notifications(!ctx.dbchat.silentMessages),
-      )
-      .then(() => {
-        //
-      });
+    return replyWithHelp(ctx);
   } catch {
     return Promise.resolve();
   }

@@ -13,13 +13,17 @@ import {botDeleteMessageSafe} from './helpers/deleteMessageSafe';
 import {strings} from './helpers/strings';
 import {Language} from './models/Chat';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from './bot/types';
-import {getCommands} from './commands/all-commands';
 import {checkAdminMiddleware} from './middlewares/checkAdmin';
 import {checkLockMiddleware} from './middlewares/checkLock';
 import {clarifyIfPrivateMessagesMiddleware} from './helpers/clarifyIfPrivateMessages';
 
 export function setupBot(appContext: AppContext): void {
-  const {telegrafBot: bot, addBotMiddleware, addBotCommand} = appContext;
+  const {
+    telegrafBot: bot,
+    addBotMiddleware,
+    addBotCommand,
+    commandDefinitions,
+  } = appContext;
 
   addBotMiddleware((context: Context): BotMiddlewareNextStrategy => {
     context.appContext = appContext;
@@ -53,7 +57,7 @@ export function setupBot(appContext: AppContext): void {
   // Newcomers logic
   setupNewcomers(appContext);
 
-  getCommands().forEach(
+  commandDefinitions.forEach(
     ({
       key,
       onlyForAdmin,

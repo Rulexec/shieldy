@@ -1,5 +1,5 @@
 import {BotMiddlewareFn} from '@root/bot/types';
-import {L10nKey} from '@root/i18n/l10n-key';
+import {L10nKey, T_} from '@root/i18n/l10n-key';
 import {sourceCommandHandler} from './admin';
 import {allowInvitingBotsCommand} from './allowInvitingBots';
 import {banCommand} from './ban';
@@ -42,7 +42,7 @@ import {setupTimeLimit, timeLimitCommand} from './timeLimit';
 import {trustCommand} from './trust';
 import {underAttackCommand} from './underAttack';
 
-type CommandDef = {
+export type CommandDef = {
   key: string;
   helpDescription: L10nKey | undefined;
   /** mark extra dangerous methods */
@@ -65,93 +65,93 @@ export const getCommands = (): CommandDef[] => {
     },
     {
       key: 'allowInvitingBots',
-      helpDescription: undefined,
+      helpDescription: T_`allowInvitingBots_help`,
       handler: allowInvitingBotsCommand,
     },
     {
       key: 'ban',
-      helpDescription: undefined,
+      helpDescription: T_`ban_help`,
       onlyForAdmin: true,
       handler: banCommand,
     },
     {
       key: 'banNewTelegramUsers',
-      helpDescription: undefined,
+      helpDescription: T_`banNewTelegramUsers_help`,
       handler: banNewTelegramUsersCommand,
     },
     {
       key: 'banUsers',
-      helpDescription: undefined,
+      helpDescription: T_`banUsers_help`,
       handler: banUsersCommand,
     },
     {
       key: 'buttonText',
-      helpDescription: undefined,
+      helpDescription: T_`buttonText_help`,
       handler: buttonTextCommand,
     },
     {
       key: 'captcha',
-      helpDescription: undefined,
+      helpDescription: T_`captcha_help`,
       handler: captchaCommand,
       setup: setupCaptchaCommand,
     },
     {
       key: 'customCaptchaMessage',
-      helpDescription: undefined,
+      helpDescription: T_`customCaptchaMessage_help`,
       handler: customCaptchaMessageCommand,
       setup: setupCustomCaptchaMessage,
     },
     {
       key: 'cas',
-      helpDescription: undefined,
+      helpDescription: T_`cas_help`,
       handler: casCommand,
     },
     {
       key: 'deleteEntryMessages',
-      helpDescription: undefined,
+      helpDescription: T_`deleteEntryMessages_help`,
       handler: deleteEntryMessageCommand,
     },
     {
       key: 'deleteEntryOnKick',
-      helpDescription: undefined,
+      helpDescription: T_`deleteEntryOnKick_help`,
       handler: deleteEntryOnKickCommand,
     },
     {
       key: 'viewCustomCaptcha',
-      helpDescription: undefined,
+      helpDescription: T_`viewCustomCaptcha_help`,
       handler: viewCustomCaptchaCommand,
     },
     {
       key: 'removeAllCustomCaptcha',
-      helpDescription: undefined,
+      helpDescription: T_`removeAllCustomCaptcha_help`,
       handler: removeAllCustomCaptchaCommand,
     },
     {
       key: 'addCustomCaptcha',
-      helpDescription: undefined,
+      helpDescription: T_`addCustomCaptcha_help`,
       handler: addCustomCaptchaCommand,
       setup: setupAddCustomCaptcha,
     },
     {
       key: 'deleteGreetingTime',
-      helpDescription: undefined,
+      helpDescription: T_`deleteGreetingTime_help`,
       handler: deleteGreetingTimeCommand,
     },
     {
       key: 'greeting',
-      helpDescription: undefined,
+      helpDescription: T_`greeting_help`,
       handler: greetingCommand,
       setup: setupGreeting,
     },
     {
       key: 'greetingButtons',
-      helpDescription: undefined,
+      helpDescription: T_`greetingButtons_help`,
       handler: greetingButtonsCommand,
       setup: setupGreetingButtons,
     },
     {
       key: 'help',
-      helpDescription: undefined,
+      helpDescription: T_`help_help`,
       handler: helpCommand,
     },
     {
@@ -161,23 +161,23 @@ export const getCommands = (): CommandDef[] => {
     },
     {
       key: 'language',
-      helpDescription: undefined,
+      helpDescription: T_`language_help`,
       handler: languageCommand,
       setup: setupLanguage,
     },
     {
       key: 'lock',
-      helpDescription: undefined,
+      helpDescription: T_`lock_help`,
       handler: lockCommand,
     },
     {
       key: 'noAttack',
-      helpDescription: undefined,
+      helpDescription: T_`noAttack_help`,
       handler: noAttackCommand,
     },
     {
       key: 'noChannelLinks',
-      helpDescription: undefined,
+      helpDescription: T_`noChannelLinks_help`,
       handler: noChannelLinksCommand,
     },
     {
@@ -189,58 +189,58 @@ export const getCommands = (): CommandDef[] => {
     },
     {
       key: 'restrict',
-      helpDescription: undefined,
+      helpDescription: T_`restrict_help`,
       handler: restrictCommand,
     },
     {
       key: 'restrictTime',
-      helpDescription: undefined,
+      helpDescription: T_`restrictTime_help`,
       handler: restrictTimeCommand,
     },
     {
       key: 'viewConfig',
-      helpDescription: undefined,
+      helpDescription: T_`viewConfig_help`,
       handler: viewConfigCommand,
     },
     {
       key: 'setConfig',
-      helpDescription: undefined,
+      helpDescription: T_`setConfig_help`,
       handler: setConfigCommand,
     },
     {
       key: 'silent',
-      helpDescription: undefined,
+      helpDescription: T_`silent_help`,
       handler: silentCommand,
     },
     {
       key: 'skipOldUsers',
-      helpDescription: undefined,
+      helpDescription: T_`skipOldUsers_help`,
       handler: skipOldUsersCommand,
     },
     {
       key: 'skipVerifiedUsers',
-      helpDescription: undefined,
+      helpDescription: T_`skipVerifiedUsers_help`,
       handler: skipVerifiedUsersCommand,
     },
     {
       key: 'strict',
-      helpDescription: undefined,
+      helpDescription: T_`strict_help`,
       handler: strictCommand,
     },
     {
       key: 'timeLimit',
-      helpDescription: undefined,
+      helpDescription: T_`timeLimit_help`,
       handler: timeLimitCommand,
       setup: setupTimeLimit,
     },
     {
       key: 'trust',
-      helpDescription: undefined,
+      helpDescription: T_`trust_help`,
       handler: trustCommand,
     },
     {
       key: 'underAttack',
-      helpDescription: undefined,
+      helpDescription: T_`underAttack_help`,
       handler: underAttackCommand,
     },
   ];
