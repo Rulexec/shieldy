@@ -14,6 +14,7 @@ import {
 import {casCommand} from './cas';
 import {CommandDefSetupFn} from './types';
 import {deleteEntryMessageCommand} from './deleteEntryMessages';
+import {deleteEntryOnKickCommand} from './deleteEntryOnKick';
 
 type CommandDef = {
   key: string;
@@ -83,6 +84,11 @@ export const getCommands = (): CommandDef[] => {
       key: 'deleteEntryMessages',
       helpDescription: undefined,
       handler: deleteEntryMessageCommand,
+    },
+    {
+      key: 'deleteEntryOnKick',
+      helpDescription: undefined,
+      handler: deleteEntryOnKickCommand,
     },
   ];
 };

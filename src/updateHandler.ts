@@ -15,7 +15,6 @@ import {setupGreeting} from '@commands/greeting';
 import {setupTrust} from '@commands/trust';
 import {setupStrict} from '@commands/strict';
 import {setupDeleteGreetingTime} from '@commands/deleteGreetingTime';
-import {setupDeleteEntryOnKick} from '@commands/deleteEntryOnKick';
 import {setupUnderAttack} from '@commands/underAttack';
 import {setupNoAttack} from '@commands/noAttack';
 import {setupViewConfig} from '@commands/viewConfig';
@@ -84,7 +83,6 @@ export function setupBot(appContext: AppContext): void {
   setupTrust(bot);
   setupStrict(bot);
   setupDeleteGreetingTime(bot);
-  setupDeleteEntryOnKick(bot);
   setupUnderAttack(bot);
   setupNoAttack(bot);
   setupViewConfig(bot);
