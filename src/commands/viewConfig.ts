@@ -1,43 +1,36 @@
-import {clarifyIfPrivateMessages} from '@helpers/clarifyIfPrivateMessages';
 import {Chat} from '@models/Chat';
 import {Extra} from 'telegraf';
-import {checkLock} from '@middlewares/checkLock';
-import {Bot} from '@root/types/bot';
 import {Context} from '@root/types/context';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {T_} from '@root/i18n/l10n-key';
+import {commandHandler} from './util';
 
-export function setupViewConfig(bot: Bot): void {
-  bot.command(
-    'viewConfig',
-    checkLock,
-    clarifyIfPrivateMessages,
-    async (ctx) => {
-      assertNonNullish(ctx.message);
+export const viewConfigCommand = commandHandler(async (ctx) => {
+  assertNonNullish(ctx.message);
 
-      const secondPart = ctx.message.text.split(' ')[1];
-      if (secondPart) {
-        try {
-          let chatId: number | undefined;
-          if (!isNaN(+secondPart)) {
-            chatId = +secondPart;
-          } else if (secondPart.startsWith('@')) {
-            const telegramChat = await ctx.telegram.getChat(secondPart);
-            chatId = telegramChat.id;
-          }
-          if (chatId) {
-            const chat = await ctx.appContext.database.getChatById(chatId);
-            assertNonNullish(chat);
-            return sendCurrentConfig(ctx, chat);
-          }
-        } catch (err) {
-          return ctx.reply(ctx.translate(T_`noChatFound`));
-        }
+  const secondPart = ctx.message.text.split(' ')[1];
+  if (secondPart) {
+    try {
+      let chatId: number | undefined;
+      if (!isNaN(+secondPart)) {
+        chatId = +secondPart;
+      } else if (secondPart.startsWith('@')) {
+        const telegramChat = await ctx.telegram.getChat(secondPart);
+        chatId = telegramChat.id;
       }
-      await sendCurrentConfig(ctx, ctx.dbchat);
-    },
-  );
-}
+      if (chatId) {
+        const chat = await ctx.appContext.database.getChatById(chatId);
+        assertNonNullish(chat);
+        await sendCurrentConfig(ctx, chat);
+        return;
+      }
+    } catch (err) {
+      await ctx.reply(ctx.translate(T_`noChatFound`));
+      return;
+    }
+  }
+  await sendCurrentConfig(ctx, ctx.dbchat);
+});
 
 export async function sendCurrentConfig(
   ctx: Context,

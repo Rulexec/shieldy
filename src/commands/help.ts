@@ -1,23 +1,9 @@
 import {Context} from '@root/types/index';
-import {checkLockMiddleware} from '@middlewares/checkLock';
-import {clarifyIfPrivateMessagesMiddleware} from '@helpers/clarifyIfPrivateMessages';
-import {AppContext} from '@root/types/app-context';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 import {Extra} from 'telegraf';
 import {T_} from '@root/i18n/l10n-key';
 
-export function setupHelp(appContext: AppContext): void {
-  const {addBotCommand} = appContext;
-
-  addBotCommand(
-    ['help', 'start'],
-    checkLockMiddleware,
-    clarifyIfPrivateMessagesMiddleware,
-    sendHelpMiddleware,
-  );
-}
-
-const sendHelpMiddleware: BotMiddlewareFn = async (ctx) => {
+export const helpCommand: BotMiddlewareFn = async (ctx) => {
   await sendHelp(ctx);
   return BotMiddlewareNextStrategy.abort;
 };

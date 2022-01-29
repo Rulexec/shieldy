@@ -1,54 +1,51 @@
 import {clarifyReply} from '@helpers/clarifyReply';
-import {clarifyIfPrivateMessages} from '@helpers/clarifyIfPrivateMessages';
 import {Extra} from 'telegraf';
-import {Bot, Context} from '@root/types/index';
-import {checkLock} from '@middlewares/checkLock';
 import {getReplyToMessageText} from '@root/types/hacks/get-message-text';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {T_} from '@root/i18n/l10n-key';
+import {commandHandler} from './util';
+import {CommandDefSetupFn} from './types';
+import {BotMiddlewareNextStrategy} from '@root/bot/types';
 
-export function setupGreetingButtons(bot: Bot): void {
-  // Setup command
-  bot.command(
-    'greetingButtons',
-    checkLock,
-    clarifyIfPrivateMessages,
-    async (ctx) => {
-      assertNonNullish(ctx.message);
+export const greetingButtonsCommand = commandHandler(async (ctx) => {
+  assertNonNullish(ctx.message);
 
-      await ctx.replyWithMarkdown(
-        `${ctx.translate(T_`greetingButtons`)}`,
-        Extra.inReplyTo(ctx.message.message_id)
-          .webPreview(false)
-          .notifications(!ctx.dbchat.silentMessages),
-      );
-      await ctx.replyWithMarkdown(
-        `<code>${
-          ctx.dbchat.greetingButtons || ctx.translate(T_`greetingButtonsEmpty`)
-        }</code>`,
-        Extra.webPreview(false)
-          .HTML(true)
-          .notifications(!ctx.dbchat.silentMessages),
-      );
-      await clarifyReply(ctx);
-    },
+  await ctx.replyWithMarkdown(
+    `${ctx.translate(T_`greetingButtons`)}`,
+    Extra.inReplyTo(ctx.message.message_id)
+      .webPreview(false)
+      .notifications(!ctx.dbchat.silentMessages),
   );
-  // Setup checker
-  bot.use(async (ctx: Context, next: () => void): Promise<void> => {
+  await ctx.replyWithMarkdown(
+    `<code>${
+      ctx.dbchat.greetingButtons || ctx.translate(T_`greetingButtonsEmpty`)
+    }</code>`,
+    Extra.webPreview(false)
+      .HTML(true)
+      .notifications(!ctx.dbchat.silentMessages),
+  );
+  await clarifyReply(ctx);
+});
+
+export const setupGreetingButtons: CommandDefSetupFn = ({
+  appContext: {addBotMiddleware},
+}) => {
+  addBotMiddleware(async (ctx) => {
     const {
       appContext: {
         translations: {getLanguagesList, translate},
+        telegrafBot: bot,
       },
     } = ctx;
 
     try {
       // Check if reply
       if (!ctx.message || !ctx.message.reply_to_message) {
-        return;
+        return BotMiddlewareNextStrategy.next;
       }
       // Check if text
       if (!ctx.message.text) {
-        return;
+        return BotMiddlewareNextStrategy.next;
       }
       // Check if reply to shieldy
       if (
@@ -57,7 +54,7 @@ export function setupGreetingButtons(bot: Bot): void {
         !ctx.message.reply_to_message.from.username ||
         ctx.message.reply_to_message.from.username !== bot.botInfo.username
       ) {
-        return;
+        return BotMiddlewareNextStrategy.next;
       }
       // Check if reply to the correct message
       // FIXME: migrate to `lastReplySetting`/whatever, do not check by text
@@ -69,7 +66,7 @@ export function setupGreetingButtons(bot: Bot): void {
         !messageReplyText ||
         greetingButtonsMessages.indexOf(messageReplyText) < 0
       ) {
-        return;
+        return BotMiddlewareNextStrategy.next;
       }
       // Check format
       const components = ctx.message.text.split('\n');
@@ -84,7 +81,7 @@ export function setupGreetingButtons(bot: Bot): void {
             property: 'greetingButtons',
             value: ctx.dbchat.greetingButtons,
           });
-          return;
+          return BotMiddlewareNextStrategy.next;
         } else {
           result.push(component);
         }
@@ -102,8 +99,8 @@ export function setupGreetingButtons(bot: Bot): void {
       );
     } catch (err) {
       ctx.appContext.report(err);
-    } finally {
-      next();
     }
+
+    return BotMiddlewareNextStrategy.next;
   });
-}
+};

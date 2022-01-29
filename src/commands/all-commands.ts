@@ -21,6 +21,26 @@ import {
   setupAddCustomCaptcha,
   viewCustomCaptchaCommand,
 } from './customCaptcha';
+import {deleteGreetingTimeCommand} from './deleteGreetingTime';
+import {greetingCommand, setupGreeting} from './greeting';
+import {greetingButtonsCommand, setupGreetingButtons} from './greetingButtons';
+import {helpCommand} from './help';
+import {languageCommand, setupLanguage} from './language';
+import {lockCommand} from './lock';
+import {noAttackCommand} from './noAttack';
+import {noChannelLinksCommand} from './noChannelLinks';
+import {pingCommand} from './ping';
+import {restrictCommand} from './restrict';
+import {restrictTimeCommand} from './restrictTime';
+import {setConfigCommand} from './setConfig';
+import {viewConfigCommand} from './viewConfig';
+import {silentCommand} from './silent';
+import {skipOldUsersCommand} from './skipOldUsers';
+import {skipVerifiedUsersCommand} from './skipVerifiedUsers';
+import {strictCommand} from './strict';
+import {setupTimeLimit, timeLimitCommand} from './timeLimit';
+import {trustCommand} from './trust';
+import {underAttackCommand} from './underAttack';
 
 type CommandDef = {
   key: string;
@@ -111,6 +131,117 @@ export const getCommands = (): CommandDef[] => {
       helpDescription: undefined,
       handler: addCustomCaptchaCommand,
       setup: setupAddCustomCaptcha,
+    },
+    {
+      key: 'deleteGreetingTime',
+      helpDescription: undefined,
+      handler: deleteGreetingTimeCommand,
+    },
+    {
+      key: 'greeting',
+      helpDescription: undefined,
+      handler: greetingCommand,
+      setup: setupGreeting,
+    },
+    {
+      key: 'greetingButtons',
+      helpDescription: undefined,
+      handler: greetingButtonsCommand,
+      setup: setupGreetingButtons,
+    },
+    {
+      key: 'help',
+      helpDescription: undefined,
+      handler: helpCommand,
+    },
+    {
+      key: 'start',
+      helpDescription: undefined,
+      handler: helpCommand,
+    },
+    {
+      key: 'language',
+      helpDescription: undefined,
+      handler: languageCommand,
+      setup: setupLanguage,
+    },
+    {
+      key: 'lock',
+      helpDescription: undefined,
+      handler: lockCommand,
+    },
+    {
+      key: 'noAttack',
+      helpDescription: undefined,
+      handler: noAttackCommand,
+    },
+    {
+      key: 'noChannelLinks',
+      helpDescription: undefined,
+      handler: noChannelLinksCommand,
+    },
+    {
+      key: 'ping',
+      helpDescription: undefined,
+      allowForMembers: true,
+      allowInPrivateMessages: true,
+      handler: pingCommand,
+    },
+    {
+      key: 'restrict',
+      helpDescription: undefined,
+      handler: restrictCommand,
+    },
+    {
+      key: 'restrictTime',
+      helpDescription: undefined,
+      handler: restrictTimeCommand,
+    },
+    {
+      key: 'viewConfig',
+      helpDescription: undefined,
+      handler: viewConfigCommand,
+    },
+    {
+      key: 'setConfig',
+      helpDescription: undefined,
+      handler: setConfigCommand,
+    },
+    {
+      key: 'silent',
+      helpDescription: undefined,
+      handler: silentCommand,
+    },
+    {
+      key: 'skipOldUsers',
+      helpDescription: undefined,
+      handler: skipOldUsersCommand,
+    },
+    {
+      key: 'skipVerifiedUsers',
+      helpDescription: undefined,
+      handler: skipVerifiedUsersCommand,
+    },
+    {
+      key: 'strict',
+      helpDescription: undefined,
+      handler: strictCommand,
+    },
+    {
+      key: 'timeLimit',
+      helpDescription: undefined,
+      handler: timeLimitCommand,
+      setup: setupTimeLimit,
+    },
+    {
+      key: 'trust',
+      helpDescription: undefined,
+      handler: trustCommand,
+    },
+    {
+      key: 'underAttack',
+      helpDescription: undefined,
+      handler: underAttackCommand,
     },
   ];
 };

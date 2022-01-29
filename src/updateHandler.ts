@@ -1,39 +1,18 @@
 import 'module-alias/register';
 import {attachUser} from '@middlewares/attachUser';
-import {setupHelp} from '@commands/help';
-import {setupLanguage} from '@commands/language';
-import {setupCustomCaptcha} from '@commands/customCaptcha';
 import {checkMemberChange, setupNewcomers} from '@helpers/newcomers';
-import {setupTimeLimit} from '@commands/timeLimit';
-import {setupLock} from '@commands/lock';
 import {checkTime} from '@middlewares/checkTime';
-import {setupRestrict} from '@commands/restrict';
 import {checkRestrict} from '@middlewares/checkRestrict';
-import {setupNoChannelLinks} from '@commands/noChannelLinks';
 import {checkNoChannelLinks} from '@middlewares/checkNoChannelLinks';
-import {setupGreeting} from '@commands/greeting';
-import {setupTrust} from '@commands/trust';
-import {setupStrict} from '@commands/strict';
-import {setupDeleteGreetingTime} from '@commands/deleteGreetingTime';
-import {setupUnderAttack} from '@commands/underAttack';
-import {setupNoAttack} from '@commands/noAttack';
-import {setupViewConfig} from '@commands/viewConfig';
 import {checkAllowInvitingBots} from '@commands/allowInvitingBots';
-import {setupGreetingButtons} from '@commands/greetingButtons';
-import {setupSkipOldUsers} from '@commands/skipOldUsers';
-import {setupSkipVerifiedUsers} from '@commands/skipVerifiedUsers';
-import {setupSetConfig} from '@commands/setConfig';
 import {attachChatMember} from '@middlewares/attachChatMember';
 import {checkBlockList} from '@middlewares/checkBlockList';
-import {setupRestrictTime} from '@commands/restrictTime';
 import {AppContext} from './types/app-context';
 import {Context} from './types';
 import {botDeleteMessageSafe} from './helpers/deleteMessageSafe';
 import {strings} from './helpers/strings';
 import {Language} from './models/Chat';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from './bot/types';
-import {setupPing} from './commands/ping';
-import {setupSilent} from './commands/silent';
 import {getCommands} from './commands/all-commands';
 import {checkAdminMiddleware} from './middlewares/checkAdmin';
 import {checkLockMiddleware} from './middlewares/checkLock';
@@ -71,28 +50,6 @@ export function setupBot(appContext: AppContext): void {
   addBotMiddleware(checkRestrict);
   // Check if channel links are present
   addBotMiddleware(checkNoChannelLinks);
-  // Commands
-  setupHelp(appContext);
-  setupLanguage(bot);
-  setupCustomCaptcha(appContext);
-  setupTimeLimit(bot);
-  setupLock(bot);
-  setupRestrict(bot);
-  setupNoChannelLinks(bot);
-  setupGreeting(bot);
-  setupTrust(bot);
-  setupStrict(bot);
-  setupDeleteGreetingTime(bot);
-  setupUnderAttack(bot);
-  setupNoAttack(bot);
-  setupViewConfig(bot);
-  setupGreetingButtons(bot);
-  setupSkipOldUsers(bot);
-  setupSkipVerifiedUsers(bot);
-  setupSetConfig(bot);
-  setupRestrictTime(bot);
-  setupPing(appContext);
-  setupSilent(appContext);
   // Newcomers logic
   setupNewcomers(appContext);
 
