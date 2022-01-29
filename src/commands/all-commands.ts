@@ -15,6 +15,12 @@ import {casCommand} from './cas';
 import {CommandDefSetupFn} from './types';
 import {deleteEntryMessageCommand} from './deleteEntryMessages';
 import {deleteEntryOnKickCommand} from './deleteEntryOnKick';
+import {
+  addCustomCaptchaCommand,
+  removeAllCustomCaptchaCommand,
+  setupAddCustomCaptcha,
+  viewCustomCaptchaCommand,
+} from './customCaptcha';
 
 type CommandDef = {
   key: string;
@@ -89,6 +95,22 @@ export const getCommands = (): CommandDef[] => {
       key: 'deleteEntryOnKick',
       helpDescription: undefined,
       handler: deleteEntryOnKickCommand,
+    },
+    {
+      key: 'viewCustomCaptcha',
+      helpDescription: undefined,
+      handler: viewCustomCaptchaCommand,
+    },
+    {
+      key: 'removeAllCustomCaptcha',
+      helpDescription: undefined,
+      handler: removeAllCustomCaptchaCommand,
+    },
+    {
+      key: 'addCustomCaptcha',
+      helpDescription: undefined,
+      handler: addCustomCaptchaCommand,
+      setup: setupAddCustomCaptcha,
     },
   ];
 };
