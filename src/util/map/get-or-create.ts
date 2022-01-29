@@ -20,3 +20,13 @@ export const getOrCreateSet = <A, B>(map: Map<A, Set<B>>, key: A): Set<B> => {
 
   return item;
 };
+
+export const getOrCreateList = <A, B>(map: Map<A, B[]>, key: A): B[] => {
+  let item = map.get(key);
+  if (!item) {
+    item = [];
+    map.set(key, item);
+  }
+
+  return item;
+};

@@ -4,6 +4,7 @@ import {AppContext} from './types/app-context';
 import {Logger} from './util/logging/logger';
 import {BotMiddlewareNextStrategy} from './bot/types';
 import {createStatsUniqueLogger} from './util/stats/stats-unique-logger';
+import {telegramSetMyCommands} from './commands/set-my-commands';
 
 const workers: ReturnType<typeof fork>[] = [];
 
@@ -55,6 +56,13 @@ export function run(appContext: AppContext): void {
     })
     .then(() => {
       logger.info('started');
+
+      telegramSetMyCommands({
+        appContext,
+        logger: logger.fork('setMyCommands'),
+      }).catch((error) => {
+        logger.error('setMyCommands', undefined, {error});
+      });
     })
     .catch(appContext.report);
 

@@ -42,6 +42,13 @@ import {setupTimeLimit, timeLimitCommand} from './timeLimit';
 import {trustCommand} from './trust';
 import {underAttackCommand} from './underAttack';
 
+export type TelegramCommandScopeType =
+  | 'all_private_chats'
+  | 'all_group_chats'
+  | 'all_chat_administrators';
+
+export type TelegramCommandScopeObject = {type: TelegramCommandScopeType};
+
 export type CommandDef = {
   key: string;
   helpDescription: L10nKey | undefined;
@@ -53,6 +60,33 @@ export type CommandDef = {
   handler: BotMiddlewareFn;
   // TODO: eliminate this param too, add more types of handlers to be more declarative
   setup?: CommandDefSetupFn;
+};
+
+export const getCommandTelegramCommandScopes = ({
+  helpDescription,
+  onlyForAdmin,
+  allowInPrivateMessages,
+  allowForMembers,
+}: CommandDef): TelegramCommandScopeObject[] => {
+  const scopes: TelegramCommandScopeObject[] = [];
+
+  if (!helpDescription) {
+    return scopes;
+  }
+
+  if (onlyForAdmin || !allowForMembers) {
+    scopes.push({type: 'all_chat_administrators'});
+  }
+
+  if (allowInPrivateMessages) {
+    scopes.push({type: 'all_private_chats'});
+  }
+
+  if (allowForMembers) {
+    scopes.push({type: 'all_group_chats'});
+  }
+
+  return scopes;
 };
 
 export const getCommands = (): CommandDef[] => {
@@ -152,11 +186,13 @@ export const getCommands = (): CommandDef[] => {
     {
       key: 'help',
       helpDescription: T_`help_help`,
+      allowInPrivateMessages: true,
       handler: helpCommand,
     },
     {
       key: 'start',
       helpDescription: undefined,
+      allowInPrivateMessages: true,
       handler: helpCommand,
     },
     {

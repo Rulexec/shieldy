@@ -21,6 +21,7 @@ export const initBotMiddlewaresEngine = (appContext: AppContext): void => {
     return Promise.resolve();
   });
 
+  // bot commands are in lower case
   const botCommands: Record<string, {middlewares: BotMiddlewareFn[]}> = {};
   const botCallbackQueryMap: Record<string, {middlewares: BotMiddlewareFn[]}> =
     {};
@@ -77,7 +78,7 @@ export const initBotMiddlewaresEngine = (appContext: AppContext): void => {
           }
         }
 
-        const commandDef = botCommands[commandName];
+        const commandDef = botCommands[commandName.toLowerCase()];
         if (!commandDef) {
           return BotMiddlewareNextStrategy.next;
         }
@@ -159,10 +160,10 @@ export const initBotMiddlewaresEngine = (appContext: AppContext): void => {
   appContext.addBotCommand = (command, ...middlewares) => {
     if (Array.isArray(command)) {
       command.forEach((cmd) => {
-        botCommands[cmd] = {middlewares};
+        botCommands[cmd.toLowerCase()] = {middlewares};
       });
     } else {
-      botCommands[command] = {middlewares};
+      botCommands[command.toLowerCase()] = {middlewares};
     }
   };
   appContext.addBotCallbackQuery = (query, ...middlewares) => {
