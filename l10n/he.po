@@ -1,17 +1,35 @@
 msgid "allowInvitingBots_false"
 msgstr "מעולה! משתמשים לא יוכלו להזמין בוטים עכשיו."
 
+msgid "allowInvitingBots_help"
+msgstr "האם משתמשים יכולים להזמין בוטים אחרים או לא"
+
 msgid "allowInvitingBots_true"
 msgstr "מעולה! משתמשים יכולים להזמין בוטים עכשיו."
+
+msgid "banForFastRepliesToPosts_help"
+msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+
+msgid "banNewTelegramUsers_help"
+msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"
 
 msgid "banUsers_false"
 msgstr "מעולה! משתמשים יורחקו אם הם לא יעברו את המבחן."
 
+msgid "banUsers_help"
+msgstr "האם להרחיק או לנדות משתמשים"
+
 msgid "banUsers_true"
 msgstr "מעולה! משתמשים ינודו אם הם לא יעברו את המבחן."
 
+msgid "ban_help"
+msgstr "כמו trust, אבל הפוך"
+
 msgid "button"
 msgstr "כפתור"
+
+msgid "buttonText_help"
+msgstr "שנה את הטקט בכפתור המבחן על ידי `/buttonText I'm not a bot!`"
 
 msgid "button_warning"
 msgstr ", אנא ללחוץ על הכפתור במסגרת הזמן המוגדרת בקבוצה, אחרת תורחק. תודה רבה!"
@@ -31,14 +49,23 @@ msgstr "מעולה! מצטרפים יקבלו הודעה מותאמת אישית
 msgid "captcha_button"
 msgstr "אני לא בוט"
 
+msgid "captcha_help"
+msgstr "משנה את סוג המבחן בשימוש"
+
 msgid "captcha_selected"
 msgstr "נהדר! אני אשתמש בסוג הזה של מבחן."
 
 msgid "cas_false"
 msgstr "מעולה! Sesuritu מעכשיו לא ישתמש ב-Combot Anti-Spam."
 
+msgid "cas_help"
+msgstr "האם להשתמש ב-Combot Anti-Spam או לא"
+
 msgid "cas_true"
 msgstr "מעולה! Sesuritu מעכשיו ישתמש ב-Combot Anti-Spam."
+
+msgid "customCaptchaMessage_help"
+msgstr "הגדר הודעת מבחן מותאמת אישית"
 
 msgid "custom_success"
 msgstr "קיבלתי!"
@@ -55,6 +82,15 @@ msgstr "מעולה! Sesuritu לא ימחק הודעות כניסה של מתמש
 msgid "deleteEntryOnKick_true"
 msgstr "מעולה! Sesuritu ימחק הודעות כניסה של משתמשים שנכשלו במבחן."
 
+msgid "deleteEntryOnkick_help"
+msgstr "האם למחוק הודעות כניסה למשתמשים שנכשלו במבחן"
+
+msgid "deleteEntryrMessages_help"
+msgstr "מוחק הודעות אודות כניסת משתמשים"
+
+msgid "deleteGreetingTime_help"
+msgstr "הגדר מתי למחוק את הברכה של Sesuritu בשניות כמו `/deleteGreetingTime 100`, אפס על ידי הגדרה 0"
+
 msgid "digits"
 msgstr "ספרות"
 
@@ -66,6 +102,12 @@ msgstr "השב להודעה הזאת (ואני מתכוון לתגובה(!), ל�
 
 msgid "greetingButtonsEmpty"
 msgstr "אין כפתורים"
+
+msgid "greetingButtons_help"
+msgstr "הגדר לחצנים להודעת הברכה"
+
+msgid "greeting_help"
+msgstr "מברך את המשתמשים שעוברים את המבחן"
 
 msgid "greetsUsers_false"
 msgstr "מעולה! כעת מצטרפים שעברו את המבחן לא יבורכו."
@@ -79,11 +121,23 @@ msgstr "מעולה! כעת מצטרפים שעברו את המבחן יבורכ�
 msgid "greetsUsers_true_message"
 msgstr "מעולה! כעת מצטרפים שעברו את המבחן יבורכו. אנא, השב להודעה זו עם הודעת הברכה שברצונך להשתמש. להלן הודעת הברכה."
 
+msgid "help_end"
+msgstr ". הקוד של Sesuritu הוא פתוח ונמצא [כאן](https://github.com/Rulexec/shieldy)."
+
+msgid "help_help"
+msgstr "מציג את ההודעה הזאת"
+
+msgid "help_start"
+msgstr "Sesuritu — הפתרון הטוב ביותר בטלגרם למלחמה בספאם המעצבן. הוא מבקש ממצטרפים לבצע פעולה מוגדרת בתוך פרק זמן מוגדר, אחרת מרחיק אותם. זה קל כל כך. וודא ש-@Sesuritu\\_bot הוא מנהל בשיחוח שלך וזה הכל! באפשרותך להגדיר עוד יותר את ההתנהגות באמצעות הפקודות הבאות:"
+
 msgid "image"
 msgstr "תמונה"
 
 msgid "image_warning"
 msgstr ", אנא לשלוח את התווים המוצגים במסגרת הזמן המוגדרת בקבוצה, אחרת תורחק. תודה רבה!"
+
+msgid "language_help"
+msgstr "מחליף שפה"
 
 msgid "language_selected"
 msgstr "נהדר! אני דובר עברית כעת."
@@ -94,17 +148,26 @@ msgstr "אנא בחר שפה."
 msgid "lock_false_shieldy"
 msgstr "מעולה! מעכשיו אני אגיב לפקודות מכל אחד."
 
+msgid "lock_help"
+msgstr "הופך את הפקודות לנגישות רק למנהלים"
+
 msgid "lock_true_shieldy"
 msgstr "מעולה! מעכשיו אני אגיב רק לפקודות מהמנהלים."
 
 msgid "noAttack_false"
 msgstr "מעולה! Sesuritu דלוק כעת."
 
+msgid "noAttack_help"
+msgstr "מבטל את Sesuritu"
+
 msgid "noAttack_true"
 msgstr "מעולה! Sesuritu מכובה כעת. אל תשכחו לבטל את הפעולה בעזרת /noAttack."
 
 msgid "noChannelLinks_false"
 msgstr "מעולה! Sesuritu לא ימחק הודעות עם קישור לערוצים בטלגרם."
+
+msgid "noChannelLinks_help"
+msgstr "מוחק אוטומטית הודעות המקשרות לערוצי טלגרם אחרים"
 
 msgid "noChannelLinks_true"
 msgstr "מעולה! מעכשיו Sesuritu ימחק הודעות עם קישור לערוץ טלגרם."
@@ -115,8 +178,14 @@ msgstr "רק מי שפתח את התפריט יכול לבחור את האפשר
 msgid "only_candidate_can_reply"
 msgstr "רק מועמדים שאינם בוטים יכולים ללחוץ על הכפתור הזה."
 
+msgid "restrictTime_help"
+msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+
 msgid "restrict_false"
 msgstr "מעולה! כעת כל המצטרפים יוכלו לשלוח הודעות עם כל תוכן שהוא בשיחוח הזה."
+
+msgid "restrict_help"
+msgstr "מגביל מצטרפים להודעות טקסט ליום אחד"
 
 msgid "restrict_true"
 msgstr "מעולה! כעת כל המצטרפים יוכלו לשלוח רק הודעות טקסט בשיחוח הזה."
@@ -124,110 +193,14 @@ msgstr "מעולה! כעת כל המצטרפים יוכלו לשלוח רק הו
 msgid "seconds"
 msgstr "שניה"
 
+msgid "setConfig_help"
+msgstr "setup Sesuritu configuration in one message"
+
 msgid "simple"
 msgstr "פשוט"
 
 msgid "simple_warning"
 msgstr ", אנא שלח הודעה כלשהי לקבוצה בטווח הזמן הנתון, אחר תורחק. תודה!"
-
-msgid "strict_false"
-msgstr "מעולה! מצטרפים יוכלו לשלוח הודעות לפני שענו על המבחן."
-
-msgid "strict_true"
-msgstr "מעולה! מצטרפים לא ישלחו דבר עד שלא יפתרו את ההמבחן."
-
-msgid "time_limit"
-msgstr "אנא בחר את מספר השניות שיהיו למצטרפים חדשים כדי לשלים את המבחן לפני שיעופו."
-
-msgid "time_limit_selected"
-msgstr "יופי! אני אשתמש במגבלת הזמן הזו."
-
-msgid "trust_success"
-msgstr "קיבלתי!"
-
-msgid "underAttack_false"
-msgstr "מעולה! Sesuritu לא ירחיק את כל מי שנכנס לשיחוח."
-
-msgid "underAttack_true"
-msgstr "מעולה! Sesuritu מעכשיו ירחיק את כל מי שיכנס לשיחוח. לא לשכוח לבטל את המצב כשההתקפה נגמרת בעזרת /underAttack."
-
-msgid "viewConfig"
-msgstr "הגדרות נוכחיות:"
-
-msgid "help_start"
-msgstr "Sesuritu — הפתרון הטוב ביותר בטלגרם למלחמה בספאם המעצבן. הוא מבקש ממצטרפים לבצע פעולה מוגדרת בתוך פרק זמן מוגדר, אחרת מרחיק אותם. זה קל כל כך. וודא ש-@Sesuritu\\_bot הוא מנהל בשיחוח שלך וזה הכל! באפשרותך להגדיר עוד יותר את ההתנהגות באמצעות הפקודות הבאות:"
-
-msgid "help_end"
-msgstr ". הקוד של Sesuritu הוא פתוח ונמצא [כאן](https://github.com/Rulexec/shieldy)."
-
-msgid "help_help"
-msgstr "מציג את ההודעה הזאת"
-
-msgid "language_help"
-msgstr "מחליף שפה"
-
-msgid "captcha_help"
-msgstr "משנה את סוג המבחן בשימוש"
-
-msgid "timeLimit_help"
-msgstr "משנה את כמות הזמן הניתנת למצטרפים"
-
-msgid "lock_help"
-msgstr "הופך את הפקודות לנגישות רק למנהלים"
-
-msgid "restrict_help"
-msgstr "מגביל מצטרפים להודעות טקסט ליום אחד"
-
-msgid "deleteEntryrMessages_help"
-msgstr "מוחק הודעות אודות כניסת משתמשים"
-
-msgid "greeting_help"
-msgstr "מברך את המשתמשים שעוברים את המבחן"
-
-msgid "trust_help"
-msgstr "השב עם פקודה זו להודעה שנשלחה על ידי משתמש שאינך רוצה לבדוק"
-
-msgid "ban_help"
-msgstr "כמו trust, אבל הפוך"
-
-msgid "strict_help"
-msgstr "השתמש כאשר אינך מעוניין לקבל הודעות חדשות ממצטרפים עד שיפתרו את המבחן"
-
-msgid "customCaptchaMessage_help"
-msgstr "הגדר הודעת מבחן מותאמת אישית"
-
-msgid "deleteGreetingTime_help"
-msgstr "הגדר מתי למחוק את הברכה של Sesuritu בשניות כמו `/deleteGreetingTime 100`, אפס על ידי הגדרה 0"
-
-msgid "banUsers_help"
-msgstr "האם להרחיק או לנדות משתמשים"
-
-msgid "deleteEntryOnkick_help"
-msgstr "האם למחוק הודעות כניסה למשתמשים שנכשלו במבחן"
-
-msgid "cas_help"
-msgstr "האם להשתמש ב-Combot Anti-Spam או לא"
-
-msgid "underAttack_help"
-msgstr "החלף את המצב כדי לבעוט אוטומטית כל מצרף"
-
-msgid "noAttack_help"
-msgstr "מבטל את Sesuritu"
-
-msgid "noChannelLinks_help"
-msgstr "מוחק אוטומטית הודעות המקשרות לערוצי טלגרם אחרים"
-
-msgid "viewConfig_help"
-msgstr "צפו בהגדרות הנוכחיות של Sesuritu"
-
-msgid "buttonText_help"
-msgstr "שנה את הטקט בכפתור המבחן על ידי `/buttonText I'm not a bot!`"
-
-msgid "allowInvitingBots_help"
-msgstr "האם משתמשים יכולים להזמין בוטים אחרים או לא"
-
-msgid "greetingButtons_help"
-msgstr "הגדר לחצנים להודעת הברכה"
 
 msgid "skipOldUsers_help"
 msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
@@ -235,14 +208,41 @@ msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
 msgid "skipVerifiedUsers_help"
 msgstr "don't show captcha to users who have ever passed captcha in any chat"
 
-msgid "setConfig_help"
-msgstr "setup Sesuritu configuration in one message"
+msgid "strict_false"
+msgstr "מעולה! מצטרפים יוכלו לשלוח הודעות לפני שענו על המבחן."
 
-msgid "banForFastRepliesToPosts_help"
-msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+msgid "strict_help"
+msgstr "השתמש כאשר אינך מעוניין לקבל הודעות חדשות ממצטרפים עד שיפתרו את המבחן"
 
-msgid "restrictTime_help"
-msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+msgid "strict_true"
+msgstr "מעולה! מצטרפים לא ישלחו דבר עד שלא יפתרו את ההמבחן."
 
-msgid "banNewTelegramUsers_help"
-msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"
+msgid "timeLimit_help"
+msgstr "משנה את כמות הזמן הניתנת למצטרפים"
+
+msgid "time_limit"
+msgstr "אנא בחר את מספר השניות שיהיו למצטרפים חדשים כדי לשלים את המבחן לפני שיעופו."
+
+msgid "time_limit_selected"
+msgstr "יופי! אני אשתמש במגבלת הזמן הזו."
+
+msgid "trust_help"
+msgstr "השב עם פקודה זו להודעה שנשלחה על ידי משתמש שאינך רוצה לבדוק"
+
+msgid "trust_success"
+msgstr "קיבלתי!"
+
+msgid "underAttack_false"
+msgstr "מעולה! Sesuritu לא ירחיק את כל מי שנכנס לשיחוח."
+
+msgid "underAttack_help"
+msgstr "החלף את המצב כדי לבעוט אוטומטית כל מצרף"
+
+msgid "underAttack_true"
+msgstr "מעולה! Sesuritu מעכשיו ירחיק את כל מי שיכנס לשיחוח. לא לשכוח לבטל את המצב כשההתקפה נגמרת בעזרת /underAttack."
+
+msgid "viewConfig"
+msgstr "הגדרות נוכחיות:"
+
+msgid "viewConfig_help"
+msgstr "צפו בהגדרות הנוכחיות של Sesuritu"

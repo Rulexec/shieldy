@@ -1,3 +1,4 @@
+import 'module-alias/register';
 import {localizations} from '@root/helpers/localizations';
 import {writeFileSync, readdirSync, readFileSync} from 'fs';
 import PO from 'pofile';
@@ -64,7 +65,9 @@ languages.forEach((keys, lang) => {
   const content =
     keysList
       .map(([key, value]) => {
-        return `msgid "${escape(key)}"\nmsgstr "${escape(value)}"`;
+        const str = value.replace(/Shieldy/g, 'Sesuritu');
+
+        return `msgid "${escape(key)}"\nmsgstr "${escape(str)}"`;
       })
       .join('\n\n') + '\n';
 

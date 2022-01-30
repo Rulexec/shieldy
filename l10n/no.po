@@ -1,17 +1,35 @@
 msgid "allowInvitingBots_false"
 msgstr "Supert! Brukere kan nå ikke invitere botter."
 
+msgid "allowInvitingBots_help"
+msgstr "om brukere kan invitere andre botter eller ikke"
+
 msgid "allowInvitingBots_true"
 msgstr "Supert! Brukere kan nå invitere botter."
+
+msgid "banForFastRepliesToPosts_help"
+msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+
+msgid "banNewTelegramUsers_help"
+msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"
 
 msgid "banUsers_false"
 msgstr "Supert! Brukere vil bli sparket om de ikke består testen."
 
+msgid "banUsers_help"
+msgstr "om brukerne skal utestenges eller sparkes"
+
 msgid "banUsers_true"
 msgstr "Supert! Brukere vil bli utestengt om de ikke består testen."
 
+msgid "ban_help"
+msgstr "samme som 'trust', men det motsatte"
+
 msgid "button"
 msgstr "Knapp"
+
+msgid "buttonText_help"
+msgstr "endre teksten på captcha-knappen slik som dette; `/buttonText I'm not a bot!`"
 
 msgid "button_warning"
 msgstr "vennligst trykk knappen nedenfor innen den spesifiserte tidsperioden, hvis ikke blir du sparket. Takk!"
@@ -31,14 +49,23 @@ msgstr "Supert! Nå vil nykommere få en egendefinert beskjed som forklarer test
 msgid "captcha_button"
 msgstr "Jeg er ikke en bot"
 
+msgid "captcha_help"
+msgstr "endrer hvilken type captcha som blir brukt"
+
 msgid "captcha_selected"
 msgstr "Supert, da vil jeg bruke denne type testen."
 
 msgid "cas_false"
 msgstr "Supert! Sesuritu vil nå ikke bruke Combot Anti-Spam."
 
+msgid "cas_help"
+msgstr "om Combot Anti-Spam skal brukes eller ikke"
+
 msgid "cas_true"
 msgstr "Supert! Sesuritu vil nå bruke Combot Anti-Spam."
+
+msgid "customCaptchaMessage_help"
+msgstr "sett opp egen captcha melding"
 
 msgid "custom_success"
 msgstr "Akseptert!"
@@ -46,14 +73,23 @@ msgstr "Akseptert!"
 msgid "deleteEntryMessages_false"
 msgstr "Supert! Meldinger sendt ved ankomst vil ikke bli slettet."
 
+msgid "deleteEntryMessages_help"
+msgstr "sletter meldinger om brukerens adkomst"
+
 msgid "deleteEntryMessages_true"
 msgstr "Supert! Meldinger sendt ved ankomst bli slettet."
 
 msgid "deleteEntryOnKick_false"
 msgstr "Supert! Sesuritu vil ikke fjerne inngangsmeldingene til brukere som ikke består captcha-testen."
 
+msgid "deleteEntryOnKick_help"
+msgstr "om inngangsmeldingene til brukere som feilet testen skal slettes"
+
 msgid "deleteEntryOnKick_true"
 msgstr "Supert! Sesuritu vil fjerne inngangsmeldingene til brukere som ikke består captcha-testen."
+
+msgid "deleteGreetingTime_help"
+msgstr "angi i sekunder når Sesuritus hilsner skal slettes, f.eks `/deleteGreetingTime 100`, tilbakestill ved å sette til 0"
 
 msgid "digits"
 msgstr "Tall"
@@ -67,6 +103,12 @@ msgstr "Svar på denne meldingen (og jeg mener svar(!), ikke bare send en separa
 msgid "greetingButtonsEmpty"
 msgstr "Ingen knapper"
 
+msgid "greetingButtons_help"
+msgstr "sett opp knapper for hilse-meldinger"
+
+msgid "greeting_help"
+msgstr "sender en velkomst når en bruker består testen"
+
 msgid "greetsUsers_false"
 msgstr "Supert! Nykommere som har bestått testen vil ikke få en velkomst."
 
@@ -79,11 +121,23 @@ msgstr "Supert! Nykommere som har bestått testen vil få en velkomst. Vennligst
 msgid "greetsUsers_true_message"
 msgstr "Supert! Nykommere som har bestått testen vil få en velkomst. Vennligst svar på denne meldingen med teksten du vil bruke som velkomst (du kan bruke $title og $username). Den nåværende meldingen følger."
 
+msgid "help_end"
+msgstr "Har du fortsatt spørsmål?. Sesuritus kode er åpen og finnes [her](https://github.com/Rulexec/shieldy)."
+
+msgid "help_help"
+msgstr "viser denne meldingen"
+
+msgid "help_start"
+msgstr "Sesuritu — er den beste løsningen på Telegram for å holde tilbake irriterende falske kontoer. Den spørr nykommere om å utføre et sett med handlinger innenfor er viss tidsperiode, hvis ikke blir brukeren kastet ut. Så enkelt er det. Gjør @Sesuritu\\_bot til admin i chatten din og alt er klart! Du kan videre endre oppførselen med de følgende kommandoene:"
+
 msgid "image"
 msgstr "Bilde"
 
 msgid "image_warning"
 msgstr ", vennligst send tegnene som vises på bildet innen den spesifiserte tidsperioden, hvis ikke blir du sparket. Takk!"
+
+msgid "language_help"
+msgstr "bytter språk"
 
 msgid "language_selected"
 msgstr "Supert, nå snakker jeg norsk."
@@ -94,17 +148,26 @@ msgstr "Vennligst velg et språk."
 msgid "lock_false_shieldy"
 msgstr "Supert! Nå vil jeg svare på kommandoer gitt av hvem som helst."
 
+msgid "lock_help"
+msgstr "gjør kommandoer tilgjengelig bare for administratorer"
+
 msgid "lock_true_shieldy"
 msgstr "Supert! Nå vil jeg bare svare på kommandoer gitt av administratorer."
 
 msgid "noAttack_false"
 msgstr "Supert! Sesuritu er nå aktivert."
 
+msgid "noAttack_help"
+msgstr "deaktiverer Sesuritu"
+
 msgid "noAttack_true"
 msgstr "Supert! Nå er Sesuritu deaktivert. Ikke glem å slå av denne modusen med /noAttack."
 
 msgid "noChannelLinks_false"
 msgstr "Supert! Sesuritu vil ikke slette meldinger som lenker til andre Telegram-kanaler."
+
+msgid "noChannelLinks_help"
+msgstr "sletter automatisk meldinger som lenker til andre Telegram-kanaler"
 
 msgid "noChannelLinks_true"
 msgstr "Supert! Sesuritu vil nå slette meldinger som lenker til andre Telegram-kanaler."
@@ -115,8 +178,14 @@ msgstr "Bare personen som åpnet menyen kan svare på den."
 msgid "only_candidate_can_reply"
 msgstr "Bare kandidaten som blir testet kan trykke denne knappen."
 
+msgid "restrictTime_help"
+msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+
 msgid "restrict_false"
 msgstr "Supert! Nå kan nykommere sende meldinger med all slags innhold i chatten"
+
+msgid "restrict_help"
+msgstr "begrenser nykommere til å bare kunne sende tekstmeldinger de første 24 timene"
 
 msgid "restrict_true"
 msgstr "Supert! Nå kan nykommere bare sende tekstmeldinger i chatten."
@@ -124,110 +193,14 @@ msgstr "Supert! Nå kan nykommere bare sende tekstmeldinger i chatten."
 msgid "seconds"
 msgstr "sek"
 
+msgid "setConfig_help"
+msgstr "setup Sesuritu configuration in one message"
+
 msgid "simple"
 msgstr "Enkel"
 
 msgid "simple_warning"
 msgstr ", vennligst send hvilken som helst melding til denne gruppen innen den spesifiserte tidsperioden, hvis ikke blir du sparket. Takk!"
-
-msgid "strict_false"
-msgstr "Supert! Nå kan nykommere sende meldinger før de har bestått testen."
-
-msgid "strict_true"
-msgstr "Supert! Nå kan ikke nykommere sende noe før de har bestått testen."
-
-msgid "time_limit"
-msgstr "Vennligst velg hvor mange sekunder nykommere skal få på å fullføre testen før brukeren blir sparket."
-
-msgid "time_limit_selected"
-msgstr "Supert, da skal jeg bruke denne tidsbegrensningen."
-
-msgid "trust_success"
-msgstr "Akseptert!"
-
-msgid "underAttack_false"
-msgstr "Supert! Sesuritu vil ikke sparke alle som blir med i chatten."
-
-msgid "underAttack_true"
-msgstr "Supert! Sesuritu vil nå sparke alle som blir med i chatten. Ikke glem å slå av denne modusen når angrepet er over med /underAttack."
-
-msgid "viewConfig"
-msgstr "Gjeldende konfigurasjon:"
-
-msgid "help_start"
-msgstr "Sesuritu — er den beste løsningen på Telegram for å holde tilbake irriterende falske kontoer. Den spørr nykommere om å utføre et sett med handlinger innenfor er viss tidsperiode, hvis ikke blir brukeren kastet ut. Så enkelt er det. Gjør @Sesuritu\\_bot til admin i chatten din og alt er klart! Du kan videre endre oppførselen med de følgende kommandoene:"
-
-msgid "help_end"
-msgstr "Har du fortsatt spørsmål?. Sesuritus kode er åpen og finnes [her](https://github.com/Rulexec/shieldy)."
-
-msgid "help_help"
-msgstr "viser denne meldingen"
-
-msgid "language_help"
-msgstr "bytter språk"
-
-msgid "captcha_help"
-msgstr "endrer hvilken type captcha som blir brukt"
-
-msgid "timeLimit_help"
-msgstr "endrer hvor mye tid som blir gitt til nykommere"
-
-msgid "lock_help"
-msgstr "gjør kommandoer tilgjengelig bare for administratorer"
-
-msgid "restrict_help"
-msgstr "begrenser nykommere til å bare kunne sende tekstmeldinger de første 24 timene"
-
-msgid "deleteEntryMessages_help"
-msgstr "sletter meldinger om brukerens adkomst"
-
-msgid "greeting_help"
-msgstr "sender en velkomst når en bruker består testen"
-
-msgid "trust_help"
-msgstr "svar med denne kommandoen til en melding sendt av en bruker du ikke vil skal sjekkes"
-
-msgid "ban_help"
-msgstr "samme som 'trust', men det motsatte"
-
-msgid "strict_help"
-msgstr "bruk hvis du bare vil motta captcha nykommernes meldinger untatt captcha løsninger før de har bestått testen"
-
-msgid "customCaptchaMessage_help"
-msgstr "sett opp egen captcha melding"
-
-msgid "deleteGreetingTime_help"
-msgstr "angi i sekunder når Sesuritus hilsner skal slettes, f.eks `/deleteGreetingTime 100`, tilbakestill ved å sette til 0"
-
-msgid "banUsers_help"
-msgstr "om brukerne skal utestenges eller sparkes"
-
-msgid "deleteEntryOnKick_help"
-msgstr "om inngangsmeldingene til brukere som feilet testen skal slettes"
-
-msgid "cas_help"
-msgstr "om Combot Anti-Spam skal brukes eller ikke"
-
-msgid "underAttack_help"
-msgstr "slå av eller på modusen der alle nykommere blir automatisk sparket"
-
-msgid "noAttack_help"
-msgstr "deaktiverer Sesuritu"
-
-msgid "noChannelLinks_help"
-msgstr "sletter automatisk meldinger som lenker til andre Telegram-kanaler"
-
-msgid "viewConfig_help"
-msgstr "vis nåværende Sesuritu-konfigurasjon"
-
-msgid "buttonText_help"
-msgstr "endre teksten på captcha-knappen slik som dette; `/buttonText I'm not a bot!`"
-
-msgid "allowInvitingBots_help"
-msgstr "om brukere kan invitere andre botter eller ikke"
-
-msgid "greetingButtons_help"
-msgstr "sett opp knapper for hilse-meldinger"
 
 msgid "skipOldUsers_help"
 msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
@@ -235,14 +208,41 @@ msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
 msgid "skipVerifiedUsers_help"
 msgstr "don't show captcha to users who have ever passed captcha in any chat"
 
-msgid "setConfig_help"
-msgstr "setup Sesuritu configuration in one message"
+msgid "strict_false"
+msgstr "Supert! Nå kan nykommere sende meldinger før de har bestått testen."
 
-msgid "banForFastRepliesToPosts_help"
-msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+msgid "strict_help"
+msgstr "bruk hvis du bare vil motta captcha nykommernes meldinger untatt captcha løsninger før de har bestått testen"
 
-msgid "restrictTime_help"
-msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+msgid "strict_true"
+msgstr "Supert! Nå kan ikke nykommere sende noe før de har bestått testen."
 
-msgid "banNewTelegramUsers_help"
-msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"
+msgid "timeLimit_help"
+msgstr "endrer hvor mye tid som blir gitt til nykommere"
+
+msgid "time_limit"
+msgstr "Vennligst velg hvor mange sekunder nykommere skal få på å fullføre testen før brukeren blir sparket."
+
+msgid "time_limit_selected"
+msgstr "Supert, da skal jeg bruke denne tidsbegrensningen."
+
+msgid "trust_help"
+msgstr "svar med denne kommandoen til en melding sendt av en bruker du ikke vil skal sjekkes"
+
+msgid "trust_success"
+msgstr "Akseptert!"
+
+msgid "underAttack_false"
+msgstr "Supert! Sesuritu vil ikke sparke alle som blir med i chatten."
+
+msgid "underAttack_help"
+msgstr "slå av eller på modusen der alle nykommere blir automatisk sparket"
+
+msgid "underAttack_true"
+msgstr "Supert! Sesuritu vil nå sparke alle som blir med i chatten. Ikke glem å slå av denne modusen når angrepet er over med /underAttack."
+
+msgid "viewConfig"
+msgstr "Gjeldende konfigurasjon:"
+
+msgid "viewConfig_help"
+msgstr "vis nåværende Sesuritu-konfigurasjon"

@@ -1,5 +1,23 @@
+msgid "allowInvitingBots_help"
+msgstr "whether users can invite other bots or not"
+
+msgid "banForFastRepliesToPosts_help"
+msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+
+msgid "banNewTelegramUsers_help"
+msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"
+
+msgid "banUsers_help"
+msgstr "whether to ban or to kick users"
+
+msgid "ban_help"
+msgstr "same as trust, but the opposite"
+
 msgid "button"
 msgstr "버튼"
+
+msgid "buttonText_help"
+msgstr "change the captcha button text in the form of `/buttonText I'm not a bot!`"
 
 msgid "button_warning"
 msgstr ", 스팸 봇인지 확인하기 위한 작업입니다. 지정된 시간 내에 아래 버튼을 누르십시오. 그렇지 않으면 자동 추방 될 예정입니다. 감사합니다!"
@@ -10,8 +28,17 @@ msgstr "신규 입장자에 대한 테스트 유형을 선택하십시오:\n\n�
 msgid "captcha_button"
 msgstr "저는 봇이 아닙니다"
 
+msgid "captcha_help"
+msgstr "사용된 captcha의 설정 변경"
+
 msgid "captcha_selected"
 msgstr "좋아요. 그러면 이런 종류의 테스트를 사용하겠습니다."
+
+msgid "cas_help"
+msgstr "whether to use Combot Anti-Spam or not"
+
+msgid "customCaptchaMessage_help"
+msgstr "setup custom captcha message"
 
 msgid "custom_success"
 msgstr "수락되었습니다"
@@ -19,14 +46,29 @@ msgstr "수락되었습니다"
 msgid "deleteEntryMessages_false"
 msgstr "좋아요! 이제 입력 메시지는 삭제되지 않습니다."
 
+msgid "deleteEntryMessages_help"
+msgstr "사용자 항목에 대한 메시지 삭제"
+
 msgid "deleteEntryMessages_true"
 msgstr "좋아요! 이제 입력 메시지가 삭제됩니다."
+
+msgid "deleteEntryOnKick_help"
+msgstr "whether to delete entry messages for users who failed captcha"
+
+msgid "deleteGreetingTime_help"
+msgstr "setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0"
 
 msgid "digits"
 msgstr "방정식"
 
 msgid "digits_warning"
 msgstr ", 스팸 봇인지 확인하기 위한 작업입니다. 지정된 시간 내에 제공된 수학 방정식의 답을 채팅으로 보내십시오. 그렇지 않으면 자동 추방 될 예정입니다. 감사합니다!"
+
+msgid "greetingButtons_help"
+msgstr "setup buttons for greeting message"
+
+msgid "greeting_help"
+msgstr "테스트에 통과한 사람에게 환영 인사"
 
 msgid "greetsUsers_false"
 msgstr "좋아요! 이제 테스트에 합격한 신입들에게 환영 인사를 하지않을 거예요."
@@ -40,6 +82,18 @@ msgstr "좋아요! 이제 테스트에 통과한 신규 입장자들에게 인�
 msgid "greetsUsers_true_message"
 msgstr "좋아요! 이제 테스트에 통과한 신규 입장자들에게 인사 할 예정입니다. 사용하고 싶은 인사말을 사용하여 이 메시지에 회신하십시오 ($title 및 $username 사용 가능). 현재 인사 메시지가 이어집니다."
 
+msgid "help_end"
+msgstr "을 확인해주세요. Sesuritu 의 코드는 오픈소스 이며 (https://github.com/Rulexec/shieldy) 에서 확인이 가능합니다. 감사합니다!\n."
+
+msgid "help_help"
+msgstr "이 메시지를 보여줍니다"
+
+msgid "help_start"
+msgstr "Sesuritu 는 짜증나는 스패머들에 대응하기 위한 최고의 해결책입니다. 이 봇은 신규 입장자들에게 정해진 시간내에 정해진 행동을 실행하도록 요청하고, 정해진 행동을 하지 않으면 그들을 자동 추방시킵니다. 사용법은 정말 간단합니다.@Sesuritu\\_bot 가 채팅 그룹에서 관리자인지 확인을 하십시오. 모든 준비는 끝났습니다.!아래와 같은 명령을 사용하여 추가로 설정할 수도 있습니다:"
+
+msgid "language_help"
+msgstr "언어 변경"
+
 msgid "language_selected"
 msgstr "좋아요, 나는 이제 한국어로 말합니다."
 
@@ -49,101 +103,11 @@ msgstr "언어를 선택하십시오."
 msgid "lock_false_shieldy"
 msgstr "좋아요! 이제 나는 누구든지 보낸 명령에 반응할 것입니다."
 
-msgid "lock_true_shieldy"
-msgstr "좋아요! 이제 나는 관리자들이 보내는 명령에만 반응할 것입니다."
-
-msgid "only_author_can_reply"
-msgstr "메뉴를 시작한 사람만이 선택을 할 수 있습니다."
-
-msgid "only_candidate_can_reply"
-msgstr "신규 입장자만 이 버튼을 누를 수 있습니다."
-
-msgid "restrict_false"
-msgstr "좋아요! 이제 모든 신규 입장자들은 이 채팅에 모든 유형의 콘텐츠도 보낼 수 있게 될 것입니다."
-
-msgid "restrict_true"
-msgstr "좋아요! 이제 모든 신규 입장자들은 이 채팅에 일반적인 문자 메시지만 보낼 수 있게 될 것입니다."
-
-msgid "seconds"
-msgstr "초"
-
-msgid "simple"
-msgstr "단순함"
-
-msgid "simple_warning"
-msgstr ", 스팸 봇인지 확인하기 위한 작업입니다. 지정된 시간 내에 이 그룹에 메시지를 보내 주십시오. 그렇지 않으면 자동 추방 될 예정입니다. 감사합니다!"
-
-msgid "strict_false"
-msgstr "좋아요! 이제 새로 온 사람들은 캡챠를 통과하기 전에 메시지를 보낼 수 있을 거예요."
-
-msgid "strict_true"
-msgstr "좋아! 이제 새로 온 사람들은 captcha를 통과 할 때까지 captcha 솔루션 외에는 아무것도 보내지 않을 것입니다."
-
-msgid "time_limit"
-msgstr "신규 입장자가 추방 전에 테스트를 완료 할 시간을 선택하십시오."
-
-msgid "time_limit_selected"
-msgstr "좋아요, 이 시간 제한을 사용하겠습니다."
-
-msgid "trust_success"
-msgstr "수락되었습니다"
-
-msgid "help_start"
-msgstr "Sesuritu 는 짜증나는 스패머들에 대응하기 위한 최고의 해결책입니다. 이 봇은 신규 입장자들에게 정해진 시간내에 정해진 행동을 실행하도록 요청하고, 정해진 행동을 하지 않으면 그들을 자동 추방시킵니다. 사용법은 정말 간단합니다.@Sesuritu\\_bot 가 채팅 그룹에서 관리자인지 확인을 하십시오. 모든 준비는 끝났습니다.!아래와 같은 명령을 사용하여 추가로 설정할 수도 있습니다:"
-
-msgid "help_end"
-msgstr "을 확인해주세요. Sesuritu 의 코드는 오픈소스 이며 (https://github.com/Rulexec/shieldy) 에서 확인이 가능합니다. 감사합니다!\n."
-
-msgid "help_help"
-msgstr "이 메시지를 보여줍니다"
-
-msgid "language_help"
-msgstr "언어 변경"
-
-msgid "captcha_help"
-msgstr "사용된 captcha의 설정 변경"
-
-msgid "timeLimit_help"
-msgstr "신규 입장자들에게 정해진 시간 변경"
-
 msgid "lock_help"
 msgstr "관리자만 접근할 수 있는 명령 만들기"
 
-msgid "restrict_help"
-msgstr "신규 입장자들은 24시간 동안 메시지만 보내도록 제한"
-
-msgid "deleteEntryMessages_help"
-msgstr "사용자 항목에 대한 메시지 삭제"
-
-msgid "greeting_help"
-msgstr "테스트에 통과한 사람에게 환영 인사"
-
-msgid "trust_help"
-msgstr "사용자가 확인하지 않으려는 메시지에 이 명령으로 회신"
-
-msgid "ban_help"
-msgstr "same as trust, but the opposite"
-
-msgid "strict_help"
-msgstr "새로 온 사람의 메시지를 받지 않고 captcha 솔루션이 captcha를 통과할 때까지 수신하고 싶을 때 사용하십시오."
-
-msgid "customCaptchaMessage_help"
-msgstr "setup custom captcha message"
-
-msgid "deleteGreetingTime_help"
-msgstr "setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0"
-
-msgid "banUsers_help"
-msgstr "whether to ban or to kick users"
-
-msgid "deleteEntryOnKick_help"
-msgstr "whether to delete entry messages for users who failed captcha"
-
-msgid "cas_help"
-msgstr "whether to use Combot Anti-Spam or not"
-
-msgid "underAttack_help"
-msgstr "toggle the mode to automatically kick all newcomers"
+msgid "lock_true_shieldy"
+msgstr "좋아요! 이제 나는 관리자들이 보내는 명령에만 반응할 것입니다."
 
 msgid "noAttack_help"
 msgstr "disables Sesuritu"
@@ -151,17 +115,35 @@ msgstr "disables Sesuritu"
 msgid "noChannelLinks_help"
 msgstr "automatically delete messages that link to other telegram channels"
 
-msgid "viewConfig_help"
-msgstr "view the current Sesuritu configuration"
+msgid "only_author_can_reply"
+msgstr "메뉴를 시작한 사람만이 선택을 할 수 있습니다."
 
-msgid "buttonText_help"
-msgstr "change the captcha button text in the form of `/buttonText I'm not a bot!`"
+msgid "only_candidate_can_reply"
+msgstr "신규 입장자만 이 버튼을 누를 수 있습니다."
 
-msgid "allowInvitingBots_help"
-msgstr "whether users can invite other bots or not"
+msgid "restrictTime_help"
+msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
 
-msgid "greetingButtons_help"
-msgstr "setup buttons for greeting message"
+msgid "restrict_false"
+msgstr "좋아요! 이제 모든 신규 입장자들은 이 채팅에 모든 유형의 콘텐츠도 보낼 수 있게 될 것입니다."
+
+msgid "restrict_help"
+msgstr "신규 입장자들은 24시간 동안 메시지만 보내도록 제한"
+
+msgid "restrict_true"
+msgstr "좋아요! 이제 모든 신규 입장자들은 이 채팅에 일반적인 문자 메시지만 보낼 수 있게 될 것입니다."
+
+msgid "seconds"
+msgstr "초"
+
+msgid "setConfig_help"
+msgstr "setup Sesuritu configuration in one message"
+
+msgid "simple"
+msgstr "단순함"
+
+msgid "simple_warning"
+msgstr ", 스팸 봇인지 확인하기 위한 작업입니다. 지정된 시간 내에 이 그룹에 메시지를 보내 주십시오. 그렇지 않으면 자동 추방 될 예정입니다. 감사합니다!"
 
 msgid "skipOldUsers_help"
 msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
@@ -169,14 +151,32 @@ msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
 msgid "skipVerifiedUsers_help"
 msgstr "don't show captcha to users who have ever passed captcha in any chat"
 
-msgid "setConfig_help"
-msgstr "setup Sesuritu configuration in one message"
+msgid "strict_false"
+msgstr "좋아요! 이제 새로 온 사람들은 캡챠를 통과하기 전에 메시지를 보낼 수 있을 거예요."
 
-msgid "banForFastRepliesToPosts_help"
-msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+msgid "strict_help"
+msgstr "새로 온 사람의 메시지를 받지 않고 captcha 솔루션이 captcha를 통과할 때까지 수신하고 싶을 때 사용하십시오."
 
-msgid "restrictTime_help"
-msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+msgid "strict_true"
+msgstr "좋아! 이제 새로 온 사람들은 captcha를 통과 할 때까지 captcha 솔루션 외에는 아무것도 보내지 않을 것입니다."
 
-msgid "banNewTelegramUsers_help"
-msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"
+msgid "timeLimit_help"
+msgstr "신규 입장자들에게 정해진 시간 변경"
+
+msgid "time_limit"
+msgstr "신규 입장자가 추방 전에 테스트를 완료 할 시간을 선택하십시오."
+
+msgid "time_limit_selected"
+msgstr "좋아요, 이 시간 제한을 사용하겠습니다."
+
+msgid "trust_help"
+msgstr "사용자가 확인하지 않으려는 메시지에 이 명령으로 회신"
+
+msgid "trust_success"
+msgstr "수락되었습니다"
+
+msgid "underAttack_help"
+msgstr "toggle the mode to automatically kick all newcomers"
+
+msgid "viewConfig_help"
+msgstr "view the current Sesuritu configuration"

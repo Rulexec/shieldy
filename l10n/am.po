@@ -1,5 +1,26 @@
+msgid "Lock_help"
+msgstr "ኮማንዶቹ በአድሚን ብቻ እንዲከፈት ያረጋል"
+
+msgid "allowInvitingBots_help"
+msgstr "whether users can invite other bots or not"
+
+msgid "banForFastRepliesToPosts_help"
+msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+
+msgid "banNewTelegramUsers_help"
+msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"
+
+msgid "banUsers_help"
+msgstr "whether to ban or to kick users"
+
+msgid "ban_help"
+msgstr "same as trust, but the opposite"
+
 msgid "button"
 msgstr "በተን"
+
+msgid "buttonText_help"
+msgstr "change the captcha button text in the form of `/buttonText I'm not a bot!`"
 
 msgid "button_warning"
 msgstr ", በተኑን ይንኩት ካለበለዛ ይባረራሉ"
@@ -10,8 +31,17 @@ msgstr "Please, select the test type for the newcomers:\n\n• ሲምፕል — 
 msgid "captcha_button"
 msgstr "ቦት አይደለውም"
 
+msgid "captcha_help"
+msgstr "የ captcha አይነቱን ይቀይራል"
+
 msgid "captcha_selected"
 msgstr "አሪፍ እንደዚህ አይነት ቴሰት እጠቀማለሁ ።"
+
+msgid "cas_help"
+msgstr "whether to use Combot Anti-Spam or not"
+
+msgid "customCaptchaMessage_help"
+msgstr "setup custom captcha message"
 
 msgid "custom_success"
 msgstr "ተቀብለናል"
@@ -19,17 +49,44 @@ msgstr "ተቀብለናል"
 msgid "deleteEntryMessages_false"
 msgstr "ኢንትሪ ሜሴጅ አልተደለተም።"
 
+msgid "deleteEntryMessages_help"
+msgstr "ተጠቃሚ ሲገባ ሜሴጅ እንዳይኖር"
+
 msgid "deleteEntryMessages_true"
 msgstr "ኢንትሪ ሜሴጅ ተደልቷል።"
 
+msgid "deleteEntryOnKick_help"
+msgstr "whether to delete entry messages for users who failed captcha"
+
+msgid "deleteGreetingTime_help"
+msgstr "setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0"
+
 msgid "digits"
 msgstr "ዲጂት"
+
+msgid "greetingButtons_help"
+msgstr "setup buttons for greeting message"
+
+msgid "greeting_help"
+msgstr "ተጠቃሚው ካፕቻ ካለፈ የሚኖር ሜሴጅ"
 
 msgid "greetsUsers_message_accepted"
 msgstr "ተቀብለናል"
 
 msgid "greetsUsers_true_message"
 msgstr "Great! Now newcomers who passed the test will be greeted. Please, reply to this message with the greeting text you would like to use (you can use $title, $fullname and $username). The current greeting message follows."
+
+msgid "help_end"
+msgstr ". Sesuritu code is open source and can be found [here](https://github.com/Rulexec/shieldy). Thank you!\n."
+
+msgid "help_help"
+msgstr "ይህንን መልክት ያሳያል"
+
+msgid "help_start"
+msgstr "Sesuritu — is the best solution in Telegram to fight annoying spammers. It asks newcomers to execute a set action within a set period, otherwise it kicks them. It's this easy. Make sure @Sesuritu\\_bot is an admin at your chat and it's all done! You can also further setup the behaviour with the following commands:"
+
+msgid "language_help"
+msgstr "ቋንቋ ይቀይራል"
 
 msgid "language_selected"
 msgstr "አሪፍ አሁን አማርኛ አወራለሁ።"
@@ -43,14 +100,26 @@ msgstr "አሁን ሁሉም ሰው ይጠቀማል።"
 msgid "lock_true_shieldy"
 msgstr "አሁን አድሚን ብቻ ይጠቀማል።"
 
+msgid "noAttack_help"
+msgstr "disables Sesuritu"
+
+msgid "noChannelLinks_help"
+msgstr "automatically delete messages that link to other telegram channels"
+
 msgid "only_author_can_reply"
 msgstr "ሜኑውን ያስጀመረው ሰዉ ብቻ ነው መክፈት የሚችለው ።"
 
 msgid "only_candidate_can_reply"
 msgstr "ቦት ያልሆኑ ብቻ ነዉ መንካት የሚችሉት።"
 
+msgid "restrictTime_help"
+msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+
 msgid "restrict_false"
 msgstr "አዲስ ገቢዎች የፈለጉትን ነዉ የሚልኩት።"
+
+msgid "restrict_help"
+msgstr "አዲስ ተጠቃሚ ሲገባ ለ24 ሰዐት ጸሁፍ ብቻ መጻፍ እንዲችል"
 
 msgid "restrict_true"
 msgstr "አዲስ ገቢዎች ቴክስት ብቻ ነዉ የሚልኩት።"
@@ -58,11 +127,23 @@ msgstr "አዲስ ገቢዎች ቴክስት ብቻ ነዉ የሚልኩት።"
 msgid "seconds"
 msgstr "ሰከንድ"
 
+msgid "setConfig_help"
+msgstr "setup Sesuritu configuration in one message"
+
 msgid "simple"
 msgstr "ሲምፕል"
 
+msgid "skipOldUsers_help"
+msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
+
+msgid "skipVerifiedUsers_help"
+msgstr "don't show captcha to users who have ever passed captcha in any chat"
+
 msgid "strict_false"
 msgstr "አዲሰ ገቢ ካፕቻን ሳያልፍ ሜሴጅ መላክ ይችላል ።"
+
+msgid "strict_help"
+msgstr "አዲስ ተጠቃሚ ሲገባ ሜሴጅ እንዳይኖር"
 
 msgid "strict_true"
 msgstr "አዲሰ ገቢ ካፕቻን ሳያልፍ ምንም መላክ አይችልም ።"
@@ -73,98 +154,17 @@ msgstr "ለስንት ሰከንድ ልጠብቅ ከማባረሬ በፊት"
 msgid "time_limit_selected"
 msgstr "እሺ ይሄን ያህል ሰከንድ እጠብቃለሁ ።"
 
-msgid "trust_success"
-msgstr "ተቀብለናል"
-
-msgid "help_start"
-msgstr "Sesuritu — is the best solution in Telegram to fight annoying spammers. It asks newcomers to execute a set action within a set period, otherwise it kicks them. It's this easy. Make sure @Sesuritu\\_bot is an admin at your chat and it's all done! You can also further setup the behaviour with the following commands:"
-
-msgid "help_end"
-msgstr ". Sesuritu code is open source and can be found [here](https://github.com/Rulexec/shieldy). Thank you!\n."
-
-msgid "help_help"
-msgstr "ይህንን መልክት ያሳያል"
-
-msgid "language_help"
-msgstr "ቋንቋ ይቀይራል"
-
-msgid "captcha_help"
-msgstr "የ captcha አይነቱን ይቀይራል"
-
 msgid "timelimit_help"
 msgstr "አዲስ ተጠቃሚ ሲገባ ለስንት ጊዜ አንደማያወራ"
-
-msgid "Lock_help"
-msgstr "ኮማንዶቹ በአድሚን ብቻ እንዲከፈት ያረጋል"
-
-msgid "restrict_help"
-msgstr "አዲስ ተጠቃሚ ሲገባ ለ24 ሰዐት ጸሁፍ ብቻ መጻፍ እንዲችል"
-
-msgid "deleteEntryMessages_help"
-msgstr "ተጠቃሚ ሲገባ ሜሴጅ እንዳይኖር"
-
-msgid "greeting_help"
-msgstr "ተጠቃሚው ካፕቻ ካለፈ የሚኖር ሜሴጅ"
 
 msgid "trust_help"
 msgstr "reply with this command to a message sent by user that you don't want to check"
 
-msgid "ban_help"
-msgstr "same as trust, but the opposite"
-
-msgid "strict_help"
-msgstr "አዲስ ተጠቃሚ ሲገባ ሜሴጅ እንዳይኖር"
-
-msgid "customCaptchaMessage_help"
-msgstr "setup custom captcha message"
-
-msgid "deleteGreetingTime_help"
-msgstr "setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0"
-
-msgid "banUsers_help"
-msgstr "whether to ban or to kick users"
-
-msgid "deleteEntryOnKick_help"
-msgstr "whether to delete entry messages for users who failed captcha"
-
-msgid "cas_help"
-msgstr "whether to use Combot Anti-Spam or not"
+msgid "trust_success"
+msgstr "ተቀብለናል"
 
 msgid "underAttack_help"
 msgstr "toggle the mode to automatically kick all newcomers"
 
-msgid "noAttack_help"
-msgstr "disables Sesuritu"
-
-msgid "noChannelLinks_help"
-msgstr "automatically delete messages that link to other telegram channels"
-
 msgid "viewConfig_help"
 msgstr "view the current Sesuritu configuration"
-
-msgid "buttonText_help"
-msgstr "change the captcha button text in the form of `/buttonText I'm not a bot!`"
-
-msgid "allowInvitingBots_help"
-msgstr "whether users can invite other bots or not"
-
-msgid "greetingButtons_help"
-msgstr "setup buttons for greeting message"
-
-msgid "skipOldUsers_help"
-msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
-
-msgid "skipVerifiedUsers_help"
-msgstr "don't show captcha to users who have ever passed captcha in any chat"
-
-msgid "setConfig_help"
-msgstr "setup Sesuritu configuration in one message"
-
-msgid "banForFastRepliesToPosts_help"
-msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
-
-msgid "restrictTime_help"
-msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
-
-msgid "banNewTelegramUsers_help"
-msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"
