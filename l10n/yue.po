@@ -14,13 +14,13 @@ msgid "banNewTelegramUsers_help"
 msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"
 
 msgid "banUsers_false"
-msgstr "好。由而家開始，未通過驗證嘅新來者會被自動踢除。"
+msgstr "好。由而家開始，未通過驗證就入嚟嘅新人都會被自動踢除。"
 
 msgid "banUsers_help"
 msgstr "封禁或者刪人"
 
 msgid "banUsers_true"
-msgstr "好。由而家開始，未通過驗證嘅新來者會畀踢走。"
+msgstr "好。由而家開始，未通過驗證就入嚟嘅新人都會畀我踢走。"
 
 msgid "ban_help"
 msgstr "同 /trust 相反"
@@ -32,7 +32,7 @@ msgid "buttonText_help"
 msgstr "修改「驗證掣」嘅提示文字，譬如 `/buttonText 我唔係機械人！`"
 
 msgid "button_warning"
-msgstr "，唔該喺規定時限內撳下面嘅掣，否則你會畀踢走。"
+msgstr "，唔該喺規定時限內撳下面嘅掣，否則你會畀人踢走。"
 
 msgid "captcha"
 msgstr "揀選如何驗證新來者：\n\n• 簡易： — 要求向羣組發嘢\n• 撳掣 — 要求撳一粒掣\n• 算術 — 要求做一條計數題\n• 認圖 — 要求認出一幅圖片入面嘅所有文字"
@@ -95,7 +95,7 @@ msgid "digits"
 msgstr "算術"
 
 msgid "digits_warning"
-msgstr "唔該喺規定時間內寫出計數題嘅答案，否則你會畀踢走。"
+msgstr "唔該喺規定時間內寫出計數題嘅答案，否則你會畀人踢走。"
 
 msgid "greetingButtons"
 msgstr "reply 呢條訊息（用回覆！唔好發一條獨立嘅訊息），用下邊呢種格式，爲打招呼嘅訊息加入最多 10 個連結至外部嘅掣。回覆其它格式嘅內容將移除全部嘅掣。\n\nDuckDuckGo - https://duckduckgo.com\nWikipedia - https://wikipedia.com\n\n目前設定咗嘅掣："
@@ -128,13 +128,13 @@ msgid "help_help"
 msgstr "顯示多次呢篇介紹"
 
 msgid "help_start"
-msgstr "Sesuritu — 係 Telegram 嘅最佳垃圾訊息應對方案。佢要求新來者限時完成一個任務，否則會畀踢出，就係咁簡單。確保將 @Sesuritu\\_bot 設成你個群組嘅管理員，噉就得喇！你都可以用呢啲命令嚟進一步設定佢嘅行為："
+msgstr "Sesuritu — 係 Telegram 嘅最佳垃圾訊息應對方案。佢要求新入嚟嘅人都限時完成一個任務，否則會畀人踢出，就係咁簡單。確保將 @Sesuritu\\_bot 設成你個群組嘅管理員，噉就得喇！你都可以用呢啲命令嚟進一步設定佢嘅行為："
 
 msgid "image"
 msgstr "認圖"
 
 msgid "image_warning"
-msgstr "，唔該喺規定時限內認出圖片入邊嘅所有文字並發到羣組，否則你會畀踢走。"
+msgstr "，唔該喺規定時限內認出圖片入邊嘅所有文字並發到羣組，否則你會畀人踢走。"
 
 msgid "language_help"
 msgstr "轉用其它語言"
@@ -173,7 +173,7 @@ msgid "noChannelLinks_true"
 msgstr "好。由而家開始，Sesuritu 會自動刪除所有連結到其它 Telegram 頻道嘅訊息。"
 
 msgid "only_author_can_reply"
-msgstr "最初啓動選單嗰個人先有得揀。"
+msgstr "最初啓動選單嘅嗰個人先揀得。"
 
 msgid "only_candidate_can_reply"
 msgstr "機械人賬戶唔畀撳掣。"
@@ -188,7 +188,7 @@ msgid "restrict_help"
 msgstr "限制新來者喺 24 小時內凈畀發文字"
 
 msgid "restrict_true"
-msgstr "由而家開始，新來者只可以喺羣入面發文字內容"
+msgstr "好嘢！從而家開始，新入嚟嘅人凈可以喺羣入面發文字內容"
 
 msgid "seconds"
 msgstr "秒"
@@ -200,7 +200,7 @@ msgid "simple"
 msgstr "簡易"
 
 msgid "simple_warning"
-msgstr ", 唔該喺規定時間內向羣組內發任意內容，否則你會畀踢走。"
+msgstr ", 唔該喺規定時間內向羣組內發任意內容，否則你會畀人踢走。"
 
 msgid "skipOldUsers_help"
 msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
@@ -209,7 +209,7 @@ msgid "skipVerifiedUsers_help"
 msgstr "don't show captcha to users who have ever passed captcha in any chat"
 
 msgid "strict_false"
-msgstr "由而家開始，新來者喺 24 小時內只畀發文字內容。"
+msgstr "由而家開始，新來者喺 24 小時內凈畀發文字內容。"
 
 msgid "strict_help"
 msgstr "限制新來者喺通過驗證之前唔可以發任何嘢"
