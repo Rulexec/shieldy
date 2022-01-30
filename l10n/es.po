@@ -1,17 +1,35 @@
 msgid "allowInvitingBots_false"
 msgstr "¡Muy bién! Ahora los usuarios no podrán invitar a bots."
 
+msgid "allowInvitingBots_help"
+msgstr "whether users can invite other bots or not"
+
 msgid "allowInvitingBots_true"
 msgstr "¡Muy bién! Ahora los usuarios pueden invitar a bots."
+
+msgid "banForFastRepliesToPosts_help"
+msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+
+msgid "banNewTelegramUsers_help"
+msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"
 
 msgid "banUsers_false"
 msgstr "Muy bién, a partir de ahora los usuarios que no superen el CAPTCHA serán expulsados."
 
+msgid "banUsers_help"
+msgstr "whether to ban or to kick users"
+
 msgid "banUsers_true"
 msgstr "Muy bién, a partir de ahora los usuarios que no superen el CAPTCHA quedarán bloqueados."
 
+msgid "ban_help"
+msgstr "same as trust, but the opposite"
+
 msgid "button"
 msgstr "Botón"
+
+msgid "buttonText_help"
+msgstr "change the captcha button text in the form of `/buttonText I'm not a bot!`"
 
 msgid "button_warning"
 msgstr ", por favor, presione el botón de abajo dentro del tiempo especificado, si no, serás expulsado. ¡Gracias!"
@@ -31,14 +49,23 @@ msgstr "¡Genial! Ahora los recién llegados recibirán una explicación del CAP
 msgid "captcha_button"
 msgstr "No soy un robot"
 
+msgid "captcha_help"
+msgstr "cambia el tipo de captcha usado"
+
 msgid "captcha_selected"
 msgstr "Genial, usaré este tipo de test."
 
 msgid "cas_false"
 msgstr "¡Entendido! Ahora Sesuritu no utilizará Combot Anti-Spam para combatir el spam."
 
+msgid "cas_help"
+msgstr "whether to use Combot Anti-Spam or not"
+
 msgid "cas_true"
 msgstr "¡Entendido! Ahora Sesuritu utilizará Combot Anti-Spam para combatir el spam."
+
+msgid "customCaptchaMessage_help"
+msgstr "setup custom captcha message"
 
 msgid "custom_success"
 msgstr "¡Aceptado!"
@@ -46,14 +73,23 @@ msgstr "¡Aceptado!"
 msgid "deleteEntryMessages_false"
 msgstr "¡Genial! Ahora los mensajes que anuncian la entrada de nuevos usuarios, no serán borrados."
 
+msgid "deleteEntryMessages_help"
+msgstr "borra los mensajes sobre la entrada de usuarios"
+
 msgid "deleteEntryMessages_true"
 msgstr "¡Genial! Ahora los mensajes que anuncian la entrada de nuevos usuarios, serán borrados."
 
 msgid "deleteEntryOnKick_false"
 msgstr "Perfecto, Sesuritu no eliminará los mensajes de los recién llegados que no hayan superado el CAPTCHA."
 
+msgid "deleteEntryOnKick_help"
+msgstr "whether to delete entry messages for users who failed captcha"
+
 msgid "deleteEntryOnKick_true"
 msgstr "Perfecto, Sesuritu eliminará los mensajes de los recién llegados que no hayan superado el CAPTCHA."
+
+msgid "deleteGreetingTime_help"
+msgstr "setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0"
 
 msgid "digits"
 msgstr "Digitos"
@@ -67,6 +103,12 @@ msgstr "Responde a este mensaje (si, si, responde!, no escribas un mensaje a par
 msgid "greetingButtonsEmpty"
 msgstr "No hay botones"
 
+msgid "greetingButtons_help"
+msgstr "setup buttons for greeting message"
+
+msgid "greeting_help"
+msgstr "saluda a los mensajes que pasan el test"
+
 msgid "greetsUsers_false"
 msgstr "¡Genial! Ahora los recién llegados que pasen el test no serán saludados."
 
@@ -79,11 +121,23 @@ msgstr "¡Genial! Ahora los recién llegados que hayan pasado el test serán sal
 msgid "greetsUsers_true_message"
 msgstr "¡Genial! Ahora los recién llegados que hayan pasado el test serán saludados. Por favor, responde a este mensaje con el texto de saludo que quieres utilizar (puedes usar $title, $fullname y $username). El mensaje actual de saludo es:"
 
+msgid "help_end"
+msgstr "¿. El código de Sesuritu es código libre y puede ser encontrado [aquí](https://github.com/Rulexec/shieldy). ¡Gracias!\n."
+
+msgid "help_help"
+msgstr "muestra este mensaje"
+
+msgid "help_start"
+msgstr "Sesuritu — es la mejor solución en Telegram para luchar los molestos spammers. Pide a los recién llegados hacer una serie de acciones en un tiempo determinado, si no lo hacen los expulsa. Así de fácil. Asegúrate de que @Sesuritu\\_bot es administrador en el chat y listo! También puedes personalizar más su comportamiento con los siguientes comandos:"
+
 msgid "image"
 msgstr "Imagen"
 
 msgid "image_warning"
 msgstr ", por favor, envía a este grupo los caracteres de la imagen dentro del tiempo especificado, si no, serás expulsado. ¡Gracias!"
+
+msgid "language_help"
+msgstr "cambia el idioma"
 
 msgid "language_selected"
 msgstr "Genial, ahora hablo español."
@@ -94,17 +148,26 @@ msgstr "Por favor, selecciona el idioma."
 msgid "lock_false_shieldy"
 msgstr "¡Genial! Ahora reaccionaré a los comandos enviados por todo el mundo."
 
+msgid "lock_help"
+msgstr "hace que estos comandos solo sean accesibles a los administradores"
+
 msgid "lock_true_shieldy"
 msgstr "¡Genial! Ahora solo reaccionaré a los comandos enviados por administradores."
 
 msgid "noAttack_false"
 msgstr "¡Entendido! Ahora Sesuritu está activo."
 
+msgid "noAttack_help"
+msgstr "disables Sesuritu"
+
 msgid "noAttack_true"
 msgstr "¡Entendido! Ahora Sesuritu está desactivado. No olvides desactivar este modo usando /noAttack."
 
 msgid "noChannelLinks_false"
 msgstr "¡Genial! Ahora Sesuritu no eliminará ningún mensaje que contenga enlaces a otros canales de Telegram."
+
+msgid "noChannelLinks_help"
+msgstr "automatically delete messages that link to other telegram channels"
 
 msgid "noChannelLinks_true"
 msgstr "¡Genial! Ahora Sesuritu eliminará todos los mensajes que contengan enlaces a otros canales de Telegram."
@@ -115,8 +178,14 @@ msgstr "Solo la persona que inició el menú puede seleccionar las opciones."
 msgid "only_candidate_can_reply"
 msgstr "Solo el candidato para no ser un robot puede presionar este botón."
 
+msgid "restrictTime_help"
+msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+
 msgid "restrict_false"
 msgstr "¡Genial! Ahora todos los recién llegados pueden enviar cualquier tipo de contenido a este chat."
+
+msgid "restrict_help"
+msgstr "restringe a los recién llegados a enviar solo mensajes de texto en las primeras 24 horas"
 
 msgid "restrict_true"
 msgstr "¡Genial! Ahora todos los recién llegados solo podrán enviar mensajes de texto en este chat."
@@ -124,110 +193,14 @@ msgstr "¡Genial! Ahora todos los recién llegados solo podrán enviar mensajes 
 msgid "seconds"
 msgstr "seg"
 
+msgid "setConfig_help"
+msgstr "setup Sesuritu configuration in one message"
+
 msgid "simple"
 msgstr "Simple"
 
 msgid "simple_warning"
 msgstr ", por favor, envía cualquier mensaje por este grupo dentro del tiempo especificado, si no, serás expulsado. ¡Gracias!"
-
-msgid "strict_false"
-msgstr "¡Genial! A partir de este momento, los recién llegados podrán enviar mensajes antes de que hayan resuelto el CAPTCHA correctamente."
-
-msgid "strict_true"
-msgstr "Perfecto! A partir de este momento, los recién llegados solamente podrán enviar los mensajes para responder la solucion del CAPTCHA, hasta que este sea resuelto correctamente."
-
-msgid "time_limit"
-msgstr "Por favor, seleccione cuántos segundos tendrán los recién llegados para completar el test antes de la expulsión."
-
-msgid "time_limit_selected"
-msgstr "Genial, usaré este límite de tiempo."
-
-msgid "trust_success"
-msgstr "¡Aceptado!"
-
-msgid "underAttack_false"
-msgstr "¡Entendido! Ahora Sesuritu ya no continuará expulsando a nadie que entre en este chat."
-
-msgid "underAttack_true"
-msgstr "¡Entendido! Ahora Sesuritu expulsará a todo aquel que entre en este chat. No olvides desactivar este modo cuando el ataque haya cesado, para ello utiliza el comando /underAttack."
-
-msgid "viewConfig"
-msgstr "Esta es la configuración actual:"
-
-msgid "help_start"
-msgstr "Sesuritu — es la mejor solución en Telegram para luchar los molestos spammers. Pide a los recién llegados hacer una serie de acciones en un tiempo determinado, si no lo hacen los expulsa. Así de fácil. Asegúrate de que @Sesuritu\\_bot es administrador en el chat y listo! También puedes personalizar más su comportamiento con los siguientes comandos:"
-
-msgid "help_end"
-msgstr "¿. El código de Sesuritu es código libre y puede ser encontrado [aquí](https://github.com/Rulexec/shieldy). ¡Gracias!\n."
-
-msgid "help_help"
-msgstr "muestra este mensaje"
-
-msgid "language_help"
-msgstr "cambia el idioma"
-
-msgid "captcha_help"
-msgstr "cambia el tipo de captcha usado"
-
-msgid "timeLimit_help"
-msgstr "cambia la cantidad de tiempo otorgada a los recién llegados"
-
-msgid "lock_help"
-msgstr "hace que estos comandos solo sean accesibles a los administradores"
-
-msgid "restrict_help"
-msgstr "restringe a los recién llegados a enviar solo mensajes de texto en las primeras 24 horas"
-
-msgid "deleteEntryMessages_help"
-msgstr "borra los mensajes sobre la entrada de usuarios"
-
-msgid "greeting_help"
-msgstr "saluda a los mensajes que pasan el test"
-
-msgid "trust_help"
-msgstr "utiliza este comando para responder al mensaje de un usuari que no quieras comprobar"
-
-msgid "ban_help"
-msgstr "same as trust, but the opposite"
-
-msgid "strict_help"
-msgstr "use when you don't want to receive any newcomers' messages but captcha solutions until they pass captcha"
-
-msgid "customCaptchaMessage_help"
-msgstr "setup custom captcha message"
-
-msgid "deleteGreetingTime_help"
-msgstr "setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0"
-
-msgid "banUsers_help"
-msgstr "whether to ban or to kick users"
-
-msgid "deleteEntryOnKick_help"
-msgstr "whether to delete entry messages for users who failed captcha"
-
-msgid "cas_help"
-msgstr "whether to use Combot Anti-Spam or not"
-
-msgid "underAttack_help"
-msgstr "toggle the mode to automatically kick all newcomers"
-
-msgid "noAttack_help"
-msgstr "disables Sesuritu"
-
-msgid "noChannelLinks_help"
-msgstr "automatically delete messages that link to other telegram channels"
-
-msgid "viewConfig_help"
-msgstr "view the current Sesuritu configuration"
-
-msgid "buttonText_help"
-msgstr "change the captcha button text in the form of `/buttonText I'm not a bot!`"
-
-msgid "allowInvitingBots_help"
-msgstr "whether users can invite other bots or not"
-
-msgid "greetingButtons_help"
-msgstr "setup buttons for greeting message"
 
 msgid "skipOldUsers_help"
 msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
@@ -235,14 +208,41 @@ msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
 msgid "skipVerifiedUsers_help"
 msgstr "don't show captcha to users who have ever passed captcha in any chat"
 
-msgid "setConfig_help"
-msgstr "setup Sesuritu configuration in one message"
+msgid "strict_false"
+msgstr "¡Genial! A partir de este momento, los recién llegados podrán enviar mensajes antes de que hayan resuelto el CAPTCHA correctamente."
 
-msgid "banForFastRepliesToPosts_help"
-msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+msgid "strict_help"
+msgstr "use when you don't want to receive any newcomers' messages but captcha solutions until they pass captcha"
 
-msgid "restrictTime_help"
-msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+msgid "strict_true"
+msgstr "Perfecto! A partir de este momento, los recién llegados solamente podrán enviar los mensajes para responder la solucion del CAPTCHA, hasta que este sea resuelto correctamente."
 
-msgid "banNewTelegramUsers_help"
-msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"
+msgid "timeLimit_help"
+msgstr "cambia la cantidad de tiempo otorgada a los recién llegados"
+
+msgid "time_limit"
+msgstr "Por favor, seleccione cuántos segundos tendrán los recién llegados para completar el test antes de la expulsión."
+
+msgid "time_limit_selected"
+msgstr "Genial, usaré este límite de tiempo."
+
+msgid "trust_help"
+msgstr "utiliza este comando para responder al mensaje de un usuari que no quieras comprobar"
+
+msgid "trust_success"
+msgstr "¡Aceptado!"
+
+msgid "underAttack_false"
+msgstr "¡Entendido! Ahora Sesuritu ya no continuará expulsando a nadie que entre en este chat."
+
+msgid "underAttack_help"
+msgstr "toggle the mode to automatically kick all newcomers"
+
+msgid "underAttack_true"
+msgstr "¡Entendido! Ahora Sesuritu expulsará a todo aquel que entre en este chat. No olvides desactivar este modo cuando el ataque haya cesado, para ello utiliza el comando /underAttack."
+
+msgid "viewConfig"
+msgstr "Esta es la configuración actual:"
+
+msgid "viewConfig_help"
+msgstr "view the current Sesuritu configuration"

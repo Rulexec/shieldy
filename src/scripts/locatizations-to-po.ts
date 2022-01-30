@@ -1,3 +1,4 @@
+import 'module-alias/register';
 import {localizations} from '@root/helpers/localizations';
 import {writeFileSync, readdirSync, readFileSync} from 'fs';
 import PO from 'pofile';

@@ -1,5 +1,11 @@
+msgid "addCustomCaptcha_help"
+msgstr "add custom captcha type question&answer"
+
 msgid "allowInvitingBots_false"
 msgstr "Nice! Users cannot invite bots now."
+
+msgid "allowInvitingBots_help"
+msgstr "whether users can invite other bots or not"
 
 msgid "allowInvitingBots_true"
 msgstr "Nice! Users can invite bots now."
@@ -7,11 +13,17 @@ msgstr "Nice! Users can invite bots now."
 msgid "banForFastRepliesToPosts_false"
 msgstr "Nice! Sesuritu will not ban (or kick) all users who reply to your channel's posts 5 seconds after the post is created."
 
+msgid "banForFastRepliesToPosts_help"
+msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+
 msgid "banForFastRepliesToPosts_true"
 msgstr "Nice! Sesuritu will ban (or kick) all users who reply to your channel's posts 5 seconds after the post is created."
 
 msgid "banNewTelegramUsers_false"
 msgstr "Nice! Sesuritu will no ban (or kick) all newcomers with Telegram ID greater than 1 000 000 000."
+
+msgid "banNewTelegramUsers_help"
+msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"
 
 msgid "banNewTelegramUsers_true"
 msgstr "Nice! Sesuritu will ban (or kick) all newcomers with Telegram ID greater than 1 000 000 000."
@@ -19,11 +31,20 @@ msgstr "Nice! Sesuritu will ban (or kick) all newcomers with Telegram ID greater
 msgid "banUsers_false"
 msgstr "Nice! Users will be kicked if they do not pass captcha."
 
+msgid "banUsers_help"
+msgstr "whether to ban or to kick users"
+
 msgid "banUsers_true"
 msgstr "Nice! Users will be banned if they do not pass captcha."
 
+msgid "ban_help"
+msgstr "same as trust, but the opposite"
+
 msgid "button"
 msgstr "Button"
+
+msgid "buttonText_help"
+msgstr "change the captcha button text in the form of `/buttonText I'm not a bot!`"
 
 msgid "button_warning"
 msgstr ", please, press the button below within the time amount specified, otherwise you will be kicked. Thank you!"
@@ -43,11 +64,17 @@ msgstr "Great! Now newcomers will get custom message explaining the captcha. Ple
 msgid "captcha_button"
 msgstr "I am not a bot"
 
+msgid "captcha_help"
+msgstr "changes type of captcha used"
+
 msgid "captcha_selected"
 msgstr "Great, I will use this type of test then."
 
 msgid "cas_false"
 msgstr "Great! Sesuritu will not use Combot Anti-Spam now."
+
+msgid "cas_help"
+msgstr "whether to use Combot Anti-Spam or not"
 
 msgid "cas_true"
 msgstr "Great! Sesuritu will now use Combot Anti-Spam."
@@ -57,6 +84,9 @@ msgstr "You are changing the settings in private messages. This will not affect 
 
 msgid "custom"
 msgstr "Custom"
+
+msgid "customCaptchaMessage_help"
+msgstr "setup custom captcha message"
 
 msgid "custom_add_answer"
 msgstr "Please, reply to this message with the answer to this question. Use comma to separate variants of answer."
@@ -82,14 +112,23 @@ msgstr "Accepted!"
 msgid "deleteEntryMessages_false"
 msgstr "Great! Now entry messages will not be deleted."
 
+msgid "deleteEntryMessages_help"
+msgstr "delete messages about user entry"
+
 msgid "deleteEntryMessages_true"
 msgstr "Great! Now entry messages will be deleted."
 
 msgid "deleteEntryOnKick_false"
 msgstr "Great! Sesuritu will not remove entry messages of the users who failed captcha."
 
+msgid "deleteEntryOnKick_help"
+msgstr "whether to delete entry messages for users who failed captcha"
+
 msgid "deleteEntryOnKick_true"
 msgstr "Great! Sesuritu will remove entry messages of the users who failed captcha."
+
+msgid "deleteGreetingTime_help"
+msgstr "setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0"
 
 msgid "digits"
 msgstr "Digits"
@@ -103,6 +142,12 @@ msgstr "Reply to this message (and I mean reply(!), not just send a separate mes
 msgid "greetingButtonsEmpty"
 msgstr "No buttons"
 
+msgid "greetingButtons_help"
+msgstr "setup buttons for greeting message"
+
+msgid "greeting_help"
+msgstr "greets users who pass the test"
+
 msgid "greetsUsers_false"
 msgstr "Great! Now newcomers who passed the test will not be greeted."
 
@@ -115,11 +160,23 @@ msgstr "Great! Now newcomers who passed the test will be greeted. Please, reply 
 msgid "greetsUsers_true_message"
 msgstr "Great! Now newcomers who passed the test will be greeted. Please, reply to this message with the greeting text you would like to use (you can use $title, $fullname and $username). The current greeting message follows."
 
+msgid "help_end"
+msgstr "Sesuritu code is open source and can be found [here](https://github.com/Rulexec/shieldy).\nYou can ask questions/submit feature requests in the @sesuritu\\_chat."
+
+msgid "help_help"
+msgstr "shows this message"
+
+msgid "help_start"
+msgstr "Sesuritu — is the best solution in Telegram to fight annoying spammers. It asks newcomers to execute a set action within a set period, otherwise it kicks them. It's this easy. Make sure @Sesuritu\\_bot is an admin at your chat and it's all done! You can also further setup the behaviour with the following commands:"
+
 msgid "image"
 msgstr "Image"
 
 msgid "image_warning"
 msgstr ", please, send the characters displayed within the time amount specified to this group, otherwise you will be kicked. Thank you!"
+
+msgid "language_help"
+msgstr "switches language"
 
 msgid "language_selected"
 msgstr "Great, I speak English now."
@@ -130,17 +187,26 @@ msgstr "Please, select the language."
 msgid "lock_false_shieldy"
 msgstr "Great! Now I will react to commands sent by anybody."
 
+msgid "lock_help"
+msgstr "makes commands accessible only by admins"
+
 msgid "lock_true_shieldy"
 msgstr "Great! Now I will only react to commands sent by admins."
 
 msgid "noAttack_false"
 msgstr "Great! Sesuritu is now on."
 
+msgid "noAttack_help"
+msgstr "disables Sesuritu"
+
 msgid "noAttack_true"
 msgstr "Great! Sesuritu is disabled now. Don't forget to turn this mode off with /noAttack."
 
 msgid "noChannelLinks_false"
 msgstr "Great! Sesuritu will not delete messages that link to telegram channels."
+
+msgid "noChannelLinks_help"
+msgstr "automatically delete messages that link to other telegram channels"
 
 msgid "noChannelLinks_true"
 msgstr "Great! Sesuritu will now delete messages that link to telegram channels."
@@ -154,8 +220,17 @@ msgstr "Only the person who initiated the menu can select the choices."
 msgid "only_candidate_can_reply"
 msgstr "Only the candidate for not being a bot can press this button."
 
+msgid "removeAllCustomCaptcha_help"
+msgstr "remove all custom captcha type questions"
+
+msgid "restrictTime_help"
+msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+
 msgid "restrict_false"
 msgstr "Great! Now all newcomers will be able to send any type of content to this chat."
+
+msgid "restrict_help"
+msgstr "restricts newcomers to send only text messages in the first 24 hours"
 
 msgid "restrict_true"
 msgstr "Great! Now all newcomers will only be able to send usual text messages to this chat."
@@ -166,11 +241,17 @@ msgstr "sec"
 msgid "setConfigHelp"
 msgstr "Please, send /setConfig command in the following format:\n\n<code>/setConfig\nlanguage: en\ncaptchaType: image\ntimeGiven: 60\n...</code>\n\nYou can use the info from /viewConfig."
 
+msgid "setConfig_help"
+msgstr "setup Sesuritu configuration in one message"
+
 msgid "silentMessages_false"
 msgstr "Sesuritu will send messages with sound"
 
 msgid "silentMessages_true"
 msgstr "Sesuritu will send messages without sound"
+
+msgid "silent_help"
+msgstr "toggle silent notifications"
 
 msgid "simple"
 msgstr "Simple"
@@ -181,17 +262,26 @@ msgstr ", please, send any message to this group within the time amount specifie
 msgid "skipOldUsers_false"
 msgstr "Nice! Telegram account age won't affect captcha anymore!"
 
+msgid "skipOldUsers_help"
+msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
+
 msgid "skipOldUsers_true"
 msgstr "Nice! Old Telegram users won't get asked to pass captcha anymore!"
 
 msgid "skipVerifiedUsers_false"
 msgstr "Nice! Passing captcha before won't affect future captchas anymore!"
 
+msgid "skipVerifiedUsers_help"
+msgstr "don't show captcha to users who have ever passed captcha in any chat"
+
 msgid "skipVerifiedUsers_true"
 msgstr "Nice! Telegram users who have ever passed a captcha in any chat won't get asked to pass captcha anymore!"
 
 msgid "strict_false"
 msgstr "Great! Now newcomers will be able to send text before they pass captcha."
+
+msgid "strict_help"
+msgstr "use when you don't want to receive any newcomers' messages but captcha solutions until they pass captcha"
 
 msgid "strict_true"
 msgstr "Great! Now newcomers won't send anything but captcha solutions until they pass captcha."
@@ -202,11 +292,17 @@ msgstr "This is a reply"
 msgid "thisIsNotAReply"
 msgstr "Just to clarify: this is not a reply"
 
+msgid "timeLimit_help"
+msgstr "changes amount of time given to newcomers"
+
 msgid "time_limit"
 msgstr "Please, select how many seconds will newcomers get to complete the test before the kick."
 
 msgid "time_limit_selected"
 msgstr "Great, I will use this time limit then."
+
+msgid "trust_help"
+msgstr "reply with this command to a message sent by user that you don't want to check"
 
 msgid "trust_success"
 msgstr "Accepted!"
@@ -214,113 +310,17 @@ msgstr "Accepted!"
 msgid "underAttack_false"
 msgstr "Great! Sesuritu will not kick everybody who enters this chat."
 
+msgid "underAttack_help"
+msgstr "toggle the mode to automatically kick all newcomers"
+
 msgid "underAttack_true"
 msgstr "Great! Sesuritu will now kick everybody who enters this chat. Don't forget to turn this mode off when attack is over with /underAttack."
 
 msgid "viewConfig"
 msgstr "Current config:"
 
-msgid "help_start"
-msgstr "Sesuritu — is the best solution in Telegram to fight annoying spammers. It asks newcomers to execute a set action within a set period, otherwise it kicks them. It's this easy. Make sure @Sesuritu\\_bot is an admin at your chat and it's all done! You can also further setup the behaviour with the following commands:"
-
-msgid "help_end"
-msgstr "Sesuritu code is open source and can be found [here](https://github.com/Rulexec/shieldy).\nYou can ask questions/submit feature requests in the @sesuritu\\_chat."
-
-msgid "help_help"
-msgstr "shows this message"
-
-msgid "language_help"
-msgstr "switches language"
-
-msgid "captcha_help"
-msgstr "changes type of captcha used"
-
-msgid "timeLimit_help"
-msgstr "changes amount of time given to newcomers"
-
-msgid "lock_help"
-msgstr "makes commands accessible only by admins"
-
-msgid "restrict_help"
-msgstr "restricts newcomers to send only text messages in the first 24 hours"
-
-msgid "deleteEntryMessages_help"
-msgstr "delete messages about user entry"
-
-msgid "greeting_help"
-msgstr "greets users who pass the test"
-
-msgid "trust_help"
-msgstr "reply with this command to a message sent by user that you don't want to check"
-
-msgid "ban_help"
-msgstr "same as trust, but the opposite"
-
-msgid "strict_help"
-msgstr "use when you don't want to receive any newcomers' messages but captcha solutions until they pass captcha"
-
-msgid "customCaptchaMessage_help"
-msgstr "setup custom captcha message"
-
-msgid "deleteGreetingTime_help"
-msgstr "setup when to delete Sesuritu's greeting in seconds like `/deleteGreetingTime 100`, reset by setting it to 0"
-
-msgid "banUsers_help"
-msgstr "whether to ban or to kick users"
-
-msgid "deleteEntryOnKick_help"
-msgstr "whether to delete entry messages for users who failed captcha"
-
-msgid "cas_help"
-msgstr "whether to use Combot Anti-Spam or not"
-
-msgid "underAttack_help"
-msgstr "toggle the mode to automatically kick all newcomers"
-
-msgid "noAttack_help"
-msgstr "disables Sesuritu"
-
-msgid "noChannelLinks_help"
-msgstr "automatically delete messages that link to other telegram channels"
-
 msgid "viewConfig_help"
 msgstr "view the current Sesuritu configuration"
 
-msgid "buttonText_help"
-msgstr "change the captcha button text in the form of `/buttonText I'm not a bot!`"
-
-msgid "allowInvitingBots_help"
-msgstr "whether users can invite other bots or not"
-
-msgid "greetingButtons_help"
-msgstr "setup buttons for greeting message"
-
-msgid "skipOldUsers_help"
-msgstr "don't show captcha to Telegram accounts with ID less than 1000000000"
-
-msgid "skipVerifiedUsers_help"
-msgstr "don't show captcha to users who have ever passed captcha in any chat"
-
-msgid "setConfig_help"
-msgstr "setup Sesuritu configuration in one message"
-
-msgid "banForFastRepliesToPosts_help"
-msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
-
-msgid "restrictTime_help"
-msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
-
-msgid "banNewTelegramUsers_help"
-msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"
-
-msgid "addCustomCaptcha_help"
-msgstr "add custom captcha type question&answer"
-
 msgid "viewCustomCaptcha_help"
 msgstr "view custom captcha type questions&answers"
-
-msgid "removeAllCustomCaptcha_help"
-msgstr "remove all custom captcha type questions"
-
-msgid "silent_help"
-msgstr "toggle silent notifications"

@@ -1,17 +1,35 @@
 msgid "allowInvitingBots_false"
 msgstr "Szép! Mostantól a felhasználók nem hívhatnak meg botokat."
 
+msgid "allowInvitingBots_help"
+msgstr "a felhasználó meghívhat-e botot vagy sem"
+
 msgid "allowInvitingBots_true"
 msgstr "Szép! Mostantól a felhasználók meghívhatnak botokat is."
+
+msgid "banForFastRepliesToPosts_help"
+msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
+
+msgid "banNewTelegramUsers_help"
+msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"
 
 msgid "banUsers_false"
 msgstr "Csodás! A usert kivágjuk, ha nem megy át a captcha-n."
 
+msgid "banUsers_help"
+msgstr "bannolja vagy csak kirúgja a felhasználókat"
+
 msgid "banUsers_true"
 msgstr "Csodás! A usert bannolni fogjuk, ha nem megy át a captcha-n."
 
+msgid "ban_help"
+msgstr "ugyanaz, mint a trust, csak éppen bannoljuk"
+
 msgid "button"
 msgstr "Gomb"
+
+msgid "buttonText_help"
+msgstr "a captcha gomb feliratának megváltoztatása. az alapértelmezett: `/buttonText Nem vagyok robot!`"
 
 msgid "button_warning"
 msgstr ", kérlek,nyomd meg az alábbi gombot, mielőtt lejárna a megadott idő, mert különben ki kell, hogy rúgjalak. Köszönöm!"
@@ -31,14 +49,23 @@ msgstr "Nagyszerű! Az újoncokat, akik belépnek a csatornára, üdvözölni fo
 msgid "captcha_button"
 msgstr "Nem vagyok Robot!"
 
+msgid "captcha_help"
+msgstr "a captcha típusának váltása"
+
 msgid "captcha_selected"
 msgstr "Nagyszerű, ezt a típust fogom használni a teszteléshez."
 
 msgid "cas_false"
 msgstr "Nagyszerű! A Sesuritu ezentúl nemhasználja a Combot Anti-Spam megoldást."
 
+msgid "cas_help"
+msgstr "hasznűljuk-e a Combot Anti-Spam megoldást"
+
 msgid "cas_true"
 msgstr "Nagyszerű! A Sesuritu ezentúl használja a Combot Anti-Spam megoldást."
+
+msgid "customCaptchaMessage_help"
+msgstr "captcha üzenet beállítása"
 
 msgid "custom_success"
 msgstr "Elfogadva!"
@@ -46,14 +73,23 @@ msgstr "Elfogadva!"
 msgid "deleteEntryMessages_false"
 msgstr "Nagyszerű! Mostantól a belépési üzeneteket nem töröljük."
 
+msgid "deleteEntryMessages_help"
+msgstr "a belépési üzenetek törlése"
+
 msgid "deleteEntryMessages_true"
 msgstr "Nagyszerű! Mostantól a belépési üzeneteket töröljük."
 
 msgid "deleteEntryOnKick_false"
 msgstr "Nagyszerű! A Sesuritu nem távolítja el a belépési üzenetet, ha a felhasználó elbukik a teszten."
 
+msgid "deleteEntryOnKick_help"
+msgstr "törölje-e a belépési üzenetet, ha az újonc elbukik a teszten"
+
 msgid "deleteEntryOnKick_true"
 msgstr "Nagyszerű! A Sesuritu eltávolítja a belépési üzenetet, ha a felhasználó elbukik a teszten."
+
+msgid "deleteGreetingTime_help"
+msgstr "mennyi idő múlva törölje a Sesuritu's az üdvözlő üzenetet (műsodpercben) pl: `/deleteGreetingTime 100`, 0 állítva reset"
 
 msgid "digits"
 msgstr "Számok"
@@ -67,6 +103,12 @@ msgstr "Válaszolj erre az üzenetre (és úgy értem válaszolj(!), ne csak egy
 msgid "greetingButtonsEmpty"
 msgstr "Nincsenek gombok"
 
+msgid "greetingButtons_help"
+msgstr "saz üdvözlő üzenet gombjainak beállítása"
+
+msgid "greeting_help"
+msgstr "a teszten átmenők üdvözlése"
+
 msgid "greetsUsers_false"
 msgstr "Nagyszerű! Az újoncokat, akik átmentek a teszten, nem üdvözöljük."
 
@@ -79,11 +121,23 @@ msgstr "Nagyszerű! Az újoncokat, akik átmentek a teszten, az üdvözölni fog
 msgid "greetsUsers_true_message"
 msgstr "Nagyszerű! Az újoncokat, akik átmentek a teszten, az üdvözölni fogjuk. Kérlek válaszolj erre az üzenetre az általad választott üzenettel (használhatod az alábbiakat $title, $fullname and $username)."
 
+msgid "help_end"
+msgstr ". A Sesuritu kódja nyílt forráskódú és megtalálható [itt](https://github.com/Rulexec/shieldy)."
+
+msgid "help_help"
+msgstr "ennek az üzenetnek a mutatása"
+
+msgid "help_start"
+msgstr "Sesuritu — a legjobb megoldás a bosszantó spammerek ellen a Telegramban. Arra kéri az újoncokat, hogy hajtsanak végre egy utasítást a megadott időn belül, egyébként kirúgja őket. Ilyen egyszerű.Gondoskodj róla, hogy a @Sesuritu\\_bot is adminisztrátori jogokkal rendelkezik a csatornádon és kész! A viselkedését tovább finomíthatod az alábbi parancsokkal:"
+
 msgid "image"
 msgstr "Kép"
 
 msgid "image_warning"
 msgstr ", kérlek, írd be ide az alábbi karaktereket, mielőtt lejárna a megadott idő, mert különben ki kell, hogy rúgjalak. Köszönöm!"
+
+msgid "language_help"
+msgstr "nyelvek közötti váltás"
 
 msgid "language_selected"
 msgstr "Nagyszerű, mostantól magyarul beszélek."
@@ -94,17 +148,26 @@ msgstr "Kérlek, válassz egy nyelvet!"
 msgid "lock_false_shieldy"
 msgstr "Nagyszerű! Mostantól bárki parancsara reagálok!"
 
+msgid "lock_help"
+msgstr "a parancsok csak az adminoknak elérhető"
+
 msgid "lock_true_shieldy"
 msgstr "Nagyszerű! Mostantól csak az adminok parancsara reagálok!"
 
 msgid "noAttack_false"
 msgstr "Nagyszerű! a Shieldly újra engedélyezve van."
 
+msgid "noAttack_help"
+msgstr "a Sesuritu kikapcsolása"
+
 msgid "noAttack_true"
 msgstr "Nagyszerű! A Sesuritu letiltva. ne felejtsd el kikapcsolni ezt a módot a /noAttack paranccsal."
 
 msgid "noChannelLinks_false"
 msgstr "Nagyszerű! A Sesuritu mostantól nem törli az olyan linket, ami másik telegram csatornára hivatkozik."
+
+msgid "noChannelLinks_help"
+msgstr "automatikusan törölje a más telegram csatornára mutató hivatkozásokat"
 
 msgid "noChannelLinks_true"
 msgstr "Nagyszerű! A Sesuritu mostantól törli az összes olyan linket, ami másik telegram csatornára hivatkozik."
@@ -115,8 +178,14 @@ msgstr "Csak az a személy választhat, aki megnyitotta a menüt."
 msgid "only_candidate_can_reply"
 msgstr "Csak a robot ellenőrzési kihívás jelöltje kattinthat a gombra."
 
+msgid "restrictTime_help"
+msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
+
 msgid "restrict_false"
 msgstr "Nagyszerű! Mostantól minden újonc bármilyen üzenetet küldhet erre a csatornára."
+
+msgid "restrict_help"
+msgstr "az újoncok nem küldhetnek a hagyományos szöveges üzeneten kívül mást az első 24 órában"
 
 msgid "restrict_true"
 msgstr "Nagyszerű! Mostantól minden újonc csak szöveges üzenetet küldhet erre a csatornára."
@@ -127,6 +196,9 @@ msgstr "mp"
 msgid "setConfigHelp"
 msgstr "Kérlek, küld a /setConfig parancsot a következő formában:\n\n<code>/setConfig\nlanguage: en\ncaptchaType: image\ntimeGiven: 60\n...</code>\n\nHasználhatod a /viewConfig alapján adott választ a konfigurációban."
 
+msgid "setConfig_help"
+msgstr "A Sesuritu konfigurálása egy üzenettel"
+
 msgid "simple"
 msgstr "Egyszerű"
 
@@ -136,11 +208,17 @@ msgstr ", kérlek, írj be valamilyen üzenetet, mielőtt a megadott idő lejár
 msgid "skipOldUsers_false"
 msgstr "Nagyszerű! A Telegram fuiók kora nem befolyásolja ezentúl a captcha-t!"
 
+msgid "skipOldUsers_help"
+msgstr "nem mutatja a captcha-t azoknak a Telegram felhasználóknak, akiknek az ID-ja alacsonyabb, mint 1000000000"
+
 msgid "skipOldUsers_true"
 msgstr "Nagyszerű! A régi Telegram felhasználókat nem kéri a rendszer authentikálásra ezentúl!"
 
 msgid "skipVerifiedUsers_false"
 msgstr "Szép! Azok a Telegram felhasználók is kapnak captcha-t, akik bármelyik chat-ben átmentek a captcha-n!"
+
+msgid "skipVerifiedUsers_help"
+msgstr "nem mutatja a captcha-t azoknak a felhasználóknak, akik bármelyik chat-ben a Telegramon belül átmentek a Sesuritu tesztjén"
 
 msgid "skipVerifiedUsers_true"
 msgstr "Szép! Azok a Telegram felhasználók, akik bármelyik chat-ben átmentek a captcha-n, nem kapnak kezdő captcha-t nálunk!"
@@ -148,8 +226,14 @@ msgstr "Szép! Azok a Telegram felhasználók, akik bármelyik chat-ben átmente
 msgid "strict_false"
 msgstr "Nagyszerű! Mostantól az újonc beküldhet más üzenetet is, mielőtt a captcha-t megoldaná."
 
+msgid "strict_help"
+msgstr "ha nem akarsz addig az újonctól üzenetet látni, amíg meg nem oldja a captcha-t"
+
 msgid "strict_true"
 msgstr "Nagyszerű! Mostantól az újonc nem küldhet más üzenetet be addíg, amíg a captcha-t meg nem oldja."
+
+msgid "timeLimit_help"
+msgstr "a feladatra adott idő megváltozatása"
 
 msgid "time_limit"
 msgstr "Kérlek, add meg, hány másodperc álljon rendelkezésre az újoncnak a feladat megoldására, mielőtt kirúgnánk!"
@@ -157,11 +241,17 @@ msgstr "Kérlek, add meg, hány másodperc álljon rendelkezésre az újoncnak a
 msgid "time_limit_selected"
 msgstr "Nagyszerű, ezt az idő intervallumot fogom használni."
 
+msgid "trust_help"
+msgstr "felhasználó által küldött üzenetre ezzel válaszolva nem kell átmennie a teszten"
+
 msgid "trust_success"
 msgstr "Elfogadva!"
 
 msgid "underAttack_false"
 msgstr "Nagyszerű! A Sesuritu mostantól nem vágja ki az új csatlakozókat a csatornáról."
+
+msgid "underAttack_help"
+msgstr "ki be kapcsolhatjuk az újoncok automatikus kirugását"
 
 msgid "underAttack_true"
 msgstr "Nagyszerű! A Sesuritu mostantól minden új csatlakozót kivág a csatornáról. Ne felejtsd el kikapcsolni ezt a beállítást, amikor a támadás véget ár a /underAttack paranccsal."
@@ -169,95 +259,5 @@ msgstr "Nagyszerű! A Sesuritu mostantól minden új csatlakozót kivág a csato
 msgid "viewConfig"
 msgstr "Jelenlegi konfiguráció:"
 
-msgid "help_start"
-msgstr "Sesuritu — a legjobb megoldás a bosszantó spammerek ellen a Telegramban. Arra kéri az újoncokat, hogy hajtsanak végre egy utasítást a megadott időn belül, egyébként kirúgja őket. Ilyen egyszerű.Gondoskodj róla, hogy a @Sesuritu\\_bot is adminisztrátori jogokkal rendelkezik a csatornádon és kész! A viselkedését tovább finomíthatod az alábbi parancsokkal:"
-
-msgid "help_end"
-msgstr ". A Sesuritu kódja nyílt forráskódú és megtalálható [itt](https://github.com/Rulexec/shieldy)."
-
-msgid "help_help"
-msgstr "ennek az üzenetnek a mutatása"
-
-msgid "language_help"
-msgstr "nyelvek közötti váltás"
-
-msgid "captcha_help"
-msgstr "a captcha típusának váltása"
-
-msgid "timeLimit_help"
-msgstr "a feladatra adott idő megváltozatása"
-
-msgid "lock_help"
-msgstr "a parancsok csak az adminoknak elérhető"
-
-msgid "restrict_help"
-msgstr "az újoncok nem küldhetnek a hagyományos szöveges üzeneten kívül mást az első 24 órában"
-
-msgid "deleteEntryMessages_help"
-msgstr "a belépési üzenetek törlése"
-
-msgid "greeting_help"
-msgstr "a teszten átmenők üdvözlése"
-
-msgid "trust_help"
-msgstr "felhasználó által küldött üzenetre ezzel válaszolva nem kell átmennie a teszten"
-
-msgid "ban_help"
-msgstr "ugyanaz, mint a trust, csak éppen bannoljuk"
-
-msgid "strict_help"
-msgstr "ha nem akarsz addig az újonctól üzenetet látni, amíg meg nem oldja a captcha-t"
-
-msgid "customCaptchaMessage_help"
-msgstr "captcha üzenet beállítása"
-
-msgid "deleteGreetingTime_help"
-msgstr "mennyi idő múlva törölje a Sesuritu's az üdvözlő üzenetet (műsodpercben) pl: `/deleteGreetingTime 100`, 0 állítva reset"
-
-msgid "banUsers_help"
-msgstr "bannolja vagy csak kirúgja a felhasználókat"
-
-msgid "deleteEntryOnKick_help"
-msgstr "törölje-e a belépési üzenetet, ha az újonc elbukik a teszten"
-
-msgid "cas_help"
-msgstr "hasznűljuk-e a Combot Anti-Spam megoldást"
-
-msgid "underAttack_help"
-msgstr "ki be kapcsolhatjuk az újoncok automatikus kirugását"
-
-msgid "noAttack_help"
-msgstr "a Sesuritu kikapcsolása"
-
-msgid "noChannelLinks_help"
-msgstr "automatikusan törölje a más telegram csatornára mutató hivatkozásokat"
-
 msgid "viewConfig_help"
 msgstr "a jelenlegi Sesuritu konfiguráció megtekintése"
-
-msgid "buttonText_help"
-msgstr "a captcha gomb feliratának megváltoztatása. az alapértelmezett: `/buttonText Nem vagyok robot!`"
-
-msgid "allowInvitingBots_help"
-msgstr "a felhasználó meghívhat-e botot vagy sem"
-
-msgid "greetingButtons_help"
-msgstr "saz üdvözlő üzenet gombjainak beállítása"
-
-msgid "skipOldUsers_help"
-msgstr "nem mutatja a captcha-t azoknak a Telegram felhasználóknak, akiknek az ID-ja alacsonyabb, mint 1000000000"
-
-msgid "skipVerifiedUsers_help"
-msgstr "nem mutatja a captcha-t azoknak a felhasználóknak, akik bármelyik chat-ben a Telegramon belül átmentek a Sesuritu tesztjén"
-
-msgid "setConfig_help"
-msgstr "A Sesuritu konfigurálása egy üzenettel"
-
-msgid "banForFastRepliesToPosts_help"
-msgstr "turn on or off banning users who reply to new channel posts within 5 seconds after posts are created"
-
-msgid "restrictTime_help"
-msgstr "setup how much time will Sesuritu /restrict a newcomer in hours like `/restrictTime 24`, reset by setting it to 0"
-
-msgid "banNewTelegramUsers_help"
-msgstr "instantly ban (or kick) newcomers with Telegram ID over 1 000 000 000"
