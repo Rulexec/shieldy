@@ -1,0 +1,296 @@
+msgid "allowInvitingBots_false"
+msgstr "Yaxshi! Foydalanuvchilar endi botlarni taklif qilishlari mumkin emas"
+
+msgid "allowInvitingBots_true"
+msgstr "Yaxshi! Foydalanuvchilar endi botlarni taklif qilishlari mumkin"
+
+msgid "banForFastRepliesToPosts_false"
+msgstr "Yaxshi! Sesuritu kanalda post yaratilganidan 5 soniyadan keyin ularga javob yozgan barcha foydalanuvchilarni bloklamaydi (yoki guruhdan haydamaydi)."
+
+msgid "banForFastRepliesToPosts_true"
+msgstr "Yaxshi! Sesuritu kanalda post yaratilganidan 5 soniyadan keyin ularga javob yozgan barcha foydalanuvchilarni bloklaydi (yoki guruhdan haydaydi)."
+
+msgid "banNewTelegramUsers_false"
+msgstr "Yaxshi! Sesuritu Telegram ID raqami 1 000 000 000 dan katta bo'lgan barcha yangi kelganlarni bloklamaydi (yoki guruhdan haydamaydi)."
+
+msgid "banNewTelegramUsers_true"
+msgstr "Yaxshi! Sesuritu Telegram ID raqami 1 000 000 000 dan katta bo'lgan barcha yangi kelganlarni bloklaydi (yoki guruhdan haydaydi)."
+
+msgid "banUsers_false"
+msgstr "Yaxshi! Agar foydalanuvchilar captcha-dan o'tmasalar, guruhdan haydalishadi."
+
+msgid "banUsers_true"
+msgstr "Yaxshi! Agar foydalanuvchilar captcha-dan o'tmasalar, bloklanishadi."
+
+msgid "button"
+msgstr "Tugma"
+
+msgid "button_warning"
+msgstr ", iltimos, belgilangan vaqt ichida quyidagi tugmani bosing, aks holda siz guruhdan haydab yuborilasiz. Rahmat!"
+
+msgid "captcha"
+msgstr "Iltimos, yangi kelganlar uchun test turini tanlang:\n\n• Oddiy — bot chatga biror narsa yuborishni soʻraydi\n• Tugma — bot tugmani bosishni soʻraydi\n• Raqamlar — bot oddiy arifmetik amalni bajarishni soʻraydi. \n• Rasm — bot rasmdagi belgilarni tanib olishni so‘raydi"
+
+msgid "captchaMessage_false"
+msgstr "Ajoyib! Endi yangi kelganlar standart captcha xabarini ko'radilar."
+
+msgid "captchaMessage_true"
+msgstr "Ajoyib! Endi yangi kelganlar captcha-ni tushuntiruvchi maxsus xabarni olishadi. Iltimos, ushbu xabarga siz foydalanmoqchi bo'lgan captcha matni bilan javob bering ($title, $username, $equation, $fullname va $seconds dan foydalanishingiz mumkin)."
+
+msgid "captchaMessage_true_message"
+msgstr "Ajoyib! Endi yangi kelganlar captcha-ni tushuntiruvchi maxsus xabarni olishadi. Iltimos, ushbu xabarga siz foydalanmoqchi bo'lgan captcha matni bilan javob bering ($title, $username, $equation, $fullname va $seconds dan foydalanishingiz mumkin). Joriy salomlashish xabari quyida keladi."
+
+msgid "captcha_button"
+msgstr "Men robot emasman"
+
+msgid "captcha_selected"
+msgstr "Ajoyib, endi men shu turdagi testdan foydalanaman."
+
+msgid "cas_false"
+msgstr "Ajoyib! Sesuritu endi Combot Anti-Spamdan foydalanadi."
+
+msgid "commandsInPrivateWarning"
+msgstr "Siz shaxsiy xabarlardagi sozlamalarni o'zgartiryapsiz. Bu hech qanday guruh chatiga ta'sir qilmaydi. Agar siz guruh chatini o'rnatmoqchi bo'lsangiz, konfiguratsiya buyruqlarini to'g'ridan-to'g'ri guruh chatiga yuboring. Keyin konfiguratsiya xabarlarini o'chirishingiz mumkin."
+
+msgid "deleteEntryMessages_false"
+msgstr "Ajoyib! Endi foydalanuvchilar kirishi haqidagi xabarlar o'chiriladi."
+
+msgid "deleteEntryOnKick_false"
+msgstr "Ajoyib! Endi Sesuritu captcha-tekshiruvidan o'ta olmagan foydalanuvchilar guruhga kirganligi haqidagi xabarlarni o'chirib tashlamaydi."
+
+msgid "deleteEntryOnKick_true"
+msgstr "Ajoyib! Endi Sesuritu captcha-tekshiruvidan o'ta olmagan foydalanuvchilar guruhga kirganligi haqidagi xabarlarni o'chirib tashlaydi."
+
+msgid "digits"
+msgstr "Raqamlar"
+
+msgid "digits_warning"
+msgstr ", iltimos, ushbu guruhga ko'rsatilgan vaqt ichida berilgan arifmetik amalning yechimini yuboring, aks holda siz guruhdan haydab yuborilasiz. Rahmat!"
+
+msgid "greetingButtons"
+msgstr "Salomlash tugmalarini sozlash uchun quyidagi formatda 10 tagacha havolalar bilan ushbu xabarga javob bering (va men javob berishni nazarda tutmoqdaman (!), shunchaki alohida xabar yuborishni emas!). Barcha tugmalarni olib tashlash uchun boshqa xoxlagan biror narsa bilan javob bering.\n\nDuckDuckGo - https://duckduckgo.com\nWikipedia - https://wikipedia.com\n\nJoriy tugmalar:'"
+
+msgid "greetingButtonsEmpty"
+msgstr "Tugmalar yo'q"
+
+msgid "greetsUsers_false"
+msgstr "Ajoyib! Endi testdan o'tgan yangi kelganlarga salom berilmaydi."
+
+msgid "greetsUsers_message_accepted"
+msgstr "Qabul qilindi!"
+
+msgid "greetsUsers_true"
+msgstr "Ajoyib! Endi testdan o'tgan yangi kelganlarga salom beriladi. Iltimos, ushbu xabarga javob sifatida salomlashish matnini yuboring ($title, $fullname va $username parametrlaridan foydalanishingiz mumkin)."
+
+msgid "greetsUsers_true_message"
+msgstr "Ajoyib! Endi testdan o'tgan yangi kelganlarga salom beriladi. Iltimos, ushbu xabarga javob sifatida salomlashish matnini yuboring ($title, $fullname va $username parametrlaridan foydalanishingiz mumkin). Joriy salomlashish xabari quyida keladi."
+
+msgid "image"
+msgstr "Rasm"
+
+msgid "image_warning"
+msgstr ", iltimos, ushbu guruhga belgilangan vaqt ichida ko'rsatilgan belgilarni yuboring, aks holda siz guruhdan haydab yuborilasiz. Rahmat!"
+
+msgid "language_selected"
+msgstr "Ajoyib, endi men O'zbekcha gapiraman"
+
+msgid "language_shieldy"
+msgstr "Iltimos tilni tanlang."
+
+msgid "lifetime"
+msgstr "bir umrlik"
+
+msgid "lock_false_shieldy"
+msgstr "Ajoyib! Endi men har kim tomonidan yuborilgan buyruqlarga javob beraman."
+
+msgid "lock_true_shieldy"
+msgstr "Ajoyib! Endi men faqat adminlar tomonidan yuborilgan buyruqlarga javob beraman."
+
+msgid "manageSubscription"
+msgstr "Obunani boshqarish"
+
+msgid "monthly"
+msgstr "oy"
+
+msgid "noAttack_false"
+msgstr "Ajoyib! Shield hozir yoqilgan"
+
+msgid "noAttack_true"
+msgstr "Ajoyib! Sesuritu endi o'chirib qo'yildi. Ushbu rejimni /noAttack bilan o'chirishni unutmang."
+
+msgid "noChannelLinks_false"
+msgstr "Ajoyib! Sesuritu endi telegram kanallarga havola qilingan xabarlarni o‘chirib tashlamaydi."
+
+msgid "noChannelLinks_true"
+msgstr "Ajoyib! Sesuritu endi telegram kanallarga havola qilingan xabarlarni o‘chirib tashlaydi."
+
+msgid "noChatFound"
+msgstr "Chat topilmadi"
+
+msgid "only_author_can_reply"
+msgstr "Faqat menyuni chaqirgan odam variantlarni tanlashi mumkin."
+
+msgid "only_candidate_can_reply"
+msgstr "Bu tugmani faqat bot emasligini tasdiqlashi kerak bo'lgan odam bosishi mumkin."
+
+msgid "restrict_false"
+msgstr "Ajoyib! Endi barcha yangi kelganlar ushbu chatga istalgan turdagi xabarlarni yuborishlari mumkin bo'ladi."
+
+msgid "restrict_true"
+msgstr "Ajoyib! Endi barcha yangi kelganlar ushbu chatga faqat oddiy matnli xabarlarni yuborishlari mumkin bo'ladi."
+
+msgid "seconds"
+msgstr "soniya"
+
+msgid "setConfigHelp"
+msgstr "Iltimos, /setConfig buyrug'ini quyidagi formatda yuboring:\n\n<code>/setConfig\nlanguage: en\ncaptchaType: image\ntimeGiven: 60\n...</code>\n\n/viewConfig buyrug'idan qaytgan ma'lumotlardan foydalanishingiz mumkin."
+
+msgid "simple"
+msgstr "Oddiy"
+
+msgid "simple_warning"
+msgstr ", iltimos, ushbu guruhga belgilangan vaqt ichida istalgan xabarni yuboring, aks holda siz guruhdan haydab yuborilasiz. Rahmat!"
+
+msgid "skipOldUsers_false"
+msgstr "Yaxshi! Telegram akkauntining yoshi endi captchaga ta'sir qilmaydi!"
+
+msgid "skipOldUsers_true"
+msgstr "Yaxshi! Endi eski Telegram foydalanuvchilari captcha-tekshiruvidan o'tishi talab qilinmaydi!"
+
+msgid "skipVerifiedUsers_false"
+msgstr "Yaxshi! Oldin o'tilgan captcha-lar kelajakdagi captchalarga endi ta'sir qilmaydi!"
+
+msgid "skipVerifiedUsers_true"
+msgstr "Yaxshi! Har qanday boshqa chatda captcha-tekshiruvidan o'tgan Telegram foydalanuvchilari endi captcha-dan o'tishi talab qilinmaydi!"
+
+msgid "strict_false"
+msgstr "Ajoyib! Endi yangi kelganlar captcha-dan o'tishdan oldin matn xabarlar yuborishlari mumkin bo'ladi."
+
+msgid "strict_true"
+msgstr "Ajoyib! Endi yangi kelganlar captcha-dan o'tmaguncha, captcha yechimlaridan boshqa hech narsa yuborolmaydilar."
+
+msgid "subscription"
+msgstr "/subscription — Obunani boshqarish"
+
+msgid "subscriptionInfo"
+msgstr "Qo'llab-quvvatlaganingiz uchun katta rahmat! Quyidagi tugma orqali obunangizni boshqarishingiz mumkin."
+
+msgid "thisIsAReply"
+msgstr "Mana bu esa javob"
+
+msgid "thisIsNotAReply"
+msgstr "Aniqlik kiritish uchun: bu xabarga javob emas"
+
+msgid "time_limit"
+msgstr "Iltimos, yangi kelganlar testni necha soniyada bajarishi kerakligini tanlang, guruhdan haydalishidan oldin."
+
+msgid "time_limit_selected"
+msgstr "Ajoyib, men shu vaqt chegarasidan foydalanaman endi."
+
+msgid "trust_success"
+msgstr "Qabul qilindi!"
+
+msgid "underAttack_false"
+msgstr "Ajoyib! Sesuritu endi bu chatga kirgan barchani haydab yubormaydi."
+
+msgid "underAttack_true"
+msgstr "Ajoyib! Sesuritu endi bu chatga kirgan barchani haydab yuboradi. /underAttack buyrug'i bilan hujum tugagach, ushbu rejimni o'chirishni unutmang."
+
+msgid "viewConfig"
+msgstr "Joriy sozlamalar"
+
+msgid "yearly"
+msgstr "yil"
+
+msgid "help_start"
+msgstr "@Sesuritu\\_bot guruhingizda administrator ekanligiga ishonch hosil qiling va hammasi tayyor! Quyidagi buyruqlar yordamida botni sozlashni davom ettirishingiz mumkin:"
+
+msgid "help_end"
+msgstr "Sesuritu – Telegramda spam bilan kurashish uchun innovatsion yechim. Bot har bir yangi foydalanuvchiga ma'lum bir vaqt ichida bir nechta amallarni bajarishni taklif qiladi va aks holda ularga kirishni rad etadi."
+
+msgid "help_help"
+msgstr "ushbu xabarni k'orsatadi"
+
+msgid "language_help"
+msgstr "tilni o'zgartiradi"
+
+msgid "captcha_help"
+msgstr "captcha-tekshiruv turini o'zgartiradi"
+
+msgid "timeLimit_help"
+msgstr "yangi foydalanuvchilarga berilgan vaqt miqdorini o'zgartiradi"
+
+msgid "lock_help"
+msgstr "buyruqlarni faqat administratorlar uchun ishlaydigan qiladi"
+
+msgid "restrict_help"
+msgstr "dastlabki 24 soat ichida yangi foydalanuvchilarga matnli xabarlardan boshqa narsalarni yuborishni taqiqlaydi"
+
+msgid "deleteEntryMessages_help"
+msgstr "chatga kirgan foydalanuvchilar haqidagi xabarlarni o'chirish"
+
+msgid "greeting_help"
+msgstr "tekshiruvdan o'tgan foydalanuvchilarni xabar bilan kutib olish"
+
+msgid "trust_help"
+msgstr "tekshirilishi shart bo'lmagan foydalanuvchi xabariga ushbu buyruq bilan javob bering"
+
+msgid "ban_help"
+msgstr "`trust` bilan bir xil, lekin teskarisi"
+
+msgid "strict_help"
+msgstr "agar yangi foydalanuvchilar captcha-tekshiruvidan o'tmaguncha hech qanday xabar yozmasligini xohlasangiz ushnu buyruqdan foydalaning"
+
+msgid "customCaptchaMessage_help"
+msgstr "captcha-tekshiruvi uchun o'z xabaringizni o'rnating"
+
+msgid "deleteGreetingTime_help"
+msgstr "Sesuritu salomlashish xabarini avtomatik o'chirishi kerak bo'lgan vaqtni soniyalarda belgilang, masalan `/deleteGreetingTime 100` (yani 100 soniyadan keyin salomlashish xabari o'chirilishi uchun), qiymatni 0 ga o'zgartiring ushbu amalni bekor qilish uchun"
+
+msgid "banUsers_help"
+msgstr "foydalanuvchilarni bloklash yoki guruhdan haydash"
+
+msgid "deleteEntryOnKick_help"
+msgstr "captcha-tekshiruvini o'ta olmagan foydalanuvchilar guruhga kirganligi haqida xabarni o'chirish kerakmi"
+
+msgid "cas_help"
+msgstr "Combot Anti-Spam-dan foydalanish yoki yo'q"
+
+msgid "underAttack_help"
+msgstr "barcha yangilar foydalanuvchilarni avtomatik guruhdan haydashni yoqish yoki o'chirish"
+
+msgid "noAttack_help"
+msgstr "Sesuritu-ni o'chirib qo'yish"
+
+msgid "noChannelLinks_help"
+msgstr "Telegram kanallariga havolalari bo'lgan xabarlarni avtomatik ravishda o'chirish"
+
+msgid "viewConfig_help"
+msgstr "Sesuritu-ning joriy sozlamalarini ko'rish"
+
+msgid "buttonText_help"
+msgstr "captcha tugmasidagi matnni o'zgartirish, masalan `/buttonText Robot emasman!`"
+
+msgid "allowInvitingBots_help"
+msgstr "foydalanuvchilar boshqa botlarni chatga taklif qilishlari mumkinmi"
+
+msgid "greetingButtons_help"
+msgstr "salomlashish xabari uchun tugmalarni sozlash"
+
+msgid "skipOldUsers_help"
+msgstr "ID raqami 1 000 000 000 dan kichik bo'lgan Telegram akkauntlaridan captcha so'ramaslik"
+
+msgid "skipVerifiedUsers_help"
+msgstr "boshqa chatlarda captcha-dan muvaffaqiyatli o'tgan odamlardan captcha so'ramaslik"
+
+msgid "setConfig_help"
+msgstr "Sesuritu-ni bitta xabar bilan sozlash"
+
+msgid "banForFastRepliesToPosts_help"
+msgstr "postlar yaratgandan so'ng 5 soniya ichida kanaldagi xabarlarga javob beradigan foydalanuvchilarni ban qilish yoki yo'q"
+
+msgid "restrictTime_help"
+msgstr "yangi foydalanuvchilar uchun `/restTime 24` formati bilan media jo'natishni necha soat cheklashni sozlang, 0 ni o'rnatish orqali vaqtni standart holatga qaytarishingiz mumkin."
+
+msgid "banNewTelegramUsers_help"
+msgstr "Telegram ID raqami 1 000 000 000 dan katta bo'lgan yangi kelganlarni darhol ban qilish (yoki haydash)"

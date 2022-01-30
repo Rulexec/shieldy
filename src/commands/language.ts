@@ -33,6 +33,7 @@ export const languageCommand: BotMiddlewareFn = (ctx) => {
         m.callbackButton('Hungarian', 'hu'),
       ],
       [m.callbackButton('Finnish', 'fi'), m.callbackButton('Bulgarian', 'bg')],
+      [m.callbackButton('Uzbek', Language.UZBEK)],
     ]),
   );
   extra = extra.notifications(!ctx.dbchat.silentMessages);
@@ -73,6 +74,7 @@ export const setupLanguage: CommandDefSetupFn = ({
       'hu',
       'fi',
       'bg',
+      'uz',
     ],
     checkLockMiddleware,
     checkIfFromReplierMiddleware,
