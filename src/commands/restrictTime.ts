@@ -5,14 +5,16 @@ import {T_} from '@root/i18n/l10n-key';
 import {commandHandler} from './util';
 
 export const restrictTimeCommand = commandHandler(async (ctx) => {
+  const botUsername = ctx.appContext.telegrafBot.botInfo?.username;
+
   assertNonNullish(ctx.message);
-  assertNonNullish(ctx.botInfo?.username);
+  assertNonNullish(botUsername);
 
   // Check if limit is set
   const limitNumber =
     +ctx.message.text.substr('/restrictTime'.length).trim() ||
     +ctx.message.text
-      .substr('/restrictTime@'.length + ctx.botInfo.username.length)
+      .substr('/restrictTime@'.length + botUsername.length)
       .trim();
   if (!isNaN(limitNumber) && limitNumber > 0 && limitNumber < 745) {
     // roughly 31 days

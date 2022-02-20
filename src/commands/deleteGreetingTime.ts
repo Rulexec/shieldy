@@ -5,13 +5,16 @@ import {T_} from '@root/i18n/l10n-key';
 import {commandHandler} from './util';
 
 export const deleteGreetingTimeCommand = commandHandler(async (ctx) => {
+  const botUsername = ctx.appContext.telegrafBot.botInfo?.username;
+
   assertNonNullish(ctx.message);
-  assertNonNullish(ctx.botInfo?.username);
+  assertNonNullish(botUsername);
 
   // Check if limit is set
   const limitNumber =
     +ctx.message.text.substr(19).trim() ||
-    +ctx.message.text.substr(20 + ctx.botInfo.username.length).trim();
+    +ctx.message.text.substr(20 + botUsername.length).trim();
+
   if (!isNaN(limitNumber) && limitNumber > 0 && limitNumber < 100000) {
     ctx.dbchat.deleteGreetingTime = limitNumber;
     await ctx.appContext.database.setChatProperty({

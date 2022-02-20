@@ -12,13 +12,15 @@ const options = [
 ];
 
 export const timeLimitCommand = commandHandler(async (ctx) => {
+  const botUsername = ctx.appContext.telegrafBot.botInfo?.username;
+
   assertNonNullish(ctx.message);
-  assertNonNullish(ctx.botInfo?.username);
+  assertNonNullish(botUsername);
 
   // Check if limit is set
   const limitNumber =
     +ctx.message.text.substr(11).trim() ||
-    +ctx.message.text.substr(12 + ctx.botInfo.username.length).trim();
+    +ctx.message.text.substr(12 + botUsername.length).trim();
   if (!isNaN(limitNumber) && limitNumber > 0 && limitNumber < 100000) {
     const chat = ctx.dbchat;
     chat.timeGiven = limitNumber;

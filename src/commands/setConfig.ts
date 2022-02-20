@@ -8,11 +8,13 @@ import {commandHandler} from './util';
 
 export const setConfigCommand = commandHandler(async (ctx) => {
   try {
+    const botUsername = ctx.appContext.telegrafBot.botInfo?.username;
+
     assertNonNullish(ctx.message);
-    assertNonNullish(ctx.botInfo);
+    assertNonNullish(botUsername);
 
     const configText = ctx.message.text
-      .replace(`/setConfig@${ctx.botInfo.username}`, '')
+      .replace(`/setConfig@${botUsername}`, '')
       .replace('/setConfig', '')
       .trim();
 
