@@ -1,8 +1,4 @@
-import {
-  ExtraReplyMessage,
-  Message,
-  MessagePhoto,
-} from 'telegraf/typings/telegram-types';
+import {ExtraReplyMessage} from 'telegraf/typings/telegram-types';
 import {cloneDeep} from 'lodash';
 import {CaptchaType} from '@models/Chat';
 import {User} from 'telegram-typings';
@@ -19,7 +15,11 @@ export async function notifyCandidate(
   ctx: Context,
   candidate: User,
   captcha: Captcha,
-): Promise<Message | MessagePhoto> {
+): Promise<{message_id: number}> {
+  const {
+    appContext: {telegramApi, logger},
+  } = ctx;
+
   const chat = ctx.dbchat;
   const {silentMessages} = chat;
   const captchaMessage = ctx.dbchat.captchaMessage
@@ -200,14 +200,17 @@ export async function notifyCandidate(
         },
       );
     } else {
-      // FIXME: logging
+      logger.error('notifyCandidate:96716187e5876ea1');
 
-      return ctx.replyWithMarkdown(
-        (chat.captchaType === CaptchaType.DIGITS
-          ? `(${equation ? equation.question : 'ERROR_96716187e5876ea1'}) `
-          : '') + text,
-        extra,
-      );
+      return telegramApi.sendMessage({
+        chat_id: chat.id,
+        disable_notification: chat.silentMessages,
+        text:
+          (chat.captchaType === CaptchaType.DIGITS
+            ? `(${equation ? equation.question : 'ERROR_96716187e5876ea1'}) `
+            : '') + text,
+        parse_mode: 'HTML',
+      });
     }
   }
 }

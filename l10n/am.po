@@ -91,7 +91,7 @@ msgstr "ቋንቋ ይቀይራል"
 msgid "language_selected"
 msgstr "አሪፍ አሁን አማርኛ አወራለሁ።"
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "ቋንቋ ምረጡ።"
 
 msgid "lock_false_shieldy"

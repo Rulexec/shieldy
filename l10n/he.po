@@ -142,7 +142,7 @@ msgstr "מחליף שפה"
 msgid "language_selected"
 msgstr "נהדר! אני דובר עברית כעת."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "אנא בחר שפה."
 
 msgid "lock_false_shieldy"

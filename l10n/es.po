@@ -142,7 +142,7 @@ msgstr "cambia el idioma"
 msgid "language_selected"
 msgstr "Genial, ahora hablo español."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "Por favor, selecciona el idioma."
 
 msgid "lock_false_shieldy"

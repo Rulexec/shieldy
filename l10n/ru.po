@@ -181,7 +181,7 @@ msgstr "меняет язык"
 msgid "language_selected"
 msgstr "Отлично, я теперь говорю по-русски."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "Пожалуйста, выберите язык."
 
 msgid "lock_false_shieldy"

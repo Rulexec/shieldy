@@ -103,7 +103,7 @@ msgstr "výběr jazyka"
 msgid "language_selected"
 msgstr "Skvělé, nyní mluvím česky."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "Prosím, vyber jazyk."
 
 msgid "lock_false_shieldy"

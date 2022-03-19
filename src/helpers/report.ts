@@ -5,7 +5,7 @@ let errorsToReport: string[] = [];
 
 async function bulkReport(appContext: AppContext) {
   const {
-    telegrafBot: bot,
+    telegramApi,
     config: {telegramAdminId: adminChatId},
     logger,
   } = appContext;
@@ -26,7 +26,10 @@ async function bulkReport(appContext: AppContext) {
     if (chunks) {
       for (const chunk of chunks) {
         try {
-          await bot.telegram.sendMessage(adminChatId, chunk);
+          await telegramApi.sendMessage({
+            chat_id: adminChatId,
+            text: chunk,
+          });
         } catch (error) {
           logger.error('bulkReport', undefined, {error});
         }

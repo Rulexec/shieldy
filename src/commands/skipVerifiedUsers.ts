@@ -1,25 +1,31 @@
-import {Extra} from 'telegraf';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {T_} from '@root/i18n/l10n-key';
 import {commandHandler} from './util';
 
 export const skipVerifiedUsersCommand = commandHandler(async (ctx) => {
-  const chat = ctx.dbchat;
+  const {
+    appContext: {database, telegramApi},
+    dbchat: chat,
+    message,
+  } = ctx;
+
   chat.skipVerifiedUsers = !chat.skipVerifiedUsers;
-  await ctx.appContext.database.setChatProperty({
+  await database.setChatProperty({
     chatId: chat.id,
     property: 'skipVerifiedUsers',
     value: chat.skipVerifiedUsers,
   });
 
-  assertNonNullish(ctx.message);
+  assertNonNullish(message);
 
-  ctx.replyWithMarkdown(
-    ctx.translate(
+  telegramApi.sendMessage({
+    chat_id: chat.id,
+    reply_to_message_id: message.message_id,
+    disable_notification: chat.silentMessages,
+    text: ctx.translate(
       chat.skipVerifiedUsers
         ? T_`skipVerifiedUsers_true`
         : T_`skipVerifiedUsers_false`,
     ),
-    Extra.inReplyTo(ctx.message.message_id).notifications(!chat.silentMessages),
-  );
+  });
 });

@@ -154,7 +154,7 @@ msgstr "Modifica la lingua"
 msgid "language_selected"
 msgstr "Perfetto, Ora parlo Italiano."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "Prego, seleziona la lingua."
 
 msgid "lifetime"

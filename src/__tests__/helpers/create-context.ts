@@ -3,6 +3,7 @@ import {MemoryDatabase} from '@root/database/memory/database';
 import {Translations} from '@root/i18n/translations';
 import {AppContext} from '@root/types/app-context';
 import {LogLevel} from '@root/types/logging';
+import {Logger} from '@root/util/logging/logger';
 import {TEST_TELEGRAM_TOKEN} from '../constants';
 
 type CreateTestAppContextOptions = Partial<{
@@ -47,6 +48,23 @@ export const createTestAppContext = ({
         logger: appContext.logger.fork('l10n'),
       }),
     getCurrentDate: () => new Date(result.timestamp),
+    getLogger: () =>
+      new Logger('test', {
+        filter: ({loggerKey, level}, key) => {
+          if (level === LogLevel.STATS) {
+            return false;
+          }
+          if (
+            loggerKey === 'test:l10n' &&
+            level === LogLevel.ERROR &&
+            key === 'noTranslation'
+          ) {
+            return false;
+          }
+
+          return true;
+        },
+      }),
     ...rest,
   });
 

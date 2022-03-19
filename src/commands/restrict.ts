@@ -1,21 +1,27 @@
-import {Extra} from 'telegraf';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {T_} from '@root/i18n/l10n-key';
 import {commandHandler} from './util';
 
 export const restrictCommand = commandHandler(async (ctx) => {
-  const chat = ctx.dbchat;
+  const {
+    appContext: {database, telegramApi},
+    dbchat: chat,
+    message,
+  } = ctx;
+
   chat.restrict = !chat.restrict;
-  await ctx.appContext.database.setChatProperty({
+  await database.setChatProperty({
     chatId: chat.id,
     property: 'restrict',
     value: chat.restrict,
   });
 
-  assertNonNullish(ctx.message);
+  assertNonNullish(message);
 
-  ctx.replyWithMarkdown(
-    ctx.translate(chat.restrict ? T_`restrict_true` : T_`restrict_false`),
-    Extra.inReplyTo(ctx.message.message_id).notifications(!chat.silentMessages),
-  );
+  telegramApi.sendMessage({
+    chat_id: chat.id,
+    reply_to_message_id: message.message_id,
+    disable_notification: chat.silentMessages,
+    text: ctx.translate(chat.restrict ? T_`restrict_true` : T_`restrict_false`),
+  });
 });

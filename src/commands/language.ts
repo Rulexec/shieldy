@@ -1,4 +1,3 @@
-import {Extra} from 'telegraf';
 import {Language} from '@models/Chat';
 import {checkIfFromReplierMiddleware} from '@middlewares/checkIfFromReplier';
 import {checkLockMiddleware} from '@middlewares/checkLock';
@@ -7,38 +6,82 @@ import {T_} from '@root/i18n/l10n-key';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 import {CommandDefSetupFn} from './types';
 
+const languageButtons = [
+  [
+    ['English', 'en'],
+    ['Русский', 'ru'],
+  ],
+  [
+    ['Italiano', 'it'],
+    ['Eesti', 'et'],
+  ],
+  [
+    ['Українська', 'uk'],
+    ['Português Brasil', 'br'],
+  ],
+  [
+    ['Español', 'es'],
+    ['Chinese', 'zh'],
+  ],
+  [
+    ['Norwegian', 'no'],
+    ['Deutsch', 'de'],
+  ],
+  [
+    ['Taiwan', 'tw'],
+    ['French', 'fr'],
+  ],
+  [
+    ['Indonesian', 'id'],
+    ['Korean', 'ko'],
+  ],
+  [
+    ['Amharic', 'am'],
+    ['Czech', 'cz'],
+  ],
+  [
+    ['Arabic', 'ar'],
+    ['Türkçe', 'tr'],
+  ],
+  [
+    ['Romanian', 'ro'],
+    ['Japanese', 'ja'],
+  ],
+  [
+    ['Slovak', 'sk'],
+    ['Catalan', 'ca'],
+  ],
+  [
+    ['Cantonese', 'yue'],
+    ['Hungarian', 'hu'],
+  ],
+  [
+    ['Finnish', 'fi'],
+    ['Bulgarian', 'bg'],
+  ],
+  [['Uzbek', Language.UZBEK]],
+];
+
 export const languageCommand: BotMiddlewareFn = (ctx) => {
-  assertNonNullish(ctx.message);
+  const {
+    appContext: {telegramApi},
+    dbchat: chat,
+    message,
+  } = ctx;
 
-  let extra = Extra.webPreview(false);
-  extra = extra.inReplyTo(ctx.message.message_id);
-  extra = extra.markup((m) =>
-    m.inlineKeyboard([
-      [m.callbackButton('English', 'en'), m.callbackButton('Русский', 'ru')],
-      [m.callbackButton('Italiano', 'it'), m.callbackButton('Eesti', 'et')],
-      [
-        m.callbackButton('Українська', 'uk'),
-        m.callbackButton('Português Brasil', 'br'),
-      ],
-      [m.callbackButton('Español', 'es'), m.callbackButton('Chinese', 'zh')],
-      [m.callbackButton('Norwegian', 'no'), m.callbackButton('Deutsch', 'de')],
-      [m.callbackButton('Taiwan', 'tw'), m.callbackButton('French', 'fr')],
-      [m.callbackButton('Indonesian', 'id'), m.callbackButton('Korean', 'ko')],
-      [m.callbackButton('Amharic', 'am'), m.callbackButton('Czech', 'cz')],
-      [m.callbackButton('Arabic', 'ar'), m.callbackButton('Türkçe', 'tr')],
-      [m.callbackButton('Romanian', 'ro'), m.callbackButton('Japanese', 'ja')],
-      [m.callbackButton('Slovak', 'sk'), m.callbackButton('Catalan', 'ca')],
-      [
-        m.callbackButton('Cantonese', 'yue'),
-        m.callbackButton('Hungarian', 'hu'),
-      ],
-      [m.callbackButton('Finnish', 'fi'), m.callbackButton('Bulgarian', 'bg')],
-      [m.callbackButton('Uzbek', Language.UZBEK)],
-    ]),
-  );
-  extra = extra.notifications(!ctx.dbchat.silentMessages);
+  assertNonNullish(message);
 
-  ctx.replyWithMarkdown(ctx.translate(T_`language_shieldy`), extra);
+  telegramApi.sendMessage({
+    chat_id: chat.id,
+    reply_to_message_id: message.message_id,
+    disable_notification: chat.silentMessages,
+    text: ctx.translate(T_`language_selection`),
+    reply_markup: {
+      inline_keyboard: languageButtons.map((buttons) =>
+        buttons.map(([name, key]) => ({text: name, callback_data: key})),
+      ),
+    },
+  });
 
   return Promise.resolve(BotMiddlewareNextStrategy.abort);
 };

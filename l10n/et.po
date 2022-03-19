@@ -85,7 +85,7 @@ msgstr "muutub keelt"
 msgid "language_selected"
 msgstr "Väga hea, nüüd ma räägin eesti keeles."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "Palun valige keel."
 
 msgid "lock_false_shieldy"

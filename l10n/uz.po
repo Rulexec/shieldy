@@ -94,7 +94,7 @@ msgstr ", iltimos, ushbu guruhga belgilangan vaqt ichida ko'rsatilgan belgilarni
 msgid "language_selected"
 msgstr "Ajoyib, endi men O'zbekcha gapiraman"
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "Iltimos tilni tanlang."
 
 msgid "lifetime"

@@ -1,24 +1,29 @@
-import {Extra} from 'telegraf';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {T_} from '@root/i18n/l10n-key';
 import {commandHandler} from './util';
 
 export const underAttackCommand = commandHandler(async (ctx) => {
-  ctx.dbchat.underAttack = !ctx.dbchat.underAttack;
-  await ctx.appContext.database.setChatProperty({
-    chatId: ctx.dbchat.id,
+  const {
+    appContext: {database, telegramApi},
+    dbchat: chat,
+    message,
+  } = ctx;
+
+  chat.underAttack = !chat.underAttack;
+  await database.setChatProperty({
+    chatId: chat.id,
     property: 'underAttack',
-    value: ctx.dbchat.underAttack,
+    value: chat.underAttack,
   });
 
-  assertNonNullish(ctx.message);
+  assertNonNullish(message);
 
-  ctx.replyWithMarkdown(
-    ctx.translate(
+  telegramApi.sendMessage({
+    chat_id: chat.id,
+    reply_to_message_id: message.message_id,
+    disable_notification: chat.silentMessages,
+    text: ctx.translate(
       ctx.dbchat.underAttack ? T_`underAttack_true` : T_`underAttack_false`,
     ),
-    Extra.inReplyTo(ctx.message.message_id).notifications(
-      !ctx.dbchat.silentMessages,
-    ),
-  );
+  });
 });

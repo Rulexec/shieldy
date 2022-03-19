@@ -97,7 +97,7 @@ msgstr "언어 변경"
 msgid "language_selected"
 msgstr "좋아요, 나는 이제 한국어로 말합니다."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "언어를 선택하십시오."
 
 msgid "lock_false_shieldy"

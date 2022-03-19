@@ -16,9 +16,4 @@ export type Context = TelegrafContext & {
     chatId: number;
     messageId: number;
   }) => Promise<void>;
-
-  replyWithMarkdown(
-    markdown: string,
-    extra?: tt.ExtraEditMessage | tt.Extra,
-  ): Promise<tt.Message>;
 };

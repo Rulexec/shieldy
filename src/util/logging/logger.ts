@@ -2,28 +2,51 @@ import {LogLevel} from '@root/types/logging';
 import type {Logger as LoggerInterface} from './types';
 
 type LoggerWithFork = LoggerInterface & {fork: (key: string) => LoggerWithFork};
+type LogFn = (
+  loggerOpts: {loggerKey?: string; level: LogLevel},
+  key: string,
+  props?: Record<string, string | number | boolean | undefined | null>,
+  extra?: {extra?: any; error?: Error},
+) => void;
+type FilterLogFn = (...params: Parameters<LogFn>) => boolean;
+
+const getTrue = () => true;
 
 export class Logger implements LoggerInterface {
   private lastTimeMs = 0;
   private microTicks = 0;
   private key: string;
   private logLevel: LogLevel;
+  private filterLog: FilterLogFn = getTrue;
 
   constructor(
     key: string,
-    {logLevel = LogLevel.TRACE}: {logLevel?: LogLevel} = {},
+    {
+      logLevel = LogLevel.TRACE,
+      filter,
+    }: {logLevel?: LogLevel; filter?: FilterLogFn} = {},
   ) {
     this.key = key;
     this.logLevel = logLevel;
+
+    if (filter) {
+      this.filterLog = filter;
+    }
   }
 
-  private log = (
-    {loggerKey = this.key, level}: {loggerKey?: string; level: LogLevel},
+  private log: LogFn = (
+    loggerOpts: {loggerKey?: string; level: LogLevel},
     key: string,
     props?: Record<string, string | number | boolean | undefined | null>,
-    {extra, error}: {extra?: any; error?: Error} = {},
+    extraOpts = {},
   ): void => {
-    if (level < this.logLevel) {
+    const {loggerKey = this.key, level} = loggerOpts;
+    const {extra, error} = extraOpts;
+
+    if (
+      level < this.logLevel ||
+      !this.filterLog(loggerOpts, key, props, extraOpts)
+    ) {
       return;
     }
 

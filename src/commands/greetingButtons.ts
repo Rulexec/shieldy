@@ -8,22 +8,31 @@ import {CommandDefSetupFn} from './types';
 import {BotMiddlewareNextStrategy} from '@root/bot/types';
 
 export const greetingButtonsCommand = commandHandler(async (ctx) => {
-  assertNonNullish(ctx.message);
+  const {
+    appContext: {telegramApi},
+    dbchat: chat,
+    message,
+  } = ctx;
 
-  await ctx.replyWithMarkdown(
-    `${ctx.translate(T_`greetingButtons`)}`,
-    Extra.inReplyTo(ctx.message.message_id)
-      .webPreview(false)
-      .notifications(!ctx.dbchat.silentMessages),
-  );
-  await ctx.replyWithMarkdown(
-    `<code>${
+  assertNonNullish(message);
+
+  await telegramApi.sendMessage({
+    chat_id: chat.id,
+    reply_to_message_id: message.message_id,
+    disable_notification: chat.silentMessages,
+    text: ctx.translate(T_`greetingButtons`),
+    disable_web_page_preview: true,
+  });
+  await telegramApi.sendMessage({
+    chat_id: chat.id,
+    disable_notification: chat.silentMessages,
+    text: `<code>${
       ctx.dbchat.greetingButtons || ctx.translate(T_`greetingButtonsEmpty`)
     }</code>`,
-    Extra.webPreview(false)
-      .HTML(true)
-      .notifications(!ctx.dbchat.silentMessages),
-  );
+    disable_web_page_preview: true,
+    parse_mode: 'HTML',
+  });
+
   await clarifyReply(ctx);
 });
 

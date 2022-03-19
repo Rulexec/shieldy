@@ -124,7 +124,7 @@ msgstr "výber jazyka"
 msgid "language_selected"
 msgstr "Skvelé, teraz hovorím po slovensky."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "Vyberte jazyk."
 
 msgid "lock_false_shieldy"

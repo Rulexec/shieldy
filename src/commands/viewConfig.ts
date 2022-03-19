@@ -36,21 +36,23 @@ export async function sendCurrentConfig(
   ctx: Context,
   chat: Chat,
 ): Promise<void> {
-  assertNonNullish(ctx.chat);
-  assertNonNullish(ctx.message);
+  const {
+    appContext: {telegramApi},
+    message,
+  } = ctx;
 
-  await ctx.replyWithMarkdown(
-    `${ctx.translate(T_`viewConfig`)}
+  assertNonNullish(ctx.chat);
+  assertNonNullish(message);
+
+  const configText = `${ctx.translate(T_`viewConfig`)}
 
 id: <code>${chat.id}</code>
 type: <code>${ctx.chat.type}</code>
 botRole: <code>${
-      ctx.chat.type === 'private'
-        ? 'N/A'
-        : (
-            await ctx.getChatMember((await ctx.telegram.getMe()).id)
-          ).status
-    }</code>
+    ctx.chat.type === 'private'
+      ? 'N/A'
+      : (await ctx.getChatMember((await ctx.telegram.getMe()).id)).status
+  }</code>
 language: <code>${chat.language}</code>
 captchaType: <code>${chat.captchaType}</code>
 timeGivenSec: <code>${chat.timeGiven}</code>
@@ -75,11 +77,16 @@ restrictTimeHours: <code>${chat.restrictTime || 24}</code>
 banNewTelegramUsers: <code>${chat.banNewTelegramUsers}</code>
 silent: <code>${Boolean(chat.silentMessages)}</code>
 greetingButtons:
-<code>${chat.greetingButtons || 'Not set'}</code>`,
-    Extra.inReplyTo(ctx.message.message_id)
-      .HTML(true)
-      .notifications(!chat.silentMessages),
-  );
+<code>${chat.greetingButtons || 'Not set'}</code>`;
+
+  await telegramApi.sendMessage({
+    chat_id: ctx.dbchat.id,
+    reply_to_message_id: message.message_id,
+    disable_notification: chat.silentMessages,
+    text: configText,
+    parse_mode: 'HTML',
+  });
+
   if (chat.greetingMessage) {
     // TODO: investigate
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -87,7 +94,7 @@ greetingButtons:
     chat.greetingMessage.message.chat = undefined;
     await ctx.telegram.sendCopy(ctx.dbchat.id, chat.greetingMessage.message, {
       ...Extra.webPreview(false)
-        .inReplyTo(ctx.message.message_id)
+        .inReplyTo(message.message_id)
         .notifications(!ctx.dbchat.silentMessages),
       entities: chat.greetingMessage.message.entities,
     });
@@ -99,7 +106,7 @@ greetingButtons:
     chat.captchaMessage.message.chat = undefined;
     await ctx.telegram.sendCopy(ctx.dbchat.id, chat.captchaMessage.message, {
       ...Extra.webPreview(false)
-        .inReplyTo(ctx.message.message_id)
+        .inReplyTo(message.message_id)
         .notifications(!ctx.dbchat.silentMessages),
       entities: chat.captchaMessage.message.entities,
     });
