@@ -3,7 +3,7 @@ import {IdlingStatus} from '@root/util/state/idling-status';
 import {Bot} from './bot';
 import {Database} from './database';
 import {LogLevel} from './logging';
-import {TelegramApi} from './telegram-api';
+import {TelegramApi} from './telegram/telegram-api';
 import {BotMiddlewareFn} from '@root/bot/types';
 import {Logger} from '@root/util/logging/logger';
 import {Translations} from '@root/i18n/translations';

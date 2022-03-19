@@ -1,4 +1,3 @@
-import {Extra} from 'telegraf';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 
@@ -6,16 +5,16 @@ export const pingCommand: BotMiddlewareFn = (ctx) => {
   const {
     dbchat,
     message,
-    appContext: {idling},
+    appContext: {telegramApi},
   } = ctx;
   assertNonNullish(message);
 
-  idling.wrapTask(() =>
-    ctx.replyWithMarkdown(
-      'pong',
-      Extra.inReplyTo(message.message_id).notifications(!dbchat.silentMessages),
-    ),
-  );
+  telegramApi.sendMessage({
+    chat_id: dbchat.id,
+    reply_to_message_id: message.message_id,
+    disable_notification: dbchat.silentMessages,
+    text: 'pong',
+  });
 
   return Promise.resolve(BotMiddlewareNextStrategy.abort);
 };

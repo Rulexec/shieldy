@@ -142,7 +142,7 @@ msgstr "nyelvek közötti váltás"
 msgid "language_selected"
 msgstr "Nagyszerű, mostantól magyarul beszélek."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "Kérlek, válassz egy nyelvet!"
 
 msgid "lock_false_shieldy"

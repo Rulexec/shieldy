@@ -142,7 +142,7 @@ msgstr "轉用其它語言"
 msgid "language_selected"
 msgstr "正，我而家開始講粵語。"
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "揀埋一種語言。"
 
 msgid "lock_false_shieldy"

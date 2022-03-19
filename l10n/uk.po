@@ -130,7 +130,7 @@ msgstr "змінює мову"
 msgid "language_selected"
 msgstr "Чудово, тепер я розмовляю українською."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "Будь ласка, виберіть мову."
 
 msgid "lock_false_shieldy"

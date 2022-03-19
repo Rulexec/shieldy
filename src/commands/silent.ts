@@ -1,4 +1,3 @@
-import {Extra} from 'telegraf';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {T_} from '@root/i18n/l10n-key';
 import {commandHandler} from './util';
@@ -8,7 +7,7 @@ export const silentCommand = commandHandler(async (ctx) => {
     dbchat: chat,
     message,
     translate,
-    appContext: {database, idling},
+    appContext: {database, telegramApi},
   } = ctx;
   assertNonNullish(message);
 
@@ -21,10 +20,12 @@ export const silentCommand = commandHandler(async (ctx) => {
     value: isSilent,
   });
 
-  idling.wrapTask(() =>
-    ctx.replyWithMarkdown(
-      translate(isSilent ? T_`silentMessages_true` : T_`silentMessages_false`),
-      Extra.inReplyTo(message.message_id).notifications(!isSilent),
+  telegramApi.sendMessage({
+    chat_id: chat.id,
+    reply_to_message_id: message.message_id,
+    disable_notification: chat.silentMessages,
+    text: translate(
+      isSilent ? T_`silentMessages_true` : T_`silentMessages_false`,
     ),
-  );
+  });
 });

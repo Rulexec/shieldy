@@ -97,7 +97,7 @@ msgstr "mengganti pilihan bahasa"
 msgid "language_selected"
 msgstr "Baiklah. Saya berbahasa Indonesia sekarang."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "Silakan pilih bahasa."
 
 msgid "lock_false_shieldy"

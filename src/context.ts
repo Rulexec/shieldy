@@ -13,6 +13,7 @@ import {Translations} from './i18n/translations';
 import {createFsPoTranslationsLoader} from './i18n/translations-loader-fs-po';
 import {getCommands} from './commands/all-commands';
 import {ExplicitPartial} from './types/utility';
+import {toDoValidateResponse} from './types/hacks/to-do-validate';
 
 export type ContextOptions = Partial<{
   isWorker: boolean;
@@ -21,6 +22,7 @@ export type ContextOptions = Partial<{
   createDatabase: (options: {appContext: AppContext}) => Database;
   createTranslations: (options: {appContext: AppContext}) => Translations;
   getCurrentDate: () => Date;
+  getLogger: (options: {name: string; config: Config}) => Logger;
 }>;
 
 const defaultTranslationsLoader = ({appContext}: {appContext: AppContext}) =>
@@ -41,12 +43,15 @@ export function createContext({
   createDatabase = ({appContext}) => new MongoDatabase({appContext}),
   createTranslations = defaultCreateTranslations,
   getCurrentDate = () => new Date(),
+  getLogger = ({name, config}) => new Logger(name, {logLevel: config.logLevel}),
 }: ContextOptions = {}): AppContext {
   const idling = new IdlingStatus();
   const config = customConfig || getConfig();
-  const logger = new Logger(instanceId || 'main', {logLevel: config.logLevel});
+  const logger = getLogger({name: instanceId || 'main', config});
 
   const shutdownHandlers: (() => Promise<void>)[] = [];
+
+  let appContext: AppContext = undefined as unknown as AppContext;
 
   const initialAppContext: ExplicitPartial<AppContext> = {
     isWorker,
@@ -59,12 +64,11 @@ export function createContext({
     createDefaultChat,
     telegrafBot: undefined,
     telegramApi: {
-      replyWithMarkdown: (context, markdown, extra) => {
+      sendMessage: (options) => {
         return idling.wrapTask(() =>
-          context.replyWithMarkdown(markdown, {
-            ...extra,
-            disable_notification: Boolean(context.dbchat?.silentMessages),
-          }),
+          toDoValidateResponse(
+            appContext.telegrafBot.telegram.callApi('sendMessage', options),
+          ),
         );
       },
     },
@@ -84,7 +88,7 @@ export function createContext({
 
   // Unsafe, but we promise, that all fields will be filled
   // and undefined fields will be not used on initialization
-  const appContext = initialAppContext as AppContext;
+  appContext = initialAppContext as AppContext;
 
   appContext.database = createDatabase({appContext});
   appContext.translations = createTranslations({appContext});

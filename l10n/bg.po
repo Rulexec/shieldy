@@ -157,7 +157,7 @@ msgstr "превключва езика"
 msgid "language_selected"
 msgstr "Чудесно, сега говоря Български"
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "Моля, изберете език."
 
 msgid "lock_false_shieldy"

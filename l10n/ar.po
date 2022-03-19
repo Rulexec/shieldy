@@ -112,7 +112,7 @@ msgstr "تغيير اللغة"
 msgid "language_selected"
 msgstr "عظيم، أنا أتكلم العربية الآن."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "الرجاء إختيار اللغة."
 
 msgid "lock_false_shieldy"

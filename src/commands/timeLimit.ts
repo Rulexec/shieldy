@@ -1,4 +1,3 @@
-import {Extra} from 'telegraf';
 import {checkIfFromReplierMiddleware} from '@middlewares/checkIfFromReplier';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {T_} from '@root/i18n/l10n-key';
@@ -12,46 +11,55 @@ const options = [
 ];
 
 export const timeLimitCommand = commandHandler(async (ctx) => {
-  const botUsername = ctx.appContext.telegrafBot.botInfo?.username;
+  const {
+    appContext: {database, telegramApi, telegrafBot},
+    dbchat: chat,
+    message,
+    botInfo,
+  } = ctx;
 
-  assertNonNullish(ctx.message);
+  const botUsername = telegrafBot.botInfo?.username;
+
+  assertNonNullish(message);
   assertNonNullish(botUsername);
 
   // Check if limit is set
   const limitNumber =
-    +ctx.message.text.substr(11).trim() ||
-    +ctx.message.text.substr(12 + botUsername.length).trim();
+    +message.text.substr(11).trim() ||
+    +message.text.substr(12 + botUsername.length).trim();
+
   if (!isNaN(limitNumber) && limitNumber > 0 && limitNumber < 100000) {
-    const chat = ctx.dbchat;
     chat.timeGiven = limitNumber;
-    await ctx.appContext.database.setChatProperty({
+    await database.setChatProperty({
       chatId: chat.id,
       property: 'timeGiven',
       value: chat.timeGiven,
     });
-    await ctx.replyWithMarkdown(
-      `${ctx.translate(T_`time_limit_selected`)} (${
+    await telegramApi.sendMessage({
+      chat_id: chat.id,
+      reply_to_message_id: message.message_id,
+      disable_notification: chat.silentMessages,
+      text: `${ctx.translate(T_`time_limit_selected`)} (${
         chat.timeGiven
       } ${ctx.translate(T_`seconds`)})`,
-      Extra.notifications(!ctx.dbchat.silentMessages),
-    );
+    });
     return;
   }
 
-  ctx.replyWithMarkdown(
-    ctx.translate(T_`time_limit`),
-    Extra.inReplyTo(ctx.message.message_id)
-      .markup((m) =>
-        m.inlineKeyboard(
-          options.map((a) =>
-            a.map((o) =>
-              m.callbackButton(`${o} ${ctx.translate(T_`seconds`)}`, o),
-            ),
-          ),
-        ),
-      )
-      .notifications(!ctx.dbchat.silentMessages),
-  );
+  telegramApi.sendMessage({
+    chat_id: chat.id,
+    reply_to_message_id: message.message_id,
+    disable_notification: chat.silentMessages,
+    text: ctx.translate(T_`time_limit`),
+    reply_markup: {
+      inline_keyboard: options.map((a) =>
+        a.map((o) => ({
+          text: `${o} ${ctx.translate(T_`seconds`)}`,
+          callback_data: o,
+        })),
+      ),
+    },
+  });
 });
 
 export const setupTimeLimit: CommandDefSetupFn = ({

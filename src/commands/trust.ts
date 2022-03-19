@@ -2,7 +2,6 @@ import {
   removeCandidates,
   removeRestrictedUsers,
 } from '@helpers/restrictedUsers';
-import {Extra} from 'telegraf';
 import {Context} from '@root/types/index';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {T_} from '@root/i18n/l10n-key';
@@ -10,13 +9,19 @@ import {commandHandler} from './util';
 
 export const trustCommand = commandHandler(
   async (ctx: Context): Promise<void> => {
-    assertNonNullish(ctx.message);
+    const {
+      appContext: {telegramApi},
+      dbchat: chat,
+      message,
+    } = ctx;
+
+    assertNonNullish(message);
 
     // Check if it is a handle message
-    const handle = ctx.message.text.substr(7).replace('@', '');
+    const handle = message.text.substr(7).replace('@', '');
     let handleId: number | undefined;
     if (handle) {
-      for (const c of ctx.dbchat.candidates) {
+      for (const c of chat.candidates) {
         if (c.username === handle) {
           handleId = c.id;
           break;
@@ -24,17 +29,17 @@ export const trustCommand = commandHandler(
       }
     }
     // Check if reply
-    if (!ctx.message || (!ctx.message.reply_to_message && !handleId)) {
+    if (!message.reply_to_message && !handleId) {
       return;
     }
 
-    assertNonNullish(ctx.message.reply_to_message?.from);
+    assertNonNullish(message.reply_to_message?.from);
 
     // Get replied
-    const repliedId = handleId || ctx.message.reply_to_message.from.id;
+    const repliedId = handleId || message.reply_to_message.from.id;
     // Unrestrict in Telegram
     try {
-      await ctx.telegram.restrictChatMember(ctx.dbchat.id, repliedId, {
+      await ctx.telegram.restrictChatMember(chat.id, repliedId, {
         permissions: {
           can_send_messages: true,
           can_send_media_messages: true,
@@ -48,18 +53,16 @@ export const trustCommand = commandHandler(
     // Unrestrict in shieldy
     removeRestrictedUsers({
       appContext: ctx.appContext,
-      chat: ctx.dbchat,
+      chat,
       candidatesAndUsers: [{id: repliedId}],
     });
     // Remove from candidates
-    const candidate = ctx.dbchat.candidates
-      .filter((c) => c.id === repliedId)
-      .pop();
+    const candidate = chat.candidates.filter((c) => c.id === repliedId).pop();
     if (candidate) {
       if (candidate.messageId) {
         // Delete message
         await ctx.deleteMessageSafe({
-          chatId: ctx.dbchat.id,
+          chatId: chat.id,
           messageId: candidate.messageId,
         });
       }
@@ -67,16 +70,16 @@ export const trustCommand = commandHandler(
       // Remove from candidates
       removeCandidates({
         appContext: ctx.appContext,
-        chat: ctx.dbchat,
+        chat,
         candidatesAndUsers: [{id: repliedId}],
       });
     }
     // Reply with success
-    await ctx.replyWithMarkdown(
-      ctx.translate(T_`trust_success`),
-      Extra.inReplyTo(ctx.message.message_id).notifications(
-        !ctx.dbchat.silentMessages,
-      ),
-    );
+    await telegramApi.sendMessage({
+      chat_id: chat.id,
+      reply_to_message_id: message.message_id,
+      disable_notification: chat.silentMessages,
+      text: ctx.translate(T_`trust_success`),
+    });
   },
 );

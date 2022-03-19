@@ -10,28 +10,34 @@ import {CommandDefSetupFn} from './types';
 import {BotMiddlewareNextStrategy} from '@root/bot/types';
 
 export const greetingCommand = commandHandler(async (ctx) => {
-  const chat = ctx.dbchat;
+  const {
+    appContext: {database, telegramApi},
+    dbchat: chat,
+    message,
+  } = ctx;
+
   chat.greetsUsers = !chat.greetsUsers;
-  await ctx.appContext.database.setChatProperty({
+  await database.setChatProperty({
     chatId: chat.id,
     property: 'greetsUsers',
     value: chat.greetsUsers,
   });
 
-  assertNonNullish(ctx.message);
+  assertNonNullish(message);
 
-  await ctx.replyWithMarkdown(
-    ctx.translate(
+  await telegramApi.sendMessage({
+    chat_id: chat.id,
+    reply_to_message_id: message.message_id,
+    disable_notification: chat.silentMessages,
+    text: ctx.translate(
       chat.greetsUsers
         ? chat.greetingMessage
           ? T_`greetsUsers_true_message`
           : T_`greetsUsers_true`
         : T_`greetsUsers_false`,
     ),
-    Extra.inReplyTo(ctx.message.message_id).notifications(
-      !ctx.dbchat.silentMessages,
-    ),
-  );
+  });
+
   if (chat.greetingMessage && chat.greetsUsers) {
     // TODO: investigate
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment

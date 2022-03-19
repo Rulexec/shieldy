@@ -1,11 +1,10 @@
-import {Extra} from 'telegraf';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {T_} from '@root/i18n/l10n-key';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 
 export const banUsersCommand: BotMiddlewareFn = async (ctx) => {
   const {
-    appContext: {idling, database},
+    appContext: {database, telegramApi},
     dbchat: chat,
     message,
   } = ctx;
@@ -19,14 +18,12 @@ export const banUsersCommand: BotMiddlewareFn = async (ctx) => {
 
   assertNonNullish(message);
 
-  idling.wrapTask(() =>
-    ctx.replyWithMarkdown(
-      ctx.translate(chat.banUsers ? T_`banUsers_true` : T_`banUsers_false`),
-      Extra.inReplyTo(message.message_id).notifications(
-        !ctx.dbchat.silentMessages,
-      ),
-    ),
-  );
+  telegramApi.sendMessage({
+    chat_id: chat.id,
+    reply_to_message_id: message.message_id,
+    disable_notification: ctx.dbchat.silentMessages,
+    text: ctx.translate(chat.banUsers ? T_`banUsers_true` : T_`banUsers_false`),
+  });
 
   return BotMiddlewareNextStrategy.abort;
 };

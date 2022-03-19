@@ -8,7 +8,12 @@ import {T_} from '@root/i18n/l10n-key';
 import {CommandDefSetupFn} from './types';
 
 export const customCaptchaMessageCommand: BotMiddlewareFn = async (ctx) => {
-  const chat = ctx.dbchat;
+  const {
+    appContext: {telegramApi},
+    dbchat: chat,
+    message,
+  } = ctx;
+
   chat.customCaptchaMessage = !chat.customCaptchaMessage;
   await ctx.appContext.database.setChatProperty({
     chatId: chat.id,
@@ -16,20 +21,20 @@ export const customCaptchaMessageCommand: BotMiddlewareFn = async (ctx) => {
     value: chat.customCaptchaMessage,
   });
 
-  assertNonNullish(ctx.message);
+  assertNonNullish(message);
 
-  await ctx.replyWithMarkdown(
-    ctx.translate(
+  await telegramApi.sendMessage({
+    chat_id: chat.id,
+    reply_to_message_id: message.message_id,
+    disable_notification: chat.silentMessages,
+    text: ctx.translate(
       chat.customCaptchaMessage
         ? chat.captchaMessage
           ? T_`captchaMessage_true_message`
           : T_`captchaMessage_true`
         : T_`captchaMessage_false`,
     ),
-    Extra.inReplyTo(ctx.message.message_id).notifications(
-      !ctx.dbchat.silentMessages,
-    ),
-  );
+  });
 
   if (chat.customCaptchaMessage && chat.captchaMessage) {
     // TODO: investigate

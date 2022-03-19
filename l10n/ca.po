@@ -142,7 +142,7 @@ msgstr "canvia d'idioma"
 msgid "language_selected"
 msgstr "Fantàstic! ara parlo català."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "Per favor, tria l'idioma"
 
 msgid "lock_false_shieldy"

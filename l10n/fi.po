@@ -43,7 +43,7 @@ msgstr ", ole hyvä ja lähetä kuvan merkit annetun ajan kuluessa, jotta et tul
 msgid "language_selected"
 msgstr "Selvä! Valitsit kieleksi suomen."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "Ole hyvä ja valitse kieli."
 
 msgid "seconds"

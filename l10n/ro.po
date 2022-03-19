@@ -118,7 +118,7 @@ msgstr "schimbă limba"
 msgid "language_selected"
 msgstr "Perfect, acum vorbesc Română."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "Te rog, salectează limba."
 
 msgid "lock_false_shieldy"

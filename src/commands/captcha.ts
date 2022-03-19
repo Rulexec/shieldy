@@ -1,4 +1,3 @@
-import {Extra} from 'telegraf';
 import {checkIfFromReplierMiddleware} from '@middlewares/checkIfFromReplier';
 import {CaptchaType} from '@models/Chat';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
@@ -9,29 +8,38 @@ import {CommandDefSetupFn} from './types';
 
 export const captchaCommand: BotMiddlewareFn = (ctx) => {
   const {
+    chat,
     message,
-    appContext: {idling},
+    appContext: {telegramApi},
+    translate,
   } = ctx;
 
+  assertNonNullish(chat);
   assertNonNullish(message);
 
-  idling.wrapTask(() =>
-    ctx.appContext.telegramApi.replyWithMarkdown(
-      ctx,
-      ctx.translate(T_`captcha`),
-      Extra.inReplyTo(message.message_id)
-        .markup((m) =>
-          m.inlineKeyboard([
-            m.callbackButton(ctx.translate(T_`simple`), 'simple'),
-            m.callbackButton(ctx.translate(T_`digits`), 'digits'),
-            m.callbackButton(ctx.translate(T_`button`), 'button'),
-            m.callbackButton(ctx.translate(T_`image`), 'image'),
-            m.callbackButton(ctx.translate(T_`custom`), 'custom'),
-          ]),
-        )
-        .notifications(!ctx.dbchat.silentMessages),
-    ),
-  );
+  telegramApi.sendMessage({
+    chat_id: chat.id,
+    text: ctx.translate(T_`captcha`),
+    parse_mode: 'Markdown',
+    reply_to_message_id: message.message_id,
+    reply_markup: {
+      inline_keyboard: [
+        (
+          [
+            [T_`simple`, 'simple'],
+            [T_`digits`, 'digits'],
+            [T_`button`, 'button'],
+            [T_`image`, 'image'],
+            [T_`custom`, 'custom'],
+          ] as const
+        ).map(([text, callbackData]) => ({
+          text: translate(text),
+          callback_data: callbackData,
+        })),
+      ],
+    },
+    disable_notification: ctx.dbchat.silentMessages,
+  });
 
   return Promise.resolve(BotMiddlewareNextStrategy.abort);
 };

@@ -1,4 +1,3 @@
-import {Extra} from 'telegraf';
 import {Context} from '@root/types/index';
 import {ReplySettingType} from '@models/Chat';
 import {clarifyReply} from '@helpers/clarifyReply';
@@ -8,12 +7,17 @@ import {T_} from '@root/i18n/l10n-key';
 import {CommandDefSetupFn} from './types';
 
 export const viewCustomCaptchaCommand: BotMiddlewareFn = async (ctx) => {
+  const {
+    appContext: {telegramApi},
+    dbchat: chat,
+  } = ctx;
+
   let text = '';
 
   const tQuestion = ctx.translate(T_`custom_question_colon`);
   const tAnswer = ctx.translate(T_`custom_answer_colon`);
 
-  ctx.dbchat.customCaptchaVariants.forEach((variant, i) => {
+  chat.customCaptchaVariants.forEach((variant, i) => {
     const {question, answer} = variant;
 
     if (i !== 0) {
@@ -26,43 +30,57 @@ export const viewCustomCaptchaCommand: BotMiddlewareFn = async (ctx) => {
     text = ctx.translate(T_`custom_no_variants`);
   }
 
-  await ctx.replyWithMarkdown(
+  await telegramApi.sendMessage({
+    chat_id: chat.id,
+    disable_notification: chat.silentMessages,
     text,
-    Extra.notifications(!ctx.dbchat.silentMessages),
-  );
+  });
 
   return BotMiddlewareNextStrategy.abort;
 };
 
 export const removeAllCustomCaptchaCommand: BotMiddlewareFn = async (ctx) => {
-  ctx.dbchat.customCaptchaVariants = [];
+  const {
+    appContext: {telegramApi},
+    dbchat: chat,
+  } = ctx;
+
+  chat.customCaptchaVariants = [];
   await ctx.appContext.database.setChatProperty({
-    chatId: ctx.dbchat.id,
+    chatId: chat.id,
     property: 'customCaptchaVariants',
-    value: ctx.dbchat.customCaptchaVariants,
+    value: chat.customCaptchaVariants,
   });
 
-  await ctx.replyWithMarkdown(
-    ctx.translate(T_`custom_removed`),
-    Extra.notifications(!ctx.dbchat.silentMessages),
-  );
+  await telegramApi.sendMessage({
+    chat_id: chat.id,
+    disable_notification: chat.silentMessages,
+    text: ctx.translate(T_`custom_removed`),
+  });
 
   return BotMiddlewareNextStrategy.abort;
 };
 
 export const addCustomCaptchaCommand: BotMiddlewareFn = async (ctx) => {
-  const message = await ctx.replyWithMarkdown(
-    ctx.translate(T_`custom_add_question`),
-    Extra.notifications(!ctx.dbchat.silentMessages),
-  );
-  ctx.dbchat.lastReplySetting = {
+  const {
+    appContext: {telegramApi},
+    dbchat: chat,
+  } = ctx;
+
+  const message = await telegramApi.sendMessage({
+    chat_id: chat.id,
+    disable_notification: chat.silentMessages,
+    text: ctx.translate(T_`custom_add_question`),
+  });
+
+  chat.lastReplySetting = {
     type: ReplySettingType.ADD_CUSTOM_CAPTCHA,
     messageId: message.message_id,
   };
   await ctx.appContext.database.setChatProperty({
-    chatId: ctx.dbchat.id,
+    chatId: chat.id,
     property: 'lastReplySetting',
-    value: ctx.dbchat.lastReplySetting,
+    value: chat.lastReplySetting,
   });
   await clarifyReply(ctx);
 
@@ -104,28 +122,40 @@ export const setupAddCustomCaptcha: CommandDefSetupFn = ({appContext}) => {
     ctx: Context,
     customCaptchaQuestion: string,
   ) {
-    const botMessage = await ctx.replyWithMarkdown(
-      ctx.translate(T_`custom_add_answer`),
-      Extra.notifications(!ctx.dbchat.silentMessages),
-    );
+    const {
+      appContext: {telegramApi},
+      dbchat: chat,
+    } = ctx;
 
-    ctx.dbchat.lastReplySetting = {
+    const botMessage = await telegramApi.sendMessage({
+      chat_id: chat.id,
+      disable_notification: chat.silentMessages,
+      text: ctx.translate(T_`custom_add_answer`),
+    });
+
+    chat.lastReplySetting = {
       type: ReplySettingType.ADD_CUSTOM_CAPTCHA_ANSWER,
       messageId: botMessage.message_id,
       customCaptchaQuestion,
     };
     await ctx.appContext.database.setChatProperty({
-      chatId: ctx.dbchat.id,
+      chatId: chat.id,
       property: 'lastReplySetting',
-      value: ctx.dbchat.lastReplySetting,
+      value: chat.lastReplySetting,
     });
   }
   async function processAddCustomCaptchaAnswerReply(
     ctx: Context,
     customCaptchaAnswer: string,
   ) {
-    const {lastReplySetting} = ctx.dbchat;
-    if (!ctx.message || !lastReplySetting) {
+    const {
+      appContext: {telegramApi},
+      message,
+      dbchat: chat,
+    } = ctx;
+
+    const {lastReplySetting} = chat;
+    if (!message || !lastReplySetting) {
       return;
     }
 
@@ -140,22 +170,22 @@ export const setupAddCustomCaptcha: CommandDefSetupFn = ({appContext}) => {
       .map((x) => x.trim())
       .join(',');
 
-    ctx.dbchat.customCaptchaVariants.push({
+    chat.customCaptchaVariants.push({
       question: customCaptchaQuestion,
       answer,
     });
     await ctx.appContext.database.setChatProperty({
-      chatId: ctx.dbchat.id,
+      chatId: chat.id,
       property: 'customCaptchaVariants',
-      value: ctx.dbchat.customCaptchaVariants,
+      value: chat.customCaptchaVariants,
     });
 
-    await ctx.replyWithMarkdown(
-      ctx.translate(T_`custom_success`),
-      Extra.inReplyTo(ctx.message.message_id).notifications(
-        !ctx.dbchat.silentMessages,
-      ),
-    );
+    await telegramApi.sendMessage({
+      chat_id: chat.id,
+      reply_to_message_id: message.message_id,
+      disable_notification: chat.silentMessages,
+      text: ctx.translate(T_`custom_success`),
+    });
   }
 
   addBotMiddleware(async (ctx) => {

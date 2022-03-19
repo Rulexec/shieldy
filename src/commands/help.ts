@@ -1,6 +1,5 @@
 import {Context} from '@root/types/index';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
-import {Extra} from 'telegraf';
 import {T_} from '@root/i18n/l10n-key';
 
 export const helpCommand: BotMiddlewareFn = async (ctx) => {
@@ -21,7 +20,9 @@ function sendHelp(ctx: Context): Promise<void> {
 
 const replyWithHelp = (ctx: Context): Promise<void> => {
   const {
-    appContext: {commandDefinitions},
+    appContext: {commandDefinitions, telegramApi},
+    dbchat: chat,
+    message,
   } = ctx;
 
   const commandsStr = commandDefinitions
@@ -39,11 +40,14 @@ const replyWithHelp = (ctx: Context): Promise<void> => {
     T_`help_start`,
   )}\n\n${commandsStr}\n\n${ctx.translate(T_`help_end`)}`;
 
-  return ctx
-    .replyWithMarkdown(
-      result,
-      Extra.webPreview(false).notifications(!ctx.dbchat.silentMessages),
-    )
+  return telegramApi
+    .sendMessage({
+      chat_id: chat.id,
+      reply_to_message_id: message?.message_id,
+      disable_notification: chat.silentMessages,
+      text: result,
+      disable_web_page_preview: true,
+    })
     .then(() => {
       //
     });

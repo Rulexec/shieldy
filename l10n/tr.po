@@ -130,7 +130,7 @@ msgstr "Dili değiştirir"
 msgid "language_selected"
 msgstr "Harika, artık Türkçe konuşuyorum."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "Lütfen dil seçimi yapın."
 
 msgid "lock_false_shieldy"

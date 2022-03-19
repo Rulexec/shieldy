@@ -124,7 +124,7 @@ msgstr "ändert die Sprache"
 msgid "language_selected"
 msgstr "Großartig, ich spreche nun deutsch."
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "Bitte wähle eine Sprache."
 
 msgid "lock_false_shieldy"

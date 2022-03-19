@@ -1,4 +1,3 @@
-import {Extra} from 'telegraf';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {T_} from '@root/i18n/l10n-key';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
@@ -7,7 +6,7 @@ export const deleteEntryOnKickCommand: BotMiddlewareFn = async (ctx) => {
   const {
     message,
     dbchat: chat,
-    appContext: {database, idling},
+    appContext: {database, telegramApi},
   } = ctx;
 
   chat.deleteEntryOnKick = !chat.deleteEntryOnKick;
@@ -19,18 +18,16 @@ export const deleteEntryOnKickCommand: BotMiddlewareFn = async (ctx) => {
 
   assertNonNullish(message);
 
-  idling.wrapTask(() =>
-    ctx.replyWithMarkdown(
-      ctx.translate(
-        chat.deleteEntryOnKick
-          ? T_`deleteEntryOnKick_true`
-          : T_`deleteEntryOnKick_false`,
-      ),
-      Extra.inReplyTo(message.message_id).notifications(
-        !ctx.dbchat.silentMessages,
-      ),
+  telegramApi.sendMessage({
+    chat_id: chat.id,
+    reply_to_message_id: message.message_id,
+    disable_notification: chat.silentMessages,
+    text: ctx.translate(
+      chat.deleteEntryOnKick
+        ? T_`deleteEntryOnKick_true`
+        : T_`deleteEntryOnKick_false`,
     ),
-  );
+  });
 
   return BotMiddlewareNextStrategy.abort;
 };

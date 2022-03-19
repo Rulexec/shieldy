@@ -118,7 +118,7 @@ msgstr "言語を変更する"
 msgid "language_selected"
 msgstr "はい、私は日本語が喋れます。"
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "言語を選択してください。"
 
 msgid "lock_false_shieldy"

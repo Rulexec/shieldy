@@ -118,7 +118,7 @@ msgstr "切换语言"
 msgid "language_selected"
 msgstr "很棒，现在我讲中文了。"
 
-msgid "language_shieldy"
+msgid "language_selection"
 msgstr "请选择一种语言。"
 
 msgid "lock_false_shieldy"
