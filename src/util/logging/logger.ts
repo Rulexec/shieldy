@@ -1,4 +1,4 @@
-import {LogLevel} from '@root/types/logging';
+import {LogLevel, logLevelToLetter} from '@root/types/logging';
 import type {Logger as LoggerInterface} from './types';
 
 type LoggerWithFork = LoggerInterface & {fork: (key: string) => LoggerWithFork};
@@ -64,7 +64,7 @@ export class Logger implements LoggerInterface {
 
     this.lastTimeMs = ms;
 
-    const logString = `${levelToLetter(level)} ${new Date(
+    const logString = `${logLevelToLetter(level)} ${new Date(
       ms,
     ).toISOString()}.${String(this.microTicks).padStart(3, '0')} ${escapeKey(
       loggerKey,
@@ -160,9 +160,15 @@ const extraToString = (extra: any): string => {
 const escapePropKey = (key: string): string => {
   return key.replace(/(?=\\|\s|:)()/g, '\\$1');
 };
+export const unescapePropKey = (str: string): string => {
+  return str.replace(/\\(\\|\s|:)/, '$1');
+};
 
 const escapeKey = (key: string): string => {
   return key.replace(/(?=\\|\s)()/g, '\\$1');
+};
+export const unescapeKey = (str: string): string => {
+  return str.replace(/\\(\\|\s)/, '$1');
 };
 
 const escapeExtra = (text: string): string => {
@@ -171,23 +177,9 @@ const escapeExtra = (text: string): string => {
     .replace(/\r/g, '\\r')
     .replace(/\n/g, '\\n');
 };
-
-const levelToLetter = (level: LogLevel): string => {
-  switch (level) {
-    case LogLevel.TRACE:
-      return 'T';
-    case LogLevel.INFO:
-      return 'I';
-    case LogLevel.WARNING:
-      return 'W';
-    case LogLevel.ERROR:
-      return 'E';
-    case LogLevel.STATS:
-      return 'S';
-    default: {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const never: never = level;
-      return '?';
-    }
-  }
+export const unescapeExtra = (str: string): string => {
+  return str
+    .replace(/\\r/g, '\r')
+    .replace(/\\n/g, '\n')
+    .replace(/\\(\\|\|)/, '$1');
 };
