@@ -1,4 +1,4 @@
-import {letterToLogLevel, LogLevel} from '@root/types/logging';
+import {letterToLogLevel, LogLevel} from '@sesuritu/types/src/logging';
 import {unescapeExtra, unescapeKey, unescapePropKey} from './logger';
 
 export const parseLogLine = (

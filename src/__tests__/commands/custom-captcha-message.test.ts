@@ -1,8 +1,8 @@
 import {findChatById} from '@root/helpers/find-chat';
-import {T_} from '@root/i18n/l10n-key';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 import {getNoTranslationText} from '@root/i18n/no-translation';
-import {CaptchaType} from '@root/models/Chat';
-import {getUniqueCounterValue} from '@root/util/id/unique-counter';
+import {CaptchaType} from '@sesuritu/types/src/models/Chat';
+import {getUniqueCounterValue} from '@sesuritu/util/src/id/unique-counter';
 import {BotTestHelpers, setupTest} from '../helpers/setup';
 import {getUser, User} from '../test-data/chats';
 import {Message} from '../test-data/types';

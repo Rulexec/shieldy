@@ -1,13 +1,13 @@
-import {Chat} from '@root/models/Chat';
-import {IdlingStatus} from '@root/util/state/idling-status';
-import {Bot} from './bot';
-import {Database} from './database';
-import {LogLevel} from './logging';
-import {TelegramApi} from './telegram/telegram-api';
-import {BotMiddlewareFn} from '@root/bot/types';
-import {Logger} from '@root/util/logging/logger';
-import {Translations} from '@root/i18n/translations';
-import {CommandDef} from '@root/commands/all-commands';
+import {Chat} from '@sesuritu/types/src/models/Chat';
+import {IdlingStatus} from '@sesuritu/util/src/state/idling-status';
+import {Bot} from '@sesuritu/types/src/bot';
+import {Database} from '@sesuritu/types/src/database';
+import {LogLevel} from '@sesuritu/types/src/logging';
+import {TelegramApi} from '@sesuritu/types/src/telegram/telegram-api';
+import {BotMiddlewareFn} from './bot';
+import {Logger} from '@sesuritu/util/src/logging/logger';
+import type {ITranslations} from './i18n/translations';
+import {CommandDef} from './commands/command-def';
 
 export type Config = {
   workersCount: number;
@@ -30,7 +30,7 @@ export type AppContext = {
   run: (fun: () => void | Promise<void>) => void;
   logger: Logger;
   config: Config;
-  translations: Translations;
+  translations: ITranslations;
   database: Database;
   telegrafBot: Bot;
   telegramApi: TelegramApi;

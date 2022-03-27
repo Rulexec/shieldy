@@ -1,11 +1,11 @@
 import 'module-alias/register';
 import {getConfig} from '@root/config';
-import {CappedKickedUser} from '@root/models/CappedKickedUser';
-import {CappedMessage} from '@root/models/CappedMessage';
-import {Chat} from '@root/models/Chat';
-import {EntryMessage} from '@root/models/EntryMessage';
-import {MessageToDelete} from '@root/models/MessageToDelete';
-import {VerifiedUser} from '@root/models/VerifiedUser';
+import {CappedKickedUser} from '@sesuritu/types/src/models/CappedKickedUser';
+import {CappedMessage} from '@sesuritu/types/src/models/CappedMessage';
+import {Chat} from '@sesuritu/types/src/models/Chat';
+import {EntryMessage} from '@sesuritu/types/src/models/EntryMessage';
+import {MessageToDelete} from '@sesuritu/types/src/models/MessageToDelete';
+import {VerifiedUser} from '@sesuritu/types/src/models/VerifiedUser';
 import {Collection, MongoClient} from 'mongodb';
 
 const cleanups: (() => Promise<void>)[] = [];

@@ -1,7 +1,7 @@
 import IntlMessageFormat from 'intl-messageformat';
-import {AppContext} from '@root/types/app-context';
-import {Logger} from '@root/util/logging/types';
-import {L10nKey} from './l10n-key';
+import {AppContext} from '@sesuritu/types/src/app-context';
+import {Logger} from '@sesuritu/util/src/logging/types';
+import {L10nKey} from '@sesuritu/types/src/i18n/l10n-key';
 import {TranslationLoader} from './translations-loader-types';
 import {getNoTranslationText} from './no-translation';
 

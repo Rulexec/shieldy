@@ -1,9 +1,9 @@
 import {checkIfFromReplierMiddleware} from '@middlewares/checkIfFromReplier';
-import {CaptchaType} from '@models/Chat';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
-import {wrapTelegrafContextWithIdling} from '@root/util/telegraf/idling-context-wrapper';
+import {CaptchaType} from '@sesuritu/types/src/models/Chat';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
+import {wrapTelegrafContextWithIdling} from '@sesuritu/util/src/telegraf/idling-context-wrapper';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
-import {L10nKey, T_} from '@root/i18n/l10n-key';
+import {L10nKey, T_} from '@sesuritu/types/src/i18n/l10n-key';
 import {CommandDefSetupFn} from './types';
 
 export const captchaCommand: BotMiddlewareFn = (ctx) => {

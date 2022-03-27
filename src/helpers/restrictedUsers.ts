@@ -1,5 +1,5 @@
-import {Chat, Candidate} from '@models/Chat';
-import {AppContext} from '@root/types/app-context';
+import {Chat, Candidate} from '@sesuritu/types/src/models/Chat';
+import {AppContext} from '@sesuritu/types/src/app-context';
 import {User} from 'telegraf/typings/telegram-types';
 
 enum RestrictedUsersModificationType {

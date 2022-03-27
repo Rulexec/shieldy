@@ -1,4 +1,4 @@
-import {Context} from '@root/types/context';
+import {Context} from '../context';
 
 export function hasNewChatMembers(context: Context): boolean {
   const message = context.update.message;

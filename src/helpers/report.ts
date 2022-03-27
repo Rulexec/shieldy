@@ -1,5 +1,5 @@
 import {checkIfErrorDismissable} from '@helpers/error';
-import {AppContext} from '@root/types/app-context';
+import {AppContext} from '@sesuritu/types/src/app-context';
 
 let errorsToReport: string[] = [];
 

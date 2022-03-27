@@ -1,8 +1,8 @@
-import {Context} from '@root/types/context';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {Context} from '@sesuritu/types/src/context';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
 import {removeCandidates} from '../restrictedUsers';
 import {doGreetUser} from './greetUser';
-import {T_} from '@root/i18n/l10n-key';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 
 const buttonPresses = new Set<string>();
 

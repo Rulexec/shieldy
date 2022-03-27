@@ -1,7 +1,7 @@
 import {Extra} from 'telegraf';
 import {ExtraReplyMessage} from 'telegraf/typings/telegram-types';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
-import {T_} from '@root/i18n/l10n-key';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 import {commandHandler} from './util';
 
 export const restrictTimeCommand = commandHandler(async (ctx) => {

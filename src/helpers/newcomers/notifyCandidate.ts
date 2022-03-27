@@ -1,15 +1,15 @@
 import {ExtraReplyMessage} from 'telegraf/typings/telegram-types';
 import {cloneDeep} from 'lodash';
-import {CaptchaType} from '@models/Chat';
+import {CaptchaType} from '@sesuritu/types/src/models/Chat';
 import {User} from 'telegram-typings';
 import {Extra} from 'telegraf';
-import {Context} from '@root/types/context';
+import {Context} from '@sesuritu/types/src/context';
 import {constructMessageWithEntities} from '@helpers/newcomers/constructMessageWithEntities';
 import {getName, getUsername} from '@helpers/getUsername';
 import {Captcha} from './generateCaptcha';
-import {formatHTML} from '@root/types/hacks/format-html';
-import {getChatTitle} from '@root/types/hacks/get-chat-title';
-import {L10nKey, T_} from '@root/i18n/l10n-key';
+import {formatHTML} from '@sesuritu/types/src/hacks/format-html';
+import {getChatTitle} from '@sesuritu/types/src/hacks/get-chat-title';
+import {L10nKey, T_} from '@sesuritu/types/src/i18n/l10n-key';
 
 export async function notifyCandidate(
   ctx: Context,

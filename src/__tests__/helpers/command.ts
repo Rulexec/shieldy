@@ -1,7 +1,7 @@
 import {findChatById} from '@root/helpers/find-chat';
-import {L10nKey} from '@root/i18n/l10n-key';
+import {L10nKey} from '@sesuritu/types/src/i18n/l10n-key';
 import {getNoTranslationText} from '@root/i18n/no-translation';
-import {BooleanChatPropertyKey, Database} from '@root/types/database';
+import {BooleanChatPropertyKey, Database} from '@sesuritu/types/src/database';
 import {createMessage} from '../test-data/updates';
 import {setupTest} from './setup';
 

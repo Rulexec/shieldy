@@ -1,7 +1,7 @@
-import {CappedMessage} from '@root/models/CappedMessage';
-import {Candidate, Chat, ChatId} from '@root/models/Chat';
-import {EntryMessage} from '@root/models/EntryMessage';
-import {MessageToDelete} from '@root/models/MessageToDelete';
+import {CappedMessage} from '@sesuritu/types/src/models/CappedMessage';
+import {Candidate, Chat, ChatId} from '@sesuritu/types/src/models/Chat';
+import {EntryMessage} from '@sesuritu/types/src/models/EntryMessage';
+import {MessageToDelete} from '@sesuritu/types/src/models/MessageToDelete';
 
 export type AddChatRestrictedFn = (options: {
   chatId: number;
@@ -60,7 +60,7 @@ export interface Database {
   addCappedMessage: (message: CappedMessage) => Promise<void>;
   findCappedMessage: (
     query: Partial<CappedMessage>,
-  ) => Promise<CappedMessage | undefined>;
+  ) => Promise<CappedMessage | null>;
   findCappedMessages: (
     query: Partial<CappedMessage>,
   ) => Promise<CappedMessage[]>;

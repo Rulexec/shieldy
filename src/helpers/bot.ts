@@ -1,6 +1,6 @@
 import TelegrafBot from 'telegraf';
-import {Bot} from '@root/types/bot';
-import {AppContext} from '@root/types/app-context';
+import {Bot} from '@sesuritu/types/src/bot';
+import {AppContext} from '@sesuritu/types/src/app-context';
 
 export function createTelegrafBot({
   config: {telegramToken, telegramApiRoot},

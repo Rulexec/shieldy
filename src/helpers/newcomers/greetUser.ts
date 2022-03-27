@@ -1,11 +1,11 @@
 import {Message} from 'telegram-typings';
 import {User} from 'telegraf/typings/telegram-types';
 import {Extra} from 'telegraf';
-import {Context} from '@root/types/context';
+import {Context} from '@sesuritu/types/src/context';
 import {constructMessageWithEntities} from '@helpers/newcomers/constructMessageWithEntities';
 import {getName, getUsername} from '@helpers/getUsername';
-import {getChatTitle} from '@root/types/hacks/get-chat-title';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {getChatTitle} from '@sesuritu/types/src/hacks/get-chat-title';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 
 export async function doGreetUser(

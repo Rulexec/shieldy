@@ -1,19 +1,19 @@
-import {Database} from '@root/types/database';
-import {appContextKeys, Config} from '@root/types/app-context';
+import {Database} from '@sesuritu/types/src/database';
+import {appContextKeys, Config} from '@sesuritu/types/src/app-context';
 import {getConfig} from './config';
 import {MongoDatabase} from './database/mongo/database';
 import {createTelegrafBot} from './helpers/bot';
 import {createDefaultChat} from './helpers/create-default-chat';
 import {initReporter} from './helpers/report';
-import {AppContext} from './types/app-context';
-import {IdlingStatus} from './util/state/idling-status';
+import {AppContext} from '@sesuritu/types/src/app-context';
+import {IdlingStatus} from '@sesuritu/util/src/state/idling-status';
 import {initBotMiddlewaresEngine} from './bot/bot';
-import {Logger} from './util/logging/logger';
+import {Logger} from '@sesuritu/util/src/logging/logger';
 import {Translations} from './i18n/translations';
 import {createFsPoTranslationsLoader} from './i18n/translations-loader-fs-po';
 import {getCommands} from './commands/all-commands';
-import {ExplicitPartial} from './types/utility';
-import {toDoValidateResponse} from './types/hacks/to-do-validate';
+import {ExplicitPartial} from '@sesuritu/types/src/utility';
+import {toDoValidateResponse} from '@sesuritu/types/src/hacks/to-do-validate';
 
 export type ContextOptions = Partial<{
   isWorker: boolean;

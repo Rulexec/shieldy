@@ -4,8 +4,9 @@ import {
 } from '@helpers/restrictedUsers';
 import {isGroup} from '@helpers/isGroup';
 import {botDeleteMessageSafe} from '@root/helpers/deleteMessageSafe';
-import {T_} from '@root/i18n/l10n-key';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
+import {ChatMemberAdministrator} from 'typegram';
 
 export const banCommand: BotMiddlewareFn = async (ctx) => {
   const {
@@ -33,7 +34,11 @@ export const banCommand: BotMiddlewareFn = async (ctx) => {
   }
   // Check permissions
   const admin = admins.find((v) => v.user.id === fromUser.id);
-  if (admin && admin.status !== 'creator' && !admin.can_restrict_members) {
+  if (
+    admin &&
+    admin.status !== 'creator' &&
+    !(admin as ChatMemberAdministrator).can_restrict_members
+  ) {
     return BotMiddlewareNextStrategy.abort;
   }
   // Ban in Telegram

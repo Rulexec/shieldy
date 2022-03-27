@@ -1,20 +1,23 @@
-import {AppContext} from '@root/types/app-context';
+import {AppContext} from '@sesuritu/types/src/app-context';
 import {
   AddChatRestrictedFn,
   Database,
   RemoveChatRestrictedFn,
-} from '@root/types/database';
-import {Chat, ChatId} from '@root/models/Chat';
-import {EntryMessage} from '@root/models/EntryMessage';
-import {assertTypesEqual} from '@root/types/type-assert';
-import {pickNonUndefined} from '@root/util/object/pick-non-undefined';
-import {MessageToDelete} from '@root/models/MessageToDelete';
-import {CappedMessage} from '@root/models/CappedMessage';
-import {UserId} from '@root/models/user';
-import {sleep} from '@root/util/async/sleep';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
-import {getOrCreateMap, getOrCreateSet} from '@root/util/map/get-or-create';
-import {MessageId} from '@root/models/message';
+} from '@sesuritu/types/src/database';
+import {Chat, ChatId} from '@sesuritu/types/src/models/Chat';
+import {EntryMessage} from '@sesuritu/types/src/models/EntryMessage';
+import {assertTypesEqual} from '@sesuritu/types/src/type-assert';
+import {pickNonUndefined} from '@sesuritu/util/src/object/pick-non-undefined';
+import {MessageToDelete} from '@sesuritu/types/src/models/MessageToDelete';
+import {CappedMessage} from '@sesuritu/types/src/models/CappedMessage';
+import {UserId} from '@sesuritu/types/src/models/user';
+import {sleep} from '@sesuritu/util/src/async/sleep';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
+import {
+  getOrCreateMap,
+  getOrCreateSet,
+} from '@sesuritu/util/src/map/get-or-create';
+import {MessageId} from '@sesuritu/types/src/models/message';
 
 /**
  * In-memory mock of MongoDatabase, used in tests.
@@ -350,7 +353,7 @@ export class MemoryDatabase implements Database {
 
     const messagesByUser = this.cappedMessages.get(chat_id);
     if (!messagesByUser) {
-      return;
+      return null;
     }
 
     const messages = messagesByUser.get(from_id) || [];
@@ -359,7 +362,9 @@ export class MemoryDatabase implements Database {
       return messages[0];
     }
 
-    return messages.find((message) => message.message_id === message_id);
+    return (
+      messages.find((message) => message.message_id === message_id) || null
+    );
   };
 
   findCappedMessages: Database['findCappedMessages'] = async (rawQuery) => {

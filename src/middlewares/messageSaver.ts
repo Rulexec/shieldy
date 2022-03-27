@@ -1,6 +1,6 @@
-import {Context} from '@root/types/context';
-import {hasNewChatMembers} from '@root/types/hacks/get-new-chat-members';
-import {isSaveableMessage} from '@root/types/hacks/is-saveable-message';
+import {Context} from '@sesuritu/types/src/context';
+import {hasNewChatMembers} from '@sesuritu/types/src/hacks/get-new-chat-members';
+import {isSaveableMessage} from '@sesuritu/types/src/hacks/is-saveable-message';
 
 // Needed for `removeCappedMessagesFromUser`
 export function messageSaver(ctx: Context, next: () => void): void {

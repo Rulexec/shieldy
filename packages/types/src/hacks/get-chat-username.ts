@@ -1,4 +1,4 @@
-import {Context} from '@root/types/context';
+import {Context} from '../context';
 
 export function getChatUsername(context: Context): string | undefined {
   const chat = context.chat;

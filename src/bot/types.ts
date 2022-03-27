@@ -1,4 +1,4 @@
-import {Context} from '@root/types';
+import {Context} from '@sesuritu/types/src';
 
 export enum BotMiddlewareNextStrategy {
   // Bot should continue applying middlewares

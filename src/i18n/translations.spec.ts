@@ -1,7 +1,8 @@
-import {AppContext} from '@root/types/app-context';
+import {AppContext} from '@sesuritu/types/src/app-context';
 import {createTestAppContext} from '@root/__tests__/helpers/create-context';
-import {T_} from './l10n-key';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 import {Translations} from './translations';
+import {ITranslations} from '@sesuritu/types/src/i18n/translations';
 
 /* eslint-disable local-rules/validate-l10n */
 
@@ -9,7 +10,7 @@ const identity = <T extends unknown>(x: T): T => x;
 
 describe('Translations', () => {
   let appContext: AppContext;
-  let translations: Translations;
+  let translations: ITranslations;
 
   beforeEach(async () => {
     ({appContext} = createTestAppContext({

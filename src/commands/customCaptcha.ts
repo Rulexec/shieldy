@@ -1,9 +1,9 @@
-import {Context} from '@root/types/index';
-import {ReplySettingType} from '@models/Chat';
+import {Context} from '@sesuritu/types/src/index';
+import {ReplySettingType} from '@sesuritu/types/src/models/Chat';
 import {clarifyReply} from '@helpers/clarifyReply';
 import {isReplyToShieldy} from '@helpers/isReplyToShieldy';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
-import {T_} from '@root/i18n/l10n-key';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 import {CommandDefSetupFn} from './types';
 
 export const viewCustomCaptchaCommand: BotMiddlewareFn = async (ctx) => {

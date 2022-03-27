@@ -1,8 +1,8 @@
 import {deleteMessageSafe} from '@helpers/deleteMessageSafe';
 import {doGreetUser} from '@helpers/newcomers/greetUser';
-import {Candidate, CaptchaType} from '@models/Chat';
+import {Candidate, CaptchaType} from '@sesuritu/types/src/models/Chat';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
 import {removeCandidates} from '../restrictedUsers';
 
 export const checkPassingCaptchaWithText: BotMiddlewareFn = async (ctx) => {

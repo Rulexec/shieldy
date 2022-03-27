@@ -14,11 +14,10 @@ RUN apk add --no-cache \
       ttf-freefont
 
 COPY ./package.json .
-COPY ./yarn.lock .
+COPY ./pnpm-lock.yaml .
 
 # Install shieldy dependencies
-RUN yarn install \
- && yarn cache clean
+RUN pnpm install
 
 COPY ./tsconfig.json .
 COPY ./scripts ./scripts

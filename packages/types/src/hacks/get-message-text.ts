@@ -1,4 +1,4 @@
-import {Context} from '@root/types/context';
+import {Context} from '../context';
 
 export function getMessageText(context: Context): string | undefined {
   const message = context.update.message;

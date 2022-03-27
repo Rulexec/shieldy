@@ -1,6 +1,6 @@
 import {Context} from 'telegraf';
-import {Bot} from '@root/types/bot';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {Bot} from '@sesuritu/types/src/bot';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
 
 type Options = {
   ctx: Context;

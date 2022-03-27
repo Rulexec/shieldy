@@ -1,6 +1,7 @@
 import {User} from 'telegraf/typings/telegram-types';
-import {Chat} from '@models/Chat';
-import {AppContext} from '@root/types/app-context';
+import {Chat} from '@sesuritu/types/src/models/Chat';
+import {AppContext} from '@sesuritu/types/src/app-context';
+import {ChatMemberRestricted} from 'typegram';
 
 export async function botRestrictChatMember(
   appContext: AppContext,
@@ -8,10 +9,10 @@ export async function botRestrictChatMember(
   user: User,
 ): Promise<void> {
   try {
-    const gotUser = await appContext.telegrafBot.telegram.getChatMember(
+    const gotUser = (await appContext.telegrafBot.telegram.getChatMember(
       chat.id,
       user.id,
-    );
+    )) as ChatMemberRestricted;
     if (
       gotUser.can_send_messages &&
       gotUser.can_send_media_messages &&

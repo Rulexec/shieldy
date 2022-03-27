@@ -1,10 +1,10 @@
 import {clarifyReply} from '@helpers/clarifyReply';
 import {Extra} from 'telegraf';
 import {ExtraReplyMessage} from 'telegraf/typings/telegram-types';
-import {getReplyToMessageText} from '@root/types/hacks/get-message-text';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {getReplyToMessageText} from '@sesuritu/types/src/hacks/get-message-text';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
-import {T_} from '@root/i18n/l10n-key';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 import {CommandDefSetupFn} from './types';
 
 export const customCaptchaMessageCommand: BotMiddlewareFn = async (ctx) => {

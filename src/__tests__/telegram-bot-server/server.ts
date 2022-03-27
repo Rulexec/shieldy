@@ -1,5 +1,5 @@
-import {getUniqueCounterValue} from '@root/util/id/unique-counter';
-import {readWholeStream} from '@root/util/stream/read-whole-stream';
+import {getUniqueCounterValue} from '@sesuritu/util/src/id/unique-counter';
+import {readWholeStream} from '@sesuritu/util/src/stream/read-whole-stream';
 import {Server, createServer, IncomingMessage, ServerResponse} from 'http';
 import {TEST_BOT_USERNAME} from '../constants';
 import {Chat, getUser, User} from '../test-data/chats';

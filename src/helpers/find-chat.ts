@@ -1,5 +1,5 @@
-import {Chat} from '@root/models/Chat';
-import {AppContext} from '@root/types/app-context';
+import {Chat} from '@sesuritu/types/src/models/Chat';
+import {AppContext} from '@sesuritu/types/src/app-context';
 
 export async function findChatById(
   appContext: AppContext,

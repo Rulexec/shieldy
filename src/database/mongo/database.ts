@@ -1,19 +1,19 @@
 import {Collection, Db, MongoClient} from 'mongodb';
 
-import {AppContext} from '@root/types/app-context';
+import {AppContext} from '@sesuritu/types/src/app-context';
 import {
   AddChatRestrictedFn,
   Database,
   RemoveChatRestrictedFn,
-} from '@root/types/database';
-import {Chat} from '@root/models/Chat';
-import {CappedKickedUser} from '@root/models/CappedKickedUser';
-import {EntryMessage} from '@root/models/EntryMessage';
-import {assertTypesEqual} from '@root/types/type-assert';
-import {pickNonUndefined} from '@root/util/object/pick-non-undefined';
-import {VerifiedUser} from '@root/models/VerifiedUser';
-import {MessageToDelete} from '@root/models/MessageToDelete';
-import {CappedMessage} from '@root/models/CappedMessage';
+} from '@sesuritu/types/src/database';
+import {Chat} from '@sesuritu/types/src/models/Chat';
+import {CappedKickedUser} from '@sesuritu/types/src/models/CappedKickedUser';
+import {EntryMessage} from '@sesuritu/types/src/models/EntryMessage';
+import {assertTypesEqual} from '@sesuritu/types/src/type-assert';
+import {pickNonUndefined} from '@sesuritu/util/src/object/pick-non-undefined';
+import {VerifiedUser} from '@sesuritu/types/src/models/VerifiedUser';
+import {MessageToDelete} from '@sesuritu/types/src/models/MessageToDelete';
+import {CappedMessage} from '@sesuritu/types/src/models/CappedMessage';
 
 // TODO: replace upserts with inserts, handle unique index errors
 
@@ -300,7 +300,7 @@ export class MongoDatabase implements Database {
       throw new Error('findCappedMessage indexed only by chat_id,from_id');
     }
 
-    return await this.cappedMessagesCollection.findOne(query);
+    return (await this.cappedMessagesCollection.findOne(query)) || null;
   };
 
   findCappedMessages: Database['findCappedMessages'] = async (rawQuery) => {

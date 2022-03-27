@@ -7,8 +7,8 @@ import {
 } from '@helpers/newcomers/handleNewChatMembers';
 import {handleButtonPress} from '@helpers/newcomers/checkButton';
 import {checkPassingCaptchaWithText} from './checkPassingCaptchaWithText';
-import {getChatMember} from '@root/types/hacks/get-chat-member';
-import {AppContext} from '@root/types/app-context';
+import {getChatMember} from '@sesuritu/types/src/hacks/get-chat-member';
+import {AppContext} from '@sesuritu/types/src/app-context';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 
 export function setupNewcomers(appContext: AppContext): void {

@@ -13,8 +13,8 @@ Actually, this is a fork of https://github.com/1inch/shieldy
 1. Clone this repo: `git clone https://github.com/Rulexec/shieldy`
 2. Launch the [mongo database](https://www.mongodb.com/) locally
 3. Create `.env` with the environment variables listed below
-4. Run `yarn install` in the root folder
-5. Run `yarn distribute`
+4. Run `pnpm install` in the root folder
+5. Run `npm run distribute`
 
 And you should be good to go! Feel free to fork and submit pull requests. Thanks!
 

@@ -1,6 +1,6 @@
-import {Language} from '@models/Chat';
-import {L10nKey} from '@root/i18n/l10n-key';
-import {AppContext} from '@root/types/app-context';
+import {Language} from '@sesuritu/types/src/models/Chat';
+import {L10nKey} from '@sesuritu/types/src/i18n/l10n-key';
+import {AppContext} from '@sesuritu/types/src/app-context';
 
 /**
  * @depreated use `appContext.translations.translate()`

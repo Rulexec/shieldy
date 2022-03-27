@@ -1,4 +1,4 @@
-import {CaptchaType, Chat, Equation} from '@models/Chat';
+import {CaptchaType, Chat, Equation} from '@sesuritu/types/src/models/Chat';
 import {getImageCaptcha, ImageCaptcha} from '@helpers/captcha';
 import {generateEquation} from '@helpers/equation';
 

@@ -1,5 +1,5 @@
 import {BotMiddlewareFn} from '@root/bot/types';
-import {L10nKey, T_} from '@root/i18n/l10n-key';
+import {L10nKey, T_} from '@sesuritu/types/src/i18n/l10n-key';
 import {sourceCommandHandler} from './admin';
 import {allowInvitingBotsCommand} from './allowInvitingBots';
 import {banCommand} from './ban';

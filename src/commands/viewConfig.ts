@@ -1,8 +1,8 @@
-import {Chat} from '@models/Chat';
+import {Chat} from '@sesuritu/types/src/models/Chat';
 import {Extra} from 'telegraf';
-import {Context} from '@root/types/context';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
-import {T_} from '@root/i18n/l10n-key';
+import {Context} from '@sesuritu/types/src/context';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 import {commandHandler} from './util';
 
 export const viewConfigCommand = commandHandler(async (ctx) => {

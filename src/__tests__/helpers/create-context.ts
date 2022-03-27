@@ -1,9 +1,9 @@
 import {ContextOptions, createContext} from '@root/context';
 import {MemoryDatabase} from '@root/database/memory/database';
 import {Translations} from '@root/i18n/translations';
-import {AppContext} from '@root/types/app-context';
-import {LogLevel} from '@root/types/logging';
-import {Logger} from '@root/util/logging/logger';
+import {AppContext} from '@sesuritu/types/src/app-context';
+import {LogLevel} from '@sesuritu/types/src/logging';
+import {Logger} from '@sesuritu/util/src/logging/logger';
 import {TEST_TELEGRAM_TOKEN} from '../constants';
 
 type CreateTestAppContextOptions = Partial<{

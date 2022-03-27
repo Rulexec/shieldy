@@ -1,4 +1,4 @@
-import {AppContext} from './types/app-context';
+import {AppContext} from '@sesuritu/types/src/app-context';
 import {setupBot} from './updateHandler';
 
 export function run(appContext: AppContext): void {

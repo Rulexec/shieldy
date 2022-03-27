@@ -1,4 +1,4 @@
-import {AppContext} from '@root/types/app-context';
+import {AppContext} from '@sesuritu/types/src/app-context';
 import {botDeleteMessageSafe} from './deleteMessageSafe';
 
 export async function removeCappedMessagesFromUser({

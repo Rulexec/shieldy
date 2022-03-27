@@ -1,4 +1,4 @@
-import {LogLevel, logLevelToLetter} from '@root/types/logging';
+import {LogLevel, logLevelToLetter} from '@sesuritu/types/src/logging';
 import type {Logger as LoggerInterface} from './types';
 
 type LoggerWithFork = LoggerInterface & {fork: (key: string) => LoggerWithFork};

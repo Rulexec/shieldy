@@ -1,8 +1,8 @@
-import {Candidate} from '@models/Chat';
+import {Candidate} from '@sesuritu/types/src/models/Chat';
 import {User, Message} from 'telegram-typings';
-import {Context} from '@root/types/context';
+import {Context} from '@sesuritu/types/src/context';
 import {Captcha} from './generateCaptcha';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
 
 export function getCandidate(
   ctx: Context,

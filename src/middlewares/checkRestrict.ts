@@ -1,9 +1,9 @@
-import {Context} from '@root/types/context';
+import {Context} from '@sesuritu/types/src/context';
 import {isGloballyRestricted} from '@helpers/globallyRestricted';
 import {deleteMessageSafe} from '@helpers/deleteMessageSafe';
 import {MessageEntity} from 'typegram';
-import {getMessageText} from '@root/types/hacks/get-message-text';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {getMessageText} from '@sesuritu/types/src/hacks/get-message-text';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
 import {BotMiddlewareNextStrategy} from '@root/bot/types';
 
 export function checkRestrict(ctx: Context): BotMiddlewareNextStrategy {

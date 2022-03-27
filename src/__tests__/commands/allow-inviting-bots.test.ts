@@ -1,5 +1,5 @@
 import {findChatById} from '@root/helpers/find-chat';
-import {T_} from '@root/i18n/l10n-key';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 import {testTrivialBooleanCommandChangingDatabase} from '../helpers/command';
 import {setupTest} from '../helpers/setup';
 import {createNewChatMemberMessage} from '../test-data/updates';

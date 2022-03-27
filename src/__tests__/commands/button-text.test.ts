@@ -1,4 +1,4 @@
-import {T_} from '@root/i18n/l10n-key';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 import {getNoTranslationText} from '@root/i18n/no-translation';
 import {testCommandChangingDatabase} from '../helpers/command';
 import {setupTest} from '../helpers/setup';

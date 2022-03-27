@@ -1,5 +1,5 @@
-import {AppContext} from '@root/types/app-context';
-import {Context} from '@root/types/context';
+import {AppContext} from '@sesuritu/types/src/app-context';
+import {Context} from '@sesuritu/types/src/context';
 
 export async function deleteMessageSafe(ctx: Context): Promise<void> {
   try {

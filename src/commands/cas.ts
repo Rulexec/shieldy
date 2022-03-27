@@ -1,5 +1,5 @@
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
-import {T_} from '@root/i18n/l10n-key';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 
 export const casCommand: BotMiddlewareFn = async (ctx) => {

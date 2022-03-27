@@ -1,5 +1,5 @@
-import {Context} from '@root/types';
-import {Defer} from '@root/util/async/defer';
+import {Context} from '@sesuritu/types/src';
+import {Defer} from '@sesuritu/util/src/async/defer';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from './types';
 
 export const executeMiddlewares = async ({

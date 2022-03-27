@@ -2,8 +2,8 @@ import {cpus} from 'os';
 
 import * as dotenv from 'dotenv';
 
-import {logLevelNameToLevel} from './types/logging';
-import {Config} from './types/app-context';
+import {logLevelNameToLevel} from '@sesuritu/types/src/logging';
+import {Config} from '@sesuritu/types/src/app-context';
 
 // TODO: do not pollute `process.env`
 dotenv.config({path: `${__dirname}/../.env`});

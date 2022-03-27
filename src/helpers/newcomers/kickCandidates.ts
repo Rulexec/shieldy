@@ -1,11 +1,11 @@
 import {botDeleteMessageSafe} from '@helpers/deleteMessageSafe';
-import {Chat, Candidate} from '@models/Chat';
+import {Chat, Candidate} from '@sesuritu/types/src/models/Chat';
 import {addKickedUser} from '@helpers/newcomers/addKickedUser';
 import {
   removeCandidates,
   removeRestrictedUsers,
 } from '@helpers/restrictedUsers';
-import {AppContext} from '@root/types/app-context';
+import {AppContext} from '@sesuritu/types/src/app-context';
 import {removeEntryMessagesFromUser} from '../remove-entry-messages';
 
 const chatMembersBeingKicked = {} as {

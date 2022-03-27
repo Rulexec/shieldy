@@ -1,7 +1,7 @@
 import {findChatById} from '@root/helpers/find-chat';
-import {T_} from '@root/i18n/l10n-key';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 import {getNoTranslationText} from '@root/i18n/no-translation';
-import {getUniqueCounterValue} from '@root/util/id/unique-counter';
+import {getUniqueCounterValue} from '@sesuritu/util/src/id/unique-counter';
 import {setupTest} from '../helpers/setup';
 import {createMessage} from '../test-data/updates';
 

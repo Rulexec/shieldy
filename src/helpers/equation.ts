@@ -1,4 +1,4 @@
-import {Equation} from '@models/Chat';
+import {Equation} from '@sesuritu/types/src/models/Chat';
 
 export function generateEquation(): Equation {
   const a = getRandomInt(10);

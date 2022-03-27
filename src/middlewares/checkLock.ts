@@ -5,7 +5,7 @@ import {
   newBotMiddlewareAdapter,
 } from '@root/bot/types';
 import {botDeleteMessageSafe} from '@root/helpers/deleteMessageSafe';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
 
 export const checkLockMiddleware: BotMiddlewareFn = async (ctx) => {
   const {chat, message} = ctx;

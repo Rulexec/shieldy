@@ -1,8 +1,8 @@
 import {BotMiddlewareNextStrategy} from '@root/bot/types';
 import {findChatById} from '@root/helpers/find-chat';
 import {strings} from '@root/helpers/strings';
-import {Context} from '@root/types/context';
-import {getMessageText} from '@root/types/hacks/get-message-text';
+import {Context} from '@sesuritu/types/src/context';
+import {getMessageText} from '@sesuritu/types/src/hacks/get-message-text';
 
 export async function attachUser(
   ctx: Context,

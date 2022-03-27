@@ -12,9 +12,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '12'
-          cache: 'yarn'
+          cache: 'pnpm'
       - name: Install dependencies
-        run: yarn install
-      - run: yarn run lint
-      - run: yarn run build-ts
-      - run: yarn run test
+        run: pnpm install
+      - run: npm run lint
+      - run: npm run build-ts
+      - run: npm run test

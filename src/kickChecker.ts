@@ -2,7 +2,7 @@ import 'module-alias/register';
 import {botKickCandidates} from '@helpers/newcomers/kickCandidates';
 import {removeRestrictedUsers} from '@helpers/restrictedUsers';
 import {createContext} from './context';
-import {Candidate} from './models/Chat';
+import {Candidate} from '@sesuritu/types/src/models/Chat';
 
 const appContext = createContext({instanceId: 'kicker'});
 const {report, logger} = appContext;

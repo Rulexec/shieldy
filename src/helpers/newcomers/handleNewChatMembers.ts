@@ -1,6 +1,6 @@
 import {ChatMember} from 'telegram-typings';
-import {Candidate} from '@models/Chat';
-import {Context} from '@root/types/context';
+import {Candidate} from '@sesuritu/types/src/models/Chat';
+import {Context} from '@sesuritu/types/src/context';
 import {modifyGloballyRestricted} from '@helpers/globallyRestricted';
 import {sendHelpSafe} from '@commands/help';
 import {doGreetUser} from '@helpers/newcomers/greetUser';
@@ -9,13 +9,13 @@ import {generateCaptcha} from '@helpers/newcomers/generateCaptcha';
 import {notifyCandidate} from '@helpers/newcomers/notifyCandidate';
 import {getCandidate} from '@helpers/newcomers/getCandidate';
 import {deleteMessageSafe} from '@helpers/deleteMessageSafe';
-import {getChatMember} from '@root/types/hacks/get-chat-member';
+import {getChatMember} from '@sesuritu/types/src/hacks/get-chat-member';
 import {addCandidates, addRestrictedUsers} from '../restrictedUsers';
 import {botKickChatMember} from './kickChatMember';
 import {botRestrictChatMember} from './restrictChatMember';
 import {removeCappedMessagesFromUser} from '../remove-messages-from-user';
 import {removeEntryMessagesFromUser} from '../remove-entry-messages';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
 
 export async function handleNewChatMember(ctx: Context): Promise<void> {
   // Check if no attack mode

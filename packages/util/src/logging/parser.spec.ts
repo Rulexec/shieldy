@@ -1,4 +1,4 @@
-import {LogLevel} from '@root/types/logging';
+import {LogLevel} from '@sesuritu/types/src/logging';
 import {parseLogLine} from './parser';
 
 describe('parseLogLine', () => {

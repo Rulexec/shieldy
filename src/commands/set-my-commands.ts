@@ -1,6 +1,6 @@
-import {AppContext} from '@root/types/app-context';
-import {sleep} from '@root/util/async/sleep';
-import {Logger} from '@root/util/logging/types';
+import {AppContext} from '@sesuritu/types/src/app-context';
+import {sleep} from '@sesuritu/util/src/async/sleep';
+import {Logger} from '@sesuritu/util/src/logging/types';
 import {
   CommandDef,
   getCommandTelegramCommandScopes,

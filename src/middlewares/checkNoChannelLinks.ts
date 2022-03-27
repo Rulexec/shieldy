@@ -1,10 +1,10 @@
 import {isGroup} from '@helpers/isGroup';
 import {deleteMessageSafe} from '@helpers/deleteMessageSafe';
 import tall from 'tall';
-import {Context} from '@root/types/context';
-import {getMessageText} from '@root/types/hacks/get-message-text';
-import {getChatUsername} from '@root/types/hacks/get-chat-username';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {Context} from '@sesuritu/types/src/context';
+import {getMessageText} from '@sesuritu/types/src/hacks/get-message-text';
+import {getChatUsername} from '@sesuritu/types/src/hacks/get-chat-username';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
 import {BotMiddlewareNextStrategy} from '@root/bot/types';
 
 const disallowedUrlParts = ['http://t.me/', 'https://t.me/'];

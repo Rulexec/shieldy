@@ -1,5 +1,5 @@
-import {Context} from '@root/types/context';
-import {T_} from '@root/i18n/l10n-key';
+import {Context} from '@sesuritu/types/src/context';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 
 export async function clarifyReply(ctx: Context): Promise<void> {
   const {database, report} = ctx.appContext;

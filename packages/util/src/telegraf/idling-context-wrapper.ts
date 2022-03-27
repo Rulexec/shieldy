@@ -1,4 +1,4 @@
-import {Context} from '@root/types';
+import {Context} from '@sesuritu/types/src';
 
 type CtxFun<T> = (ctx: Context) => Promise<T>;
 

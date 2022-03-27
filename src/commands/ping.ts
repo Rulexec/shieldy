@@ -1,4 +1,4 @@
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 
 export const pingCommand: BotMiddlewareFn = (ctx) => {

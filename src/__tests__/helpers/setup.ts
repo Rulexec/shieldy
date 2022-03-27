@@ -1,12 +1,12 @@
-import {AppContext} from '@root/types/app-context';
-import {assertTypesEqual} from '@root/types/type-assert';
+import {AppContext} from '@sesuritu/types/src/app-context';
+import {assertTypesEqual} from '@sesuritu/types/src/type-assert';
 import {setupBot} from '@root/updateHandler';
-import {sleep} from '@root/util/async/sleep';
-import {getUniqueCounterValue} from '@root/util/id/unique-counter';
+import {sleep} from '@sesuritu/util/src/async/sleep';
+import {getUniqueCounterValue} from '@sesuritu/util/src/id/unique-counter';
 import {
   IdlingStatus,
   IdlingStatusOnIdleResult,
-} from '@root/util/state/idling-status';
+} from '@sesuritu/util/src/state/idling-status';
 import {
   TEST_BOT_ID,
   TEST_BOT_USERNAME,

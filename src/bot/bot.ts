@@ -1,5 +1,5 @@
-import {AppContext} from '@root/types/app-context';
-import {createStatsDistributionLogger} from '@root/util/stats/stats-distribution-logger';
+import {AppContext} from '@sesuritu/types/src/app-context';
+import {createStatsDistributionLogger} from '@sesuritu/util/src/stats/stats-distribution-logger';
 import {executeMiddlewares} from './middleware';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from './types';
 

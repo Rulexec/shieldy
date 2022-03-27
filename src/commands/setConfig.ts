@@ -1,9 +1,9 @@
 import {ExtraReplyMessage} from 'telegraf/typings/telegram-types';
-import {Language, CaptchaType} from '@models/Chat';
+import {Language, CaptchaType} from '@sesuritu/types/src/models/Chat';
 import {Extra} from 'telegraf';
 import {sendCurrentConfig} from '@commands/viewConfig';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
-import {T_} from '@root/i18n/l10n-key';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 import {commandHandler} from './util';
 
 export const setConfigCommand = commandHandler(async (ctx) => {

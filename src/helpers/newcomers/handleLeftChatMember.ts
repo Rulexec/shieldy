@@ -1,6 +1,6 @@
 import {deleteMessageSafe} from '@helpers/deleteMessageSafe';
-import {Context} from '@root/types/context';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {Context} from '@sesuritu/types/src/context';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
 
 export async function handleLeftChatMember(ctx: Context): Promise<void> {
   assertNonNullish(ctx.message);

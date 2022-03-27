@@ -1,4 +1,4 @@
-import {CaptchaType, Chat, Language} from '@root/models/Chat';
+import {CaptchaType, Chat, Language} from '@sesuritu/types/src/models/Chat';
 
 export const createDefaultChat = (id: number): Chat => {
   return {

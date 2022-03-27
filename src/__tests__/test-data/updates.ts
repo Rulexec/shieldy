@@ -1,4 +1,4 @@
-import {getUniqueCounterValue} from '@root/util/id/unique-counter';
+import {getUniqueCounterValue} from '@sesuritu/util/src/id/unique-counter';
 import {Chat, User} from './chats';
 import {Message} from './types';
 

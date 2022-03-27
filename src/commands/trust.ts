@@ -2,9 +2,9 @@ import {
   removeCandidates,
   removeRestrictedUsers,
 } from '@helpers/restrictedUsers';
-import {Context} from '@root/types/index';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
-import {T_} from '@root/i18n/l10n-key';
+import {Context} from '@sesuritu/types/src/index';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 import {commandHandler} from './util';
 
 export const trustCommand = commandHandler(

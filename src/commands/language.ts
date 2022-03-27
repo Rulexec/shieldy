@@ -1,8 +1,8 @@
-import {Language} from '@models/Chat';
+import {Language} from '@sesuritu/types/src/models/Chat';
 import {checkIfFromReplierMiddleware} from '@middlewares/checkIfFromReplier';
 import {checkLockMiddleware} from '@middlewares/checkLock';
-import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
-import {T_} from '@root/i18n/l10n-key';
+import {assertNonNullish} from '@sesuritu/util/src/assert/assert-non-nullish';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 import {CommandDefSetupFn} from './types';
 

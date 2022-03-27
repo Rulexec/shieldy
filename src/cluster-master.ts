@@ -1,9 +1,9 @@
 import {Context} from 'telegraf';
 import {fork} from 'cluster';
-import {AppContext} from './types/app-context';
-import {Logger} from './util/logging/logger';
+import {AppContext} from '@sesuritu/types/src/app-context';
+import {Logger} from '@sesuritu/util/src/logging/logger';
 import {BotMiddlewareNextStrategy} from './bot/types';
-import {createStatsUniqueLogger} from './util/stats/stats-unique-logger';
+import {createStatsUniqueLogger} from '@sesuritu/util/src/stats/stats-unique-logger';
 import {telegramSetMyCommands} from './commands/set-my-commands';
 
 const workers: ReturnType<typeof fork>[] = [];

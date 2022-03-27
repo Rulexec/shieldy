@@ -1,6 +1,6 @@
-import {Context} from '@root/types/index';
+import {Context} from '@sesuritu/types/src/index';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
-import {T_} from '@root/i18n/l10n-key';
+import {T_} from '@sesuritu/types/src/i18n/l10n-key';
 
 export const helpCommand: BotMiddlewareFn = async (ctx) => {
   await sendHelp(ctx);

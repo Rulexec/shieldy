@@ -1,7 +1,7 @@
 import {User} from 'telegraf/typings/telegram-types';
-import {Chat} from '@models/Chat';
+import {Chat} from '@sesuritu/types/src/models/Chat';
 import {addKickedUser} from '@helpers/newcomers/addKickedUser';
-import {AppContext} from '@root/types/app-context';
+import {AppContext} from '@sesuritu/types/src/app-context';
 import {removeCandidates, removeRestrictedUsers} from '../restrictedUsers';
 
 export async function botKickChatMember(
