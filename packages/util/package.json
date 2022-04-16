@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sesuritu/types": "0.0.1"
+    "@sesuritu/types": "0.0.1",
+    "typescript": "4.3.5"
   }
 }

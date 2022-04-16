@@ -1,9 +1,7 @@
 import {letterToLogLevel, LogLevel} from '@sesuritu/types/src/logging';
 import {unescapeExtra, unescapeKey, unescapePropKey} from './logger';
 
-export const parseLogLine = (
-  line: string,
-): {
+export type ParsedLogLine = {
   logLevel: LogLevel;
   timestampMilliseconds: number;
   timestampMicroseconds: number;
@@ -11,7 +9,9 @@ export const parseLogLine = (
   logKey: string;
   props: Map<string, string>;
   extra: string[];
-} => {
+};
+
+export const parseLogLine = (line: string): ParsedLogLine => {
   const match =
     /^(T|I|W|E|S) (\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{1,3}Z)\.(\d{1,3}) ((?:\\ |[^\s])+) ((?:\\ |[^\s])+)(.*)/.exec(
       line,

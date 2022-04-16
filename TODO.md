@@ -17,3 +17,4 @@
 - Write integration tests for translations
 - Option to filter some keys from logs
 - Option to disable stats logging
+- Persist version of commands autocompletion, do not replace them at every bot start

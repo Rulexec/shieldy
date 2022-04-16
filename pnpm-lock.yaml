@@ -91,10 +91,12 @@ importers:
       '@sesuritu/util': 0.0.1
       clickhouse: 2.4.4
       nodemon: 2.0.15
+      ts-node: 10.1.0
       typescript: 4.3.5
     dependencies:
       '@sesuritu/util': link:../util
       clickhouse: 2.4.4
+      ts-node: 10.1.0_0cb5f16bd7a72ddeff0add00ca43aa7d
       typescript: 4.3.5
     devDependencies:
       nodemon: 2.0.15
@@ -105,8 +107,10 @@ importers:
   packages/util:
     specifiers:
       '@sesuritu/types': 0.0.1
+      typescript: 4.3.5
     dependencies:
       '@sesuritu/types': link:../types
+      typescript: 4.3.5
 
 packages:
   /@babel/code-frame/7.12.11:
