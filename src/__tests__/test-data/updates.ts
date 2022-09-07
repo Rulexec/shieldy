@@ -165,3 +165,40 @@ export const createNewChatMemberMessage = ({
     },
   };
 };
+
+export const createLeftChatMemberMessage = ({
+  user,
+  chat,
+  unixSeconds,
+  messageId,
+  updateId,
+}: {
+  user: User;
+  chat: Chat;
+  messageId?: number;
+  updateId?: number;
+  unixSeconds: number;
+}): {
+  update_id: number;
+  message: {
+    message_id: number;
+    from: User;
+    chat: Chat;
+    date: number;
+    left_chat_member: User;
+  };
+} => {
+  return {
+    update_id: updateId || getUniqueCounterValue(),
+    message: {
+      message_id: messageId || getUniqueCounterValue(),
+      from: user,
+      chat: chat,
+      date: unixSeconds,
+      // TODO: view actual type
+      left_chat_member: user,
+    },
+  };
+};
+
+//left_chat_member

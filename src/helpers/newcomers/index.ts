@@ -12,12 +12,22 @@ import {AppContext} from '@root/types/app-context';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 
 export function setupNewcomers(appContext: AppContext): void {
-  const {addBotMiddleware, telegrafBot} = appContext;
+  const {addBotMiddleware, telegrafBot, logger} = appContext;
 
   // Keep track of new member messages to delete them
   telegrafBot.on('new_chat_members', checkIfGroup, handleNewChatMemberMessage);
   // Keep track of leave messages and delete them if necessary
-  telegrafBot.on('left_chat_member', handleLeftChatMember);
+  addBotMiddleware((ctx) => {
+    if (!ctx.message?.left_chat_member) {
+      return BotMiddlewareNextStrategy.next;
+    }
+
+    handleLeftChatMember(ctx).catch((error) =>
+      logger.error('left_chat_member', undefined, {error}),
+    );
+
+    return BotMiddlewareNextStrategy.next;
+  });
   // Check newcomers passing captcha with text
 
   addBotMiddleware(checkPassingCaptchaWithText);
