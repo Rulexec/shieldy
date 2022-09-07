@@ -22,6 +22,7 @@ RUN yarn install \
 
 COPY ./tsconfig.json .
 COPY ./scripts ./scripts
+COPY ./l10n ./l10n
 COPY ./src ./src
 COPY ./entrypoint.sh .
 
