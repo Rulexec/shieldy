@@ -16,8 +16,9 @@ import {botRestrictChatMember} from './restrictChatMember';
 import {removeCappedMessagesFromUser} from '../remove-messages-from-user';
 import {removeEntryMessagesFromUser} from '../remove-entry-messages';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {wrapTelegrafContextWithIdling} from '@root/util/telegraf/idling-context-wrapper';
 
-export async function handleNewChatMember(ctx: Context): Promise<void> {
+async function handleNewChatMemberInternal(ctx: Context): Promise<void> {
   // Check if no attack mode
   if (ctx.dbchat.noAttack) {
     return;
@@ -162,6 +163,11 @@ export async function handleNewChatMember(ctx: Context): Promise<void> {
     modifyGloballyRestricted([memberId], false);
   }
 }
+
+const handleNewChatMemberWrapped = wrapTelegrafContextWithIdling(
+  handleNewChatMemberInternal,
+);
+export {handleNewChatMemberWrapped as handleNewChatMember};
 
 export async function handleNewChatMemberMessage(ctx: Context): Promise<void> {
   assertNonNullish(ctx.message);

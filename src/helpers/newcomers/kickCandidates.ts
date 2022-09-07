@@ -42,20 +42,19 @@ export async function botKickCandidates(
       appContext.report(err);
     }
     // Try deleting their entry messages
-    if (
-      chat.deleteEntryOnKick &&
-      candidate.entryChatId &&
-      candidate.leaveMessageId
-    ) {
+    if (chat.deleteEntryOnKick && candidate.entryChatId) {
       removeEntryMessagesFromUser({
         appContext,
         chatId: candidate.entryChatId,
         fromId: candidate.id,
       });
-      botDeleteMessageSafe(appContext, {
-        chatId: candidate.entryChatId,
-        messageId: candidate.leaveMessageId,
-      });
+
+      if (candidate.leaveMessageId) {
+        botDeleteMessageSafe(appContext, {
+          chatId: candidate.entryChatId,
+          messageId: candidate.leaveMessageId,
+        });
+      }
     }
     if (candidate.messageId) {
       // Try deleting the captcha message
