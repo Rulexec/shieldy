@@ -203,6 +203,7 @@ export async function notifyCandidate(
       logger.error('notifyCandidate:96716187e5876ea1');
 
       return telegramApi.sendMessage({
+        ...extra,
         chat_id: chat.id,
         disable_notification: chat.silentMessages,
         text:
