@@ -69,10 +69,11 @@ export class MemberWrapper {
   member: ChatMember;
 }
 
-export class CustomCaptchaVariant {
+export type CustomCaptchaVariant = {
+  id: number;
   question: string;
   answer: string;
-}
+};
 
 export enum ReplySettingType {
   ADD_CUSTOM_CAPTCHA = 'addCustomCaptcha',

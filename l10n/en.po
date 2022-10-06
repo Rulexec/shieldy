@@ -324,3 +324,12 @@ msgstr "view the current Sesuritu configuration"
 
 msgid "viewCustomCaptcha_help"
 msgstr "view custom captcha type questions&answers"
+
+msgid "removeCustomCaptcha_help"
+msgstr "Remove custom captcha question"
+
+msgid "removeCustomCaptcha_text"
+msgstr "Choose question to remove"
+
+msgid "removeCustomCaptcha_empty"
+msgstr "There is no custom captcha variants"

@@ -110,8 +110,8 @@ describe('/addCustomCaptcha', () => {
         else return 1;
       }),
     ).toEqual([
-      {question: 'Say my name', answer: 'heisenberg,john,sesuritu'},
-      {question: 'Say not my name', answer: '"not my name"'},
+      {id: 1, question: 'Say my name', answer: 'heisenberg,john,sesuritu'},
+      {id: 2, question: 'Say not my name', answer: '"not my name"'},
     ]);
 
     await handleUpdate(

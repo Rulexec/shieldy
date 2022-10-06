@@ -53,6 +53,7 @@ describe('custom captcha', () => {
         property: 'customCaptchaVariants',
         value: [
           {
+            id: 1,
             question: 'Say my name',
             answer: isMultianswer ? 'heisenberg,jack' : 'heisenberg',
           },

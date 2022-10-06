@@ -324,3 +324,12 @@ msgstr "посмотреть текущие настройки Sesuritu"
 
 msgid "viewCustomCaptcha_help"
 msgstr "просмотреть вопросы&ответы пользовательского типа капчи"
+
+msgid "removeCustomCaptcha_help"
+msgstr "удалить вопрос пользовательского вида каптчи"
+
+msgid "removeCustomCaptcha_text"
+msgstr "Выберете вопрос для удаления"
+
+msgid "removeCustomCaptcha_empty"
+msgstr "Отсутствуют вопросы"
