@@ -15,12 +15,6 @@ import {casCommand} from './cas';
 import {CommandDefSetupFn} from './types';
 import {deleteEntryMessageCommand} from './deleteEntryMessages';
 import {deleteEntryOnKickCommand} from './deleteEntryOnKick';
-import {
-  addCustomCaptchaCommand,
-  removeAllCustomCaptchaCommand,
-  setupAddCustomCaptcha,
-  viewCustomCaptchaCommand,
-} from './customCaptcha';
 import {deleteGreetingTimeCommand} from './deleteGreetingTime';
 import {greetingCommand, setupGreeting} from './greeting';
 import {greetingButtonsCommand, setupGreetingButtons} from './greetingButtons';
@@ -41,6 +35,12 @@ import {strictCommand} from './strict';
 import {setupTimeLimit, timeLimitCommand} from './timeLimit';
 import {trustCommand} from './trust';
 import {underAttackCommand} from './underAttack';
+import {viewCustomCaptchaCommand} from './custom-captcha/view-custom-captcha';
+import {removeAllCustomCaptchaCommand} from './custom-captcha/remove-all-custom-captcha';
+import {
+  addCustomCaptchaCommand,
+  setupAddCustomCaptcha,
+} from './custom-captcha/add-custom-captcha';
 
 export type TelegramCommandScopeType =
   | 'all_private_chats'
