@@ -41,6 +41,10 @@ import {
   addCustomCaptchaCommand,
   setupAddCustomCaptcha,
 } from './custom-captcha/add-custom-captcha';
+import {
+  removeCustomCaptchaCommand,
+  setupRemoveCustomCaptcha,
+} from './custom-captcha/remove-custom-catcha';
 
 export type TelegramCommandScopeType =
   | 'all_private_chats'
@@ -154,6 +158,12 @@ export const getCommands = (): CommandDef[] => {
       key: 'viewCustomCaptcha',
       helpDescription: T_`viewCustomCaptcha_help`,
       handler: viewCustomCaptchaCommand,
+    },
+    {
+      key: 'removeCustomCaptcha',
+      helpDescription: T_`removeCustomCaptcha_help`,
+      handler: removeCustomCaptchaCommand,
+      setup: setupRemoveCustomCaptcha,
     },
     {
       key: 'removeAllCustomCaptcha',
