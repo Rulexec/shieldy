@@ -14,17 +14,23 @@ import {pickNonUndefined} from '@root/util/object/pick-non-undefined';
 import {VerifiedUser} from '@root/models/VerifiedUser';
 import {MessageToDelete} from '@root/models/MessageToDelete';
 import {CappedMessage} from '@root/models/CappedMessage';
+import {normalizeChat} from '@root/helpers/normalize-chat';
+
+type RawChat = {readonly rawChatTag: unique symbol};
 
 // TODO: replace upserts with inserts, handle unique index errors
 
 // `assertTypesEqual` used to ensure,
 // that we are not adding new object keys to mongodb accidentally
 
+// WARN: do not use mongodb `.toArray()` without assignment to a variable,
+//       it can do implicit casts due to generic in method
+
 export class MongoDatabase implements Database {
   appContext: AppContext;
   client: MongoClient;
   db: Db;
-  chatCollection: Collection<Chat>;
+  chatCollection: Collection<RawChat>;
   cappedKickedUsersCollection: Collection<CappedKickedUser>;
   entryMessagesCollection: Collection<EntryMessage>;
   verifiedUsersCollection: Collection<VerifiedUser>;
@@ -94,7 +100,12 @@ export class MongoDatabase implements Database {
   getChatById = async (chatId: number): Promise<Chat | null> => {
     const {chatCollection} = this;
 
-    return (await chatCollection.findOne({id: chatId})) || null;
+    const rawChat = await chatCollection.findOne({id: chatId});
+    if (!rawChat) {
+      return null;
+    }
+
+    return this.normalizeChat(rawChat);
   };
 
   updateChat = async (chat: Chat): Promise<void> => {
@@ -104,11 +115,13 @@ export class MongoDatabase implements Database {
   };
 
   findChatsWithCandidatesOrRestrictedUsers = async (): Promise<Chat[]> => {
-    return await this.chatCollection
+    const chats = await this.chatCollection
       .find({
         $or: [{candidates: {$gt: []}}, {restrictedUsers: {$gt: []}}],
       })
       .toArray();
+
+    return Promise.all(chats.map((chat) => this.normalizeChat(chat)));
   };
 
   setChatProperty: Database['setChatProperty'] = async ({
@@ -217,7 +230,8 @@ export class MongoDatabase implements Database {
       throw new Error('findEntryMessages indexed only by chat_id,from_id');
     }
 
-    return await this.entryMessagesCollection.find(query).toArray();
+    const messages = await this.entryMessagesCollection.find(query).toArray();
+    return messages;
   };
 
   deleteEntryMessage: Database['deleteEntryMessage'] = async (message) => {
@@ -263,9 +277,10 @@ export class MongoDatabase implements Database {
   findMessagesToDeleteWithDeleteAtLessThan: Database['findMessagesToDeleteWithDeleteAtLessThan'] =
     async (date: Date) => {
       // TODO: add limit
-      return await this.messagesToDeleteCollection
+      const messages = await this.messagesToDeleteCollection
         .find({deleteAt: {$lt: date}})
         .toArray();
+      return messages;
     };
 
   deleteMessagesToDeleteWithDeleteAtLessThan: Database['deleteMessagesToDeleteWithDeleteAtLessThan'] =
@@ -309,6 +324,16 @@ export class MongoDatabase implements Database {
       throw new Error('findCappedMessages indexed only by chat_id,from_id');
     }
 
-    return await this.cappedMessagesCollection.find(query).toArray();
+    const messages = await this.cappedMessagesCollection.find(query).toArray();
+    return messages;
+  };
+
+  private normalizeChat = async (chat: RawChat): Promise<Chat> => {
+    const newChat = normalizeChat(chat);
+    if ((chat as unknown) !== newChat) {
+      await this.updateChat(newChat);
+    }
+
+    return newChat;
   };
 }

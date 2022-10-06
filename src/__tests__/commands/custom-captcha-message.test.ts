@@ -71,7 +71,7 @@ describe('/customCaptchaMessage', () => {
               appContext.database.setChatProperty({
                 chatId: groupChat.id,
                 property: 'customCaptchaVariants',
-                value: [{question: 'Say my name', answer: 'Heisenberg'}],
+                value: [{id: 1, question: 'Say my name', answer: 'Heisenberg'}],
               }),
             ]
           : []),

@@ -115,7 +115,20 @@ export const setupAddCustomCaptcha: CommandDefSetupFn = ({appContext}) => {
       .map((x) => x.trim())
       .join(',');
 
+    // Find available id for variant
+    let variantId = 1;
+    chat.customCaptchaVariants.some((variant) => {
+      const isCollision = variant.id === variantId;
+
+      if (isCollision) {
+        variantId++;
+      }
+
+      return !isCollision;
+    });
+
     chat.customCaptchaVariants.push({
+      id: variantId,
       question: customCaptchaQuestion,
       answer,
     });
