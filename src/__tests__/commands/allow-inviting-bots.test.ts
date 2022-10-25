@@ -26,6 +26,7 @@ describe('/allowInvitingBots', () => {
       popMemberKicks,
       unixSeconds,
       otherBotUser,
+      adminUser,
       groupChat,
     } = await botTest.init();
 
@@ -60,6 +61,25 @@ describe('/allowInvitingBots', () => {
     await handleUpdate(
       createNewChatMemberMessage({
         user: otherBotUser,
+        chat: groupChat,
+        unixSeconds,
+      }),
+    );
+    await onIdle();
+
+    expect(popMemberKicks()).toStrictEqual([]);
+
+    // Check case when admin adds bot
+    await database.setChatProperty({
+      chatId: groupChat.id,
+      property: 'allowInvitingBots',
+      value: false,
+    });
+
+    await handleUpdate(
+      createNewChatMemberMessage({
+        user: otherBotUser,
+        fromUser: adminUser,
         chat: groupChat,
         unixSeconds,
       }),

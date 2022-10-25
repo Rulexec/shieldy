@@ -17,15 +17,23 @@ import {removeCappedMessagesFromUser} from '../remove-messages-from-user';
 import {removeEntryMessagesFromUser} from '../remove-entry-messages';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {wrapTelegrafContextWithIdling} from '@root/util/telegraf/idling-context-wrapper';
+import {KickReason} from '@root/types/telegram/kick-reason';
 
 async function handleNewChatMemberInternal(ctx: Context): Promise<void> {
+  const {
+    dbchat,
+    appContext: {idling},
+  } = ctx;
+
   // Check if no attack mode
-  if (ctx.dbchat.noAttack) {
+  if (dbchat.noAttack) {
     return;
   }
   // Get new member
   const chatMembers = getChatMember(ctx.update);
   assertNonNullish(chatMembers);
+
+  const selfName = ctx.appContext.telegrafBot?.botInfo?.username;
 
   const newChatMember = chatMembers.new_chat_member as ChatMember;
   // Get list of ids
@@ -46,13 +54,13 @@ async function handleNewChatMemberInternal(ctx: Context): Promise<void> {
     // Loop through the members
     for (const member of membersToCheck) {
       // Check if an old user
-      if (ctx.dbchat.skipOldUsers) {
+      if (dbchat.skipOldUsers) {
         if (member.id > 0 && member.id < 1000000000) {
           doGreetUser(ctx, member);
-          if (ctx.dbchat.restrict) {
+          if (dbchat.restrict) {
             addRestrictedUsers({
               appContext: ctx.appContext,
-              chat: ctx.dbchat,
+              chat: dbchat,
               candidatesAndUsers: [member],
             });
           }
@@ -60,13 +68,13 @@ async function handleNewChatMemberInternal(ctx: Context): Promise<void> {
         }
       }
       // Check if a verified user
-      if (ctx.dbchat.skipVerifiedUsers) {
+      if (dbchat.skipVerifiedUsers) {
         if (await ctx.appContext.database.isUserIdVerified(member.id)) {
           doGreetUser(ctx, member);
-          if (ctx.dbchat.restrict) {
+          if (dbchat.restrict) {
             addRestrictedUsers({
               appContext: ctx.appContext,
-              chat: ctx.dbchat,
+              chat: dbchat,
               candidatesAndUsers: [member],
             });
           }
@@ -83,14 +91,24 @@ async function handleNewChatMemberInternal(ctx: Context): Promise<void> {
         fromId: member.id,
       });
       // Check if under attack
-      if (ctx.dbchat.underAttack) {
-        botKickChatMember(ctx.appContext, ctx.dbchat, member);
+      if (dbchat.underAttack) {
+        botKickChatMember({
+          appContext: ctx.appContext,
+          chat: dbchat,
+          user: member,
+          reason: KickReason.underAttack,
+        });
         continue;
       }
       // Check if id is over 1 000 000 000
-      if (ctx.dbchat.banNewTelegramUsers && member.id > 1000000000) {
-        botKickChatMember(ctx.appContext, ctx.dbchat, member);
-        if (ctx.dbchat.deleteEntryOnKick) {
+      if (dbchat.banNewTelegramUsers && member.id > 1000000000) {
+        botKickChatMember({
+          appContext: ctx.appContext,
+          chat: dbchat,
+          user: member,
+          reason: KickReason.banNewTelegramUsers,
+        });
+        if (dbchat.deleteEntryOnKick) {
           removeEntryMessagesFromUser({
             appContext: ctx.appContext,
             chatId: ctx.chat.id,
@@ -100,9 +118,14 @@ async function handleNewChatMemberInternal(ctx: Context): Promise<void> {
         continue;
       }
       // Check if CAS banned
-      if (ctx.dbchat.cas && !(await checkCAS(member.id))) {
-        botKickChatMember(ctx.appContext, ctx.dbchat, member);
-        if (ctx.dbchat.deleteEntryOnKick) {
+      if (dbchat.cas && !(await checkCAS(member.id))) {
+        botKickChatMember({
+          appContext: ctx.appContext,
+          chat: dbchat,
+          user: member,
+          reason: KickReason.cas,
+        });
+        if (dbchat.deleteEntryOnKick) {
           removeEntryMessagesFromUser({
             appContext: ctx.appContext,
             chatId: ctx.chat.id,
@@ -112,11 +135,11 @@ async function handleNewChatMemberInternal(ctx: Context): Promise<void> {
         continue;
       }
       // Check if already a candidate
-      if (ctx.dbchat.candidates.map((c) => c.id).includes(member.id)) {
+      if (dbchat.candidates.map((c) => c.id).includes(member.id)) {
         continue;
       }
       // Generate captcha if required
-      const captcha = await generateCaptcha(ctx.dbchat);
+      const captcha = await generateCaptcha(dbchat);
       // Notify candidate and save the message
       let message;
       try {
@@ -127,8 +150,8 @@ async function handleNewChatMemberInternal(ctx: Context): Promise<void> {
       // Create a candidate
       const candidate = getCandidate(ctx, member, captcha, message);
       // Restrict candidate if required
-      if (ctx.dbchat.restrict) {
-        botRestrictChatMember(ctx.appContext, ctx.dbchat, member);
+      if (dbchat.restrict) {
+        botRestrictChatMember(ctx.appContext, dbchat, member);
       }
       // Save candidate to the placeholder list
       candidatesToAdd.push(candidate);
@@ -136,13 +159,13 @@ async function handleNewChatMemberInternal(ctx: Context): Promise<void> {
     // Add candidates to the list
     await addCandidates({
       appContext: ctx.appContext,
-      chat: ctx.dbchat,
+      chat: dbchat,
       candidatesAndUsers: candidatesToAdd,
     });
     // Restrict candidates if required
     await addRestrictedUsers({
       appContext: ctx.appContext,
-      chat: ctx.dbchat,
+      chat: dbchat,
       candidatesAndUsers: candidatesToAdd,
     });
 

@@ -130,12 +130,14 @@ export const createChatMemberChange = ({
 
 export const createNewChatMemberMessage = ({
   user,
+  fromUser,
   chat,
   unixSeconds,
   messageId,
   updateId,
 }: {
   user: User;
+  fromUser?: User;
   chat: Chat;
   messageId?: number;
   updateId?: number;
@@ -156,7 +158,7 @@ export const createNewChatMemberMessage = ({
     update_id: updateId || getUniqueCounterValue(),
     message: {
       message_id: messageId || getUniqueCounterValue(),
-      from: user,
+      from: fromUser || user,
       chat: chat,
       date: unixSeconds,
       new_chat_participant: user,

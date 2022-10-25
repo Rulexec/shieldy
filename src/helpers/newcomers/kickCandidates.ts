@@ -7,16 +7,23 @@ import {
 } from '@helpers/restrictedUsers';
 import {AppContext} from '@root/types/app-context';
 import {removeEntryMessagesFromUser} from '../remove-entry-messages';
+import {KickReason} from '@root/types/telegram/kick-reason';
 
 const chatMembersBeingKicked = {} as {
   [index: number]: {[index: number]: boolean};
 };
 
-export async function botKickCandidates(
-  appContext: AppContext,
-  chat: Chat,
-  candidates: Candidate[],
-): Promise<void> {
+export async function botKickCandidates({
+  appContext,
+  chat,
+  candidates,
+  reason,
+}: {
+  appContext: AppContext;
+  chat: Chat;
+  candidates: Candidate[];
+  reason: KickReason;
+}): Promise<void> {
   const {logger} = appContext;
 
   // Loop through candidates
@@ -32,12 +39,15 @@ export async function botKickCandidates(
     // Try kicking the candidate
     try {
       await addKickedUser(appContext, chat, candidate.id);
-      kickChatMemberProxy(
+      kickChatMemberProxy({
         appContext,
-        chat.id,
-        candidate.id,
-        chat.banUsers ? 0 : Math.floor(new Date().getTime() / 1000 + 45),
-      );
+        id: chat.id,
+        candidateId: candidate.id,
+        duration: chat.banUsers
+          ? 0
+          : Math.floor(new Date().getTime() / 1000 + 45),
+        reason,
+      });
     } catch (err) {
       appContext.report(err);
     }
@@ -78,24 +88,40 @@ export async function botKickCandidates(
   });
 }
 
-async function kickChatMemberProxy(
-  appContext: AppContext,
-  id: number,
-  candidateId: number,
-  duration: number,
-) {
+async function kickChatMemberProxy({
+  appContext,
+  id,
+  candidateId,
+  duration,
+  reason,
+}: {
+  appContext: AppContext;
+  id: number;
+  candidateId: number;
+  duration: number;
+  reason: KickReason;
+}) {
+  const {
+    telegrafBot: {telegram},
+    logger,
+    report,
+  } = appContext;
+
+  logger.info('kick', {
+    fn: 'kickChatMemberProxy',
+    reason,
+    chatId: id,
+    userId: candidateId,
+  });
+
   try {
     if (!chatMembersBeingKicked[id]) {
       chatMembersBeingKicked[id] = {};
     }
     chatMembersBeingKicked[id][candidateId] = true;
-    await appContext.telegrafBot.telegram.kickChatMember(
-      id,
-      candidateId,
-      duration,
-    );
+    await telegram.kickChatMember(id, candidateId, duration);
   } catch (err) {
-    appContext.report(err);
+    report(err);
   } finally {
     if (chatMembersBeingKicked[id] && chatMembersBeingKicked[id][candidateId]) {
       delete chatMembersBeingKicked[id][candidateId];
