@@ -3,6 +3,7 @@ import {Context} from '@root/types/index';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from '@root/bot/types';
 import {T_} from '@root/i18n/l10n-key';
+import {KickReason} from '@root/types/telegram/kick-reason';
 
 export const allowInvitingBotsCommand: BotMiddlewareFn = async (ctx) => {
   const {
@@ -35,22 +36,52 @@ export const allowInvitingBotsCommand: BotMiddlewareFn = async (ctx) => {
   return BotMiddlewareNextStrategy.abort;
 };
 
-export function checkAllowInvitingBots(
+export async function checkAllowInvitingBots(
   ctx: Context,
-): BotMiddlewareNextStrategy {
-  // Kick bots if required
-  if (
-    !!ctx.message?.new_chat_members?.length &&
-    !ctx.dbchat.allowInvitingBots
-  ) {
-    const botName = ctx.appContext.telegrafBot?.botInfo?.username;
+): Promise<BotMiddlewareNextStrategy> {
+  const {
+    dbchat: {allowInvitingBots},
+    appContext: {
+      telegrafBot: {botInfo},
+    },
+  } = ctx;
 
-    ctx.message.new_chat_members
-      .filter((m) => m.is_bot && m.username !== botName)
-      .forEach((m) => {
-        botKickChatMember(ctx.appContext, ctx.dbchat, m);
-      });
+  if (allowInvitingBots) {
+    return BotMiddlewareNextStrategy.next;
   }
+
+  const newChatMembers = ctx.message?.new_chat_members;
+  if (!newChatMembers?.length) {
+    return BotMiddlewareNextStrategy.next;
+  }
+
+  const selfName = botInfo?.username;
+  const bots = newChatMembers.filter(
+    (member) => member.is_bot && member.username !== selfName,
+  );
+
+  if (!bots.length) {
+    return BotMiddlewareNextStrategy.next;
+  }
+
+  const adderId = ctx.message?.from?.id;
+  if (adderId) {
+    const adder = await ctx.getChatMember(adderId);
+    if (['creator', 'administrator'].includes(adder.status)) {
+      return BotMiddlewareNextStrategy.next;
+    }
+  }
+
+  await Promise.all(
+    bots.map((user) =>
+      botKickChatMember({
+        appContext: ctx.appContext,
+        chat: ctx.dbchat,
+        user,
+        reason: KickReason.allowInvitingBots,
+      }),
+    ),
+  );
 
   return BotMiddlewareNextStrategy.next;
 }

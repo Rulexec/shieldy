@@ -1,5 +1,6 @@
 import {Candidate} from '@root/models/Chat';
 import {AppContext} from '@root/types/app-context';
+import {KickReason} from '@root/types/telegram/kick-reason';
 import {Logger} from '@root/util/logging/types';
 import {botKickCandidates} from './newcomers/kickCandidates';
 import {removeRestrictedUsers} from './restrictedUsers';
@@ -32,7 +33,12 @@ export const checkUsersToKick = async ({
         chatId: chat.id,
       });
       try {
-        await botKickCandidates(appContext, chat, candidatesToDelete);
+        await botKickCandidates({
+          appContext,
+          chat,
+          candidates: candidatesToDelete,
+          reason: KickReason.captchaTimeout,
+        });
       } catch (err) {
         report(err, 'kickCandidatesAfterCheck');
       }
