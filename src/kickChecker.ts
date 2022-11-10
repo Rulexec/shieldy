@@ -10,7 +10,6 @@ let checking = false;
 appContext.run(() => {
   // Check candidates
   setInterval(() => {
-    logger.trace('checkCandidates', {checking});
     if (!checking) {
       check();
     }
@@ -26,7 +25,6 @@ async function check() {
   } catch (err) {
     report(err, 'checking candidates');
   } finally {
-    logger.trace('findCandidates:finish');
     checking = false;
   }
 }

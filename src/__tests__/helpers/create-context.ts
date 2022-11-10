@@ -39,6 +39,7 @@ export const createTestAppContext = ({
       withPromo: false,
       logLevel: LogLevel.WARNING,
       l10nFilesPath: '',
+      isNeedUpdateAutocomplete: false,
     },
     createDatabase: ({appContext}) => new MemoryDatabase({appContext}),
     createTranslations: ({appContext}) =>

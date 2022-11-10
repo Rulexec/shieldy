@@ -17,6 +17,7 @@ export type Config = {
   telegramApiRoot: string;
   telegramPollingInterval: number;
   mongoUri: string;
+  isNeedUpdateAutocomplete: boolean;
   /** @deprecated */
   withPromo: boolean;
   l10nFilesPath: string;
