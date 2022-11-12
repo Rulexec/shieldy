@@ -1,12 +1,16 @@
 import {LogLevel} from '@root/types/logging';
-import type {Logger as LoggerInterface} from './types';
+import type {
+  LogFnOptions,
+  LogFnProps,
+  Logger as LoggerInterface,
+} from './types';
 
 type LoggerWithFork = LoggerInterface & {fork: (key: string) => LoggerWithFork};
 type LogFn = (
   loggerOpts: {loggerKey?: string; level: LogLevel},
   key: string,
-  props?: Record<string, string | number | boolean | undefined | null>,
-  extra?: {extra?: any; error?: Error},
+  props?: LogFnProps,
+  extra?: LogFnOptions,
 ) => void;
 type FilterLogFn = (...params: Parameters<LogFn>) => boolean;
 
@@ -41,7 +45,7 @@ export class Logger implements LoggerInterface {
     extraOpts = {},
   ): void => {
     const {loggerKey = this.key, level} = loggerOpts;
-    const {extra, error} = extraOpts;
+    const {extra, error, postfixKey} = extraOpts;
 
     if (
       level < this.logLevel ||
@@ -67,7 +71,7 @@ export class Logger implements LoggerInterface {
     const logString = `${levelToLetter(level)} ${new Date(
       ms,
     ).toISOString()}.${String(this.microTicks).padStart(3, '0')} ${escapeKey(
-      loggerKey,
+      `${loggerKey}${postfixKey ? `:${postfixKey}` : ''}`,
     )} ${escapeKey(key)} ${props ? propsToStringWithSpaceAfter(props) : ''}${
       error ? `|${exceptionToString(error)}` : ''
     }${extra ? `|${extraToString(extra)}` : ''}\n`;
@@ -127,6 +131,10 @@ export class Logger implements LoggerInterface {
 
     return constructFork(key);
   };
+
+  getKey(): string {
+    return this.key;
+  }
 
   setKey = (key: string): void => {
     this.key = key;

@@ -3,8 +3,8 @@ import {fork} from 'cluster';
 import {AppContext} from './types/app-context';
 import {Logger} from './util/logging/logger';
 import {BotMiddlewareNextStrategy} from './bot/types';
-import {createStatsUniqueLogger} from './util/stats/stats-unique-logger';
 import {telegramSetMyCommands} from './commands/set-my-commands';
+import {UniqueItemLogger} from './util/stats/unique-item-logger';
 
 const workers: ReturnType<typeof fork>[] = [];
 
@@ -13,8 +13,20 @@ export function run(appContext: AppContext): void {
 
   const {prependBotMiddleware, logger} = appContext;
 
-  const uniqueChatsStats = createStatsUniqueLogger({name: 'chats', logger});
-  const uniqueUsersStats = createStatsUniqueLogger({name: 'users', logger});
+  const uniqueChatsStats = new UniqueItemLogger({
+    name: 'chat',
+    logger: logger.fork('uniqueChats'),
+    getCurrentDate: appContext.getCurrentDate,
+    maxItems: 1000,
+    intervalSeconds: 55 * 60,
+  });
+  const uniqueUsersStats = new UniqueItemLogger({
+    name: 'user',
+    logger: logger.fork('uniqueUsers'),
+    getCurrentDate: appContext.getCurrentDate,
+    maxItems: 1000,
+    intervalSeconds: 55 * 60,
+  });
 
   appContext.onShutdown(() => {
     uniqueChatsStats.destroy();
@@ -31,7 +43,10 @@ export function run(appContext: AppContext): void {
 
   let clusterNumber = 0;
 
-  const {telegrafBot: bot} = appContext;
+  const {
+    telegrafBot: bot,
+    config: {isNeedUpdateAutocomplete},
+  } = appContext;
 
   prependBotMiddleware((ctx) => {
     handleCtx(ctx);
@@ -57,24 +72,26 @@ export function run(appContext: AppContext): void {
     .then(() => {
       logger.info('started');
 
-      telegramSetMyCommands({
-        appContext,
-        logger: logger.fork('setMyCommands'),
-      }).catch((error) => {
-        logger.error('setMyCommands', undefined, {error});
-      });
+      if (isNeedUpdateAutocomplete) {
+        telegramSetMyCommands({
+          appContext,
+          logger: logger.fork('setMyCommands'),
+        }).catch((error) => {
+          logger.error('setMyCommands', undefined, {error});
+        });
+      }
     })
     .catch(appContext.report);
 
   function handleCtx(ctx: Context) {
     const chatId = ctx.chat?.id;
     if (typeof chatId === 'number') {
-      uniqueChatsStats.collect(chatId);
+      uniqueChatsStats.addItem(chatId);
     }
 
     const userId = ctx.message?.from?.id;
     if (typeof userId === 'number') {
-      uniqueUsersStats.collect(userId);
+      uniqueUsersStats.addItem(userId);
     }
 
     if (clusterNumber >= workers.length) {

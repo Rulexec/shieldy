@@ -27,6 +27,7 @@ export function getConfig(): Config {
     withPromo: process.env.PROMO_DISABLED !== '1',
     l10nFilesPath: process.env.L10N_PATH || `${__dirname}/../l10n`,
     logLevel: logLevelNameToLevel(process.env.LOG_LEVEL),
+    isNeedUpdateAutocomplete: process.env.NO_NEED_UPDATE_AUTOCOMPLETE !== '1',
   };
 
   if (firstError) {

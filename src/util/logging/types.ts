@@ -1,7 +1,13 @@
+export type LogFnProps = Record<
+  string,
+  string | number | boolean | undefined | null
+>;
+export type LogFnOptions = {extra?: any; error?: Error; postfixKey?: string};
+
 export type LogFn = (
   key: string,
-  props?: Record<string, string | number | boolean | undefined | null>,
-  options?: {extra?: any; error?: Error},
+  props?: LogFnProps,
+  options?: LogFnOptions,
 ) => void;
 
 export type Logger = {

@@ -14,9 +14,7 @@ export const checkUsersToKick = async ({
 }): Promise<void> => {
   const {database, report} = appContext;
 
-  logger.trace('findCandidates');
   const chats = await database.findChatsWithCandidatesOrRestrictedUsers();
-  logger.trace('candidates', {chats: chats.length});
 
   for (const chat of chats) {
     // Check candidates

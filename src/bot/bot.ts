@@ -1,25 +1,11 @@
 import {AppContext} from '@root/types/app-context';
-import {createStatsDistributionLogger} from '@root/util/stats/stats-distribution-logger';
+import {Logger} from '@root/util/logging/types';
+import {measureDuration} from '@root/util/stats/duration-logger';
 import {executeMiddlewares} from './middleware';
 import {BotMiddlewareFn, BotMiddlewareNextStrategy} from './types';
 
 export const initBotMiddlewaresEngine = (appContext: AppContext): void => {
-  const {isWorker, telegrafBot, idling, logger} = appContext;
-
-  const updateProcessingStats = isWorker
-    ? createStatsDistributionLogger({
-        name: 'updateFull',
-        logger,
-      })
-    : null;
-
-  appContext.onShutdown(() => {
-    if (updateProcessingStats) {
-      updateProcessingStats.destroy();
-    }
-
-    return Promise.resolve();
-  });
+  const {telegrafBot, idling, logger: rootLogger} = appContext;
 
   // bot commands are in lower case
   const botCommands: Record<string, {middlewares: BotMiddlewareFn[]}> = {};
@@ -31,8 +17,26 @@ export const initBotMiddlewaresEngine = (appContext: AppContext): void => {
   }[] = [];
   const botMiddlewares: BotMiddlewareFn[] = [];
 
+  let logger: Logger | null = null;
+  const getLogger = (): Logger => {
+    const {logger: newRootLogger} = appContext;
+
+    if (!logger || newRootLogger.getKey() !== rootLogger.getKey()) {
+      logger = rootLogger.fork('middlewares');
+      return logger;
+    }
+
+    return logger;
+  };
+
   telegrafBot.use((ctx, next) => {
-    const logTime = updateProcessingStats?.collectDuration();
+    const logger = getLogger();
+
+    const logTime = measureDuration({
+      name: 'handleFull',
+      logger,
+      props: {updateType: ctx.updateType},
+    });
     const finish = idling.startTask();
 
     (async () => {
@@ -153,7 +157,7 @@ export const initBotMiddlewaresEngine = (appContext: AppContext): void => {
       )
       .finally(() => {
         finish();
-        logTime?.();
+        logTime();
       });
   });
 

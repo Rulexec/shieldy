@@ -46,10 +46,10 @@ export function initReporter(appContext: AppContext): {
   const intervalId = setInterval(bulkReport.bind(null, appContext), 60 * 1000);
 
   appContext.report = (error, reason) => {
+    logger.error('report', {reason}, {error});
     if (checkIfErrorDismissable(error)) {
       return;
     }
-    logger.error('report', {reason}, {error});
     errorsToReport.push(`${reason ? `${reason}\n` : ''}${error.message}`);
   };
 

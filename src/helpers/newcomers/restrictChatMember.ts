@@ -1,6 +1,7 @@
 import {User} from 'telegraf/typings/telegram-types';
 import {Chat} from '@models/Chat';
 import {AppContext} from '@root/types/app-context';
+import {logTelegramApiCall} from '@root/util/stats/telegram-calls';
 
 export async function botRestrictChatMember(
   appContext: AppContext,
@@ -8,10 +9,15 @@ export async function botRestrictChatMember(
   user: User,
 ): Promise<void> {
   try {
-    const gotUser = await appContext.telegrafBot.telegram.getChatMember(
-      chat.id,
-      user.id,
+    const gotUser = await logTelegramApiCall(
+      appContext.telegrafBot.telegram.getChatMember(chat.id, user.id),
+      {
+        name: 'getChatMember',
+        place: 'botRestrictChatMember',
+        rootLogger: appContext.logger,
+      },
     );
+
     if (
       gotUser.can_send_messages &&
       gotUser.can_send_media_messages &&

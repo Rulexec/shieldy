@@ -3,6 +3,7 @@ import {BotMiddlewareNextStrategy} from '@root/bot/types';
 import {Context} from '@root/types/context';
 import {getMessageText} from '@root/types/hacks/get-message-text';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
+import {logTelegramApiCall} from '@root/util/stats/telegram-calls';
 
 export async function attachChatMember(
   ctx: Context,
@@ -22,7 +23,14 @@ export async function attachChatMember(
   try {
     assertNonNullish(ctx.from);
 
-    const chatMemberFromTelegram = await ctx.getChatMember(ctx.from.id);
+    const chatMemberFromTelegram = await logTelegramApiCall(
+      ctx.getChatMember(ctx.from.id),
+      {
+        name: 'getChatMember',
+        place: 'attachChatMember',
+        rootLogger: ctx.appContext.logger,
+      },
+    );
     ctx.isAdministrator = ['creator', 'administrator'].includes(
       chatMemberFromTelegram.status,
     );

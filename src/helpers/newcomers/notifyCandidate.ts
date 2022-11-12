@@ -27,6 +27,12 @@ export async function notifyCandidate(
     : undefined;
   const {equation, image} = captcha;
 
+  logger.trace(
+    'captcha',
+    {captchaType: captcha.captchaType},
+    {postfixKey: 'notifyCandidate'},
+  );
+
   const isDegradatedCustom =
     captcha.captchaType === CaptchaType.CUSTOM && !captcha.customCaptcha;
 
