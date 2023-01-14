@@ -24,6 +24,8 @@ export function getConfig(): Config {
     telegramAdminNickName: process.env.ADMIN_NICK,
     telegramPollingInterval: 30,
     mongoUri: ensureEnv('MONGO'),
+    database: getDatabaseType(),
+    memoryDatabaseDumpPath: process.env.MEMORY_DB_DUMP_PATH,
     withPromo: process.env.PROMO_DISABLED !== '1',
     l10nFilesPath: process.env.L10N_PATH || `${__dirname}/../l10n`,
     logLevel: logLevelNameToLevel(process.env.LOG_LEVEL),
@@ -32,6 +34,10 @@ export function getConfig(): Config {
 
   if (firstError) {
     throw firstError;
+  }
+
+  if (config.workersCount !== 1 && config.database === 'memory') {
+    throw new Error('in-memory database supported only for single worker');
   }
 
   return config;
@@ -51,3 +57,17 @@ export function getConfig(): Config {
     return value;
   }
 }
+
+const getDatabaseType = (): Config['database'] => {
+  const type = process.env.DATABASE;
+
+  switch (type) {
+    case 'mongo':
+    case 'memory':
+      return type;
+    case undefined:
+      return 'mongo';
+    default:
+      throw new Error(`unknown db type: ${type}, supported: mongo, memory`);
+  }
+};

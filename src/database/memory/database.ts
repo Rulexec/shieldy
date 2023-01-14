@@ -15,6 +15,7 @@ import {sleep} from '@root/util/async/sleep';
 import {assertNonNullish} from '@root/util/assert/assert-non-nullish';
 import {getOrCreateMap, getOrCreateSet} from '@root/util/map/get-or-create';
 import {MessageId} from '@root/models/message';
+import {readFile, writeFile} from 'fs/promises';
 
 /**
  * In-memory mock of MongoDatabase, used in tests.
@@ -39,7 +40,79 @@ export class MemoryDatabase implements Database {
     // behavior like real db connector
     // If MemoryDatabase will be used for real, move those sleeps to a flag
     await sleep(1);
+
+    await this.restoreDump();
   };
+
+  async stop() {
+    await this.makeDump();
+  }
+
+  private async restoreDump() {
+    const {memoryDatabaseDumpPath} = this.appContext.config;
+
+    if (!memoryDatabaseDumpPath) {
+      return;
+    }
+
+    const content = await (async () => {
+      try {
+        return await readFile(memoryDatabaseDumpPath, 'utf-8');
+      } catch (error) {
+        if (error.code === 'ENOENT') {
+          return null;
+        }
+
+        throw error;
+      }
+    })();
+
+    if (!content) {
+      return;
+    }
+
+    // WARN: there should be some validation, describe data in `zod`, please
+    const dump = JSON.parse(content);
+
+    [
+      [this.chats, dump.chats],
+      [this.cappedKickedUsers, dump.cappedKickedUsers],
+      [this.entryMessages, dump.entryMessages],
+      [this.messagesToDelete, dump.messagesToDelete],
+      [this.cappedMessages, dump.cappedMessages],
+    ].forEach(([map, dump]) => {
+      dump.forEach(([key, value]) => {
+        map.set(key, value);
+      });
+    });
+
+    dump.verifiedUsers.forEach((id) => {
+      this.verifiedUsers.add(id);
+    });
+  }
+
+  private async makeDump() {
+    const {
+      isWorker,
+      config: {memoryDatabaseDumpPath},
+    } = this.appContext;
+
+    // Only workers have some state here
+    if (!isWorker || !memoryDatabaseDumpPath) {
+      return;
+    }
+
+    const dump = {
+      chats: Array.from(this.chats.entries()),
+      cappedKickedUsers: Array.from(this.cappedKickedUsers.entries()),
+      entryMessages: Array.from(this.entryMessages.entries()),
+      verifiedUsers: Array.from(this.verifiedUsers),
+      messagesToDelete: Array.from(this.messagesToDelete.entries()),
+      cappedMessages: Array.from(this.cappedMessages.entries()),
+    };
+
+    await writeFile(memoryDatabaseDumpPath, JSON.stringify(dump), 'utf-8');
+  }
 
   getChatById = async (chatId: ChatId): Promise<Chat | null> => {
     await sleep(1);

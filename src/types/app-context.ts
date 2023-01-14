@@ -17,6 +17,8 @@ export type Config = {
   telegramApiRoot: string;
   telegramPollingInterval: number;
   mongoUri: string;
+  database: 'mongo' | 'memory';
+  memoryDatabaseDumpPath?: string;
   isNeedUpdateAutocomplete: boolean;
   /** @deprecated */
   withPromo: boolean;
