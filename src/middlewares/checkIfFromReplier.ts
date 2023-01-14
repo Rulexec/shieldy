@@ -16,6 +16,15 @@ export const checkIfFromReplierMiddleware: BotMiddlewareFn = async (
     ctx.callbackQuery.message.reply_to_message
   ) {
     const message = ctx.callbackQuery.message;
+    // Anonymous admin
+    if (
+      message.reply_to_message &&
+      message.reply_to_message.from &&
+      message.reply_to_message.from.username &&
+      message.reply_to_message.from.username === 'GroupAnonymousBot'
+    ) {
+      return BotMiddlewareNextStrategy.next;
+    }
 
     assertNonNullish(message.reply_to_message?.from);
 
