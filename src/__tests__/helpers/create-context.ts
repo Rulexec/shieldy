@@ -36,6 +36,7 @@ export const createTestAppContext = ({
       telegramApiRoot,
       telegramPollingInterval: 1,
       mongoUri: 'mongonotused',
+      database: 'memory',
       withPromo: false,
       logLevel: LogLevel.WARNING,
       l10nFilesPath: '',

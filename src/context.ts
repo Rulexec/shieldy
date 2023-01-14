@@ -14,6 +14,7 @@ import {createFsPoTranslationsLoader} from './i18n/translations-loader-fs-po';
 import {getCommands} from './commands/all-commands';
 import {ExplicitPartial} from './types/utility';
 import {toDoValidateResponse} from './types/hacks/to-do-validate';
+import {MemoryDatabase} from './database/memory/database';
 
 export type ContextOptions = Partial<{
   isWorker: boolean;
@@ -36,11 +37,16 @@ const defaultCreateTranslations = ({appContext}: {appContext: AppContext}) =>
     logger: appContext.logger.fork('l10n'),
   });
 
+const defaultCreateDatabase = ({appContext}: {appContext: AppContext}) =>
+  new MongoDatabase({appContext});
+const createMemoryDatabase = ({appContext}: {appContext: AppContext}) =>
+  new MemoryDatabase({appContext});
+
 export function createContext({
   isWorker = true,
   instanceId,
   config: customConfig,
-  createDatabase = ({appContext}) => new MongoDatabase({appContext}),
+  createDatabase: createDatabaseFn = defaultCreateDatabase,
   createTranslations = defaultCreateTranslations,
   getCurrentDate = () => new Date(),
   getLogger = ({name, config}) => new Logger(name, {logLevel: config.logLevel}),
@@ -90,6 +96,24 @@ export function createContext({
   // and undefined fields will be not used on initialization
   appContext = initialAppContext as AppContext;
 
+  const createDatabase = (() => {
+    if (createDatabaseFn !== defaultCreateDatabase) {
+      return createDatabaseFn;
+    }
+
+    switch (config.database) {
+      case 'mongo':
+        return defaultCreateDatabase;
+      case 'memory':
+        return createMemoryDatabase;
+      default: {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const shouldBeNever: never = config.database;
+        throw new Error('impossible');
+      }
+    }
+  })();
+
   appContext.database = createDatabase({appContext});
   appContext.translations = createTranslations({appContext});
 
@@ -106,6 +130,8 @@ export function createContext({
   };
 
   appContext.stop = async () => {
+    logger.info('stop', {state: 'start'});
+
     await shutdownHandlers.reduceRight((acc, handler) => {
       return acc.finally(() =>
         handler().catch((error) => {
@@ -115,8 +141,12 @@ export function createContext({
       );
     }, Promise.resolve());
 
+    await appContext.database.stop?.();
+
     await bot.stop();
     await reportedShutdown();
+
+    logger.info('stop', {state: 'finish'});
   };
 
   appContext.run = (fun) => {
