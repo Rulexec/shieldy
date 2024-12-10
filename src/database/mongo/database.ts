@@ -226,7 +226,8 @@ export class MongoDatabase implements Database {
     // eslint-disable-next-line @typescript-eslint/ban-types
     assertTypesEqual<{}, typeof rest>(true);
 
-    const msg = {chat_id, message_id, from_id};
+    const index = {chat_id, from_id};
+    const msg = {...index, message_id};
 
     await this.entryMessagesCollection.updateOne(
       msg,
