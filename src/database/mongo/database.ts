@@ -139,11 +139,22 @@ export class MongoDatabase implements Database {
     chatId,
     candidates,
   }) => {
+    const candidatesWithTimestamp = candidates.map((candidate) => {
+      if (typeof candidate.timestamp === 'number') {
+        return candidate;
+      }
+
+      return {
+        ...candidate,
+        timestamp: this.appContext.getCurrentDate().getTime(),
+      };
+    });
+
     await this.chatCollection.updateOne(
       {id: chatId},
       {
         $push: {
-          restrictedUsers: {$each: candidates},
+          restrictedUsers: {$each: candidatesWithTimestamp},
         },
       },
     );

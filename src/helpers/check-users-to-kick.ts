@@ -45,8 +45,9 @@ export const checkUsersToKick = async ({
     const restrictedToDelete: Candidate[] = [];
     for (const candidate of chat.restrictedUsers) {
       if (
+        !candidate.timestamp ||
         new Date().getTime() - candidate.timestamp >
-        (candidate.restrictTime || 24) * 60 * 60 * 1000
+          (candidate.restrictTime || 24) * 60 * 60 * 1000
       ) {
         restrictedToDelete.push(candidate);
       }
