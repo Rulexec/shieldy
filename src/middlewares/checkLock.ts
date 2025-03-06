@@ -21,6 +21,10 @@ export const checkLockMiddleware: BotMiddlewareFn = async (ctx) => {
   if (ctx.from.id === ctx.appContext.config.telegramAdminId) {
     return BotMiddlewareNextStrategy.next;
   }
+  // If from the group anonymous bot, then continue
+  if (ctx.from?.username === 'GroupAnonymousBot') {
+    return BotMiddlewareNextStrategy.next;
+  }
   // If from admin, then continue
   if (ctx.isAdministrator) {
     return BotMiddlewareNextStrategy.next;
