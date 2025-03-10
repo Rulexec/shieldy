@@ -230,7 +230,7 @@ export class MongoDatabase implements Database {
     const msg = {...index, message_id};
 
     await this.entryMessagesCollection.updateOne(
-      msg,
+      index,
       {$set: msg},
       {upsert: true},
     );
@@ -312,10 +312,11 @@ export class MongoDatabase implements Database {
     // eslint-disable-next-line @typescript-eslint/ban-types
     assertTypesEqual<{}, typeof rest>(true);
 
-    const message = {chat_id, from_id, message_id, createdAt};
+    const index = {chat_id, from_id, message_id};
+    const message = {...index, createdAt};
 
     await this.cappedMessagesCollection.updateOne(
-      message,
+      index,
       {$set: message},
       {upsert: true},
     );
