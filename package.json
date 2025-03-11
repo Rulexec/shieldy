@@ -8,6 +8,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "prod:start": "pm2 start --name sesuritu -l $SESURITU_LOG_FILE -x 'npm run distribute'",
     "distribute": "(yarn build-ts || true) && concurrently -k -p \"[{name}]\" -n \"Bot,Kicker,Deleter\" -c \"yellow.bold,cyan.bold,blue.bold\" \"yarn start-bot\" \"yarn start-kicker\" \"yarn start-deleter\"",
     "develop": "concurrently -i -k -p \"[{name}]\" -n \"Bot,Kicker,Deleter,TypeScript\" -c \"yellow.bold,blue.bold,green.bold,cyan.bold\" \"yarn watch-js-bot\" \"yarn watch-js-kicker\" \"yarn watch-js-deleter\" \"yarn watch-ts\"",
     "build-ts": "tsc --skipLibCheck",
@@ -62,6 +63,7 @@
     "jest": "^27.0.6",
     "lint-staged": "^11.0.0",
     "nodemon": "^2.0.5",
+    "pm2": "5.4.3",
     "prettier": "2.3.2",
     "pretty-quick": "^3.1.1",
     "ts-node": "^10.1.0",
