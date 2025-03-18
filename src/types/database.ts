@@ -22,8 +22,9 @@ export type SetChatPropertyOptions = Values<ChatProperties>;
 type FilteredKeys<T, U> = {[P in keyof T]: T[P] extends U ? P : never}[keyof T];
 export type BooleanChatPropertyKey = NonNullable<FilteredKeys<Chat, boolean>>;
 
-export interface Database {
+export type Database = {
   init: () => Promise<void>;
+  stop?: () => Promise<void>;
 
   // TODO: change to `Chat | undefined`
   getChatById: (chatId: ChatId) => Promise<Chat | null>;
@@ -64,4 +65,4 @@ export interface Database {
   findCappedMessages: (
     query: Partial<CappedMessage>,
   ) => Promise<CappedMessage[]>;
-}
+};
